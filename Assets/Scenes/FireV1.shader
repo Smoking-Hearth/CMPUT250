@@ -7,6 +7,7 @@ Shader "Hidden/FireV1"
 
     SubShader
     {
+        Tags { "RenderPipeline" = "UniversalPipeline" }
         // No culling or depth
         Cull Off ZWrite Off ZTest Always
 
