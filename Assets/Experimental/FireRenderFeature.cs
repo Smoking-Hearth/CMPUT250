@@ -1,3 +1,4 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.RenderGraphModule;
@@ -38,6 +39,9 @@ class FireRenderPass : ScriptableRenderPass
 
     static void RenderPass(PassData data, RenderGraphContext ctx)
     {
+        // FIXME: Probably need this somewhere
+        // ctx.cmd.BeginRenderPass()
+
         // Copy the heatmap to VRAM (IDK if this is blocking)
         // PERF: Allow this to be skipped when texture has not been modified.
         ctx.cmd.Blit(data.cpu_heatmap, data.heatmap_texture);
@@ -47,9 +51,8 @@ class FireRenderPass : ScriptableRenderPass
         ctx.cmd.SetGlobalTexture("_HeatmapTexture", data.heatmap_texture);
 
         // Render
-        ctx.cmd.
-
-
+        // TODO: How how can I set the shader to use for the pass?
+        // ctx.cmd.
     }
 }
 
@@ -69,8 +72,10 @@ public class FireRenderFeature : ScriptableRendererFeature
     public override void Create()
     {
         m_fireMaterial = CoreUtils.CreateEngineMaterial(m_fireShader);
+
+        // TODO: Figure out how to allocate a persistent render texture to store the heatmap
         // m_heatmapTextureHandle = RenderingUtils.ReAllocateHandleIfNeeded();
-        m_heatmapTextureHandle = RTHandles.Alloc()
+        // m_heatmapTextureHandle = RTHandles.Alloc();
 
         fireRenderPass = new FireRenderPass(m_fireMaterial);
     }
@@ -82,7 +87,8 @@ public class FireRenderFeature : ScriptableRendererFeature
 
     protected override void Dispose(bool disposing)
     {
-        m_heatmapTextureHandle.Release();
+        // WARN: Remember to free
+        // m_heatmapTextureHandle.Release();
         CoreUtils.Destroy(m_fireMaterial);
     }
 
