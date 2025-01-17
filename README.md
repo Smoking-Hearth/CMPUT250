@@ -1,4 +1,5 @@
-# A note on LFS Binary files are annoying to work with. So we're using
+# A note on LFS 
+Binary files are annoying to work with. So we're using
 [git-lfs](https://git-lfs.com/) to store our asset files in a separate location
 from the main repository. This isn't really necessary due to VCS diffing
 causing us to store a basically new file each time we update the assets, since
