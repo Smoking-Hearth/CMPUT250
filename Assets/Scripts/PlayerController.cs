@@ -21,8 +21,12 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isJumping;
     public static PlayerControls controls;
+
     public delegate void OnLand(Vector2 landPosition, float force);
     public static event OnLand onLand;
+
+    public delegate void OnJump(Vector2 jumpPosition);
+    public static event OnJump onJump;
 
     void Awake()
     {
@@ -129,6 +133,11 @@ public class PlayerController : MonoBehaviour
 
         isJumping = true;
         addedVelocity.y = jumpPower;
+
+        if (onJump != null)
+        {
+            onJump(transform.position);
+        }
     }
 
     private void OnAxisInput(InputAction.CallbackContext context)
