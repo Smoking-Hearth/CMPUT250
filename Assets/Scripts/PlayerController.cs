@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] private float jumpPower;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float groundAcceleration;
@@ -11,12 +12,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 groundCheckOffset;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float gravityAcceleration = 30;
+    [SerializeField] float jumpBufferSeconds;
+
+    [Header("Attack")]
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject bulletSpawnAt;
+    [SerializeField] private float bulletInitialSpeed = 10.0f;
 
     private Vector2 addedVelocity;
     private Vector2 targetMovement;
     private Vector2 inputAxes;
 
-    [SerializeField] float jumpBufferSeconds;
+    
     private float jumpBufferEndTime;
     private bool isGrounded;
     private bool isJumping;
@@ -48,6 +55,7 @@ public class PlayerController : MonoBehaviour
         controls.PlayerMovement.InputAxes.canceled += OnAxisInput;
         controls.PlayerMovement.Jump.performed += OnJumpInput;
         controls.PlayerMovement.Jump.canceled += OnCancelJumpInput;
+        controls.PlayerMovement.Attack.performed += OnAttack;
     }
 
     private void OnDisable()
@@ -155,6 +163,36 @@ public class PlayerController : MonoBehaviour
         if (addedVelocity.y > 0)
         {
             addedVelocity.y *= 0.5f;
+        }
+    }
+
+    private void OnAttack(InputAction.CallbackContext ctx) 
+    {
+        GameObject firedBullet = Instantiate(bullet, bulletSpawnAt.transform.position, Quaternion.identity);
+
+        var rigidBody = firedBullet.GetComponent<Rigidbody2D>();
+        if (rigidBody != null) 
+        {
+            Vector2 dir = Camera.main.ScreenToWorldPoint(ctx.ReadValue<Vector2>()) - bulletSpawnAt.transform.position;
+            dir.Normalize();
+            rigidBody.linearVelocity = dir * bulletInitialSpeed;
+        }
+        else 
+        {
+            Debug.LogWarning("Water bullet prefab is missing a RigidBody. May be floating");
+        }
+
+        var timer = firedBullet.GetComponent<Timer>();
+        if (timer != null)
+        {
+            timer.timeLeft_s = 2.0f;
+            timer.OnFinishCallback += (gameObject) => {
+                Destroy(gameObject);
+            };
+        }   
+        else 
+        {
+            Debug.LogWarning("Water bullets will live forever. Performance problem.");
         }
     }
 }
