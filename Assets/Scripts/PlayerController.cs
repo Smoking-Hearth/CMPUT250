@@ -14,21 +14,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravityAcceleration = 30;
     [SerializeField] float jumpBufferSeconds;
 
-    [Header("Attack")]
-    private PlayerShoot shootBehavior;
-    [SerializeField] private GameObject bullet;
-    [SerializeField] private GameObject bulletSpawnAt;
-    [SerializeField] private float bulletInitialSpeed = 10.0f;
-
     private Vector2 addedVelocity;
     private Vector2 targetMovement;
     private Vector2 inputAxes;
-
     
     private float jumpBufferEndTime;
     private bool isGrounded;
     private bool isJumping;
     public static PlayerControls controls;
+
+    private PlayerShoot shootBehavior;
 
     public delegate void OnLand(Vector2 landPosition, float force);
     public static event OnLand onLand;
@@ -51,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
         if (shootBehavior == null)
         {
-            shootBehavior = new PlayerShoot(bulletInitialSpeed);
+            shootBehavior = GetComponent<PlayerShoot>();
         }
     }
 
@@ -175,8 +170,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnAttack(InputAction.CallbackContext ctx) 
     {
-        GameObject firedBullet = Instantiate(bullet, bulletSpawnAt.transform.position, Quaternion.identity);
-        Vector2 dir = Camera.main.ScreenToWorldPoint(ctx.ReadValue<Vector2>()) - bulletSpawnAt.transform.position;
-        shootBehavior.Shoot(firedBullet, dir.normalized);
+        Vector2 targetPosition = Camera.main.ScreenToWorldPoint(ctx.ReadValue<Vector2>());
+        shootBehavior.Shoot(targetPosition);
     }
 }

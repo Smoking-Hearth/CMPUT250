@@ -1,20 +1,49 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerShoot
+public class PlayerShoot : MonoBehaviour
 {
-    private float bulletInitialSpeed = 10.0f;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private float bulletInitialSpeed = 10.0f;
+    [SerializeField] private float swingRadius;
+    [SerializeField] private Vector2 startShootOffset;
+    [SerializeField] private Transform[] aimObjects;
+    [SerializeField] private Transform flipObject;
+    private Vector2 startShootPosition;
 
-    public PlayerShoot(float speed)
+    private void FixedUpdate()
     {
-        bulletInitialSpeed = speed;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        startShootPosition = (Vector2)transform.position + swingRadius * (mousePosition - (Vector2)transform.position + startShootOffset).normalized;
+
+        //For every object that needs to point towards the mouse
+        for (int i = 0; i < aimObjects.Length; i++) 
+        {
+            //Converting to an angle (need to conver radians to degrees)
+            float aimAngle = Mathf.Rad2Deg * Mathf.Atan2(mousePosition.y - aimObjects[i].position.y, mousePosition.x - aimObjects[i].position.x);
+
+            if (aimAngle <= 90 && aimAngle > -90)
+            {
+                flipObject.localScale = Vector3.one;
+                aimObjects[i].rotation = Quaternion.Euler(0, 0, aimAngle);
+            }
+            else
+            {
+                flipObject.localScale = new Vector3(-1, 1, 1);
+                aimObjects[i].rotation = Quaternion.Euler(0, 0, aimAngle + 180);
+            }
+        }
     }
 
-    public void Shoot(GameObject firedBullet, Vector2 direction)
+    public void Shoot(Vector2 targetPosition)
     {
+        Vector2 shootDirection = targetPosition - startShootPosition;
+        GameObject firedBullet = Instantiate(bullet, startShootPosition, Quaternion.identity);
+
         var rigidBody = firedBullet.GetComponent<Rigidbody2D>();
         if (rigidBody != null)
         {
-            rigidBody.linearVelocity = direction.normalized * bulletInitialSpeed;
+            rigidBody.linearVelocity = shootDirection.normalized * bulletInitialSpeed;
         }
         else
         {
@@ -26,7 +55,7 @@ public class PlayerShoot
         {
             timer.timeLeft_s = 2.0f;
             timer.OnFinishCallback += (gameObject) => {
-                Object.Destroy(gameObject);
+                Destroy(gameObject);
             };
         }
         else
