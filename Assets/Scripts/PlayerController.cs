@@ -18,12 +18,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 targetMovement;
     private Vector2 inputAxes;
     
-    private float jumpBufferEndTime;
+    private float jumpBufferEndTime;  //The max time that a jump input will be checked
     private bool isGrounded;
     private bool isJumping;
     public static PlayerControls controls;
 
-    private PlayerShoot shootBehavior;
+    private PlayerShoot shootBehavior;  //The script that handles player shooting
 
     public delegate void OnLand(Vector2 landPosition, float force);
     public static event OnLand onLand;
@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        //Jumps if the player has pressed jump within the jump buffer time
         if (isGrounded && Time.time < jumpBufferEndTime)
         {
             Jump();
@@ -78,8 +79,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Checks if the player is grounded
         if (Physics2D.OverlapCircle((Vector2)transform.position + groundCheckOffset, groundCheckRadius, groundLayer))
         {
+            //Checks if the player has landed
             if (addedVelocity.y < 0)
             {
                 isGrounded = true;
@@ -97,13 +100,15 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+
         Gravity();
         Move();
     }
 
+    //Should only be called once per frame
     private void Move()
     {
-        if (inputAxes.x == 0 && targetMovement.x != 0)
+        if (inputAxes.x == 0 && targetMovement.x != 0)  //Deccelerates if the player does not give a horizontal input
         {
             if (Mathf.Abs(targetMovement.x) > 0.02f)
             {
@@ -116,6 +121,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            //Accelerates according to horizontal input
             if ((inputAxes.x > 0 && targetMovement.x < moveSpeed) || (inputAxes.x < 0 && targetMovement.x > -moveSpeed))
             {
                 targetMovement.x += inputAxes.x * groundAcceleration;
@@ -129,6 +135,7 @@ public class PlayerController : MonoBehaviour
         playerRigidbody.linearVelocity = Time.fixedDeltaTime * (targetMovement + addedVelocity);
     }
 
+    //Accelerates the player downward
     private void Gravity()
     {
         addedVelocity.y -= gravityAcceleration;
@@ -149,6 +156,8 @@ public class PlayerController : MonoBehaviour
             onJump(transform.position);
         }
     }
+
+    //INPUT HANDLING
 
     private void OnAxisInput(InputAction.CallbackContext context)
     {
