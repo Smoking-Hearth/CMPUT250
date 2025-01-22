@@ -1,3 +1,33 @@
+# Commit Message Reference (for convenience)
+```
+type(scope; issue): msg
+```
+
+Where `type` is one of:
+- feat
+- fix
+- refactor
+- perf
+- create
+- update
+- delete
+- docs
+- chore
+
+`scope` indicates the part of the game. Different scopes can be seen in the 
+`S-...` tags attached to issues.
+
+`issue` is the number of the issue the commit is related to if any. e.g. `#2`.
+This basically just tells Github to show that commit under that issue when people
+are browsing it. 
+> NOTE: If closing an issue add "close" before the number and Github will automatically
+> close it.
+
+`msg` is active present tense describing the commit. Consider: "allowed players to walk through walls".
+We save a couple character in present tense: "allow players to walk through walls".
+
+(Conventional Commits)[https://www.conventionalcommits.org/en/v1.0.0/]
+
 # A note on LFS 
 Binary files are annoying to work with. So we're using
 [git-lfs](https://git-lfs.com/) to store our asset files in a separate location
