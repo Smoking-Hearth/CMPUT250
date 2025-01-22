@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpBufferSeconds;
 
     [Header("Attack")]
+    private PlayerShoot shootBehavior;
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject bulletSpawnAt;
     [SerializeField] private float bulletInitialSpeed = 10.0f;
@@ -47,6 +48,11 @@ public class PlayerController : MonoBehaviour
             controls = new PlayerControls();
             controls.Enable();
         }
+
+        if (shootBehavior == null)
+        {
+            shootBehavior = new PlayerShoot(bulletInitialSpeed);
+        }
     }
 
     private void OnEnable()
@@ -64,6 +70,7 @@ public class PlayerController : MonoBehaviour
         controls.PlayerMovement.InputAxes.canceled -= OnAxisInput;
         controls.PlayerMovement.Jump.performed -= OnJumpInput;
         controls.PlayerMovement.Jump.canceled -= OnCancelJumpInput;
+        controls.PlayerMovement.Attack.performed -= OnAttack;
     }
 
     private void Update()
@@ -169,30 +176,7 @@ public class PlayerController : MonoBehaviour
     private void OnAttack(InputAction.CallbackContext ctx) 
     {
         GameObject firedBullet = Instantiate(bullet, bulletSpawnAt.transform.position, Quaternion.identity);
-
-        var rigidBody = firedBullet.GetComponent<Rigidbody2D>();
-        if (rigidBody != null) 
-        {
-            Vector2 dir = Camera.main.ScreenToWorldPoint(ctx.ReadValue<Vector2>()) - bulletSpawnAt.transform.position;
-            dir.Normalize();
-            rigidBody.linearVelocity = dir * bulletInitialSpeed;
-        }
-        else 
-        {
-            Debug.LogWarning("Water bullet prefab is missing a RigidBody. May be floating");
-        }
-
-        var timer = firedBullet.GetComponent<Timer>();
-        if (timer != null)
-        {
-            timer.timeLeft_s = 2.0f;
-            timer.OnFinishCallback += (gameObject) => {
-                Destroy(gameObject);
-            };
-        }   
-        else 
-        {
-            Debug.LogWarning("Water bullets will live forever. Performance problem.");
-        }
+        Vector2 dir = Camera.main.ScreenToWorldPoint(ctx.ReadValue<Vector2>()) - bulletSpawnAt.transform.position;
+        shootBehavior.Shoot(firedBullet, dir.normalized);
     }
 }
