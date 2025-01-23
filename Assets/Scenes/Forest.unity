@@ -257,10 +257,19 @@ MonoBehaviour:
   bulletInitialSpeed: 10
   swingRadius: 1
   swingPivotPosition: {x: 0, y: 0}
-  aimObjects:
-  - {fileID: 602987953}
-  - {fileID: 573345870}
-  - {fileID: 449870707}
+  swingObjects:
+  - objectTransform: {fileID: 602987953}
+    minAngle: 45
+    maxAngle: 150
+    offsetAngle: 0
+  - objectTransform: {fileID: 573345870}
+    minAngle: 10
+    maxAngle: 160
+    offsetAngle: 20
+  - objectTransform: {fileID: 449870707}
+    minAngle: 10
+    maxAngle: 160
+    offsetAngle: 0
   flipObject: {fileID: 1272924070}
   nozzle: {fileID: 353328293}
 --- !u!1 &199648329
@@ -361,7 +370,7 @@ GameObject:
   - component: {fileID: 219801625}
   - component: {fileID: 219801626}
   m_Layer: 0
-  m_Name: FirefighterSprites_8
+  m_Name: FrontArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,7 +471,7 @@ Transform:
   m_GameObject: {fileID: 353328292}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.42100003, y: -0.265, z: 0}
+  m_LocalPosition: {x: 0.6, y: -0.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -479,7 +488,7 @@ GameObject:
   - component: {fileID: 449870707}
   - component: {fileID: 449870708}
   m_Layer: 0
-  m_Name: FirefighterSprites_4
+  m_Name: Hose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -494,7 +503,7 @@ Transform:
   m_GameObject: {fileID: 449870706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.174, y: 0.007, z: 0}
+  m_LocalPosition: {x: 0.17400002, y: 0.007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -567,7 +576,7 @@ GameObject:
   - component: {fileID: 573345870}
   - component: {fileID: 573345871}
   m_Layer: 0
-  m_Name: FirefighterSprites_6
+  m_Name: BackArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -654,7 +663,7 @@ GameObject:
   - component: {fileID: 602987953}
   - component: {fileID: 602987954}
   m_Layer: 0
-  m_Name: FirefighterSprites_5
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1048,7 +1057,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3809524, y: 1}
+    oldSize: {x: 1.45, y: 1.05}
     newSize: {x: 24, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
