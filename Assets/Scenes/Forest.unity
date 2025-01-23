@@ -153,7 +153,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1272924070}
-  - {fileID: 353328293}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &780415
@@ -257,12 +256,13 @@ MonoBehaviour:
   bullet: {fileID: 4543509128577565687, guid: 1dc125fa8c62f4ebb8179d448498c0fa, type: 3}
   bulletInitialSpeed: 10
   swingRadius: 1
-  startShootOffset: {x: 0, y: -0.185}
+  swingPivotPosition: {x: 0, y: 0}
   aimObjects:
   - {fileID: 602987953}
   - {fileID: 573345870}
   - {fileID: 449870707}
   flipObject: {fileID: 1272924070}
+  nozzle: {fileID: 353328293}
 --- !u!1 &199648329
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,12 +461,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353328292}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.595, y: -0.258, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.42100003, y: -0.265, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 780414}
+  m_Father: {fileID: 449870707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &449870706
 GameObject:
@@ -497,7 +497,8 @@ Transform:
   m_LocalPosition: {x: 0.174, y: 0.007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 353328293}
   m_Father: {fileID: 1272924070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &449870708

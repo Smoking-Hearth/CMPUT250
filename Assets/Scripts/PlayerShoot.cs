@@ -6,15 +6,16 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletInitialSpeed = 10.0f;
     [SerializeField] private float swingRadius;
-    [SerializeField] private Vector2 startShootOffset;
+    [SerializeField] private Vector2 swingPivotPosition;
     [SerializeField] private Transform[] aimObjects;
     [SerializeField] private Transform flipObject;
+    [SerializeField] private Transform nozzle;
     private Vector2 startShootPosition;
 
     private void FixedUpdate()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        startShootPosition = (Vector2)transform.position + swingRadius * (mousePosition - (Vector2)transform.position + startShootOffset).normalized;
+        startShootPosition = (Vector2)transform.position + swingRadius * (mousePosition - (Vector2)transform.position + swingPivotPosition).normalized;
 
         //For every object that needs to point towards the mouse
         for (int i = 0; i < aimObjects.Length; i++) 
@@ -38,7 +39,7 @@ public class PlayerShoot : MonoBehaviour
     public void Shoot(Vector2 targetPosition)
     {
         Vector2 shootDirection = targetPosition - startShootPosition;
-        GameObject firedBullet = Instantiate(bullet, startShootPosition, Quaternion.identity);
+        GameObject firedBullet = Instantiate(bullet, nozzle.position, Quaternion.identity);
 
         var rigidBody = firedBullet.GetComponent<Rigidbody2D>();
         if (rigidBody != null)
