@@ -71,9 +71,16 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //Jumps if the player has pressed jump within the jump buffer time
-        if (isGrounded && Time.time < jumpBufferEndTime)
+        if (jumpBufferEndTime > 0)
         {
-            Jump();
+            if (isGrounded)
+            {
+                Jump();
+            }
+            else
+            {
+                jumpBufferEndTime -= Time.deltaTime;
+            }
         }
     }
 
@@ -143,6 +150,8 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        jumpBufferEndTime = 0;
+
         if (!isGrounded || isJumping)
         {
             return;
@@ -166,7 +175,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnJumpInput(InputAction.CallbackContext context)
     {
-        jumpBufferEndTime = Time.time + jumpBufferSeconds;
+        jumpBufferEndTime = jumpBufferSeconds;
     }
 
     private void OnCancelJumpInput(InputAction.CallbackContext context)
