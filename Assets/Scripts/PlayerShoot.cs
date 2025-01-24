@@ -5,6 +5,16 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletInitialSpeed = 10.0f;
+    [SerializeField] private float shootCooldown;
+    private float shootCooldownTimer;
+    public bool ShootAvailable
+    {
+        get
+        {
+            return shootCooldownTimer <= 0;
+        }
+    }
+
     [SerializeField] private float swingRadius;
     [SerializeField] private Vector2 swingPivotPosition;
     [SerializeField] private SwingObject[] swingObjects;
@@ -68,12 +78,18 @@ public class PlayerShoot : MonoBehaviour
                 swingObjects[i].objectTransform.rotation = Quaternion.Euler(0, 0, aimAngle + 180 - swingObjects[i].offsetAngle);
             }
         }
+
+        if (shootCooldownTimer > 0)
+        {
+            shootCooldownTimer -= Time.fixedDeltaTime;
+        }
     }
 
     public void Shoot(Vector2 targetPosition)
     {
         Vector2 shootDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
         GameObject firedBullet = Instantiate(bullet, nozzle.position, Quaternion.identity);
+        shootCooldownTimer = shootCooldown;
 
         var rigidBody = firedBullet.GetComponent<Rigidbody2D>();
         if (rigidBody != null)

@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerControls controls;
 
     private PlayerShoot shootBehavior;  //The script that handles player shooting
+    private bool isShooting;
 
     public delegate void OnLand(Vector2 landPosition, float force);
     public static event OnLand onLand;
@@ -56,7 +57,8 @@ public class PlayerController : MonoBehaviour
         controls.PlayerMovement.InputAxes.canceled += OnAxisInput;
         controls.PlayerMovement.Jump.performed += OnJumpInput;
         controls.PlayerMovement.Jump.canceled += OnCancelJumpInput;
-        controls.PlayerMovement.Attack.performed += OnAttack;
+        controls.PlayerMovement.Attack.performed += OnStartAttack;
+        controls.PlayerMovement.Attack.canceled += OnCancelAttack;
     }
 
     private void OnDisable()
@@ -65,7 +67,8 @@ public class PlayerController : MonoBehaviour
         controls.PlayerMovement.InputAxes.canceled -= OnAxisInput;
         controls.PlayerMovement.Jump.performed -= OnJumpInput;
         controls.PlayerMovement.Jump.canceled -= OnCancelJumpInput;
-        controls.PlayerMovement.Attack.performed -= OnAttack;
+        controls.PlayerMovement.Attack.performed -= OnStartAttack;
+        controls.PlayerMovement.Attack.canceled -= OnCancelAttack;
     }
 
     private void Update()
@@ -81,6 +84,12 @@ public class PlayerController : MonoBehaviour
             {
                 jumpBufferEndTime -= Time.deltaTime;
             }
+        }
+
+        if (isShooting && shootBehavior.ShootAvailable)
+        {
+            Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            shootBehavior.Shoot(targetPosition);
         }
     }
 
@@ -186,9 +195,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnAttack(InputAction.CallbackContext ctx) 
+    private void OnStartAttack(InputAction.CallbackContext context) 
     {
-        Vector2 targetPosition = Camera.main.ScreenToWorldPoint(ctx.ReadValue<Vector2>());
-        shootBehavior.Shoot(targetPosition);
+        isShooting = true;
+    }
+
+    private void OnCancelAttack(InputAction.CallbackContext context) 
+    {
+        isShooting = false;
     }
 }
