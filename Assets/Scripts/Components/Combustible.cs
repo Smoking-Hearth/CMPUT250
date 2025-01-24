@@ -4,17 +4,11 @@ using UnityEngine;
 [Flags]
 public enum CombustibleKind
 {
-    A_NonMetalSolid = 1 << 0,
-    B_Liquid = 1 << 1,
-    C_Gas = 1 << 2,
-    D_Metal = 1 << 3,
-    E_Electrical = 1 << 4,
-    F_Cooking = 1 << 5
-}
-
-public interface IExtinguishable 
-{
-    void Extinguish(CombustibleKind agentWorksOn, float quantity_L);
+    A_COMMON = 1 << 0,
+    B_LIQUID = 1 << 1,
+    C_ELECTRICAL = 1 << 2,
+    D_METAL = 1 << 3,
+    K_COOKING = 1 << 4
 }
 
 // TODO: Combustible materials should check their surroundings for other combustible materials. 
@@ -37,7 +31,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
     [SerializeField] private ParticleSystem firePrefab = null;
     ParticleSystem fire = null;
-    CombustibleKind combustibleKind = CombustibleKind.A_NonMetalSolid;
+    CombustibleKind combustibleKind = CombustibleKind.A_COMMON;
 
     [SerializeField] AnimationCurve extinguishEffectiveness = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
 
@@ -114,10 +108,10 @@ public class Combustible : MonoBehaviour, IExtinguishable
         fire.Play();
     }
 
-    public void Extinguish(CombustibleKind agentWorksOn, float quantity_L)
+    public void Extinguish(CombustibleKind extinguishClass, float quantity_L)
     {
         if (!Burning) return;
-        if ((agentWorksOn & combustibleKind) > 0)
+        if ((extinguishClass & combustibleKind) > 0)
         {
             Temperature -= quantity_L * extinguishEffectiveness.Evaluate(Mathf.Min(temperature - autoIgnitionTemperature, MAX_TEMP));
         }
