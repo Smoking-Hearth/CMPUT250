@@ -5396,7 +5396,7 @@ Transform:
   m_GameObject: {fileID: 514533133}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 4.13, y: -3.38, z: -0.07}
+  m_LocalPosition: {x: -9.94, y: -3.33, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10423,8 +10423,9 @@ GameObject:
   - component: {fileID: 993505456}
   - component: {fileID: 993505457}
   - component: {fileID: 993505458}
+  - component: {fileID: 993505459}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: BurnableObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10601,6 +10602,21 @@ MonoBehaviour:
   current: 100
   regen: -Infinity
   depletedCooldownDelay: -Infinity
+--- !u!114 &993505459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993505452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e7e3b7f7e3b3276a699a28fc41bd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePrefab: {fileID: 5862223314389801100, guid: 2f541f1bdaada8e6f8b99f3adc4c859a, type: 3}
+  temperature: 283.15
+  autoIgnitionTemperature: 373.15
 --- !u!1 &1079321110
 GameObject:
   m_ObjectHideFlags: 0
