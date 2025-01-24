@@ -7,7 +7,6 @@ public class WaterStreamAnimator : MonoBehaviour
 {
     [SerializeField] private int segments;
     [SerializeField] private SpriteShapeController spriteShape;
-    [SerializeField] private Transform particles;
     [SerializeField] private float streamLength;
     [SerializeField] private float turnSpeed;
     [SerializeField] private float streamDelay;
@@ -16,15 +15,6 @@ public class WaterStreamAnimator : MonoBehaviour
     private float activateNext;
     private bool activating;
     private float currentLength;
-
-    private void OnEnable()
-    {
-        PlayerController.controls.PlayerMovement.Jump.performed += OnClick;
-    }
-    private void OnDisable()
-    {
-        PlayerController.controls.PlayerMovement.Jump.performed -= OnClick;
-    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,28 +29,65 @@ public class WaterStreamAnimator : MonoBehaviour
     {
         if (activating && currentLength < streamLength && Time.fixedTime >= activateNext)
         {
+            spriteShape.spriteShapeRenderer.enabled = true;
+
             activateNext = Time.fixedTime + 0.02f;
             currentLength += 2;
+
+            if (currentLength > streamLength)
+            {
+                currentLength = streamLength;
+            }
         }
         else if (!activating && currentLength > 2 && Time.fixedTime >= activateNext)
         {
             activateNext = Time.fixedTime + 0.02f;
             currentLength -= 2;
-        }
 
-        Vector2 targetVector = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Vector2 targetDirection = (targetVector - (Vector2)transform.position).normalized;
-        targetAngle = Mathf.LerpAngle(targetAngle, Mathf.Rad2Deg * Mathf.Atan2(targetDirection.y, targetDirection.x), turnSpeed);
-        Vector2 delayedDirection = Quaternion.Euler(0, 0, targetAngle) * Vector2.right;
-        particles.rotation = Quaternion.Euler(0, 0, targetAngle);
+            if (currentLength <= 2)
+            {
+                currentLength = 2;
+                spriteShape.spriteShapeRenderer.enabled = false;
+            }
+        }
+    }
+
+    public void SetSpecialActive(bool set)
+    {
+        activating = set;
+    }
+
+    public void ResetStream(float aimAngle)
+    {
+        Vector2 targetDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
 
         for (int i = 1; i < segments; i++)
+        {
+            float segmentDistance = streamLength / segments;
+            Vector2 newPosition = Vector2.right * i * segmentDistance;
+            spline.SetPosition(i, newPosition);
+        }
+    }
+
+    public void Aim(float aimAngle)
+    {
+        Vector2 targetDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
+        targetAngle = Mathf.LerpAngle(targetAngle, Mathf.Rad2Deg * Mathf.Atan2(targetDirection.y, targetDirection.x), turnSpeed);
+        Vector2 delayedDirection = Quaternion.Euler(0, 0, targetAngle) * Vector2.right;
+
+        for (int i = segments - 1; i > 0; i--)
         {
             float segmentDistance = currentLength / segments;
             Vector2 segmentPosition = spline.GetPosition(i);
             Vector2 newPosition = Vector2.Lerp(delayedDirection * i * segmentDistance, segmentPosition, Mathf.Log(1 + i * streamDelay));
+
+            if (currentLength != streamLength)
+            {
+                newPosition = delayedDirection * i * segmentDistance;
+            }
+
             float distance = Vector2.Distance(segmentPosition, newPosition);
-            float height = 0.6f + distance * 1.5f + i * 0.2f;
+            float height = 0.6f + distance * 2 + i * 0.4f;
 
             spline.SetHeight(i, height);
 
@@ -88,18 +115,9 @@ public class WaterStreamAnimator : MonoBehaviour
 
             Vector2 tangentIn = -enter - exit;
             Vector2 tangentOut = enter + exit;
-            
+
             spline.SetLeftTangent(i, tangentIn.normalized * 0.75f);
             spline.SetRightTangent(i, tangentOut.normalized * 0.75f);
         }
-
-    }
-
-    private void OnClick(InputAction.CallbackContext context)
-    {
-        activating = !activating;
-        activateNext = Time.fixedTime + 0.02f;
-
-        particles.gameObject.SetActive(activating);
     }
 }

@@ -257,6 +257,7 @@ MonoBehaviour:
   bullet: {fileID: 4543509128577565687, guid: 1dc125fa8c62f4ebb8179d448498c0fa, type: 3}
   bulletInitialSpeed: 10
   shootCooldown: 0.3
+  waterStream: {fileID: 1618388698}
   swingRadius: 1
   swingPivotPosition: {x: 0, y: 0}
   swingObjects:
@@ -6274,12 +6275,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1434409da2a9ac45bf08553f7ae37bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segments: 5
+  segments: 6
   spriteShape: {fileID: 1618388695}
-  particles: {fileID: 0}
-  streamLength: 20
-  turnSpeed: 0.2
-  streamDelay: 0.9
+  streamLength: 15
+  turnSpeed: 0.4
+  streamDelay: 0.166
 --- !u!1 &1717186291
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class PlayerShoot : MonoBehaviour
             return shootCooldownTimer <= 0;
         }
     }
+    [SerializeField] private WaterStreamAnimator waterStream;
 
     [SerializeField] private float swingRadius;
     [SerializeField] private Vector2 swingPivotPosition;
@@ -30,6 +31,8 @@ public class PlayerShoot : MonoBehaviour
         public float maxAngle;
         public float offsetAngle;
     }
+
+    private bool isSpecialShooting;
 
     private void FixedUpdate()
     {
@@ -113,5 +116,20 @@ public class PlayerShoot : MonoBehaviour
         {
             Debug.LogWarning("Water bullets will live forever. Performance problem.");
         }
+    }
+
+    public void SpecialShoot(bool active)
+    {
+        waterStream.SetSpecialActive(active);
+
+        if (active)
+        {
+            waterStream.ResetStream(aimAngle);
+        }
+    }
+
+    public void AimStream()
+    {
+        waterStream.Aim(aimAngle);
     }
 }

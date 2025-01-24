@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerShoot shootBehavior;  //The script that handles player shooting
     private bool isShooting;
+    private bool isSpecialShooting;
 
     public delegate void OnLand(Vector2 landPosition, float force);
     public static event OnLand onLand;
@@ -59,6 +60,8 @@ public class PlayerController : MonoBehaviour
         controls.PlayerMovement.Jump.canceled += OnCancelJumpInput;
         controls.PlayerMovement.Attack.performed += OnStartAttack;
         controls.PlayerMovement.Attack.canceled += OnCancelAttack;
+        controls.PlayerMovement.SpecialAttack.performed += OnStartSpecial;
+        controls.PlayerMovement.SpecialAttack.canceled += OnCancelSpecial;
     }
 
     private void OnDisable()
@@ -69,6 +72,8 @@ public class PlayerController : MonoBehaviour
         controls.PlayerMovement.Jump.canceled -= OnCancelJumpInput;
         controls.PlayerMovement.Attack.performed -= OnStartAttack;
         controls.PlayerMovement.Attack.canceled -= OnCancelAttack;
+        controls.PlayerMovement.SpecialAttack.performed -= OnStartSpecial;
+        controls.PlayerMovement.SpecialAttack.canceled -= OnCancelSpecial;
     }
 
     private void Update()
@@ -86,7 +91,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (isShooting && shootBehavior.ShootAvailable)
+        if (isSpecialShooting)
+        {
+            shootBehavior.AimStream();
+        }
+        else if (isShooting && shootBehavior.ShootAvailable)
         {
             Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             shootBehavior.Shoot(targetPosition);
@@ -200,8 +209,26 @@ public class PlayerController : MonoBehaviour
         isShooting = true;
     }
 
-    private void OnCancelAttack(InputAction.CallbackContext context) 
+    private void OnCancelAttack(InputAction.CallbackContext context)
     {
         isShooting = false;
+    }
+
+    private void OnStartSpecial(InputAction.CallbackContext context)
+    {
+        if (!isSpecialShooting)
+        {
+            isSpecialShooting = true;
+            shootBehavior.SpecialShoot(true);
+        }
+    }
+
+    private void OnCancelSpecial(InputAction.CallbackContext context)
+    {
+        if (isSpecialShooting)
+        {
+            isSpecialShooting = false;
+            shootBehavior.SpecialShoot(false);
+        }
     }
 }
