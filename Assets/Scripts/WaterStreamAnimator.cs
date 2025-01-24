@@ -57,8 +57,14 @@ public class WaterStreamAnimator : MonoBehaviour
         for (int i = 1; i < segments; i++)
         {
             float segmentDistance = currentLength / segments;
+            Vector2 segmentPosition = spline.GetPosition(i);
+            Vector2 newPosition = Vector2.Lerp(delayedDirection * i * segmentDistance, segmentPosition, Mathf.Log(1 + i * streamDelay));
+            float distance = Vector2.Distance(segmentPosition, newPosition);
+            float height = 0.6f + distance * 1.5f + i * 0.2f;
 
-            spline.SetPosition(i, Vector2.Lerp(delayedDirection * i * segmentDistance, spline.GetPosition(i), Mathf.Log(1 + i * streamDelay)));
+            spline.SetHeight(i, height);
+
+            spline.SetPosition(i, newPosition);
         }
 
         for (int i = 0; i < segments; i++)
