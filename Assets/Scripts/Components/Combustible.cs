@@ -17,6 +17,14 @@ public interface IExtinguishable
     void Extinguish(CombustibleKind agentWorksOn, float quantity_L);
 }
 
+// TODO: Combustible materials should check their surroundings for other combustible materials. 
+// Given these the combustible should update it's temperature according to the environment.
+
+// TODO: Fule should produce heat. As of the moment it doesn't. Add some parameters to represent
+// how much energy different types of fule store and how much heat they can generate.
+
+// TODO: Fule burns at different speeds. Add that.
+
 /// <summary>
 /// Attach this to GameObject that can burn. Note that this class works with temperature in Kelvin.
 /// Just to remind: T_Kelvin = T_Celcius + ABSOLUTE_ZERO_CELCIUS. The class has a constant to avoid
@@ -25,10 +33,13 @@ public interface IExtinguishable
 public class Combustible : MonoBehaviour, IExtinguishable
 {
     public const float ABSOLUTE_ZERO_CELCIUS = 273.15f;
+    public const float MAX_TEMP = 20_000f;
 
     [SerializeField] private ParticleSystem firePrefab = null;
     ParticleSystem fire = null;
     CombustibleKind combustibleKind = CombustibleKind.A_NonMetalSolid;
+
+    [SerializeField] AnimationCurve extinguishEffectiveness = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
 
     public bool Burning
     {
@@ -103,12 +114,12 @@ public class Combustible : MonoBehaviour, IExtinguishable
         fire.Play();
     }
 
-    // TODO: This can be made more complex.
     public void Extinguish(CombustibleKind agentWorksOn, float quantity_L)
     {
+        if (!Burning) return;
         if ((agentWorksOn & combustibleKind) > 0)
         {
-            Temperature -= quantity_L;
+            Temperature -= quantity_L * extinguishEffectiveness.Evaluate(Mathf.Min(temperature - autoIgnitionTemperature, MAX_TEMP));
         }
     }
 }
