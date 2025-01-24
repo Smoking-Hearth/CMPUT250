@@ -120,6 +120,7 @@ public class PlayerShoot : MonoBehaviour
 
     public void SpecialShoot(bool active)
     {
+        waterStream.transform.position = nozzle.position;
         waterStream.SetSpecialActive(active);
 
         if (active)
@@ -130,6 +131,7 @@ public class PlayerShoot : MonoBehaviour
 
     public void AimStream()
     {
+        waterStream.transform.position = nozzle.position;
         waterStream.Aim(aimAngle);
     }
 }

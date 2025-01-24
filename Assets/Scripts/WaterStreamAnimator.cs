@@ -10,6 +10,7 @@ public class WaterStreamAnimator : MonoBehaviour
     [SerializeField] private float streamLength;
     [SerializeField] private float turnSpeed;
     [SerializeField] private float streamDelay;
+    [SerializeField] private ParticleSystem nozzleParticles;
     private float targetAngle;
     private UnityEngine.U2D.Spline spline;
     private float activateNext;
@@ -55,6 +56,15 @@ public class WaterStreamAnimator : MonoBehaviour
     public void SetSpecialActive(bool set)
     {
         activating = set;
+
+        if (set)
+        {
+            nozzleParticles.Play();
+        }
+        else
+        {
+            nozzleParticles.Stop();
+        }
     }
 
     public void ResetStream(float aimAngle)
@@ -75,6 +85,8 @@ public class WaterStreamAnimator : MonoBehaviour
         targetAngle = Mathf.LerpAngle(targetAngle, Mathf.Rad2Deg * Mathf.Atan2(targetDirection.y, targetDirection.x), turnSpeed);
         Vector2 delayedDirection = Quaternion.Euler(0, 0, targetAngle) * Vector2.right;
 
+        nozzleParticles.transform.rotation = Quaternion.Euler(0, 0, aimAngle);
+
         for (int i = segments - 1; i > 0; i--)
         {
             float segmentDistance = currentLength / segments;
@@ -87,7 +99,7 @@ public class WaterStreamAnimator : MonoBehaviour
             }
 
             float distance = Vector2.Distance(segmentPosition, newPosition);
-            float height = 0.6f + distance * 2 + i * 0.4f;
+            float height = 0.4f + distance * 2 + i * 0.4f;
 
             spline.SetHeight(i, height);
 
