@@ -1,25 +1,29 @@
 using System;
 using UnityEngine;
 
+[Flags]
+public enum CombustibleKind
+{
+    A_NonMetalSolid = 1 << 0,
+    B_Liquid = 1 << 1,
+    C_Gas = 1 << 2,
+    D_Metal = 1 << 3,
+    E_Electrical = 1 << 4,
+    F_Cooking = 1 << 5
+}
+
+public interface IExtinguishable 
+{
+    void Extinguish(CombustibleKind agentWorksOn, float quantity_L);
+}
+
 /// <summary>
 /// Attach this to GameObject that can burn. Note that this class works with temperature in Kelvin.
 /// Just to remind: T_Kelvin = T_Celcius + ABSOLUTE_ZERO_CELCIUS. The class has a constant to avoid
 /// needing to remember.
 /// </summary>
-public class Combustible : MonoBehaviour
+public class Combustible : MonoBehaviour, IExtinguishable
 {
-    [Flags]
-    public enum CombustibleKind
-    {
-        A_NonMetalSolid = 1 << 0,
-        B_Liquid = 1 << 1,
-        C_Gas = 1 << 2,
-        D_Metal = 1 << 3,
-        E_Electrical = 1 << 4,
-        F_Cooking = 1 << 5
-    }
-
-
     public const float ABSOLUTE_ZERO_CELCIUS = 273.15f;
 
     [SerializeField] private ParticleSystem firePrefab = null;
@@ -80,7 +84,7 @@ public class Combustible : MonoBehaviour
         }
         if (Burning)
         {
-            fule -= 0.001f * Time.deltaTime;
+            fule -= 0.1f * Time.deltaTime;
         }
         if (fire != null && (!haveFule || temperature < autoIgnitionTemperature))
         {
@@ -88,8 +92,9 @@ public class Combustible : MonoBehaviour
         }
     }
 
-    void Ignite()
+    public void Ignite()
     {
+        if (Burning) return;
         if (fire == null) 
         {
             fire = Instantiate(firePrefab, transform);
@@ -99,7 +104,7 @@ public class Combustible : MonoBehaviour
     }
 
     // TODO: This can be made more complex.
-    void Extinguish(CombustibleKind agentWorksOn, float quantity_L)
+    public void Extinguish(CombustibleKind agentWorksOn, float quantity_L)
     {
         if ((agentWorksOn & combustibleKind) > 0)
         {
