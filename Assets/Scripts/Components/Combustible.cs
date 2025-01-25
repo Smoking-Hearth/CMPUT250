@@ -14,9 +14,6 @@ public enum CombustibleKind
 // TODO: Combustible materials should check their surroundings for other combustible materials. 
 // Given these the combustible should update it's temperature according to the environment.
 
-// TODO: Fule should produce heat. As of the moment it doesn't. Add some parameters to represent
-// how much energy different types of fule store and how much heat they can generate.
-
 // TODO: Fule burns at different speeds. Add that.
 
 /// <summary>
@@ -61,7 +58,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
     }
 
-    float fule = 100f;
+    [SerializeField] float fule = 100f;
     public float Fule 
     {
         get { return fule; }
@@ -71,6 +68,9 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
     }
 
+    // In Kelvin per unit of fule
+    [SerializeField] float fuleToTemp = 10f;
+
     void Start()
     {
         if (firePrefab == null)
@@ -79,7 +79,6 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         bool haveFule = fule > 0f;
@@ -89,7 +88,9 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
         if (Burning)
         {
-            fule -= 0.1f * Time.deltaTime;
+            float consumed = Mathf.Min(0.1f * Time.deltaTime, fule);
+            fule -= consumed;
+            temperature += fuleToTemp * consumed;
         }
         if (fire != null && (!haveFule || temperature < autoIgnitionTemperature))
         {
