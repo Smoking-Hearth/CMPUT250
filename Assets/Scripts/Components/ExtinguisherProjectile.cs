@@ -72,7 +72,6 @@ public class ExtinguisherProjectile : MonoBehaviour
         Collider2D[] hitTargets = Physics2D.OverlapCircleAll(transform.position, splashRadius, fireLayers);
         for(int i = 0; i < hitTargets.Length; i++)
         {
-            Debug.Log("p");
             hitTargets[i].GetComponent<IExtinguishable>().Extinguish(extinguishClass, effectiveness);
         }
     }
