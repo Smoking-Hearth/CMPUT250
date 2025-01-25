@@ -5645,7 +5645,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxLifetime: 0
+  maxLifetime: 1.5
   extinguishEffectiveness:
     serializedVersion: 2
     m_Curve:
@@ -5960,7 +5960,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!114 &993505457
@@ -6309,7 +6309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1256632122}
   - component: {fileID: 1256632124}
-  - component: {fileID: 1256632123}
+  - component: {fileID: 1256632125}
   m_Layer: 8
   m_Name: Combustible
   m_TagString: Untagged
@@ -6332,73 +6332,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 993505455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1256632123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256632121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56e7e3b7f7e3b3276a699a28fc41bd90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePrefab: {fileID: 5862223314389801100, guid: 2f541f1bdaada8e6f8b99f3adc4c859a, type: 3}
-  temperatureToLifetime:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  maxLifetime: 6.15
-  extinguishEffectiveness:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 20000
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  temperature: 0
-  autoIgnitionTemperature: 373.15
-  heatCopyRate: 1
-  fule: 100
-  fuleToTemp: 10
 --- !u!58 &1256632124
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6435,6 +6368,91 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 2.02
+--- !u!114 &1256632125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256632121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e7e3b7f7e3b3276a699a28fc41bd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePrefab: {fileID: 5862223314389801100, guid: 2f541f1bdaada8e6f8b99f3adc4c859a, type: 3}
+  temperatureToLifetime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 33.325592
+      value: 0.00048786402
+      inSlope: 0.00003969599
+      outSlope: 0.00003969599
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.097024366
+    - serializedVersion: 3
+      time: 328.97903
+      value: 0.08075636
+      inSlope: 0.0004949238
+      outSlope: 0.0004949238
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 891.6887
+      value: 0.62312686
+      inSlope: 0.00016690398
+      outSlope: 0.00016690398
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.037126094
+      outWeight: 0.0040644608
+    - serializedVersion: 3
+      time: 20000
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxLifetime: 6.15
+  extinguishEffectiveness:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 20000
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  temperature: 0
+  autoIgnitionTemperature: 373.15
+  heatCopyRate: 1
+  fule: 100
+  fuleToTemp: 10
 --- !u!1 &1272924069
 GameObject:
   m_ObjectHideFlags: 0
@@ -7051,7 +7069,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!61 &2005819299
