@@ -14,7 +14,8 @@ public class PlayerShoot : MonoBehaviour
             return shootCooldownTimer <= 0;
         }
     }
-    [SerializeField] private WaterStreamAnimator waterStream;
+    [SerializeField] private GameObject defaultSpecialAttack;
+    private ISpecialAttack specialAttack;
 
     [SerializeField] private float swingRadius;
     [SerializeField] private Vector2 swingPivotPosition;
@@ -32,7 +33,14 @@ public class PlayerShoot : MonoBehaviour
         public float offsetAngle;
     }
 
-    private bool isSpecialShooting;
+    private void Awake()
+    {
+        if (specialAttack == null)
+        {
+            ISpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<ISpecialAttack>();
+            SwitchSpecial(attack);
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -99,18 +107,21 @@ public class PlayerShoot : MonoBehaviour
 
     public void SpecialShoot(bool active)
     {
-        waterStream.transform.position = nozzle.position;
-        waterStream.SetSpecialActive(active);
+        specialAttack.Activate(nozzle.position, active);
 
         if (active)
         {
-            waterStream.ResetStream(aimAngle);
+            specialAttack.ResetAttack(aimAngle);
         }
     }
 
     public void AimStream()
     {
-        waterStream.transform.position = nozzle.position;
-        waterStream.Aim(aimAngle);
+        specialAttack.AimAttack(nozzle.position, aimAngle);
+    }
+
+    public void SwitchSpecial(ISpecialAttack attack)
+    {
+        specialAttack = attack;
     }
 }

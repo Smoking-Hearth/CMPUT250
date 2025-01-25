@@ -3,7 +3,7 @@ using UnityEngine.Splines;
 using UnityEngine.U2D;
 using UnityEngine.InputSystem;
 
-public class WaterStreamAnimator : MonoBehaviour
+public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
 {
     [SerializeField] private int segments;
     [SerializeField] private SpriteShapeController spriteShape;
@@ -16,6 +16,14 @@ public class WaterStreamAnimator : MonoBehaviour
     private float activateNext;
     private bool activating;
     private float currentLength;
+
+    [SerializeField] private float pushbackInitial;
+    [SerializeField] private float pushbackAcceleration;
+    [SerializeField] private float initialPushDuration;
+    private float initialPushTime;
+
+    public delegate void OnPushback(Vector2 acceleration);
+    public static event OnPushback onPushback;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -53,8 +61,10 @@ public class WaterStreamAnimator : MonoBehaviour
         }
     }
 
-    public void SetSpecialActive(bool set)
+    public void Activate(Vector2 startPosition, bool set)
     {
+        initialPushTime = initialPushDuration;
+        transform.position = startPosition;
         activating = set;
 
         if (set)
@@ -67,10 +77,8 @@ public class WaterStreamAnimator : MonoBehaviour
         }
     }
 
-    public void ResetStream(float aimAngle)
+    public void ResetAttack(float aimAngle)
     {
-        Vector2 targetDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
-
         for (int i = 1; i < segments; i++)
         {
             float segmentDistance = streamLength / segments;
@@ -79,8 +87,9 @@ public class WaterStreamAnimator : MonoBehaviour
         }
     }
 
-    public void Aim(float aimAngle)
+    public void AimAttack(Vector2 startPosition, float aimAngle)
     {
+        transform.position = startPosition;
         Vector2 targetDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
         targetAngle = Mathf.LerpAngle(targetAngle, Mathf.Rad2Deg * Mathf.Atan2(targetDirection.y, targetDirection.x), turnSpeed);
         Vector2 delayedDirection = Quaternion.Euler(0, 0, targetAngle) * Vector2.right;
@@ -92,17 +101,19 @@ public class WaterStreamAnimator : MonoBehaviour
             float segmentDistance = currentLength / segments;
             Vector2 segmentPosition = spline.GetPosition(i);
             Vector2 newPosition = Vector2.Lerp(delayedDirection * i * segmentDistance, segmentPosition, Mathf.Log(1 + i * streamDelay));
+            float distance = Vector2.Distance(segmentPosition, newPosition);
+            float height = 0.4f + i * 0.4f;
 
             if (currentLength != streamLength)
             {
                 newPosition = delayedDirection * i * segmentDistance;
             }
-
-            float distance = Vector2.Distance(segmentPosition, newPosition);
-            float height = 0.4f + distance * 2 + i * 0.4f;
+            else
+            {
+                height += distance * 2;
+            }
 
             spline.SetHeight(i, height);
-
             spline.SetPosition(i, newPosition);
         }
 
@@ -130,6 +141,21 @@ public class WaterStreamAnimator : MonoBehaviour
 
             spline.SetLeftTangent(i, tangentIn.normalized * 0.75f);
             spline.SetRightTangent(i, tangentOut.normalized * 0.75f);
+        }
+
+        if (onPushback != null)
+        {
+            Vector2 pushDirection = new Vector2(-targetDirection.x, -targetDirection.y * 1.7f);
+
+            if (initialPushTime > 0)
+            {
+                onPushback(-targetDirection * pushbackInitial * Time.fixedDeltaTime);
+                initialPushTime -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                onPushback(pushDirection * pushbackAcceleration * Time.fixedDeltaTime);
+            }
         }
     }
 }
