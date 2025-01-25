@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 [Flags]
@@ -21,6 +22,7 @@ public enum CombustibleKind
 /// Just to remind: T_Kelvin = T_Celcius + ABSOLUTE_ZERO_CELCIUS. The class has a constant to avoid
 /// needing to remember.
 /// </summary>
+[RequireComponent(typeof(CircleCollider2D))] 
 public class Combustible : MonoBehaviour, IExtinguishable
 {
     public const float ABSOLUTE_ZERO_CELCIUS = 273.15f;
@@ -38,6 +40,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
     }
     
     // This is in Kelvin because it makes things nice.
+    [Header("Temperature")]
     [SerializeField] float temperature = 0f;
     public float Temperature 
     {
@@ -58,6 +61,11 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
     }
 
+    
+    [Tooltip("Units are Kelvin/second")]
+    [SerializeField] float heatCopyRate = 1f;
+
+    [Header("Fule")]
     [SerializeField] float fule = 100f;
     public float Fule 
     {
@@ -92,9 +100,22 @@ public class Combustible : MonoBehaviour, IExtinguishable
             fule -= consumed;
             temperature += fuleToTemp * consumed;
         }
-        if (fire != null && (!haveFule || temperature < autoIgnitionTemperature))
+        if (fire != null && (temperature < autoIgnitionTemperature))
         {
             fire.Stop();
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        Combustible neighboor = other.GetComponent<Combustible>();
+        if (neighboor != null)
+        {
+            float diff = neighboor.Temperature - temperature;
+            if (diff > 0f)
+            {
+                temperature += diff * heatCopyRate * Time.deltaTime;
+            }
         }
     }
 
