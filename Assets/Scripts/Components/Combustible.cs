@@ -22,7 +22,6 @@ public enum CombustibleKind
 /// Just to remind: T_Kelvin = T_Celcius + ABSOLUTE_ZERO_CELCIUS. The class has a constant to avoid
 /// needing to remember.
 /// </summary>
-[RequireComponent(typeof(CircleCollider2D))] 
 public class Combustible : MonoBehaviour, IExtinguishable
 {
     public const float ABSOLUTE_ZERO_CELCIUS = 273.15f;
@@ -115,7 +114,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
     void OnTriggerStay2D(Collider2D other)
     {
-        Combustible neighboor = other.GetComponent<Combustible>();
+        Combustible neighboor = other.GetComponentInParent<Combustible>();
         if (neighboor != null)
         {
             float diff = neighboor.Temperature - temperature;
