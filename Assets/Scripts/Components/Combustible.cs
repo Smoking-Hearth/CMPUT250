@@ -28,9 +28,13 @@ public class Combustible : MonoBehaviour, IExtinguishable
     public const float ABSOLUTE_ZERO_CELCIUS = 273.15f;
     public const float MAX_TEMP = 20_000f;
 
-    [SerializeField] private ParticleSystem firePrefab = null;
+    [Header("Visual")]
+    [SerializeField] ParticleSystem firePrefab = null;
     ParticleSystem fire = null;
     CombustibleKind combustibleKind = CombustibleKind.A_COMMON;
+
+    [SerializeField] AnimationCurve temperatureToLifetime = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
+    [SerializeField] float maxLifetime;
 
     [SerializeField] AnimationCurve extinguishEffectiveness = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
 
@@ -47,7 +51,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
         get { return temperature; }    
         set 
         {
-            temperature = Mathf.Max(value, 0f);
+            temperature = Mathf.Clamp(value, 0f, MAX_TEMP);
         }
     }
 
@@ -98,7 +102,10 @@ public class Combustible : MonoBehaviour, IExtinguishable
         {
             float consumed = Mathf.Min(0.1f * Time.deltaTime, fule);
             fule -= consumed;
-            temperature += fuleToTemp * consumed;
+            Temperature += fuleToTemp * consumed;
+
+            ParticleSystem.MainModule main = fire.main;
+            main.startLifetime = temperatureToLifetime.Evaluate(Temperature) * maxLifetime;
         }
         if (fire != null && (temperature < autoIgnitionTemperature))
         {
@@ -114,7 +121,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
             float diff = neighboor.Temperature - temperature;
             if (diff > 0f)
             {
-                temperature += diff * heatCopyRate * Time.deltaTime;
+                Temperature += diff * heatCopyRate * Time.deltaTime;
             }
         }
     }
