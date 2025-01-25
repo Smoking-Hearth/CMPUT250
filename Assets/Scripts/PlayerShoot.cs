@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
-    [SerializeField] private GameObject bullet;
+    [SerializeField] private ExtinguisherProjectile bullet;
     [SerializeField] private float bulletInitialSpeed = 10.0f;
     [SerializeField] private float shootCooldown;
     private float shootCooldownTimer;
@@ -91,31 +91,10 @@ public class PlayerShoot : MonoBehaviour
     public void Shoot(Vector2 targetPosition)
     {
         Vector2 shootDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
-        GameObject firedBullet = Instantiate(bullet, nozzle.position, Quaternion.identity);
+        ExtinguisherProjectile firedBullet = Instantiate(bullet, nozzle.position, Quaternion.identity);
         shootCooldownTimer = shootCooldown;
 
-        var rigidBody = firedBullet.GetComponent<Rigidbody2D>();
-        if (rigidBody != null)
-        {
-            rigidBody.linearVelocity = shootDirection.normalized * bulletInitialSpeed;
-        }
-        else
-        {
-            Debug.LogWarning("Water bullet prefab is missing a RigidBody. May be floating");
-        }
-
-        var timer = firedBullet.GetComponent<Timer>();
-        if (timer != null)
-        {
-            timer.timeLeft_s = 2.0f;
-            timer.OnFinishCallback += (gameObject) => {
-                Destroy(gameObject);
-            };
-        }
-        else
-        {
-            Debug.LogWarning("Water bullets will live forever. Performance problem.");
-        }
+        firedBullet.Propel(shootDirection * bulletInitialSpeed);
     }
 
     public void SpecialShoot(bool active)
