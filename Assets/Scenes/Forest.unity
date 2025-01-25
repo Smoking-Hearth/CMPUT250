@@ -222,6 +222,7 @@ MonoBehaviour:
   bulletInitialSpeed: 14
   shootCooldown: 0.3
   defaultSpecialAttack: {fileID: 2915446813000964293, guid: fca732d58c1b4ee47867e0df265f6347, type: 3}
+  specialCooldown: 0.5
   swingRadius: 1
   swingPivotPosition: {x: 0, y: 0}
   swingObjects:
@@ -239,6 +240,7 @@ MonoBehaviour:
     offsetAngle: 0
   flipObject: {fileID: 1272924070}
   nozzle: {fileID: 353328293}
+  maxBullets: 15
 --- !u!70 &780419
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

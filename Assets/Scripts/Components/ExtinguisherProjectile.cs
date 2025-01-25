@@ -17,6 +17,7 @@ public class ExtinguisherProjectile : MonoBehaviour
     private CircleCollider2D circleCollider;
     private float lifeTimeCounter;
     private float baseRadius;
+    private bool hasSplashed;
 
     private void OnEnable()
     {
@@ -31,10 +32,16 @@ public class ExtinguisherProjectile : MonoBehaviour
 
         lifeTimeCounter = lifeTime;
         baseRadius = circleCollider.radius;
+        hasSplashed = false;
     }
 
     void FixedUpdate()
     {
+        if (hasSplashed)
+        {
+            return;
+        }
+
         float angle = Mathf.Atan2(projectileRigidbody.linearVelocityY, projectileRigidbody.linearVelocityX);
         spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
         lifeTimeCounter -= Time.fixedDeltaTime;
@@ -50,8 +57,24 @@ public class ExtinguisherProjectile : MonoBehaviour
         if (lifeTimeCounter <= 0)
         {
             circleCollider.radius = baseRadius;
-            gameObject.SetActive(false);
+            OnSplash();
         }
+    }
+
+    public void ResetProjectile()
+    {
+        hasSplashed = false;
+        lifeTimeCounter = lifeTime;
+        circleCollider.radius = baseRadius;
+
+        splashParticles.Clear();
+        splashParticles.Stop();
+        travelParticles.Clear();
+        travelParticles.Play();
+
+        spriteRenderer.enabled = true;
+        projectileRigidbody.linearVelocity = Vector2.zero;
+        projectileRigidbody.gravityScale = 1;
     }
 
     public void Propel(Vector2 force)
@@ -74,6 +97,8 @@ public class ExtinguisherProjectile : MonoBehaviour
         {
             hitTargets[i].GetComponent<IExtinguishable>().Extinguish(extinguishClass, effectiveness);
         }
+
+        hasSplashed = true;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
