@@ -157,7 +157,7 @@ public class PlayerShoot : MonoBehaviour
 
     public bool SpecialShoot(bool active)
     {
-        if (!stats.UseWater(specialAttack.InitialCost))
+        if (active && !stats.UseWater(specialAttack.InitialCost))
         {
             return false;
         }

@@ -100,7 +100,7 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
 
         for (int i = 0; i < segments - 1; i++)
         {
-            spline.SetPosition(i, Vector2.Lerp(spline.GetPosition(i), spline.GetPosition(i + 1), 0.3f));
+            spline.SetPosition(i, Vector2.Lerp(spline.GetPosition(i), spline.GetPosition(i + 1), 0.4f));
         }
         return true;
     }

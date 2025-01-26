@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     {
         waterTankBar.maxValue = maxWater;
         waterLevel = maxWater;
+        waterTankBar.value = waterLevel;
     }
 
     // Update is called once per frame
