@@ -1,12 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerStats))]
 public class PlayerShoot : MonoBehaviour
 {
-    [SerializeField] private GameObject bullet;
+    [SerializeField] private ExtinguisherProjectile bullet;
     [SerializeField] private float bulletInitialSpeed = 10.0f;
     [SerializeField] private float shootCooldown;
     private float shootCooldownTimer;
+    [SerializeField] private GameObject defaultSpecialAttack;
+    private ISpecialAttack specialAttack;
+    [SerializeField] private float specialCooldown;
+    private float specialCooldownTimer;
+
     public bool ShootAvailable
     {
         get
@@ -14,7 +20,13 @@ public class PlayerShoot : MonoBehaviour
             return shootCooldownTimer <= 0;
         }
     }
-    [SerializeField] private WaterStreamAnimator waterStream;
+    public bool SpecialAvailable
+    {
+        get
+        {
+            return specialCooldownTimer <= 0;
+        }
+    }
 
     [SerializeField] private float swingRadius;
     [SerializeField] private Vector2 swingPivotPosition;
@@ -22,6 +34,15 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private Transform flipObject;
     [SerializeField] private Transform nozzle;
     private float aimAngle;
+
+    [Range(1, 100)]
+    [SerializeField] private int maxBullets;
+    private ExtinguisherProjectile[] bulletCache;
+    private int bulletCounter;
+
+    private PlayerStats stats;
+    [SerializeField] private int costDelayTicks;
+    private int costTicks;
 
     [System.Serializable]
     private struct SwingObject
@@ -32,7 +53,20 @@ public class PlayerShoot : MonoBehaviour
         public float offsetAngle;
     }
 
-    private bool isSpecialShooting;
+    private void Awake()
+    {
+        if (specialAttack == null)
+        {
+            ISpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<ISpecialAttack>();
+            SwitchSpecial(attack);
+        }
+
+        bulletCache = new ExtinguisherProjectile[maxBullets];
+        if (stats == null)
+        {
+            stats = GetComponent<PlayerStats>();
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -86,50 +120,78 @@ public class PlayerShoot : MonoBehaviour
         {
             shootCooldownTimer -= Time.fixedDeltaTime;
         }
+
+        if (specialCooldownTimer > 0)
+        {
+            specialCooldownTimer -= Time.fixedDeltaTime;
+        }
     }
 
     public void Shoot(Vector2 targetPosition)
     {
+        if (!stats.UseWater(bullet.Cost))
+        {
+            return;
+        }
+
         Vector2 shootDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
-        GameObject firedBullet = Instantiate(bullet, nozzle.position, Quaternion.identity);
+        ExtinguisherProjectile firedBullet = bulletCache[bulletCounter];
+
+        if (firedBullet == null)
+        {
+            bulletCache[bulletCounter] = Instantiate(bullet, nozzle.position, Quaternion.identity);
+            firedBullet = bulletCache[bulletCounter];
+        }
+        else
+        {
+            firedBullet.ResetProjectile();
+            firedBullet.transform.position = nozzle.position;
+            firedBullet.transform.rotation = Quaternion.identity;
+        }
+
+        firedBullet.Propel(shootDirection * bulletInitialSpeed);
         shootCooldownTimer = shootCooldown;
 
-        var rigidBody = firedBullet.GetComponent<Rigidbody2D>();
-        if (rigidBody != null)
-        {
-            rigidBody.linearVelocity = shootDirection.normalized * bulletInitialSpeed;
-        }
-        else
-        {
-            Debug.LogWarning("Water bullet prefab is missing a RigidBody. May be floating");
-        }
-
-        var timer = firedBullet.GetComponent<Timer>();
-        if (timer != null)
-        {
-            timer.timeLeft_s = 2.0f;
-            timer.OnFinishCallback += (gameObject) => {
-                Destroy(gameObject);
-            };
-        }
-        else
-        {
-            Debug.LogWarning("Water bullets will live forever. Performance problem.");
-        }
+        bulletCounter = (bulletCounter + 1) % maxBullets;
     }
 
-    public void SpecialShoot(bool active)
+    public bool SpecialShoot(bool active)
     {
-        waterStream.SetSpecialActive(active);
+        if (!stats.UseWater(specialAttack.InitialCost))
+        {
+            return false;
+        }
+
+        specialAttack.Activate(nozzle.position, active, transform);
 
         if (active)
         {
-            waterStream.ResetStream(aimAngle);
+            specialAttack.ResetAttack(aimAngle);
         }
+        else
+        {
+            specialCooldownTimer = specialCooldown;
+        }
+        return true;
     }
 
-    public void AimStream()
+    public bool AimStream()
     {
-        waterStream.Aim(aimAngle);
+        costTicks++;
+        if (costTicks == costDelayTicks)
+        {
+            costTicks = 0;
+            if (!stats.UseWater(specialAttack.MaintainCost))
+            {
+                return false;
+            }
+        }
+        specialAttack.AimAttack(nozzle.position, aimAngle);
+        return true;
+    }
+
+    public void SwitchSpecial(ISpecialAttack attack)
+    {
+        specialAttack = attack;
     }
 }

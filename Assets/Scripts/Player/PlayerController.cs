@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerShoot))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float jumpPower;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float groundAcceleration;
+    [SerializeField] private Vector2 terminalVelocity;
     [SerializeField] private Rigidbody2D playerRigidbody;
     [SerializeField] private float groundCheckRadius;
     [SerializeField] private Vector2 groundCheckOffset;
@@ -62,6 +64,7 @@ public class PlayerController : MonoBehaviour
         controls.PlayerMovement.Attack.canceled += OnCancelAttack;
         controls.PlayerMovement.SpecialAttack.performed += OnStartSpecial;
         controls.PlayerMovement.SpecialAttack.canceled += OnCancelSpecial;
+        HighPressureSpecial.onPushback += PushPlayer;
     }
 
     private void OnDisable()
@@ -74,6 +77,7 @@ public class PlayerController : MonoBehaviour
         controls.PlayerMovement.Attack.canceled -= OnCancelAttack;
         controls.PlayerMovement.SpecialAttack.performed -= OnStartSpecial;
         controls.PlayerMovement.SpecialAttack.canceled -= OnCancelSpecial;
+        HighPressureSpecial.onPushback -= PushPlayer;
     }
 
     private void Update()
@@ -93,7 +97,11 @@ public class PlayerController : MonoBehaviour
 
         if (isSpecialShooting)
         {
-            shootBehavior.AimStream();
+            if (!shootBehavior.AimStream())
+            {
+                isSpecialShooting = false;
+                shootBehavior.SpecialShoot(false);
+            }
         }
         else if (isShooting && shootBehavior.ShootAvailable)
         {
@@ -149,7 +157,8 @@ public class PlayerController : MonoBehaviour
             //Accelerates according to horizontal input
             if ((inputAxes.x > 0 && targetMovement.x < moveSpeed) || (inputAxes.x < 0 && targetMovement.x > -moveSpeed))
             {
-                targetMovement.x += inputAxes.x * groundAcceleration;
+                float acceleration = groundAcceleration * (isGrounded ? 1 : 0.6f);
+                targetMovement.x += inputAxes.x * acceleration;
             }
             else
             {
@@ -157,7 +166,57 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        playerRigidbody.linearVelocity = Time.fixedDeltaTime * (targetMovement + addedVelocity);
+        Vector2 finalVelocity = targetMovement + addedVelocity;
+
+        playerRigidbody.linearVelocity = Time.fixedDeltaTime * finalVelocity;
+
+        if (addedVelocity.x != 0)
+        {
+            if (Mathf.Abs(addedVelocity.x) > 0.1f)
+            {
+                if (isGrounded)
+                {
+                    addedVelocity.x *= 0.8f;
+                }
+                else
+                {
+                    addedVelocity.x *= 0.99f;
+                }
+            }
+            else
+            {
+                addedVelocity.x = 0;
+            }
+        }
+    }
+
+    private void PushPlayer(Vector2 acceleration)
+    {
+        if (addedVelocity.y > 0 && isJumping)
+        {
+            addedVelocity.y *= 0.5f;
+            isJumping = false;
+        }
+
+        addedVelocity += acceleration;
+
+        if (addedVelocity.x > terminalVelocity.x)
+        {
+            addedVelocity.x = terminalVelocity.x;
+        }
+        else if (addedVelocity.x < -terminalVelocity.x)
+        {
+            addedVelocity.x = -terminalVelocity.x;
+        }
+
+        if (addedVelocity.y > terminalVelocity.y)
+        {
+            addedVelocity.y = terminalVelocity.y;
+        }
+        else if (addedVelocity.y < -terminalVelocity.y)
+        {
+            addedVelocity.y = -terminalVelocity.y;
+        }
     }
 
     //Accelerates the player downward
@@ -198,7 +257,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCancelJumpInput(InputAction.CallbackContext context)
     {
-        if (addedVelocity.y > 0)
+        if (addedVelocity.y > 0 && isJumping)
         {
             addedVelocity.y *= 0.5f;
         }
@@ -216,10 +275,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnStartSpecial(InputAction.CallbackContext context)
     {
-        if (!isSpecialShooting)
+        if (!isSpecialShooting && shootBehavior.SpecialAvailable)
         {
-            isSpecialShooting = true;
-            shootBehavior.SpecialShoot(true);
+            if (shootBehavior.SpecialShoot(true))
+            {
+                isSpecialShooting = true;
+            }
         }
     }
 
