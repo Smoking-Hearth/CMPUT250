@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     private bool isShooting;
     private bool isSpecialShooting;
 
+    private bool isInteracting;
+
     public delegate void OnLand(Vector2 landPosition, float force);
     public static event OnLand onLand;
 
@@ -65,6 +67,8 @@ public class PlayerController : MonoBehaviour
         controls.PlayerMovement.SpecialAttack.performed += OnStartSpecial;
         controls.PlayerMovement.SpecialAttack.canceled += OnCancelSpecial;
         HighPressureSpecial.onPushback += PushPlayer;
+        controls.PlayerMovement.Interact.performed += OnInteract;
+        controls.PlayerMovement.Interact.canceled += OnCancelInteract;
     }
 
     private void OnDisable()
@@ -78,6 +82,8 @@ public class PlayerController : MonoBehaviour
         controls.PlayerMovement.SpecialAttack.performed -= OnStartSpecial;
         controls.PlayerMovement.SpecialAttack.canceled -= OnCancelSpecial;
         HighPressureSpecial.onPushback -= PushPlayer;
+        controls.PlayerMovement.Interact.performed -= OnInteract;
+        controls.PlayerMovement.Interact.canceled -= OnCancelInteract;
     }
 
     private void Update()
@@ -112,6 +118,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isShooting && !isSpecialShooting && isInteracting)
+        {
+            InteractableManager.Interact(true);
+        }
         //Checks if the player is grounded
         if (Physics2D.OverlapCircle((Vector2)transform.position + groundCheckOffset, groundCheckRadius, groundLayer))
         {
@@ -291,5 +301,16 @@ public class PlayerController : MonoBehaviour
             isSpecialShooting = false;
             shootBehavior.SpecialShoot(false);
         }
+    }
+
+    private void OnInteract(InputAction.CallbackContext context)
+    {
+        isInteracting = true;
+        InteractableManager.Interact(false);
+    }
+    private void OnCancelInteract(InputAction.CallbackContext context)
+    {
+        isInteracting = false;
+        InteractableManager.StopInteract();
     }
 }

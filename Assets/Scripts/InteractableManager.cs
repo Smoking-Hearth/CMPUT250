@@ -20,8 +20,12 @@ public class InteractableManager
 
     public void CheckNearestTarget(Vector2 playerPosition)
     {
+        if (interactables == null)
+        {
+            return;
+        }
         IInteractable newTarget = null;
-        float closestDistance = -1;
+        float closestDistance = 1000;
         for (int i = 0; i < interactables.Length; i++)
         {
             float distance = Vector2.Distance(playerPosition, interactables[i].Position);
@@ -33,16 +37,47 @@ public class InteractableManager
             }
         }
 
-        if (targetInteractable != null)
+        if (newTarget != targetInteractable)
         {
-            targetInteractable.Untarget();
+            if (targetInteractable != null)
+            {
+                targetInteractable.StopInteract();
+                targetInteractable.Untarget();
+            }
+
+            if (newTarget != null)
+            {
+                newTarget.Target();
+            }
+
+            targetInteractable = newTarget;
+        }
+    }
+
+    public static void Interact(bool holding)
+    {
+        if (targetInteractable == null)
+        {
+            return;
         }
 
-        if (newTarget !=  null)
+        if (holding)
         {
-            newTarget.Target();
+            targetInteractable.HoldInteract();
+        }
+        else
+        {
+            targetInteractable.StartInteract();
+        }
+    }
+
+    public static void StopInteract()
+    {
+        if (targetInteractable == null)
+        {
+            return;
         }
 
-        targetInteractable = newTarget;
+        targetInteractable.StopInteract();
     }
 }

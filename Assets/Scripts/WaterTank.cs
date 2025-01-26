@@ -22,10 +22,11 @@ public class WaterTank
     {
         waterLevel += amount;
 
-        if (waterLevel > amount)
+        if (waterLevel > maxWater)
         {
             waterLevel = maxWater;
         }
+        UpdateWaterHUD();
     }
 
     public bool UseWater(int amount)

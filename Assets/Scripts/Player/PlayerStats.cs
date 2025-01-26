@@ -21,4 +21,13 @@ public class PlayerStats : MonoBehaviour
         waterTank = new WaterTank(waterTankBar, maxWater);
     }
 
+    private void OnEnable()
+    {
+        WaterRefiller.onWaterRefill += waterTank.RefillWater;
+    }
+
+    private void OnDisable()
+    {
+        WaterRefiller.onWaterRefill -= waterTank.RefillWater;
+    }
 }
