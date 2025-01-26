@@ -129,7 +129,7 @@ public class PlayerShoot : MonoBehaviour
 
     public void Shoot(Vector2 targetPosition)
     {
-        if (!stats.UseWater(bullet.Cost))
+        if (!stats.WaterTank.UseWater(bullet.Cost))
         {
             return;
         }
@@ -157,7 +157,7 @@ public class PlayerShoot : MonoBehaviour
 
     public bool SpecialShoot(bool active)
     {
-        if (active && !stats.UseWater(specialAttack.InitialCost))
+        if (active && !stats.WaterTank.UseWater(specialAttack.InitialCost))
         {
             return false;
         }
@@ -181,7 +181,7 @@ public class PlayerShoot : MonoBehaviour
         if (costTicks == costDelayTicks)
         {
             costTicks = 0;
-            if (!stats.UseWater(specialAttack.MaintainCost))
+            if (!stats.WaterTank.UseWater(specialAttack.MaintainCost))
             {
                 return false;
             }
