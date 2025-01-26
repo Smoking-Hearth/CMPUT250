@@ -7,6 +7,11 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float bulletInitialSpeed = 10.0f;
     [SerializeField] private float shootCooldown;
     private float shootCooldownTimer;
+    [SerializeField] private GameObject defaultSpecialAttack;
+    private ISpecialAttack specialAttack;
+    [SerializeField] private float specialCooldown;
+    private float specialCooldownTimer;
+
     public bool ShootAvailable
     {
         get
@@ -14,8 +19,13 @@ public class PlayerShoot : MonoBehaviour
             return shootCooldownTimer <= 0;
         }
     }
-    [SerializeField] private GameObject defaultSpecialAttack;
-    private ISpecialAttack specialAttack;
+    public bool SpecialAvailable
+    {
+        get
+        {
+            return specialCooldownTimer <= 0;
+        }
+    }
 
     [SerializeField] private float swingRadius;
     [SerializeField] private Vector2 swingPivotPosition;
@@ -23,6 +33,11 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private Transform flipObject;
     [SerializeField] private Transform nozzle;
     private float aimAngle;
+
+    [Range(1, 100)]
+    [SerializeField] private int maxBullets;
+    private ExtinguisherProjectile[] bulletCache;
+    private int bulletCounter;
 
     [System.Serializable]
     private struct SwingObject
@@ -40,6 +55,8 @@ public class PlayerShoot : MonoBehaviour
             ISpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<ISpecialAttack>();
             SwitchSpecial(attack);
         }
+
+        bulletCache = new ExtinguisherProjectile[maxBullets];
     }
 
     private void FixedUpdate()
@@ -94,24 +111,47 @@ public class PlayerShoot : MonoBehaviour
         {
             shootCooldownTimer -= Time.fixedDeltaTime;
         }
+
+        if (specialCooldownTimer > 0)
+        {
+            specialCooldownTimer -= Time.fixedDeltaTime;
+        }
     }
 
     public void Shoot(Vector2 targetPosition)
     {
         Vector2 shootDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
-        ExtinguisherProjectile firedBullet = Instantiate(bullet, nozzle.position, Quaternion.identity);
-        shootCooldownTimer = shootCooldown;
+        ExtinguisherProjectile firedBullet = bulletCache[bulletCounter];
+
+        if (firedBullet == null)
+        {
+            bulletCache[bulletCounter] = Instantiate(bullet, nozzle.position, Quaternion.identity);
+            firedBullet = bulletCache[bulletCounter];
+        }
+        else
+        {
+            firedBullet.ResetProjectile();
+            firedBullet.transform.position = nozzle.position;
+            firedBullet.transform.rotation = Quaternion.identity;
+        }
 
         firedBullet.Propel(shootDirection * bulletInitialSpeed);
+        shootCooldownTimer = shootCooldown;
+
+        bulletCounter = (bulletCounter + 1) % maxBullets;
     }
 
     public void SpecialShoot(bool active)
     {
-        specialAttack.Activate(nozzle.position, active);
+        specialAttack.Activate(nozzle.position, active, transform);
 
         if (active)
         {
             specialAttack.ResetAttack(aimAngle);
+        }
+        else
+        {
+            specialCooldownTimer = specialCooldown;
         }
     }
 

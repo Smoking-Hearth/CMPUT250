@@ -270,7 +270,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnStartSpecial(InputAction.CallbackContext context)
     {
-        if (!isSpecialShooting)
+        if (!isSpecialShooting && shootBehavior.SpecialAvailable)
         {
             isSpecialShooting = true;
             shootBehavior.SpecialShoot(true);
