@@ -143,7 +143,7 @@ public class PlayerShoot : MonoBehaviour
 
     public void SpecialShoot(bool active)
     {
-        specialAttack.Activate(nozzle.position, active);
+        specialAttack.Activate(nozzle.position, active, transform);
 
         if (active)
         {
