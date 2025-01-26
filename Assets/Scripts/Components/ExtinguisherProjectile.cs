@@ -6,13 +6,24 @@ public class ExtinguisherProjectile : MonoBehaviour
     [SerializeField] private ParticleSystem splashParticles;
     [SerializeField] private ParticleSystem travelParticles;
     [SerializeField] private SpriteRenderer spriteRenderer;
+
     [SerializeField] private LayerMask fireLayers;
     [SerializeField] private CombustibleKind extinguishClass;
     [SerializeField] private float effectiveness;
+
     [SerializeField] private float lifeTime;
     [SerializeField] private float splashRadius;
     [SerializeField] private float maxRadius;
     [SerializeField] private float radiusGrowthRate;
+    [SerializeField] private int cost;
+    public int Cost
+    {
+        get
+        {
+            return cost;
+        }
+    }
+
     private Rigidbody2D projectileRigidbody;
     private CircleCollider2D circleCollider;
     private float lifeTimeCounter;

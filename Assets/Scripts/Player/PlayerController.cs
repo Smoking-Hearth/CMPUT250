@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerShoot))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
@@ -96,7 +97,11 @@ public class PlayerController : MonoBehaviour
 
         if (isSpecialShooting)
         {
-            shootBehavior.AimStream();
+            if (!shootBehavior.AimStream())
+            {
+                isSpecialShooting = false;
+                shootBehavior.SpecialShoot(false);
+            }
         }
         else if (isShooting && shootBehavior.ShootAvailable)
         {
@@ -272,8 +277,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!isSpecialShooting && shootBehavior.SpecialAvailable)
         {
-            isSpecialShooting = true;
-            shootBehavior.SpecialShoot(true);
+            if (shootBehavior.SpecialShoot(true))
+            {
+                isSpecialShooting = true;
+            }
         }
     }
 

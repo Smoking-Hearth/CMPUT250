@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerStats))]
 public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private ExtinguisherProjectile bullet;
@@ -39,6 +40,10 @@ public class PlayerShoot : MonoBehaviour
     private ExtinguisherProjectile[] bulletCache;
     private int bulletCounter;
 
+    private PlayerStats stats;
+    [SerializeField] private int costDelayTicks;
+    private int costTicks;
+
     [System.Serializable]
     private struct SwingObject
     {
@@ -57,6 +62,10 @@ public class PlayerShoot : MonoBehaviour
         }
 
         bulletCache = new ExtinguisherProjectile[maxBullets];
+        if (stats == null)
+        {
+            stats = GetComponent<PlayerStats>();
+        }
     }
 
     private void FixedUpdate()
@@ -120,6 +129,11 @@ public class PlayerShoot : MonoBehaviour
 
     public void Shoot(Vector2 targetPosition)
     {
+        if (!stats.UseWater(bullet.Cost))
+        {
+            return;
+        }
+
         Vector2 shootDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
         ExtinguisherProjectile firedBullet = bulletCache[bulletCounter];
 
@@ -141,8 +155,13 @@ public class PlayerShoot : MonoBehaviour
         bulletCounter = (bulletCounter + 1) % maxBullets;
     }
 
-    public void SpecialShoot(bool active)
+    public bool SpecialShoot(bool active)
     {
+        if (!stats.UseWater(specialAttack.InitialCost))
+        {
+            return false;
+        }
+
         specialAttack.Activate(nozzle.position, active, transform);
 
         if (active)
@@ -153,11 +172,22 @@ public class PlayerShoot : MonoBehaviour
         {
             specialCooldownTimer = specialCooldown;
         }
+        return true;
     }
 
-    public void AimStream()
+    public bool AimStream()
     {
+        costTicks++;
+        if (costTicks == costDelayTicks)
+        {
+            costTicks = 0;
+            if (!stats.UseWater(specialAttack.MaintainCost))
+            {
+                return false;
+            }
+        }
         specialAttack.AimAttack(nozzle.position, aimAngle);
+        return true;
     }
 
     public void SwitchSpecial(ISpecialAttack attack)

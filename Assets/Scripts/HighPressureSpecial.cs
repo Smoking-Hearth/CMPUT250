@@ -31,6 +31,23 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
     [SerializeField] private float initialPushDuration;
     private float initialPushTime;
 
+    [SerializeField] private int maintainCost;
+    [SerializeField] private int initialCost;
+    public int MaintainCost
+    {
+        get
+        {
+            return maintainCost;
+        }
+    }
+    public int InitialCost
+    {
+        get
+        {
+            return initialCost;
+        }
+    }
+
     public delegate void OnPushback(Vector2 acceleration);
     public static event OnPushback onPushback;
 
