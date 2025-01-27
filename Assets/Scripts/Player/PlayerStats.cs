@@ -21,7 +21,11 @@ public class PlayerStats : MonoBehaviour
     void Awake()
     {
         waterTank = new WaterTank(waterTankBar, maxWater);
+
         health = GetComponent<Health>();
+        healthBar.maxValue = health.Max;
+        healthBar.minValue = health.Min;
+        healthBar.value = health.Current;
     }
 
     private void OnEnable()
@@ -33,6 +37,7 @@ public class PlayerStats : MonoBehaviour
     private void OnDisable()
     {
         WaterRefiller.onWaterRefill -= waterTank.RefillWater;
+        health.onChanged -= HealthChanged;
     }
 
     void HealthChanged()

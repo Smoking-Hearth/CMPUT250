@@ -23,7 +23,7 @@ public class Health : MonoBehaviour, IStat
         get { return current; }
         set
         {
-            value = Mathf.Clamp(value, 0f, max);
+            current = Mathf.Clamp(value, 0f, max);
             if (shouldTriggerCallback && onChanged != null)
             {
                 onChanged();
