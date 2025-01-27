@@ -30,12 +30,14 @@ public class Combustible : MonoBehaviour, IExtinguishable
     [Header("Visual")]
     [SerializeField] ParticleSystem firePrefab = null;
     ParticleSystem fire = null;
-    CombustibleKind combustibleKind = CombustibleKind.A_COMMON;
+    [SerializeField] CombustibleKind fireKind = CombustibleKind.A_COMMON;
 
     [SerializeField] AnimationCurve temperatureToLifetime = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
     [SerializeField] float maxLifetime;
 
     [SerializeField] AnimationCurve extinguishEffectiveness = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
+
+    FireSettings settings;
 
     public bool Burning
     {
@@ -82,12 +84,14 @@ public class Combustible : MonoBehaviour, IExtinguishable
     // In Kelvin per unit of fule
     [SerializeField] float fuleToTemp = 10f;
 
-    void Start()
+    void Awake()
     {
         if (firePrefab == null)
         {
             Debug.Log("Missing fire prefab.");
         }
+
+        settings = FireSettings.GetOrCreate();
     }
 
     void Update()
@@ -131,6 +135,14 @@ public class Combustible : MonoBehaviour, IExtinguishable
         if (fire == null) 
         {
             fire = Instantiate(firePrefab, transform);
+            Gradient color = settings.ColorFor(fireKind);
+
+            ParticleSystem.ColorOverLifetimeModule colorOverLifetime = fire.colorOverLifetime;
+            colorOverLifetime.color = color;
+
+            ParticleSystem.TrailModule trails = fire.trails;
+            trails.colorOverTrail = color;
+
             fire.transform.localPosition = Vector3.zero;
         } 
         fire.Play();
@@ -139,7 +151,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
     public void Extinguish(CombustibleKind extinguishClass, float quantity_L)
     {
         if (!Burning) return;
-        if ((extinguishClass & combustibleKind) > 0)
+        if ((extinguishClass & fireKind) > 0)
         {
             Temperature -= quantity_L * extinguishEffectiveness.Evaluate(Mathf.Min(temperature - autoIgnitionTemperature, MAX_TEMP));
         }

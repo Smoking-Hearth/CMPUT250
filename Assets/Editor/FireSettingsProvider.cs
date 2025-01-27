@@ -1,42 +1,9 @@
-using UnityEngine;
 using UnityEditor;
-using System.IO;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using System.Collections.Generic;
 
 // See https://docs.unity3d.com/6000.0/Documentation/ScriptReference/SettingsProvider.html
-
-
-public class FireSettings : ScriptableObject
-{
-    public const string Path = "Assets/Settings/FireSettings.asset";
-
-    [SerializeField] Gradient commonColor;
-    [SerializeField] Gradient liquidColor;
-    [SerializeField] Gradient electricalColor;
-    [SerializeField] Gradient metalColor;
-    [SerializeField] Gradient cookingColor;
-
-    internal static FireSettings GetOrCreate()
-    {
-        FireSettings settings = AssetDatabase.LoadAssetAtPath<FireSettings>(Path);
-        if (settings == null)
-        {
-            settings = ScriptableObject.CreateInstance<FireSettings>();
-            AssetDatabase.CreateAsset(settings, Path);
-            AssetDatabase.SaveAssets();
-        }
-        return settings;
-    }
-
-    internal static SerializedObject GetSerializedSettings()
-    {
-        return new SerializedObject(GetOrCreate());
-    }
-
-}
-
 static class FireSettingsUIElementsRegister
 {
     [SettingsProvider]
