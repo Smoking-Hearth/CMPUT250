@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaterRefiller : MonoBehaviour, IInteractable
 {
     [SerializeField] private Transform interactPopup;
+    [SerializeField] private Slider progressBar;
     [SerializeField] private int waterPerRefill;
     [SerializeField] private int refillDelayTicks;
     [SerializeField] private bool available;
@@ -35,7 +37,13 @@ public class WaterRefiller : MonoBehaviour, IInteractable
     public delegate void OnWaterRefill(int amount);
     public static event OnWaterRefill onWaterRefill;
 
-    public void FixedUpdate()
+    private void Start()
+    {
+        progressBar.maxValue = refillDelayTicks;
+        progressBar.value = 0;
+    }
+
+    private void FixedUpdate()
     {
         if (!interacting && refillDelayCounter > 0)
         {
@@ -44,6 +52,21 @@ public class WaterRefiller : MonoBehaviour, IInteractable
             if (refillDelayCounter < 0)
             {
                 refillDelayCounter = 0;
+            }
+        }
+
+        if (progressBar.gameObject.activeSelf)
+        {
+            if (refillDelayCounter == 0)
+            {
+                if (!interacting)
+                {
+                    progressBar.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                progressBar.value = refillDelayCounter;
             }
         }
     }
@@ -57,6 +80,11 @@ public class WaterRefiller : MonoBehaviour, IInteractable
         if (!interacting)
         {
             return;
+        }
+
+        if (!progressBar.gameObject.activeSelf)
+        {
+            progressBar.gameObject.SetActive(true);
         }
 
         if (refillDelayCounter < refillDelayTicks)
@@ -78,7 +106,10 @@ public class WaterRefiller : MonoBehaviour, IInteractable
     }
     public void Target()
     {
-        interactPopup.gameObject.SetActive(true);
+        if (!interacting)
+        {
+            interactPopup.gameObject.SetActive(true);
+        }
     }
     public void Untarget()
     {

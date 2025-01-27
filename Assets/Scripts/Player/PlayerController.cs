@@ -276,6 +276,7 @@ public class PlayerController : MonoBehaviour
     private void OnStartAttack(InputAction.CallbackContext context) 
     {
         isShooting = true;
+        InteractableManager.StopInteract();
     }
 
     private void OnCancelAttack(InputAction.CallbackContext context)
@@ -290,6 +291,7 @@ public class PlayerController : MonoBehaviour
             if (shootBehavior.SpecialShoot(true))
             {
                 isSpecialShooting = true;
+                InteractableManager.StopInteract();
             }
         }
     }
