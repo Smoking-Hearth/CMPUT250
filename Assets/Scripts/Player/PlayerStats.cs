@@ -15,19 +15,28 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private Slider waterTankBar;
     [SerializeField] private int maxWater;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Health health;
+    [SerializeField] private Slider healthBar;
+
     void Awake()
     {
         waterTank = new WaterTank(waterTankBar, maxWater);
+        health = GetComponent<Health>();
     }
 
     private void OnEnable()
     {
         WaterRefiller.onWaterRefill += waterTank.RefillWater;
+        health.onChanged += HealthChanged;
     }
 
     private void OnDisable()
     {
         WaterRefiller.onWaterRefill -= waterTank.RefillWater;
+    }
+
+    void HealthChanged()
+    {
+        healthBar.value = health.Current;
     }
 }

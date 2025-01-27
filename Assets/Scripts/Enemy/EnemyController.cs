@@ -3,13 +3,30 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour 
 {
     static int waterLayer;
+    Health health;
 
     void Awake() 
     {
         waterLayer = LayerMask.NameToLayer("Water");
-        GetComponent<Health>().OnDepleted += () => {
+        health = GetComponent<Health>();
+    }
+
+    void OnEnable()
+    {
+        health.onChanged += HealthChanged;
+    }
+
+    void OnDisable()
+    {
+        health.onChanged -= HealthChanged;
+    }
+
+    void HealthChanged()
+    {
+        if (health.HealthZero)
+        {
             Destroy(gameObject);
-        };
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -20,16 +37,15 @@ public class EnemyController : MonoBehaviour
         if (damage == null) return;
 
         // Time to get hurt.
-        var health = GetComponent<Health>();
-
         if (health == null) 
         {
             Debug.LogWarning("There exists an invulnerable enemy");
         } 
         else 
         {
-            health.current -= damage.damage;
+            health.Current -= damage.damage;
         }
         Destroy(col.gameObject);
     }
+
 }

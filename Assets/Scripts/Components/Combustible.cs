@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 [Flags]
@@ -11,11 +10,6 @@ public enum CombustibleKind
     D_METAL = 1 << 3,
     K_COOKING = 1 << 4
 }
-
-// TODO: Combustible materials should check their surroundings for other combustible materials. 
-// Given these the combustible should update it's temperature according to the environment.
-
-// TODO: Fule burns at different speeds. Add that.
 
 /// <summary>
 /// Attach this to GameObject that can burn. Note that this class works with temperature in Kelvin.
