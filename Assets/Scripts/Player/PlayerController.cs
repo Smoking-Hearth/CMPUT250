@@ -19,7 +19,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 addedVelocity;
     private Vector2 targetMovement;
     private Vector2 inputAxes;
-    
+
+    [SerializeField] private Animator playerAnimator;
+
     private float jumpBufferEndTime;  //The max time that a jump input will be checked
     private bool isGrounded;
     private bool isJumping;
@@ -128,6 +130,7 @@ public class PlayerController : MonoBehaviour
             //Checks if the player has landed
             if (addedVelocity.y < 0)
             {
+                playerAnimator.SetBool("IsGrounded", true);
                 isGrounded = true;
                 isJumping = false;
 
@@ -141,6 +144,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            playerAnimator.SetBool("IsGrounded", false);
             isGrounded = false;
         }
 
@@ -153,6 +157,7 @@ public class PlayerController : MonoBehaviour
     {
         if (inputAxes.x == 0 && targetMovement.x != 0)  //Deccelerates if the player does not give a horizontal input
         {
+            playerAnimator.SetBool("IsWalking", false);
             if (Mathf.Abs(targetMovement.x) > 0.02f)
             {
                 targetMovement.x *= 0.9f;
@@ -169,12 +174,15 @@ public class PlayerController : MonoBehaviour
             {
                 float acceleration = groundAcceleration * (isGrounded ? 1 : 0.6f);
                 targetMovement.x += inputAxes.x * acceleration;
+                playerAnimator.SetBool("IsWalking", true);
             }
             else
             {
                 targetMovement.x = inputAxes.x * moveSpeed;
             }
         }
+
+        playerAnimator.SetFloat("MoveSpeed", targetMovement.x / moveSpeed);
 
         Vector2 finalVelocity = targetMovement + addedVelocity;
 
