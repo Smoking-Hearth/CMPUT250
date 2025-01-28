@@ -300,6 +300,7 @@ public class PlayerController : MonoBehaviour
             {
                 isSpecialShooting = true;
                 InteractableManager.StopInteract();
+                playerAnimator.SetBool("SpecialAttacking", isSpecialShooting);
             }
         }
     }
@@ -311,6 +312,7 @@ public class PlayerController : MonoBehaviour
             isSpecialShooting = false;
             shootBehavior.SpecialShoot(false);
         }
+        playerAnimator.SetBool("SpecialAttacking", isSpecialShooting);
     }
 
     private void OnInteract(InputAction.CallbackContext context)
