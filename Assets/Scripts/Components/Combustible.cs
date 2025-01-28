@@ -60,6 +60,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
     }
 
+    LayerMask shouldBurn; 
     
     [Tooltip("Units are Kelvin/second")]
     [SerializeField] float heatCopyRate = 1f;
@@ -86,6 +87,9 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
 
         settings = FireSettings.GetOrCreate();
+        // NOTE: Something weird was happening here. I had set shouldBurn to Player in the
+        // editor but when I logged it it was Fire. So that's why it's getting set manually
+        shouldBurn = LayerMask.NameToLayer("Player");
     }
 
     void Update()
@@ -120,6 +124,12 @@ public class Combustible : MonoBehaviour, IExtinguishable
             {
                 Temperature += diff * heatCopyRate * Time.deltaTime;
             }
+        }
+        Health health = other.GetComponent<Health>();
+        if (health != null && (health.gameObject.layer & shouldBurn) != 0)
+        {
+            float distance = Vector2.Distance(other.gameObject.transform.position, transform.position);
+            health.Current -= 10f * Mathf.Pow(0.5f, distance) * Time.deltaTime;
         }
     }
 
