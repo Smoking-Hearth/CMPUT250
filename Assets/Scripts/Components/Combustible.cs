@@ -125,6 +125,9 @@ public class Combustible : MonoBehaviour, IExtinguishable
                 Temperature += diff * heatCopyRate * Time.deltaTime;
             }
         }
+
+        // We shouldn't damage the player if not on fire.
+        if (!Burning) return;
         Health health = other.GetComponent<Health>();
         if (health != null && (health.gameObject.layer & shouldBurn) != 0)
         {
