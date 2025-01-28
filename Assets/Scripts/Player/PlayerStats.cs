@@ -13,6 +13,7 @@ public class PlayerStats : MonoBehaviour
     }
 
     [SerializeField] private Slider waterTankBar;
+    [SerializeField] private Slider waterTankInGame;
     [SerializeField] private int maxWater;
 
     private Health health;
@@ -20,7 +21,7 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
-        waterTank = new WaterTank(waterTankBar, maxWater);
+        waterTank = new WaterTank(waterTankBar, waterTankInGame, maxWater);
 
         health = GetComponent<Health>();
         healthBar.maxValue = health.Max;
