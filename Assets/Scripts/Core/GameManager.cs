@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
     public static event OnFireTick onFireTick;
     private float fireTickTimer;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         player = setPlayer;
@@ -51,7 +50,6 @@ public class GameManager : MonoBehaviour
         interactableManager = new InteractableManager(interactables);
     }
 
-    // Update is called once per frame
     void Update()
     {
         interactableManager.CheckNearestTarget(player.transform.position);
