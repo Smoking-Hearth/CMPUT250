@@ -275,7 +275,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCancelJumpInput(InputAction.CallbackContext context)
     {
-        if (addedVelocity.y > 0 && isJumping)
+        if (addedVelocity.y > 0 && isJumping && !isSpecialShooting)
         {
             addedVelocity.y *= 0.5f;
         }
