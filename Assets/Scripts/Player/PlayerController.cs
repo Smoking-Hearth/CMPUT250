@@ -102,7 +102,10 @@ public class PlayerController : MonoBehaviour
                 jumpBufferEndTime -= Time.deltaTime;
             }
         }
+    }
 
+    private void FixedUpdate()
+    {
         if (isSpecialShooting)
         {
             if (!shootBehavior.AimStream())
@@ -116,10 +119,7 @@ public class PlayerController : MonoBehaviour
             Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             shootBehavior.Shoot(targetPosition);
         }
-    }
 
-    private void FixedUpdate()
-    {
         if (!isShooting && !isSpecialShooting && isInteracting)
         {
             InteractableManager.Interact(true);

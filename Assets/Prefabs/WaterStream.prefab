@@ -199,7 +199,7 @@ MonoBehaviour:
   segments: 6
   spriteShape: {fileID: 3579689046740529502}
   streamLength: 15
-  turnSpeed: 0.4
+  turnSpeed: 0.2
   streamDelay: 0.166
   nozzleParticles: {fileID: 5141380353842468619}
   extinguishClass: 1
@@ -246,9 +246,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   splashParticles: {fileID: 4869465151789196905}
   spriteMask: {fileID: 6061090633968271323}
-  pushbackInitial: 1000
-  pushbackAcceleration: 80
-  initialPushDuration: 0.3
+  pushbackInitial: 4200
+  pushbackAcceleration: 100
+  initialPushDuration: 0.1
   maintainCost: 10
   initialCost: 40
 --- !u!1 &3451816128614261905

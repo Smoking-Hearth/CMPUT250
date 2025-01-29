@@ -129,6 +129,7 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
 
     public void ResetAttack(float aimAngle)
     {
+        targetAngle = aimAngle;
         for (int i = 1; i < segments; i++)
         {
             float segmentDistance = streamLength / segments;
