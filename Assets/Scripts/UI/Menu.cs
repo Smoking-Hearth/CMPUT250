@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -26,10 +27,6 @@ public class Menu : MonoBehaviour
         // NOTE: This doesn't load in the sense you may think. This will start a background
         // task to load the given scene, and it will be immediatly visible in the game world.
         levelLoad = SceneManager.LoadSceneAsync((int)selectedLevel, LoadSceneMode.Additive);
-        levelLoad.completed += (_) =>
-        {
-            
-        };
     }
 
     void OnEnable()

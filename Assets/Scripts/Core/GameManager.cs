@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -38,9 +39,13 @@ public class GameManager : MonoBehaviour
     public static event OnFireTick onFireTick;
     private float fireTickTimer;
 
+    [SerializeField] private Animator setCameraAnimator;
+    public static Animator cameraAnimator;
+
     void Awake()
     {
         player = setPlayer;
+        cameraAnimator = setCameraAnimator;
         IInteractable[] interactables = new IInteractable[sceneInteractables.Length];
 
         for (int i = 0; i < sceneInteractables.Length; i++)
