@@ -16,9 +16,9 @@ public class EnemyDash : MonoBehaviour
 
     private Vector3 targetPosition;
     private Vector3 enemyPosition;
-    public float DashSpeed = 0.5f;
+    public float DashSpeed = 10f;
 
-    public float cooldown = 0.5f;
+    public float cooldown = 1f;
     //public float dashSpeed = 5f;
 
     //private Position playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<>(); 
@@ -32,6 +32,8 @@ public class EnemyDash : MonoBehaviour
         enemyPosition = enemy.transform.position;
         flameSprite = GetComponent<SpriteRenderer>();
         oldColor = flameSprite.color;
+
+        //Debug.Log("oldColor:" + oldColor);
         // flameSprite.color = newColor;
 
         //Debug.Log("Player saved position:" + targetPosition);
@@ -43,45 +45,36 @@ public class EnemyDash : MonoBehaviour
     public IEnumerator BeginToDash(Vector3 target, float seconds)
     {   
 
-        Debug.Log("Cannot Damage");
+        //Debug.Log("Cannot Damage");
         GetComponent<EnemyController>().cannotDamage = true;
 
-        Debug.Log("Changed colour");
+        //Debug.Log("Changed colour");
         flameSprite.color = newColor;
 
-
-        float overallTime = 0f;
-        //Vector3 startPosition = transform.position;
-
-
-        //Vector3 direction = (target.position - startPosition).normalized;
-
-
-        //GetComponent<EnemyController>().canMove = true;
+        Vector3 direction = (targetPosition - enemyPosition).normalized;
+        Vector3 finalPlace = enemyPosition + direction * 20f;
 
         yield return new WaitForSeconds(cooldown);
-        while (overallTime < seconds){
 
-    
-        float dashingTime = overallTime / seconds;
-        Debug.Log("We are currently dashing");
-        enemy.transform.position = Vector3.Lerp(enemyPosition, targetPosition, dashingTime);
-        overallTime += Time.deltaTime;
-        //Debug.Log("Player saved position:" + targetPosition);
-        //Debug.Log("Enemy current position" + enemyPosition);
+        // DASH is dashing past people and it's being kinda funny
 
-        yield return null;
+        while (Vector3.Distance(enemy.transform.position, targetPosition) >= 0.5f){
+            enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, finalPlace, DashSpeed * Time.deltaTime);
+            yield return null;
         }
 
-        GetComponent<EnemyController>().cannotDamage = false;
-        Debug.Log("No longer invincible");
-
-        // Back to normal sprite
-        flameSprite.color = oldColor;
-        Debug.Log("Back to normal sprite");
+        gameObject.GetComponent<Renderer>().material.SetColor("_Colour", Color.white);
 
         yield return new WaitForSeconds(cooldown);
-        GetComponent<EnemyController>().canMove = true;
+        // Not working
+        
+        // GetComponent<EnemyController>().cannotDamage = false;
+        GetComponent<EnemyController>().currentState = EnemyController.EnemyState.stTargeting;
+        //Debug.Log("No longer invincible");
+
+
+        
+
 
         // Make enemy stop in place
         // Get position of player, save to variable
