@@ -16,7 +16,7 @@ public class EnemyDash : MonoBehaviour
 
     private Vector3 targetPosition;
     private Vector3 enemyPosition;
-    public float DashSpeed = 10f;
+    public float DashSpeed = 3f;
 
     public float cooldown = 1f;
     //public float dashSpeed = 5f;
@@ -52,20 +52,29 @@ public class EnemyDash : MonoBehaviour
         flameSprite.color = newColor;
 
         Vector3 direction = (targetPosition - enemyPosition).normalized;
-        Vector3 finalPlace = enemyPosition + direction * 20f;
+        Vector3 finalPlace = enemyPosition + direction;
 
-        yield return new WaitForSeconds(cooldown);
+        float overallTime = 0f;
 
-        // DASH is dashing past people and it's being kinda funny
+        //yield return new WaitForSeconds(cooldown);
 
-        while (Vector3.Distance(enemy.transform.position, targetPosition) >= 0.5f){
-            enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, finalPlace, DashSpeed * Time.deltaTime);
-            yield return null;
+        while (overallTime < seconds){
+
+        float dashingTime = overallTime / seconds;  // Change target position to past player
+        enemy.transform.position = Vector3.Lerp(enemyPosition, targetPosition, dashingTime);
+        overallTime += Time.deltaTime;
+        //Debug.Log("Player saved position:" + targetPosition);
+        //Debug.Log("Enemy current position" + enemyPosition);
+
+        yield return null;
         }
 
-        gameObject.GetComponent<Renderer>().material.SetColor("_Colour", Color.white);
+        // while (Vector3.Distance(enemy.transform.position, targetPosition) >= 0.5f){
+        //     enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, finalPlace, DashSpeed * Time.deltaTime);
+        //     yield return null;
+        // }
 
-        yield return new WaitForSeconds(cooldown);
+        // yield return new WaitForSeconds(cooldown);
         // Not working
         
         // GetComponent<EnemyController>().cannotDamage = false;

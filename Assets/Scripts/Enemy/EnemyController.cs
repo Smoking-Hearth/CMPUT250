@@ -88,6 +88,12 @@ public class EnemyController : MonoBehaviour
         currentState = EnemyState.stTargeting;
     }
 
+    IEnumerator BeforeAttack(){
+
+        yield return new WaitForSeconds((attackCooldown));
+
+    }
+
     void Update(){
     
         distance = Vector2.Distance(transform.position, target.position);
@@ -132,7 +138,6 @@ public class EnemyController : MonoBehaviour
             if (attackTimer <= 0){
 
             // if (tag == "Flamelet"){
-
                 currentState = EnemyState.stAttacking;
             // }
 
@@ -160,6 +165,7 @@ public class EnemyController : MonoBehaviour
 
         if (tag == "Flamelet"){
 
+            StartCoroutine(BeforeAttack());
             EnemyDash dash = GetComponent<EnemyDash>();
             attackTimer = attackCooldown;
 
@@ -170,13 +176,13 @@ public class EnemyController : MonoBehaviour
         }
         else if (tag == "Brute"){
 
-            return;
+            // return;
 
         }
 
         else if (tag == "Flame On!"){
 
-            return;
+            // return;
 
         }
         
