@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
+public class HighPressureSpecial : SpecialAttack
 {
     [SerializeField] private int segments;
     [SerializeField] private SpriteShapeController spriteShape;
@@ -15,8 +15,6 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
     private bool activating;
     private float currentLength;
 
-    [SerializeField] private CombustibleKind extinguishClass;
-    [SerializeField] private float effectiveness;
     [SerializeField] private float splashRadius;
     [SerializeField] private LayerMask collideLayers;
     [SerializeField] private LayerMask fireLayers;
@@ -33,14 +31,14 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
 
     [SerializeField] private int maintainCost;
     [SerializeField] private int initialCost;
-    public int MaintainCost
+    public override int MaintainCost
     {
         get
         {
             return maintainCost;
         }
     }
-    public int InitialCost
+    public override int InitialCost
     {
         get
         {
@@ -105,7 +103,7 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
         return true;
     }
 
-    public void Activate(Vector2 startPosition, bool set, Transform parent)
+    public override void Activate(Vector2 startPosition, bool set, Transform parent)
     {
         if (set)
         {
@@ -127,7 +125,7 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
         spline.SetPosition(0, Vector2.zero);
     }
 
-    public void ResetAttack(float aimAngle)
+    public override void ResetAttack(float aimAngle)
     {
         targetAngle = aimAngle;
         for (int i = 1; i < segments; i++)
@@ -138,7 +136,7 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
         }
     }
 
-    public void AimAttack(Vector2 startPosition, float aimAngle)
+    public override void AimAttack(Vector2 startPosition, float aimAngle)
     {
         transform.position = startPosition;
         Vector2 targetDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;

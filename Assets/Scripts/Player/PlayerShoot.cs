@@ -8,8 +8,8 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float bulletInitialSpeed = 10.0f;
     [SerializeField] private float shootCooldown;
     private float shootCooldownTimer;
-    [SerializeField] private GameObject defaultSpecialAttack;
-    private ISpecialAttack specialAttack;
+    [SerializeField] private SpecialAttack defaultSpecialAttack;
+    private SpecialAttack specialAttack;
     [SerializeField] private float specialCooldown;
     private float specialCooldownTimer;
 
@@ -57,7 +57,7 @@ public class PlayerShoot : MonoBehaviour
     {
         if (specialAttack == null)
         {
-            ISpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<ISpecialAttack>();
+            SpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<SpecialAttack>();
             SwitchSpecial(attack);
         }
 
@@ -190,7 +190,7 @@ public class PlayerShoot : MonoBehaviour
         return true;
     }
 
-    public void SwitchSpecial(ISpecialAttack attack)
+    public void SwitchSpecial(SpecialAttack attack)
     {
         specialAttack = attack;
     }
