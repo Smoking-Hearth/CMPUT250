@@ -2,6 +2,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private static FireSettings fireSettings;
+    public static FireSettings FireSettings
+    {
+        get
+        {
+            if (fireSettings == null)
+            {
+                fireSettings = FireSettings.GetOrCreate();
+            }
+            return fireSettings;
+        }
+    }
     private static InteractableManager interactableManager;
     public static InteractableManager InteractableManager
     {

@@ -22,8 +22,8 @@ public class Combustible : MonoBehaviour, IExtinguishable
     public const float MAX_TEMP = 20_000f;
 
     [Header("Visual")]
-    [SerializeField] ParticleSystem firePrefab = null;
-    ParticleSystem fire = null;
+    [SerializeField] Fire firePrefab = null;
+    Fire fire = null;
     [SerializeField] CombustibleKind fireKind = CombustibleKind.A_COMMON;
 
     [SerializeField] AnimationCurve temperatureToLifetime = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
@@ -31,11 +31,9 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
     [SerializeField] AnimationCurve extinguishEffectiveness = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
 
-    FireSettings settings;
-
     public bool Burning
     {
-        get { return fire != null && fire.isPlaying; }
+        get { return fire != null && fire.IsActivated; }
     }
     
     // This is in Kelvin because it makes things nice.
@@ -86,7 +84,6 @@ public class Combustible : MonoBehaviour, IExtinguishable
             Debug.Log("Missing fire prefab.");
         }
 
-        settings = FireSettings.GetOrCreate();
         // NOTE: Something weird was happening here. I had set shouldBurn to Player in the
         // editor but when I logged it it was Fire. So that's why it's getting set manually
         shouldBurn = LayerMask.NameToLayer("Player");
@@ -105,12 +102,11 @@ public class Combustible : MonoBehaviour, IExtinguishable
             fule -= consumed;
             Temperature += fuleToTemp * consumed;
 
-            ParticleSystem.MainModule main = fire.main;
-            main.startLifetime = temperatureToLifetime.Evaluate(Temperature) * maxLifetime;
+            fire.SetLifetime(temperatureToLifetime.Evaluate(Temperature) * maxLifetime);
         }
         if (fire != null && (temperature < autoIgnitionTemperature))
         {
-            fire.Stop();
+            fire.SetActive(false);
         }
     }
 
@@ -142,17 +138,10 @@ public class Combustible : MonoBehaviour, IExtinguishable
         if (fire == null) 
         {
             fire = Instantiate(firePrefab, transform);
-            Gradient color = settings.ColorFor(fireKind);
-
-            ParticleSystem.ColorOverLifetimeModule colorOverLifetime = fire.colorOverLifetime;
-            colorOverLifetime.color = color;
-
-            ParticleSystem.TrailModule trails = fire.trails;
-            trails.colorOverTrail = color;
-
+            fire.Initialize(GameManager.FireSettings.GetFireInfo(fireKind));
             fire.transform.localPosition = Vector3.zero;
-        } 
-        fire.Play();
+        }
+        fire.SetActive(true);
     }
 
     public void Extinguish(CombustibleKind extinguishClass, float quantity_L)

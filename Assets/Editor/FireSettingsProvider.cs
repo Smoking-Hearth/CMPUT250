@@ -40,11 +40,11 @@ static class FireSettingsUIElementsRegister
                 properties.AddToClassList("property-list");
                 rootElement.Add(properties);
 
-                properties.Add(new PropertyField(settings.FindProperty("commonColor")));
-                properties.Add(new PropertyField(settings.FindProperty("liquidColor")));
-                properties.Add(new PropertyField(settings.FindProperty("electricalColor")));
-                properties.Add(new PropertyField(settings.FindProperty("metalColor")));
-                properties.Add(new PropertyField(settings.FindProperty("cookingColor")));
+                properties.Add(new PropertyField(settings.FindProperty("commonFireSettings")));
+                properties.Add(new PropertyField(settings.FindProperty("liquidFireSettings")));
+                properties.Add(new PropertyField(settings.FindProperty("electricalFireSettings")));
+                properties.Add(new PropertyField(settings.FindProperty("metalFireSettings")));
+                properties.Add(new PropertyField(settings.FindProperty("cookingFireSettings")));
 
                 rootElement.Bind(settings);
             },

@@ -1,57 +1,40 @@
 using UnityEngine;
 using UnityEditor;
 
+[System.Serializable]
+public struct FireInfo
+{
+    public Gradient gradient;
+    public Color lightColour;
+    public float lightIntensity;
+}
+
 public class FireSettings : ScriptableObject
 {
     public const string Path = "Assets/Settings/FireSettings.asset";
 
-    [SerializeField] Gradient commonColor;
-    [SerializeField] Gradient liquidColor;
-    [SerializeField] Gradient electricalColor;
-    [SerializeField] Gradient metalColor;
-    [SerializeField] Gradient cookingColor;
+    [SerializeField] FireInfo commonFireSettings;
+    [SerializeField] FireInfo liquidFireSettings;
+    [SerializeField] FireInfo electricalFireSettings;
+    [SerializeField] FireInfo metalFireSettings;
+    [SerializeField] FireInfo cookingFireSettings;
 
-    public Gradient CommonColor
-    {
-        get { return commonColor; }
-    }
-
-    public Gradient LiquidColor
-    {
-        get {return liquidColor; }
-    }
-
-    public Gradient ElectricalColor
-    {
-        get { return electricalColor; }
-    }
-
-    public Gradient MetalColor
-    {
-        get { return metalColor; }
-    }
-
-    public Gradient CookingColor 
-    {
-        get { return cookingColor; }
-    }
-
-    public Gradient ColorFor(CombustibleKind fireKind)
+    public FireInfo GetFireInfo(CombustibleKind fireKind)
     {
         switch (fireKind)
         {
             case CombustibleKind.A_COMMON:
-                return commonColor;
+                return commonFireSettings;
             case CombustibleKind.B_LIQUID:
-                return liquidColor;
+                return liquidFireSettings;
             case CombustibleKind.C_ELECTRICAL:
-                return electricalColor;
+                return electricalFireSettings;
             case CombustibleKind.D_METAL:
-                return metalColor;
+                return metalFireSettings;
             case CombustibleKind.K_COOKING:
-                return cookingColor;
+                return cookingFireSettings;
             default:
-                return commonColor;
+                return commonFireSettings;
         }
     }
 
@@ -71,5 +54,4 @@ public class FireSettings : ScriptableObject
     {
         return new SerializedObject(GetOrCreate());
     }
-
 }
