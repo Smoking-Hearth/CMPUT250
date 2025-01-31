@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class BCExtinguisherSpecial : SpecialAttack
+public class BCExtinguisherSpecial : SpecialAttack, IInteractable
 {
     [SerializeField] private float shootDelay;
     private float shootDelayTimer;
@@ -8,8 +9,40 @@ public class BCExtinguisherSpecial : SpecialAttack
 
     [SerializeField] private ExtinguisherProjectile cloudPrefab;
     [SerializeField] private ExtinguisherProjectile[] cloudCache;
+    [Range(1, 100)]
     [SerializeField] private int cacheCapacity;
     private int cacheIndex;
+
+    [SerializeField] private GameObject interactText;
+    [SerializeField] private float interactDistance;
+    private bool pickedUp;
+
+    [SerializeField] private UnityEvent pickUpEvent;
+    [SerializeField] private UnityEvent dropEvent;
+
+    [SerializeField] private Component[] itemComponents;
+
+    public Vector2 Position
+    {
+        get
+        {
+            return transform.position;
+        }
+    }
+    public bool Available
+    {
+        get
+        {
+            return !pickedUp;
+        }
+    }
+    public float InteractDistance
+    {
+        get
+        {
+            return interactDistance;
+        }
+    }
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -22,10 +55,7 @@ public class BCExtinguisherSpecial : SpecialAttack
 
     public override void Activate(Vector2 startPosition, bool active, Transform parent)
     {
-        if (cloudCache == null)
-        {
-            cloudCache = new ExtinguisherProjectile[cacheCapacity];
-        }
+        cloudCache = new ExtinguisherProjectile[cacheCapacity];
     }
     public override void ResetAttack(float angle)
     {
@@ -55,5 +85,33 @@ public class BCExtinguisherSpecial : SpecialAttack
         firedBullet.Propel(shootDirection * initialSpeed);
         shootDelayTimer = shootDelay;
         cacheIndex = (cacheIndex + 1) % cacheCapacity;
+    }
+
+    public void StartInteract()
+    {
+        pickedUp = !pickedUp;
+
+        if (pickedUp)
+        {
+            if (onPickupSpecial != null)
+            {
+                onPickupSpecial(this);
+            }
+
+            Untarget();
+            pickUpEvent.Invoke();
+        }
+        else
+        {
+            dropEvent.Invoke();
+        }
+    }
+    public void Target()
+    {
+        interactText.SetActive(true);
+    }
+    public void Untarget()
+    {
+        interactText.SetActive(false);
     }
 }

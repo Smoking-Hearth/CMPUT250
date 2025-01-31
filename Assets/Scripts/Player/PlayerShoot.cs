@@ -9,7 +9,6 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float shootCooldown;
     private float shootCooldownTimer;
     [SerializeField] private SpecialAttack defaultSpecialAttack;
-    private SpecialAttack specialAttack;
     [SerializeField] private float specialCooldown;
     private float specialCooldownTimer;
 
@@ -44,6 +43,9 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private int costDelayTicks;
     private int costTicks;
 
+    [SerializeField] private Transform attachPoint;
+    private PlayerInventory inventory;
+
     [System.Serializable]
     private struct SwingObject
     {
@@ -55,10 +57,12 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
-        if (specialAttack == null)
+        inventory = new PlayerInventory(2, defaultSpecialAttack, attachPoint);
+
+        if (inventory.CurrentSpecial == null)
         {
             SpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<SpecialAttack>();
-            SwitchSpecial(attack);
+            inventory.PickUp(attack);
         }
 
         bulletCache = new ExtinguisherProjectile[maxBullets];
@@ -66,6 +70,16 @@ public class PlayerShoot : MonoBehaviour
         {
             stats = GetComponent<PlayerStats>();
         }
+    }
+
+    private void OnEnable()
+    {
+        SpecialAttack.onPickupSpecial += inventory.PickUp;
+    }
+
+    private void OnDisable()
+    {
+        SpecialAttack.onPickupSpecial -= inventory.PickUp;
     }
 
     private void FixedUpdate()
@@ -157,6 +171,7 @@ public class PlayerShoot : MonoBehaviour
 
     public bool SpecialShoot(bool active)
     {
+        SpecialAttack specialAttack = inventory.CurrentSpecial;
         if (active && !stats.WaterTank.UseWater(specialAttack.InitialCost))
         {
             return false;
@@ -177,6 +192,7 @@ public class PlayerShoot : MonoBehaviour
 
     public bool AimStream()
     {
+        SpecialAttack specialAttack = inventory.CurrentSpecial;
         costTicks++;
         if (costTicks == costDelayTicks)
         {
@@ -188,10 +204,5 @@ public class PlayerShoot : MonoBehaviour
         }
         specialAttack.AimAttack(nozzle.position, aimAngle);
         return true;
-    }
-
-    public void SwitchSpecial(SpecialAttack attack)
-    {
-        specialAttack = attack;
     }
 }
