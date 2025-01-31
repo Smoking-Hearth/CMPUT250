@@ -78,10 +78,17 @@ public class ExtinguisherProjectile : MonoBehaviour
         lifeTimeCounter = lifeTime;
         circleCollider.radius = baseRadius;
 
-        splashParticles.Clear();
-        splashParticles.Stop();
-        travelParticles.Clear();
-        travelParticles.Play();
+        if (splashParticles != null)
+        {
+            splashParticles.Clear();
+            splashParticles.Stop();
+        }
+
+        if (travelParticles != null)
+        {
+            travelParticles.Clear();
+            travelParticles.Play();
+        }
 
         spriteRenderer.enabled = true;
         projectileRigidbody.linearVelocity = Vector2.zero;
@@ -96,8 +103,15 @@ public class ExtinguisherProjectile : MonoBehaviour
     private void OnSplash()
     {
         splashParticles.transform.rotation = spriteRenderer.transform.rotation;
-        splashParticles.Play();
-        travelParticles.Stop();
+        if (splashParticles != null)
+        {
+            splashParticles.Play();
+        }
+
+        if (travelParticles != null)
+        {
+            travelParticles.Stop();
+        }
 
         spriteRenderer.enabled = false;
         projectileRigidbody.linearVelocity = Vector2.zero;

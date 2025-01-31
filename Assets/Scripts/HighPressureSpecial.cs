@@ -29,8 +29,6 @@ public class HighPressureSpecial : SpecialAttack
     [SerializeField] private float initialPushDuration;
     private float initialPushTime;
 
-    [SerializeField] private int maintainCost;
-    [SerializeField] private int initialCost;
     public override int MaintainCost
     {
         get

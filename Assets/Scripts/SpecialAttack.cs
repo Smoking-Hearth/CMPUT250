@@ -4,16 +4,24 @@ public abstract class SpecialAttack : MonoBehaviour
 {
     [SerializeField] protected CombustibleKind extinguishClass;
     [SerializeField] protected float effectiveness;
+    [SerializeField] protected int maintainCost;
+    [SerializeField] protected int initialCost;
 
     public abstract void Activate(Vector2 startPosition, bool active, Transform parent);
     public abstract void ResetAttack(float angle);
     public abstract void AimAttack(Vector2 startPosition, float angle);
-    public abstract int MaintainCost
+    public virtual int MaintainCost
     {
-        get;
+        get
+        {
+            return maintainCost;
+        }
     }
-    public abstract int InitialCost
+    public virtual int InitialCost
     {
-        get;
+        get
+        {
+            return initialCost;
+        }
     }
 }
