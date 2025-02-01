@@ -60,14 +60,15 @@ public class Projectile : MonoBehaviour
             return;
         }
 
+        //Align the projectile's rotation with its velocity
         float angle = Mathf.Atan2(projectileRigidbody.linearVelocityY, projectileRigidbody.linearVelocityX);
         spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
-        lifeTimeCounter -= Time.fixedDeltaTime;
-        if (circleCollider.radius < baseRadius)
-        {
-            circleCollider.radius = baseRadius * sizeOverLifetime.Evaluate(lifeTimeCounter / lifeTime);
-        }
 
+        //Scale the collider according to sizeOverLifetime
+        circleCollider.radius = baseRadius * sizeOverLifetime.Evaluate(1 - lifeTimeCounter / lifeTime);
+
+        //Calls OnHit when the projectile expires
+        lifeTimeCounter -= Time.fixedDeltaTime;
         if (lifeTimeCounter <= 0)
         {
             circleCollider.radius = baseRadius;
@@ -75,6 +76,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    //Resets the projectile to a state where it can be deployed again. Use this for when you are caching projectiles.
     public virtual void ResetProjectile()
     {
         hasHit = false;
@@ -104,11 +106,13 @@ public class Projectile : MonoBehaviour
         projectileRigidbody.gravityScale = 1;
     }
 
+    //Propels the projectile with the specified force vector
     public virtual void Propel(Vector2 force)
     {
         projectileRigidbody.linearVelocity = force;
     }
 
+    //Describes the projectile's behaviour when it hits something
     protected virtual void OnHit()
     {
         if (onHitParticles != null)
@@ -126,6 +130,7 @@ public class Projectile : MonoBehaviour
         projectileRigidbody.linearVelocity = Vector2.zero;
         projectileRigidbody.gravityScale = 0;
 
+        //Checks for all targets hit and passes them onto HitEffect
         Collider2D[] hitTargets = Physics2D.OverlapCircleAll(transform.position, areaOfEffectRadius, hitLayers);
         for (int i = 0; i < hitTargets.Length; i++)
         {
@@ -135,18 +140,18 @@ public class Projectile : MonoBehaviour
         hasHit = true;
     }
 
+    //Describes the projectile's effect on a target it hits
     protected virtual void HitEffect(Collider2D hitTarget)
     {
         if (isEnemyProjectile)
         {
-
+            //TODO: hurt player
         }
         else
         {
             hitTarget.GetComponent<IExtinguishable>().Extinguish(damageClass, effectiveness);
         }
     }
-
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.isTrigger || hasHit)
