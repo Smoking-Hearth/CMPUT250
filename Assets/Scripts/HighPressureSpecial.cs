@@ -24,11 +24,6 @@ public class HighPressureSpecial : SpecialAttack
     [SerializeField] private ParticleSystem splashParticles;
     [SerializeField] private Transform spriteMask;
 
-    [SerializeField] private float pushbackInitial;
-    [SerializeField] private float pushbackAcceleration;
-    [SerializeField] private float initialPushDuration;
-    private float initialPushTime;
-
     public override int MaintainCost
     {
         get
@@ -43,9 +38,6 @@ public class HighPressureSpecial : SpecialAttack
             return initialCost;
         }
     }
-
-    public delegate void OnPushback(Vector2 acceleration);
-    public static event OnPushback onPushback;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -205,20 +197,7 @@ public class HighPressureSpecial : SpecialAttack
             spline.SetRightTangent(i, tangentOut.normalized * 0.75f);
         }
 
-        if (onPushback != null)
-        {
-            Vector2 pushDirection = new Vector2(-targetDirection.x, -targetDirection.y * 1.7f);
-
-            if (initialPushTime > 0)
-            {
-                onPushback(-targetDirection * pushbackInitial * Time.fixedDeltaTime);
-                initialPushTime -= Time.fixedDeltaTime;
-            }
-            else
-            {
-                onPushback(pushDirection * pushbackAcceleration * Time.fixedDeltaTime);
-            }
-        }
+        PushBack(targetDirection);
 
         if (extinguishRayTimer <= 0)
         {

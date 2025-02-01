@@ -10454,10 +10454,13 @@ MonoBehaviour:
   effectiveness: 10
   maintainCost: 1
   initialCost: 1
-  shootDelay: 0.5
-  initialSpeed: 5
-  cloudPrefab: {fileID: 1270616181453354984, guid: 1dc125fa8c62f4ebb8179d448498c0fa, type: 3}
-  cloudCache: []
+  pushbackMultiplier: {x: 0.1, y: 2}
+  pushbackInitial: 700
+  pushbackAcceleration: 600
+  initialPushDuration: 0.08
+  shootDelay: 0.2
+  initialSpeed: 8
+  cloudPrefab: {fileID: 1270616181453354984, guid: 75307c9914057314ca3c8c8b67a2c9b3, type: 3}
   cacheCapacity: 10
   interactText: {fileID: 1520104748}
   interactDistance: 2
@@ -10515,7 +10518,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  itemComponents: []
 --- !u!61 &1618705508
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11114,7 +11116,7 @@ Transform:
   m_GameObject: {fileID: 1791275664}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.15, y: 0, z: 0}
+  m_LocalPosition: {x: -0.25, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

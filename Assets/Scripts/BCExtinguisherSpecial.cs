@@ -8,7 +8,7 @@ public class BCExtinguisherSpecial : SpecialAttack, IInteractable
     [SerializeField] private float initialSpeed;
 
     [SerializeField] private ExtinguisherProjectile cloudPrefab;
-    [SerializeField] private ExtinguisherProjectile[] cloudCache;
+    private ExtinguisherProjectile[] cloudCache;
     [Range(1, 100)]
     [SerializeField] private int cacheCapacity;
     private int cacheIndex;
@@ -19,8 +19,6 @@ public class BCExtinguisherSpecial : SpecialAttack, IInteractable
 
     [SerializeField] private UnityEvent pickUpEvent;
     [SerializeField] private UnityEvent dropEvent;
-
-    [SerializeField] private Component[] itemComponents;
 
     public Vector2 Position
     {
@@ -44,6 +42,11 @@ public class BCExtinguisherSpecial : SpecialAttack, IInteractable
         }
     }
 
+    private void Awake()
+    {
+        cloudCache = new ExtinguisherProjectile[cacheCapacity];
+    }
+
     // Update is called once per frame
     private void FixedUpdate()
     {
@@ -55,7 +58,7 @@ public class BCExtinguisherSpecial : SpecialAttack, IInteractable
 
     public override void Activate(Vector2 startPosition, bool active, Transform parent)
     {
-        cloudCache = new ExtinguisherProjectile[cacheCapacity];
+        initialPushTime = initialPushDuration;
     }
     public override void ResetAttack(float angle)
     {
@@ -63,12 +66,19 @@ public class BCExtinguisherSpecial : SpecialAttack, IInteractable
     }
     public override void AimAttack(Vector2 startPosition, float angle)
     {
+        Vector2 shootDirection = Quaternion.Euler(0, 0, angle) * Vector2.right;
+
+        PushBack(shootDirection);
+
+        if (initialPushTime > 0)
+        {
+            PushBack(shootDirection);
+        }
         if (shootDelayTimer > 0)
         {
             return;
         }
 
-        Vector2 shootDirection = Quaternion.Euler(0, 0, angle) * Vector2.right;
         ExtinguisherProjectile firedBullet = cloudCache[cacheIndex];
 
         if (firedBullet == null)

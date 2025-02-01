@@ -28,6 +28,11 @@ public class InteractableManager
         float closestDistance = 1000;
         for (int i = 0; i < interactables.Length; i++)
         {
+            if (!interactables[i].Available)
+            {
+                continue;
+            }
+
             float distance = Vector2.Distance(playerPosition, interactables[i].Position);
 
             if (distance < closestDistance && distance < interactables[i].InteractDistance)
@@ -68,6 +73,11 @@ public class InteractableManager
         else
         {
             targetInteractable.StartInteract();
+        }
+
+        if (!targetInteractable.Available)
+        {
+            targetInteractable = null;
         }
     }
 
