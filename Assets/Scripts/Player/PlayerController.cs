@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
         controls.PlayerMovement.Attack.canceled += OnCancelAttack;
         controls.PlayerMovement.SpecialAttack.performed += OnStartSpecial;
         controls.PlayerMovement.SpecialAttack.canceled += OnCancelSpecial;
+        controls.PlayerMovement.SwapSpecial.performed += OnCancelSpecial;
         HighPressureSpecial.onPushback += PushPlayer;
         controls.PlayerMovement.Interact.performed += OnInteract;
         controls.PlayerMovement.Interact.canceled += OnCancelInteract;
@@ -83,6 +84,7 @@ public class PlayerController : MonoBehaviour
         controls.PlayerMovement.Attack.canceled -= OnCancelAttack;
         controls.PlayerMovement.SpecialAttack.performed -= OnStartSpecial;
         controls.PlayerMovement.SpecialAttack.canceled -= OnCancelSpecial;
+        controls.PlayerMovement.SwapSpecial.performed -= OnCancelSpecial;
         HighPressureSpecial.onPushback -= PushPlayer;
         controls.PlayerMovement.Interact.performed -= OnInteract;
         controls.PlayerMovement.Interact.canceled -= OnCancelInteract;

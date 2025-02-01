@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInventory
 {
@@ -21,7 +22,7 @@ public class PlayerInventory
 
     public void PickUp(SpecialAttack newSpecial)
     {
-        if (currentIndex + 1 < specials.Length && specials[currentIndex + 1] == null && specials[currentIndex] != null)
+        if (currentIndex + 1 < specials.Length && specials[currentIndex + 1] == null)
         {
             currentIndex++;
         }
@@ -30,12 +31,13 @@ public class PlayerInventory
         newSpecial.transform.localPosition = Vector2.zero;
     }
 
-    public void Swap()
+    public void Swap(InputAction.CallbackContext context)
     {
         int nextIndex = (currentIndex + 1) % specials.Length;
 
         if (specials[nextIndex] != null)
         {
+            specials[currentIndex].Activate(Vector2.zero, false, null);
             currentIndex = nextIndex;
         }
     }

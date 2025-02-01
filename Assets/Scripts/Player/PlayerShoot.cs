@@ -57,13 +57,8 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
-        inventory = new PlayerInventory(2, defaultSpecialAttack, attachPoint);
-
-        if (inventory.CurrentSpecial == null)
-        {
-            SpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<SpecialAttack>();
-            inventory.PickUp(attack);
-        }
+        SpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<SpecialAttack>();
+        inventory = new PlayerInventory(2, attack, attachPoint);
 
         bulletCache = new ExtinguisherProjectile[maxBullets];
         if (stats == null)
@@ -75,11 +70,13 @@ public class PlayerShoot : MonoBehaviour
     private void OnEnable()
     {
         SpecialAttack.onPickupSpecial += inventory.PickUp;
+        PlayerController.controls.PlayerMovement.SwapSpecial.performed += inventory.Swap;
     }
 
     private void OnDisable()
     {
         SpecialAttack.onPickupSpecial -= inventory.PickUp;
+        PlayerController.controls.PlayerMovement.SwapSpecial.performed -= inventory.Swap;
     }
 
     private void FixedUpdate()
