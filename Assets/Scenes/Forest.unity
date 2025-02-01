@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7d71041af59754e95bc8ceea7bcf6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1270616181453354984, guid: 1dc125fa8c62f4ebb8179d448498c0fa, type: 3}
+  bullet: {fileID: 2247101784741844172, guid: 1dc125fa8c62f4ebb8179d448498c0fa, type: 3}
   bulletInitialSpeed: 14
   shootCooldown: 0.3
   defaultSpecialAttack: {fileID: 7939722130492425773, guid: fca732d58c1b4ee47867e0df265f6347, type: 3}
@@ -245,7 +245,7 @@ MonoBehaviour:
   flipObject: {fileID: 1272924070}
   nozzle: {fileID: 353328293}
   maxBullets: 15
-  costDelayTicks: 100
+  costDelayTicks: 20
   attachPoint: {fileID: 1791275665}
 --- !u!70 &780419
 CapsuleCollider2D:
@@ -813,7 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePrefab: {fileID: 8783381328363164145, guid: 2f541f1bdaada8e6f8b99f3adc4c859a, type: 3}
-  fireKind: 1
+  fireKind: 4
   temperatureToLifetime:
     serializedVersion: 2
     m_Curve:
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePrefab: {fileID: 8783381328363164145, guid: 2f541f1bdaada8e6f8b99f3adc4c859a, type: 3}
-  fireKind: 1
+  fireKind: 4
   temperatureToLifetime:
     serializedVersion: 2
     m_Curve:
@@ -6941,7 +6941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePrefab: {fileID: 8783381328363164145, guid: 2f541f1bdaada8e6f8b99f3adc4c859a, type: 3}
-  fireKind: 1
+  fireKind: 4
   temperatureToLifetime:
     serializedVersion: 2
     m_Curve:
@@ -7976,7 +7976,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  temperature: 0
+  temperature: 1000
   autoIgnitionTemperature: 373.15
   heatCopyRate: 1
   fule: 100
@@ -9704,7 +9704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePrefab: {fileID: 8783381328363164145, guid: 2f541f1bdaada8e6f8b99f3adc4c859a, type: 3}
-  fireKind: 1
+  fireKind: 4
   temperatureToLifetime:
     serializedVersion: 2
     m_Curve:
@@ -10452,16 +10452,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   extinguishClass: 6
   effectiveness: 10
-  maintainCost: 1
-  initialCost: 1
-  pushbackMultiplier: {x: 0.1, y: 2}
+  maintainCost: 20
+  initialCost: 20
+  pushbackMultiplier: {x: 0.5, y: 2}
   pushbackInitial: 700
   pushbackAcceleration: 600
   initialPushDuration: 0.08
   shootDelay: 0.2
   initialSpeed: 8
   cloudPrefab: {fileID: 1270616181453354984, guid: 75307c9914057314ca3c8c8b67a2c9b3, type: 3}
-  cacheCapacity: 10
+  cacheCapacity: 30
   interactText: {fileID: 1520104748}
   interactDistance: 2
   pickUpEvent:
@@ -11325,9 +11325,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1034689029
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 236391641466758768, guid: f78026dea660cb648ac2e029e7f637ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11893,7 +11893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePrefab: {fileID: 8783381328363164145, guid: 2f541f1bdaada8e6f8b99f3adc4c859a, type: 3}
-  fireKind: 1
+  fireKind: 4
   temperatureToLifetime:
     serializedVersion: 2
     m_Curve:

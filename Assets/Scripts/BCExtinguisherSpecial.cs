@@ -7,8 +7,8 @@ public class BCExtinguisherSpecial : SpecialAttack, IInteractable
     private float shootDelayTimer;
     [SerializeField] private float initialSpeed;
 
-    [SerializeField] private ExtinguisherProjectile cloudPrefab;
-    private ExtinguisherProjectile[] cloudCache;
+    [SerializeField] private Projectile cloudPrefab;
+    private Projectile[] cloudCache;
     [Range(1, 100)]
     [SerializeField] private int cacheCapacity;
     private int cacheIndex;
@@ -44,7 +44,7 @@ public class BCExtinguisherSpecial : SpecialAttack, IInteractable
 
     private void Awake()
     {
-        cloudCache = new ExtinguisherProjectile[cacheCapacity];
+        cloudCache = new Projectile[cacheCapacity];
     }
 
     // Update is called once per frame
@@ -79,7 +79,7 @@ public class BCExtinguisherSpecial : SpecialAttack, IInteractable
             return;
         }
 
-        ExtinguisherProjectile firedBullet = cloudCache[cacheIndex];
+        Projectile firedBullet = cloudCache[cacheIndex];
 
         if (firedBullet == null)
         {

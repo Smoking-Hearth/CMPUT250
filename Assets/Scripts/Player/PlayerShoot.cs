@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerStats))]
 public class PlayerShoot : MonoBehaviour
 {
-    [SerializeField] private ExtinguisherProjectile bullet;
+    [SerializeField] private Projectile bullet;
     [SerializeField] private float bulletInitialSpeed = 10.0f;
     [SerializeField] private float shootCooldown;
     private float shootCooldownTimer;
@@ -36,7 +36,7 @@ public class PlayerShoot : MonoBehaviour
 
     [Range(1, 100)]
     [SerializeField] private int maxBullets;
-    private ExtinguisherProjectile[] bulletCache;
+    private Projectile[] bulletCache;
     private int bulletCounter;
 
     private PlayerStats stats;
@@ -60,7 +60,7 @@ public class PlayerShoot : MonoBehaviour
         SpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<SpecialAttack>();
         inventory = new PlayerInventory(2, attack, attachPoint);
 
-        bulletCache = new ExtinguisherProjectile[maxBullets];
+        bulletCache = new Projectile[maxBullets];
         if (stats == null)
         {
             stats = GetComponent<PlayerStats>();
@@ -146,7 +146,7 @@ public class PlayerShoot : MonoBehaviour
         }
 
         Vector2 shootDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
-        ExtinguisherProjectile firedBullet = bulletCache[bulletCounter];
+        Projectile firedBullet = bulletCache[bulletCounter];
 
         if (firedBullet == null)
         {

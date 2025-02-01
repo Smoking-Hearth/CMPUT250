@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034689029
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.23137255, g: 0.89411765, b: 1, a: 1}
@@ -4886,7 +4886,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034689029
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -4931,7 +4931,7 @@ GameObject:
   - component: {fileID: 481510549511395147}
   - component: {fileID: 3535877579853331466}
   - component: {fileID: 9011100794323454823}
-  - component: {fileID: 1270616181453354984}
+  - component: {fileID: 2247101784741844172}
   m_Layer: 4
   m_Name: WaterBullet
   m_TagString: Untagged
@@ -5020,7 +5020,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.3
---- !u!114 &1270616181453354984
+--- !u!114 &2247101784741844172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5029,22 +5029,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 4543509128577565687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea0f494653bb6fd4680933da879257e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 86dea0b9562fc66449105f38e0e602c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splashParticles: {fileID: 5445855779528668695}
+  isEnemyProjectile: 0
+  damageClass: 1
+  onShootParticles: {fileID: 0}
+  cost: 5
   travelParticles: {fileID: 2678009490925769400}
   spriteRenderer: {fileID: 4573283573093189699}
-  fireLayers:
+  lifeTime: 4
+  sizeOverLifetime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.077555574
+      outSlope: 0.077555574
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.13241194
+    - serializedVersion: 3
+      time: 1
+      value: 2
+      inSlope: 3.1245012
+      outSlope: 3.1245012
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07454234
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  onHitParticles: {fileID: 5445855779528668695}
+  hitLayers:
     serializedVersion: 2
     m_Bits: 128
-  extinguishClass: 1
+  areaOfEffectRadius: 1.5
   effectiveness: 15
-  lifeTime: 4
-  splashRadius: 1.3
-  maxRadius: 0.6
-  radiusGrowthRate: 0.2
-  cost: 5
 --- !u!1 &5791469499084469132
 GameObject:
   m_ObjectHideFlags: 0
@@ -9902,7 +9926,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034689029
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_RenderMode: 0
   m_MeshDistribution: 0
