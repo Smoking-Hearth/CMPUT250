@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
-using UnityEngine.PlayerLoop;
 
 public enum SceneIndex
 {
@@ -82,7 +81,7 @@ namespace Unquenchable {
         /// <returns>If we did the initialization</returns>
         public static bool Init()
         {
-            if (hasBeenInit) return true;
+            if (hasBeenInit) return false;
             hasBeenInit = true;
 
             Scene first = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
@@ -90,7 +89,7 @@ namespace Unquenchable {
             sceneInfos[idx] = new SceneInfo(first);
             loaded |= 1 << idx;
 
-            return false;
+            return true;
         }
 
         // This is absolutely terrible. Becuase it overwrites active on objects

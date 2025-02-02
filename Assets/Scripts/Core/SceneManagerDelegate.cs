@@ -2,10 +2,27 @@ using UnityEngine;
 
 public class SceneManagerDelegate : MonoBehaviour
 {
+    bool isStartScene = false;
+
     public void Awake() 
     {
-        // This is basically useless. May be better to just initialize the first
-        // time one of the methods is called.
-        Unquenchable.SceneManager.Init();
+        isStartScene = Unquenchable.SceneManager.Init();
+    }
+
+    public void Start()
+    {
+        if (!isStartScene) return;
+
+        // If we are here then this is the first scene loaded.
+        SceneIndex sceneIdx = (SceneIndex)gameObject.scene.buildIndex;
+
+        switch (sceneIdx)
+        {
+            case SceneIndex.Forest:
+                GameManager.cameraAnimator.Play("Game");
+                break;
+            default:
+                break;
+        }
     }
 }
