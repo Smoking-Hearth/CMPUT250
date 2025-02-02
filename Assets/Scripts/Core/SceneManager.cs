@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.PlayerLoop;
 
 public enum SceneIndex
 {
@@ -66,6 +67,8 @@ namespace Unquenchable {
     /// </summary>
     public static class SceneManager
     {
+        static bool hasBeenInit = false;
+
         // These are bitflags. The nth bit belongs to the nth scene.
         // e.g. First bit is for MainMenu since (1 << 0).
         static int loaded = 0;
@@ -74,6 +77,20 @@ namespace Unquenchable {
         public static SceneInfo[] SceneInfos
         {
             get { return sceneInfos; }
+        }
+
+        /// <returns>If we did the initialization</returns>
+        public static bool Init()
+        {
+            if (hasBeenInit) return true;
+            hasBeenInit = true;
+
+            Scene first = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+            int idx = first.buildIndex;
+            sceneInfos[idx] = new SceneInfo(first);
+            loaded |= 1 << idx;
+
+            return false;
         }
 
         // This is absolutely terrible. Becuase it overwrites active on objects
@@ -168,5 +185,4 @@ namespace Unquenchable {
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(next);
         }
     }
-
 }
