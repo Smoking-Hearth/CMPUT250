@@ -91,7 +91,7 @@ public class EnemyController : MonoBehaviour
     }
 
     void Idle(){
-        Debug.Log("We are idle");
+        // Debug.Log("We are idle");
         //
         // PLay idle animation? Sounds?
         //
@@ -104,7 +104,7 @@ public class EnemyController : MonoBehaviour
     void Target(){
 
         if(currentState == EnemyState.stBeforeAttack) return;
-        Debug.Log("We are targetting");
+        // Debug.Log("We are targetting");
 
         // Face Target, aim at them?
         // Walk towards them, assuming they can do that?
@@ -128,7 +128,7 @@ public class EnemyController : MonoBehaviour
 
     void Attack(string tag){
 
-        Debug.Log("We are attacking");
+        // Debug.Log("We are attacking");
 
         if (tag == "Flamelet"){
 
