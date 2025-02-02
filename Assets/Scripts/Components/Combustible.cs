@@ -143,11 +143,10 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
         // We shouldn't damage the player if not on fire.
         if (!Burning) return;
-        Health health = other.GetComponent<Health>();
-        if (health != null && (health.gameObject.layer & shouldBurn) != 0)
+        float distance = Vector2.Distance(GameManager.PlayerPosition, (Vector2)transform.position);
+        if (distance < fireSpreadRadius * 0.5f)
         {
-            float distance = Vector2.Distance(other.gameObject.transform.position, transform.position);
-            health.Current -= 10f * Mathf.Pow(0.5f, distance) * Time.fixedDeltaTime;
+            GameManager.PlayerHealth.Current -= 7f * Mathf.Pow(0.5f, distance);
         }
     }
 
