@@ -26,6 +26,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] sceneInteractables;
     [SerializeField] private PlayerController setPlayer;
     private static PlayerController player;
+    private static Health playerHealth;
+
+    public delegate void OnFireTick();
+    public static event OnFireTick onFireTick;
+    private float fireTickTimer;
+
     public static Vector2 PlayerPosition
     {
         get
@@ -33,10 +39,13 @@ public class GameManager : MonoBehaviour
             return player.transform.position;
         }
     }
-
-    public delegate void OnFireTick();
-    public static event OnFireTick onFireTick;
-    private float fireTickTimer;
+    public static Health PlayerHealth
+    {
+        get
+        {
+            return playerHealth;
+        }
+    }
 
     [SerializeField] private Animator setCameraAnimator;
     public static Animator cameraAnimator;
@@ -45,6 +54,8 @@ public class GameManager : MonoBehaviour
     {
         player = setPlayer;
         cameraAnimator = setCameraAnimator;
+        playerHealth = player.GetComponent<Health>();
+
         IInteractable[] interactables = new IInteractable[sceneInteractables.Length];
 
         for (int i = 0; i < sceneInteractables.Length; i++)
