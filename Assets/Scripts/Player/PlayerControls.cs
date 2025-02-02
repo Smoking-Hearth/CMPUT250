@@ -80,6 +80,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DropDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""31f73a10-e729-4038-9fa9-91aae7ac0319"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -203,6 +212,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""SwapSpecial"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6bd0f93-6ef1-42d8-acfc-b3846090143c"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";KeyboardMouse"",
+                    ""action"": ""DropDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -262,6 +282,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerMovement_SpecialAttack = m_PlayerMovement.FindAction("SpecialAttack", throwIfNotFound: true);
         m_PlayerMovement_Interact = m_PlayerMovement.FindAction("Interact", throwIfNotFound: true);
         m_PlayerMovement_SwapSpecial = m_PlayerMovement.FindAction("SwapSpecial", throwIfNotFound: true);
+        m_PlayerMovement_DropDown = m_PlayerMovement.FindAction("DropDown", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Pause = m_Menu.FindAction("Pause", throwIfNotFound: true);
@@ -338,6 +359,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMovement_SpecialAttack;
     private readonly InputAction m_PlayerMovement_Interact;
     private readonly InputAction m_PlayerMovement_SwapSpecial;
+    private readonly InputAction m_PlayerMovement_DropDown;
     public struct PlayerMovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -348,6 +370,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @SpecialAttack => m_Wrapper.m_PlayerMovement_SpecialAttack;
         public InputAction @Interact => m_Wrapper.m_PlayerMovement_Interact;
         public InputAction @SwapSpecial => m_Wrapper.m_PlayerMovement_SwapSpecial;
+        public InputAction @DropDown => m_Wrapper.m_PlayerMovement_DropDown;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -375,6 +398,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwapSpecial.started += instance.OnSwapSpecial;
             @SwapSpecial.performed += instance.OnSwapSpecial;
             @SwapSpecial.canceled += instance.OnSwapSpecial;
+            @DropDown.started += instance.OnDropDown;
+            @DropDown.performed += instance.OnDropDown;
+            @DropDown.canceled += instance.OnDropDown;
         }
 
         private void UnregisterCallbacks(IPlayerMovementActions instance)
@@ -397,6 +423,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwapSpecial.started -= instance.OnSwapSpecial;
             @SwapSpecial.performed -= instance.OnSwapSpecial;
             @SwapSpecial.canceled -= instance.OnSwapSpecial;
+            @DropDown.started -= instance.OnDropDown;
+            @DropDown.performed -= instance.OnDropDown;
+            @DropDown.canceled -= instance.OnDropDown;
         }
 
         public void RemoveCallbacks(IPlayerMovementActions instance)
@@ -477,6 +506,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSpecialAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnSwapSpecial(InputAction.CallbackContext context);
+        void OnDropDown(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

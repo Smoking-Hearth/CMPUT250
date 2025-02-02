@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundCheckRadius;
     [SerializeField] private Vector2 groundCheckOffset;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask stairsLayer;
+    [SerializeField] private LayerMask platformLayer;
     [SerializeField] private float gravityAcceleration = 30;
     [SerializeField] float jumpBufferSeconds;
 
@@ -108,6 +110,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Gravity();
+        Move();
+
         if (isSpecialShooting)
         {
             if (!shootBehavior.AimStream())
@@ -125,6 +130,16 @@ public class PlayerController : MonoBehaviour
         if (!isShooting && !isSpecialShooting && isInteracting)
         {
             InteractableManager.Interact(true);
+        }
+
+        //Checks if the player is currently on stairs to make sure they don't slide down
+        if (Physics2D.Raycast((Vector2)transform.position + groundCheckOffset, Vector2.down, groundCheckRadius + 0.1f, stairsLayer))
+        {
+            playerRigidbody.gravityScale = 0;
+        }
+        else
+        {
+            playerRigidbody.gravityScale = 1; //The player catches onto ledges, but slowly falls down
         }
         //Checks if the player is grounded
         if (Physics2D.OverlapCircle((Vector2)transform.position + groundCheckOffset, groundCheckRadius, groundLayer))
@@ -149,9 +164,6 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("IsGrounded", false);
             isGrounded = false;
         }
-
-        Gravity();
-        Move();
     }
 
     //Should only be called once per frame
