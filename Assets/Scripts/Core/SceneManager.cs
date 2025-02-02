@@ -1,6 +1,8 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public enum SceneIndex
 {
@@ -13,21 +15,76 @@ public enum SceneIndex
 }
 
 namespace Unquenchable {
+    public struct SceneInfo
+    {
+        const int k_EventSystemIdx = 0;
+        const int k_UIIdx = 1;
+
+        public Canvas UI;
+        public EventSystem eventSystem;
+        public List<GameObject> defaultEnabledRootObject;
+
+        // PERF: If the scene doesn't have the things in expected places this is...
+        // expensive.
+        public SceneInfo(Scene scene)
+        {
+            UI = null;
+            eventSystem = null;
+            defaultEnabledRootObject = new List<GameObject>();
+
+            GameObject[] rootObjects = scene.GetRootGameObjects();
+            if (rootObjects.Length > k_EventSystemIdx)
+            {
+                eventSystem = rootObjects[k_EventSystemIdx].GetComponent<EventSystem>();
+            }
+            if (rootObjects.Length > k_UIIdx)
+            {
+                UI = rootObjects[k_UIIdx].GetComponent<Canvas>();
+            }
+
+            foreach (var go in rootObjects)
+            {
+                if (go.activeSelf)
+                {
+                    defaultEnabledRootObject.Add(go);
+                }
+                if (eventSystem == null)
+                {
+                    eventSystem = go.GetComponent<EventSystem>();
+                }
+                if (UI == null)
+                {
+                    UI = go.GetComponent<Canvas>();
+                }
+            }
+        }
+    }
+
     /// <summary>
     /// Querying for load is pretty cheap.
     /// Wraps LoadSceneAsync so that it can be run as a coroutine.
     /// </summary>
-    public class SceneManager
+    public static class SceneManager
     {
         // These are bitflags. The nth bit belongs to the nth scene.
         // e.g. First bit is for MainMenu since (1 << 0).
         static int loaded = 0;
+        static SceneInfo[] sceneInfos = new SceneInfo[6];
+
+        public static SceneInfo[] SceneInfos
+        {
+            get { return sceneInfos; }
+        }
 
         // This is absolutely terrible. Becuase it overwrites active on objects
         // that we may want to be inactive when the scene is loaded.
-        public static void SetSceneObjectsActive(Scene scene, bool active)
+        public static void SetSceneActive(Scene scene, bool active)
         {
-            foreach (var ob in scene.GetRootGameObjects()) ob.SetActive(active);
+            int idx = scene.buildIndex;
+            foreach (var ob in sceneInfos[idx].defaultEnabledRootObject) 
+            {
+                ob.SetActive(active);
+            }
         }
 
         public static void LoadHook(Scene scene, LoadSceneMode _)
@@ -58,33 +115,33 @@ namespace Unquenchable {
             int idx = (int)sceneIdx;
             AsyncOperation op = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(idx, LoadSceneMode.Additive);
 
-            // NOTE: This may work right after the while loop, but that requires
-            // Unity to be polling the coroutine pretty consistently otherwise we'll
-            // see the object flash on-screen.
+            while (!op.isDone) yield return null;
+
+            Scene loadedScene = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(idx);
+            sceneInfos[idx] = new SceneInfo(loadedScene);
+
+            // Even if we aren't hiding the scene we probably want these inactive
+            sceneInfos[idx].eventSystem.gameObject.SetActive(false);
+            sceneInfos[idx].UI.gameObject.SetActive(false);
+
             if (hideLoaded)
             {
-                op.completed += (_) => 
-                {
-                    Scene loaded = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(idx);
-                    SetSceneObjectsActive(loaded, false);
-                };
+                SetSceneActive(loadedScene, false);
             }
 
-            while (!op.isDone) yield return null;
             int mask = 1 << idx;
             loaded |= mask;
         }
 
         public static IEnumerator SetSceneActive(SceneIndex sceneIdx, bool hideCurrent = true)
         {
-            // Make sure the scene is loaded
-            int mask = 1 << (int)sceneIdx;
-
+            Scene prev = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             Scene next = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex((int)sceneIdx);
 
             if (IsLoaded(sceneIdx))
             {
-                SetSceneObjectsActive(next, true);
+                SetSceneActive(next, true);
+
             }
             else 
             {
@@ -96,11 +153,18 @@ namespace Unquenchable {
                 next = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex((int)sceneIdx);
             }
 
+            sceneInfos[prev.buildIndex].eventSystem.gameObject.SetActive(false);
+            sceneInfos[prev.buildIndex].UI.gameObject.SetActive(false);
+
+            sceneInfos[next.buildIndex].eventSystem.gameObject.SetActive(true);
+            sceneInfos[next.buildIndex].UI.gameObject.SetActive(true);
+
             // Hide the current scene
             if (hideCurrent)
             {
-                SetSceneObjectsActive(UnityEngine.SceneManagement.SceneManager.GetActiveScene(), false);
+                SetSceneActive(UnityEngine.SceneManagement.SceneManager.GetActiveScene(), false);
             }
+
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(next);
         }
     }
