@@ -13,19 +13,19 @@ public class EnemyController : MonoBehaviour
     private Transform target;
     public float speed;
     private float distance;
-    // private bool inRange = false;
     public bool cannotDamage = false;
     public bool canMove = true;
     public float maxRange = 5f;
 
     private float attackTimer;
-    public float attackCooldown = 1.0f;
+    public float attackCooldown = 1.5f;
 
     //public ScriptableObject FlameDash;
     public enum EnemyState{
         stWaiting,
         stTargeting, // Either Aiming at player OR Moving towards/away from player
-        stAttacking
+        stBeforeAttack,
+        stDuringAttack
     };
 
     public EnemyState currentState = EnemyState.stWaiting;
@@ -41,8 +41,8 @@ public class EnemyController : MonoBehaviour
         // Target will always be player
         target = GameObject.FindGameObjectWithTag("Target").GetComponent<Transform>();
 
-    }
-
+    }   
+    
     void OnCollisionEnter2D(Collision2D col)
     {
         if (waterLayer != col.gameObject.layer) return;
@@ -65,33 +65,11 @@ public class EnemyController : MonoBehaviour
         Destroy(col.gameObject);
     }
 
-    //BUG: Character falls slowly when using 2D colliders
-    // void OnTriggerEnter2D(Collider2D Collision){
-
-    //     if(Collision.CompareTag("Player")){
-
-    //         inRange = true;
-    //     }
-    // }
-    // void OnTriggerExit2D(Collider2D Collision){
-
-    //     if(Collision.CompareTag("Player")){
-
-    //         inRange = false;
-    //     }
-    // }
-
     IEnumerator AttackCooldown(){
 
         yield return new WaitForSeconds(attackCooldown);
         attackTimer = attackCooldown;
         currentState = EnemyState.stTargeting;
-    }
-
-    IEnumerator BeforeAttack(){
-
-        yield return new WaitForSeconds((attackCooldown));
-
     }
 
     void Update(){
@@ -103,11 +81,12 @@ public class EnemyController : MonoBehaviour
                 Idle();
                 break;
             case EnemyState.stTargeting:
-                Target(gameObject.tag);
+                Target();
                 break;
-            case EnemyState.stAttacking:
+            case EnemyState.stBeforeAttack:
                 Attack(gameObject.tag);
                 break;
+            case EnemyState.stDuringAttack: break;
         }
     }
 
@@ -122,40 +101,28 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    void Target(string tag){
+    void Target(){
 
-        if(currentState == EnemyState.stAttacking) return;
+        if(currentState == EnemyState.stBeforeAttack) return;
         Debug.Log("We are targetting");
 
         // Face Target, aim at them?
         // Walk towards them, assuming they can do that?
         // canMove = true;
-        if (distance < maxRange){
+        if (distance < maxRange && canMove){
+            
             
             transform.position = Vector2.MoveTowards(transform.position, target.position, Time.deltaTime * speed);
+
             attackTimer -= Time.deltaTime;
 
             if (attackTimer <= 0){
 
-            // if (tag == "Flamelet"){
-                currentState = EnemyState.stAttacking;
-            // }
-
-            // if (tag == "Brute"){
-
-            //     return;
-
-            // }
-
-            // if (tag == "Flame On!"){
-
-            //     return;
-
-            // }
+                currentState = EnemyState.stBeforeAttack;
 
             }
         }
-        // If Target steps out of range? Reset Timer slightly, go back to idle
+        // If Target steps out of range? Reset Timer slightly, go back to idle (Allegedly)
         else {attackTimer = attackCooldown/2f; currentState = EnemyState.stWaiting;}
     }
 
@@ -165,11 +132,16 @@ public class EnemyController : MonoBehaviour
 
         if (tag == "Flamelet"){
 
-            StartCoroutine(BeforeAttack());
             EnemyDash dash = GetComponent<EnemyDash>();
             attackTimer = attackCooldown;
 
-            if (dash != null) dash.Dash();
+            if (dash != null){
+
+                dash.Dash();
+                currentState = EnemyState.stDuringAttack;
+                // After Attack
+                StartCoroutine(AttackCooldown());
+            } 
         
             else Debug.LogWarning("Come on, man. You don't got that dash script!");
 
@@ -180,14 +152,13 @@ public class EnemyController : MonoBehaviour
 
         }
 
-        else if (tag == "Flame On!"){
+        else if (tag == "Boomba"){
 
             // return;
 
         }
         
         
-        StartCoroutine(AttackCooldown()); // ???
 
     }
 

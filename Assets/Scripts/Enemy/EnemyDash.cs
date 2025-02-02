@@ -16,16 +16,22 @@ public class EnemyDash : MonoBehaviour
 
     private Vector3 targetPosition;
     private Vector3 enemyPosition;
-    public float DashSpeed = 3f;
+    public float DashSpeed = 18f;
+    public float timeDashing = 0.5f;
 
-    public float cooldown = 1f;
-    //public float dashSpeed = 5f;
+    public float cooldown = 0.5f;
 
-    //private Position playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<>(); 
+    public System.Action OnDashComplete;
+
+    
+    // STEPS
+    // Make enemy stop in place before attacking & make them invincible
+    // Get position of player, save to variable
+    // make enemy dash to position quickly
+    // Resume movement, cannot Damage = false
+    // Go on cooldown
 
     public void Dash(){
-
-        //Debug.Log("Began to dash");
 
         // Save To and From positions
         targetPosition = player.transform.position;
@@ -33,64 +39,42 @@ public class EnemyDash : MonoBehaviour
         flameSprite = GetComponent<SpriteRenderer>();
         oldColor = flameSprite.color;
 
-        //Debug.Log("oldColor:" + oldColor);
-        // flameSprite.color = newColor;
-
-        //Debug.Log("Player saved position:" + targetPosition);
-        //Debug.Log("Enemy current position" + enemyPosition);
-
-        StartCoroutine(BeginToDash(targetPosition, DashSpeed));
+        StartCoroutine(BeginToDash(targetPosition, timeDashing));
     }
 
-    public IEnumerator BeginToDash(Vector3 target, float seconds)
+    public IEnumerator BeginToDash(Vector3 target, float time)
     {   
 
-        //Debug.Log("Cannot Damage");
         GetComponent<EnemyController>().cannotDamage = true;
+        GetComponent<EnemyController>().canMove = false;
 
-        //Debug.Log("Changed colour");
         flameSprite.color = newColor;
 
         Vector3 direction = (targetPosition - enemyPosition).normalized;
-        Vector3 finalPlace = enemyPosition + direction;
 
         float overallTime = 0f;
 
-        //yield return new WaitForSeconds(cooldown);
+        // Stop moving before dashing
+        yield return new WaitForSeconds(cooldown);
 
-        while (overallTime < seconds){
+        while (overallTime < time){
 
-        float dashingTime = overallTime / seconds;  // Change target position to past player
-        enemy.transform.position = Vector3.Lerp(enemyPosition, targetPosition, dashingTime);
+        // float dashingTime = overallTime / seconds;  // Change target position to past player
+        enemy.transform.Translate(DashSpeed * Time.deltaTime * direction);
+        //enemy.transform.position = Vector3.Lerp(enemyPosition, targetPosition, dashingTime);
         overallTime += Time.deltaTime;
-        //Debug.Log("Player saved position:" + targetPosition);
-        //Debug.Log("Enemy current position" + enemyPosition);
-
         yield return null;
         }
 
-        // while (Vector3.Distance(enemy.transform.position, targetPosition) >= 0.5f){
-        //     enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, finalPlace, DashSpeed * Time.deltaTime);
-        //     yield return null;
-        // }
+        // Return back to normal colour
+        flameSprite.color = oldColor;
 
-        // yield return new WaitForSeconds(cooldown);
-        // Not working
-        
-        // GetComponent<EnemyController>().cannotDamage = false;
-        GetComponent<EnemyController>().currentState = EnemyController.EnemyState.stTargeting;
-        //Debug.Log("No longer invincible");
+        // Resume previous movement
+        GetComponent<EnemyController>().cannotDamage = false;
+        GetComponent<EnemyController>().canMove = true;
 
 
-        
-
-
-        // Make enemy stop in place
-        // Get position of player, save to variable
-        // Wait a second or two
-        // make enemy dash to position quickly
-        // Time out movement for second
-        // Resume movement, cannot Damage = false
+        OnDashComplete?.Invoke();
 
     }
 
