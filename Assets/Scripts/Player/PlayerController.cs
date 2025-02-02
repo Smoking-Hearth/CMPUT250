@@ -242,7 +242,10 @@ public class PlayerController : MonoBehaviour
     //Accelerates the player downward
     private void Gravity()
     {
-        addedVelocity.y -= gravityAcceleration;
+        if (!isGrounded)
+        {
+            addedVelocity.y -= gravityAcceleration;
+        }
     }
 
     private void Jump()
