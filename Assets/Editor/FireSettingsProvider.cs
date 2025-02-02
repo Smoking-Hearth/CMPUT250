@@ -40,6 +40,7 @@ static class FireSettingsUIElementsRegister
                 properties.AddToClassList("property-list");
                 rootElement.Add(properties);
 
+                properties.Add(new PropertyField(settings.FindProperty("fireTickDelaySeconds")));
                 properties.Add(new PropertyField(settings.FindProperty("commonFireSettings")));
                 properties.Add(new PropertyField(settings.FindProperty("liquidFireSettings")));
                 properties.Add(new PropertyField(settings.FindProperty("electricalFireSettings")));

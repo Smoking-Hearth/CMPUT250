@@ -58,8 +58,10 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
     }
 
-    LayerMask shouldBurn; 
-    
+    LayerMask shouldBurn;
+    [SerializeField] private LayerMask fireLayer;
+
+    [SerializeField] private float fireSpreadRadius;
     [Tooltip("Units are Kelvin/second")]
     [SerializeField] float heatCopyRate = 1f;
 
@@ -89,6 +91,15 @@ public class Combustible : MonoBehaviour, IExtinguishable
         shouldBurn = LayerMask.NameToLayer("Player");
     }
 
+    private void OnEnable()
+    {
+        GameManager.onFireTick += CheckFireSpread;
+    }
+    private void OnDisable()
+    {
+        GameManager.onFireTick -= CheckFireSpread;
+    }
+
     void Update()
     {
         bool haveFule = fule > 0f;
@@ -110,15 +121,23 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    private void CheckFireSpread()
     {
-        Combustible neighboor = other.GetComponentInParent<Combustible>();
-        if (neighboor != null)
+        Collider2D[] fires = Physics2D.OverlapCircleAll(transform.position, fireSpreadRadius, fireLayer);
+        for (int i = 0; i < fires.Length; i++)
         {
-            float diff = neighboor.Temperature - temperature;
+            HeatSpread(fires[i].GetComponentInParent<Combustible>());
+        }
+    }
+
+    private void HeatSpread(Combustible other)
+    {
+        if (other != null)
+        {
+            float diff = other.Temperature - temperature;
             if (diff > 0f)
             {
-                Temperature += diff * heatCopyRate * Time.deltaTime;
+                Temperature += diff * heatCopyRate;
             }
         }
 
@@ -128,7 +147,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
         if (health != null && (health.gameObject.layer & shouldBurn) != 0)
         {
             float distance = Vector2.Distance(other.gameObject.transform.position, transform.position);
-            health.Current -= 10f * Mathf.Pow(0.5f, distance) * Time.deltaTime;
+            health.Current -= 10f * Mathf.Pow(0.5f, distance) * Time.fixedDeltaTime;
         }
     }
 

@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public delegate void OnFireTick();
+    public static event OnFireTick onFireTick;
+    private float fireTickTimer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -51,5 +55,21 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         interactableManager.CheckNearestTarget(player.transform.position);
+    }
+
+    private void FixedUpdate()
+    {
+        if (fireTickTimer > 0)
+        {
+            fireTickTimer -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            fireTickTimer = FireSettings.FireDelay;
+            if (onFireTick != null)
+            {
+                onFireTick();
+            }
+        }
     }
 }

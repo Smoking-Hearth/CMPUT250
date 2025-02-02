@@ -13,11 +13,20 @@ public class FireSettings : ScriptableObject
 {
     public const string Path = "Assets/Settings/FireSettings.asset";
 
+    [SerializeField] float fireTickDelaySeconds;
     [SerializeField] FireInfo commonFireSettings;
     [SerializeField] FireInfo liquidFireSettings;
     [SerializeField] FireInfo electricalFireSettings;
     [SerializeField] FireInfo metalFireSettings;
     [SerializeField] FireInfo cookingFireSettings;
+
+    public float FireDelay
+    {
+        get
+        {
+            return fireTickDelaySeconds;
+        }
+    }
 
     public FireInfo GetFireInfo(CombustibleKind fireKind)
     {
