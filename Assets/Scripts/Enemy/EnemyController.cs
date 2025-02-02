@@ -28,6 +28,10 @@ public class EnemyController : MonoBehaviour
         stDuringAttack
     };
 
+    // Centre of Attacl
+    // Radious of Attack
+    // Radius of attack hitbox
+
     public EnemyState currentState = EnemyState.stWaiting;
 
     void Awake() 
