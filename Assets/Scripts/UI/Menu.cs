@@ -14,7 +14,7 @@ public class Menu : MonoBehaviour
     {
         // NOTE: This doesn't load in the sense you may think. This will start a background
         // task to load the given scene, and it will be immediatly visible in the game world.
-        StartCoroutine(Unquenchable.SceneManager.Load(selectedLevel));
+        StartCoroutine(Unquenchable.SceneManager.Load(selectedLevel, false));
     }
 
     void OnEnable()
@@ -33,7 +33,8 @@ public class Menu : MonoBehaviour
 
     void OnPlayClick()
     {
-        Unquenchable.SceneManager.SetSceneActive(selectedLevel);
+        StartCoroutine(Unquenchable.SceneManager.SetSceneActive(selectedLevel));
+        GameManager.cameraAnimator.Play("Start");
     }
 
     void OnSettingsClick()

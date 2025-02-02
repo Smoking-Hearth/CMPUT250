@@ -48,7 +48,7 @@ namespace Unquenchable {
 
         public static bool IsLoaded(SceneIndex sceneIdx)
         {
-            return (loaded & (int)sceneIdx) != 0;
+            return (loaded & (1 << (int)sceneIdx)) != 0;
         }
 
         public static IEnumerator Load(SceneIndex sceneIdx, bool hideLoaded = true)
@@ -71,6 +71,8 @@ namespace Unquenchable {
             }
 
             while (!op.isDone) yield return null;
+            int mask = 1 << idx;
+            loaded |= mask;
         }
 
         public static IEnumerator SetSceneActive(SceneIndex sceneIdx, bool hideCurrent = true)
