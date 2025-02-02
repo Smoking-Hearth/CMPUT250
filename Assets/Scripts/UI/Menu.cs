@@ -34,7 +34,7 @@ public class Menu : MonoBehaviour
     void OnPlayClick()
     {
         StartCoroutine(Unquenchable.SceneManager.SetSceneActive(selectedLevel));
-        GameManager.cameraAnimator.Play("Start");
+        GameManager.cameraAnimator.Play("Game");
     }
 
     void OnSettingsClick()
