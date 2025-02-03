@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerStats))]
@@ -44,6 +45,7 @@ public class PlayerShoot : MonoBehaviour
     private int costTicks;
 
     [SerializeField] private Transform attachPoint;
+    [SerializeField] private Image[] inventoryIcons;
     private PlayerInventory inventory;
 
     [System.Serializable]
@@ -58,7 +60,7 @@ public class PlayerShoot : MonoBehaviour
     private void Awake()
     {
         SpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<SpecialAttack>();
-        inventory = new PlayerInventory(2, attack, attachPoint);
+        inventory = new PlayerInventory(2, attack, attachPoint, inventoryIcons);
 
         bulletCache = new Projectile[maxBullets];
         if (stats == null)

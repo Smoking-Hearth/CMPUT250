@@ -6,6 +6,7 @@ public abstract class SpecialAttack : MonoBehaviour
     [SerializeField] protected float effectiveness;
     [SerializeField] protected int maintainCost;
     [SerializeField] protected int initialCost;
+    [SerializeField] protected Sprite inventoryIcon;
 
     public delegate void OnPickupSpecial(SpecialAttack special);
     public static OnPickupSpecial onPickupSpecial;
@@ -22,6 +23,13 @@ public abstract class SpecialAttack : MonoBehaviour
     public abstract void Activate(Vector2 startPosition, bool active, Transform parent);
     public abstract void ResetAttack(float angle);
     public abstract void AimAttack(Vector2 startPosition, float angle);
+    public virtual Sprite DisplayIcon
+    {
+        get
+        {
+            return inventoryIcon;
+        }
+    }
     public virtual int MaintainCost
     {
         get
