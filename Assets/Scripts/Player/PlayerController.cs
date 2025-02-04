@@ -222,7 +222,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PushPlayer(Vector2 acceleration)
+    public void PushPlayer(Vector2 acceleration)
     {
         if (addedVelocity.y > 0 && isJumping)
         {
@@ -232,23 +232,8 @@ public class PlayerController : MonoBehaviour
 
         addedVelocity += acceleration;
 
-        if (addedVelocity.x > terminalVelocity.x)
-        {
-            addedVelocity.x = terminalVelocity.x;
-        }
-        else if (addedVelocity.x < -terminalVelocity.x)
-        {
-            addedVelocity.x = -terminalVelocity.x;
-        }
-
-        if (addedVelocity.y > terminalVelocity.y)
-        {
-            addedVelocity.y = terminalVelocity.y;
-        }
-        else if (addedVelocity.y < -terminalVelocity.y)
-        {
-            addedVelocity.y = -terminalVelocity.y;
-        }
+        addedVelocity.x = Mathf.Clamp(addedVelocity.x, -terminalVelocity.x, terminalVelocity.x);
+        addedVelocity.y = Mathf.Clamp(addedVelocity.y, -terminalVelocity.y, terminalVelocity.y);
     }
 
     //Accelerates the player downward

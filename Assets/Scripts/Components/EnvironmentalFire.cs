@@ -5,9 +5,10 @@ public class EnvironmentalFire : Fire, IExtinguishable
     [SerializeField] private CombustibleKind fireKind = CombustibleKind.A_COMMON;
     [SerializeField] private float minTemperature = 425f;
     [SerializeField] private float temperature = 500f;
-    [SerializeField] AnimationCurve extinguishEffectiveness = AnimationCurve.Constant(0f, Combustible.MAX_TEMP, 1f);
-    [SerializeField] AnimationCurve temperatureToLifetime = AnimationCurve.Constant(0f, Combustible.MAX_TEMP, 1f);
-    [SerializeField] float peakFireHeight;
+    [SerializeField] private AnimationCurve extinguishEffectiveness = AnimationCurve.Constant(0f, Combustible.MAX_TEMP, 1f);
+    [SerializeField] private AnimationCurve temperatureToLifetime = AnimationCurve.Constant(0f, Combustible.MAX_TEMP, 1f);
+    [SerializeField] private float peakFireHeight;
+    private float lingerTimer;
 
     public float Temperature
     {
@@ -21,6 +22,22 @@ public class EnvironmentalFire : Fire, IExtinguishable
     private void Awake()
     {
         Initialize(GameManager.FireSettings.GetFireInfo(fireKind));
+        SetActive(true);
+    }
+
+    private void FixedUpdate()
+    {
+        if (!activated)
+        {
+            if (lingerTimer > 0)
+            {
+                lingerTimer -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void Extinguish(CombustibleKind extinguishClass, float quantity_L)
@@ -33,7 +50,8 @@ public class EnvironmentalFire : Fire, IExtinguishable
 
         if (temperature == 0)
         {
-            Destroy(gameObject);
+            SetActive(false);
+            lingerTimer = particles.main.startLifetime.constant;
         }
     }
 }

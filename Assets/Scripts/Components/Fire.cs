@@ -3,9 +3,9 @@ using UnityEngine.Rendering.Universal;
 
 public class Fire : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem particles;
-    [SerializeField] private Light2D fireLight;
-    private bool activated;
+    [SerializeField] protected ParticleSystem particles;
+    [SerializeField] protected Light2D fireLight;
+    protected bool activated;
 
     public bool IsActivated
     {
