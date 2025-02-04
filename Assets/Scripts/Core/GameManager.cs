@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public static event OnFireTick onFireTick;
     private float fireTickTimer;
 
-    public delegate void OnEnemyAttack(Vector2 position, EnemyAttackInfo attackInfo);
+    public delegate void OnEnemyAttack(Vector2 attackCenter, Vector2 sourcePosition, EnemyAttackInfo attackInfo);
     public static OnEnemyAttack onEnemyAttack;
 
     public static Vector2 PlayerPosition

@@ -1,35 +1,94 @@
+using System.Collections;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour 
+public class EnemyController : MonoBehaviour, IExtinguishable
 {
-    static int waterLayer;
-    Health health;
-
-    void Awake() 
+    public enum EnemyState
     {
-        waterLayer = LayerMask.NameToLayer("Water");
-        health = GetComponent<Health>();
+        stWaiting,
+        stTargeting, // Either Aiming at player OR Moving towards/away from player
+        stFrontSwing,
+        stDuringAttack,
+        stBackSwing
+    };
+
+    [SerializeField] protected Health healthComponent;
+    [SerializeField] protected CombustibleKind fireKind;
+    [SerializeField] protected LayerMask waterLayer;
+    [SerializeField] protected EnemyAttackInfo attackInfo;
+    protected Vector2 targetPosition;
+    public float speed;
+    protected float distance;
+    public bool cannotDamage = false;
+    public bool canMove = true;
+
+    [SerializeField] protected Transform attackVisual; //PLACEHOLDER
+    [SerializeField] protected float aggroRange = 5f;
+    [SerializeField] protected float attackRange = 2f;
+
+    [SerializeField] protected float commitAttackSeconds = 1.5f;
+    protected float commitAttackTimer;
+
+    [SerializeField] protected float frontSwingSeconds;
+    protected float frontSwingTimer;
+
+    [SerializeField] protected float backSwingSeconds;
+    protected float backSwingTimer;
+
+    //public ScriptableObject FlameDash;
+
+    // Centre of Attacl
+    // Radious of Attack
+    // Radius of attack hitbox
+
+    public EnemyState currentState = EnemyState.stWaiting;
+
+    protected virtual void OnEnable()
+    {
+        commitAttackTimer = commitAttackSeconds;
+        frontSwingTimer = frontSwingSeconds;
+        backSwingTimer = backSwingSeconds;
+        attackVisual.gameObject.SetActive(false);
     }
-
-    void OnEnable()
+    protected virtual void FixedUpdate()
     {
-        health.onChanged += HealthChanged;
-    }
+        distance = Vector2.Distance(transform.position, GameManager.PlayerPosition);
 
-    void OnDisable()
-    {
-        health.onChanged -= HealthChanged;
-    }
-
-    void HealthChanged()
-    {
-        if (health.HealthZero)
+        switch (currentState)
         {
-            Destroy(gameObject);
+            case EnemyState.stWaiting:
+                Idle();
+                break;
+            case EnemyState.stTargeting:
+                Target();
+                break;
+            case EnemyState.stFrontSwing:
+                FrontSwing();
+                break;
+            case EnemyState.stDuringAttack:
+                Attack();
+                break;
+            case EnemyState.stBackSwing:
+                BackSwing();
+                break;
+        }
+
+        if (healthComponent.HealthZero)
+        {
+            gameObject.SetActive(false);
         }
     }
+    public virtual void Extinguish(CombustibleKind extinguishClass, float quantity_L)
+    {
+        if (fireKind != extinguishClass)
+        {
+            return;
+        }
 
-    void OnCollisionEnter2D(Collision2D col)
+        healthComponent.Current -= quantity_L;
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D col)
     {
         if (waterLayer != col.gameObject.layer) return;
 
@@ -37,15 +96,105 @@ public class EnemyController : MonoBehaviour
         if (damage == null) return;
 
         // Time to get hurt.
-        if (health == null) 
+        var health = GetComponent<Health>();
+
+        if (health == null)
         {
             Debug.LogWarning("There exists an invulnerable enemy");
-        } 
-        else 
+        }
+        else if (cannotDamage) return;
+        else
         {
             health.Current -= damage.damage;
         }
         Destroy(col.gameObject);
     }
 
+    protected virtual void Idle()
+    {
+        // Debug.Log("We are idle");
+        //
+        // PLay idle animation? Sounds?
+        //
+        if (distance < aggroRange)
+        {
+            currentState = EnemyState.stTargeting;
+        }
+
+    }
+
+    protected virtual void Target()
+    {
+        targetPosition = GameManager.PlayerPosition;
+
+        // Face Target, aim at them?
+        // Walk towards them, assuming they can do that?
+        // canMove = true;
+        if (distance < aggroRange && canMove)
+        {
+            MoveToTarget();
+            if (distance <= attackRange)
+            {
+                commitAttackTimer -= Time.fixedDeltaTime;
+
+                if (commitAttackTimer <= 0)
+                {
+                    currentState = EnemyState.stFrontSwing;
+                }
+            }
+            // If Target steps out of range? Reset Timer slightly, go back to targetting
+            else
+            {
+                commitAttackTimer = commitAttackSeconds / 2f;
+                currentState = EnemyState.stTargeting;
+            }
+        }
+        else
+        {
+            currentState = EnemyState.stWaiting;
+        }
+    }
+
+    protected virtual void MoveToTarget()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, targetPosition, Time.fixedDeltaTime * speed);
+    }
+
+    protected virtual void FrontSwing()
+    {
+        if (frontSwingTimer > 0)
+        {
+            frontSwingTimer -= Time.fixedDeltaTime;
+            return;
+        }
+        frontSwingTimer = frontSwingSeconds;
+        currentState = EnemyState.stDuringAttack;
+    }
+
+    protected virtual void BackSwing()
+    {
+        if (backSwingTimer > 0)
+        {
+            backSwingTimer -= Time.fixedDeltaTime;
+            return;
+        }
+
+        attackVisual.gameObject.SetActive(false);
+        backSwingTimer = backSwingSeconds;
+        currentState = EnemyState.stTargeting;
+    }
+
+    protected virtual void Attack()
+    {
+        if (GameManager.onEnemyAttack != null)
+        {
+            Vector2 attackCenter = (Vector2)transform.position + (targetPosition - (Vector2)transform.position).normalized * attackRange;
+            attackVisual.position = attackCenter;
+            attackVisual.gameObject.SetActive(true);
+
+            GameManager.onEnemyAttack(attackCenter, transform.position, attackInfo);
+        }
+        commitAttackTimer = commitAttackSeconds;
+        currentState = EnemyState.stBackSwing;
+    }
 }

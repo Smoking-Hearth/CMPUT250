@@ -54,16 +54,19 @@ public class PlayerStats : MonoBehaviour
         healthBar.value = health.Current;
     }
 
-    private void CheckEnemyAttack(Vector2 position, EnemyAttackInfo attackInfo)
+    private void CheckEnemyAttack(Vector2 position, Vector2 sourcePosition, EnemyAttackInfo attackInfo)
     {
-        Vector2 direction = (Vector2)transform.position - position;
-        float distance = direction.magnitude;
-        if (distance < hurtRadius + attackInfo.radius)
+        Vector2 attackDirection = (Vector2)transform.position - position;
+        float attackDistance = attackDirection.magnitude;
+
+        Vector2 directionFromSource = (Vector2)transform.position - sourcePosition;
+        float sourceDistance = directionFromSource.magnitude;
+        if (attackDistance < hurtRadius + attackInfo.radius)
         {
             health.Current -= attackInfo.damage;
 
-            float closeness = 1 - distance / (attackInfo.radius + hurtRadius);
-            Vector2 knockback = new Vector2(closeness * direction.normalized.x * attackInfo.knockbackPower.x, attackInfo.knockbackPower.y);
+            float closeness = Mathf.Clamp01(1 - sourceDistance / (attackInfo.radius + hurtRadius));
+            Vector2 knockback = new Vector2(closeness * directionFromSource.normalized.x * attackInfo.knockbackPower.x, attackInfo.knockbackPower.y);
             controller.PushPlayer(knockback);
         }
     }

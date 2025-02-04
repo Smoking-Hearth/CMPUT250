@@ -18,7 +18,7 @@ public class FinalBossArm : MonoBehaviour
         {
             if (GameManager.onEnemyAttack != null)
             {
-                GameManager.onEnemyAttack((Vector2)transform.position + attackPosition, attackInfo);
+                GameManager.onEnemyAttack((Vector2)transform.position + attackPosition, transform.position, attackInfo);
                 attackTimer = attackInterval;
             }
         }
