@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static FireSettings fireSettings;
@@ -53,11 +52,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator setCameraAnimator;
     public static Animator cameraAnimator;
 
+    [SerializeField] private DialogSystem setDialogSystem;
+    public static DialogSystem dialogSystem;
+
     void Awake()
     {
         player = setPlayer;
         cameraAnimator = setCameraAnimator;
         playerHealth = player.GetComponent<Health>();
+        dialogSystem = setDialogSystem;
 
         IInteractable[] interactables = new IInteractable[sceneInteractables.Length];
 
