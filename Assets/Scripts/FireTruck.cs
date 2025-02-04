@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FireTruck : MonoBehaviour, IInteractable
@@ -12,19 +15,38 @@ public class FireTruck : MonoBehaviour, IInteractable
         get { return true; }
     }
 
+    private float interactDistance; 
     public float InteractDistance 
     {
-        get { return gameObject.GetComponent<BoxCollider>().bounds.extents.x; }
+        get { return interactDistance; }
+    }
+
+    [SerializeField] private GameObject interactText;
+
+    void Awake()
+    {
+        interactDistance = gameObject.GetComponent<BoxCollider2D>().bounds.extents.x;
     }
 
     public void StartInteract()
     {
-        // GameManager.dialogSystem.Play(["I am firetruck"]);
+        List<String> lines = new List<string>
+        {
+            "Am firetruck"
+        };
+        GameManager.dialogSystem.Play(new GameDialog(lines, "Firetruck"));
     }
 
     public void StopInteract() {}
 
-    public void Target() {}
-    public void Untarget() {}
-    
+    public void Target() 
+    {
+        interactText.SetActive(true);
+    }
+
+    public void Untarget() 
+    {
+        interactText.SetActive(false);
+    }
+
 }

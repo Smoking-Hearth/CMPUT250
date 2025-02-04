@@ -1,17 +1,51 @@
 using System;
+using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-class DialogLine 
-{
+public class GameDialog : IEnumerator<String> {
+    public String Title;
 
-} 
+    public IList<String> lines;
+    private int idx = 0;
 
-public interface IGameDialog {
-    String Title();
-    String NextLine();
+    public String Current
+    {
+        get 
+        { 
+            if (lines != null && lines.Count > 0 && idx < lines.Count)
+                return lines[idx];
+            else
+                return null; 
+        }
+    }
+
+    object IEnumerator.Current
+    {
+        get { return Current; }
+    }
+
+
+    public GameDialog(IList<String> inner, String title = null)
+    {
+        Title = title;
+        lines = inner;
+    }
+
+    public bool MoveNext() 
+    {
+        idx += 1;
+        return idx < lines.Count;
+    }
+
+    public void Reset()
+    {
+        idx = 0;
+    }
+
+    public void Dispose() {}
 }
 
 
@@ -31,18 +65,12 @@ public class DialogSystem : MonoBehaviour
         get { return dialogSystemState; }
     }
 
-    private IGameDialog currentDialog;
+    private GameDialog currentDialog;
 
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text contentText;
 
-    String currentLine;
     int currentPosition = 0;
-
-    void Awake()
-    {
-        dialogSystemState = State.Inactive;
-    }
 
     void Update()
     {
@@ -50,9 +78,9 @@ public class DialogSystem : MonoBehaviour
 
         if (dialogSystemState == State.DisplayingLine)
         {
-            if (currentPosition < currentLine.Length)
+            if (currentPosition <= currentDialog.Current.Length)
             {
-                contentText.text.Append(currentLine[currentPosition]);
+                contentText.text = currentDialog.Current.Substring(0, currentPosition);
                 ++currentPosition;
             }
             else
@@ -64,31 +92,29 @@ public class DialogSystem : MonoBehaviour
         // FIXME: Update this to use Input System
         if (dialogSystemState == State.WaitingForContinue && Input.anyKeyDown)
         {
-            currentLine = currentDialog.NextLine();
-            if (currentLine == "")
-            {
-                dialogSystemState = State.Inactive;
-                gameObject.SetActive(false);
-            }
-            else
+            if (currentDialog.MoveNext())
             {
                 dialogSystemState = State.DisplayingLine;
                 currentPosition = 0;
             }
+            else
+            {
+                dialogSystemState = State.Inactive;
+                gameObject.SetActive(false);
+            }
         }  
     }
 
-    public bool Play(IGameDialog gameDialog)
+    public bool Play(GameDialog gameDialog)
     {
-        if (dialogSystemState == State.Inactive)
+        if (dialogSystemState == State.Inactive && gameDialog.lines.Count > 0)
         {
             dialogSystemState = State.DisplayingLine;
 
             currentDialog = gameDialog;
 
-            titleText.text = currentDialog.Title();
+            titleText.text = currentDialog.Title;
             contentText.text = "";
-            currentLine = currentDialog.NextLine();
 
             gameObject.SetActive(true);
             return true;
