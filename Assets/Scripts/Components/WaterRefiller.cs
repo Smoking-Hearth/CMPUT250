@@ -1,39 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WaterRefiller : MonoBehaviour, IInteractable
+public class WaterRefiller : MonoBehaviour
 {
-    [SerializeField] private Transform interactPopup;
     [SerializeField] private Slider progressBar;
     [SerializeField] private int waterPerRefill;
     [SerializeField] private int refillDelayTicks;
     [SerializeField] private bool available;
-    [SerializeField] private float interactDistance;
     [SerializeField] private int interactResetRate;
     private int refillDelayCounter;
     private bool interacting;
-    public Vector2 Position
-    {
-        get
-        {
-            return transform.position;
-        }
-    }
-    public bool Available
-    {
-        get
-        {
-            return available;
-        }
-    }
-    public float InteractDistance
-    {
-        get
-        {
-            return interactDistance;
-        }
-    }
-
     public delegate void OnWaterRefill(int amount);
     public static event OnWaterRefill onWaterRefill;
 
@@ -71,11 +47,11 @@ public class WaterRefiller : MonoBehaviour, IInteractable
         }
     }
 
-    public void StartInteract()
+    public void StartRefill()
     {
         interacting = true;
     }
-    public void HoldInteract()
+    public void Refill()
     {
         if (!interacting)
         {
@@ -100,19 +76,8 @@ public class WaterRefiller : MonoBehaviour, IInteractable
             onWaterRefill(waterPerRefill);
         }
     }
-    public void StopInteract()
+    public void StopRefill()
     {
         interacting = false;
-    }
-    public void Target()
-    {
-        if (!interacting)
-        {
-            interactPopup.gameObject.SetActive(true);
-        }
-    }
-    public void Untarget()
-    {
-        interactPopup.gameObject.SetActive(false);
     }
 }

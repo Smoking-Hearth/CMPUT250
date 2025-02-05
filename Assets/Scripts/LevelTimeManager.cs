@@ -25,7 +25,7 @@ public class LevelTimeManager
         {
             remainingSeconds = 0;
         }
-        progressBar.value = remainingSeconds;
+        progressBar.value = timeLimitSeconds - remainingSeconds;
     }
 
     public void DepleteTime(float seconds)

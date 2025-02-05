@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BCExtinguisherSpecial : SpecialAttack, IInteractable
+public class BCExtinguisherSpecial : SpecialAttack
 {
     [SerializeField] private float shootDelay;
     private float shootDelayTimer;
@@ -12,35 +12,6 @@ public class BCExtinguisherSpecial : SpecialAttack, IInteractable
     [Range(1, 100)]
     [SerializeField] private int cacheCapacity;
     private int cacheIndex;
-
-    [SerializeField] private GameObject interactText;
-    [SerializeField] private float interactDistance;
-    private bool pickedUp;
-
-    [SerializeField] private UnityEvent pickUpEvent;
-    [SerializeField] private UnityEvent dropEvent;
-
-    public Vector2 Position
-    {
-        get
-        {
-            return transform.position;
-        }
-    }
-    public bool Available
-    {
-        get
-        {
-            return !pickedUp;
-        }
-    }
-    public float InteractDistance
-    {
-        get
-        {
-            return interactDistance;
-        }
-    }
 
     private void Awake()
     {
@@ -97,31 +68,11 @@ public class BCExtinguisherSpecial : SpecialAttack, IInteractable
         cacheIndex = (cacheIndex + 1) % cacheCapacity;
     }
 
-    public void StartInteract()
+    public void PickUp()
     {
-        pickedUp = !pickedUp;
-
-        if (pickedUp)
+        if (onPickupSpecial != null)
         {
-            if (onPickupSpecial != null)
-            {
-                onPickupSpecial(this);
-            }
-
-            Untarget();
-            pickUpEvent.Invoke();
+            onPickupSpecial(this);
         }
-        else
-        {
-            dropEvent.Invoke();
-        }
-    }
-    public void Target()
-    {
-        interactText.SetActive(true);
-    }
-    public void Untarget()
-    {
-        interactText.SetActive(false);
     }
 }

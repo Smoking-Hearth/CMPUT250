@@ -1,21 +1,40 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class InteractableManager
 {
-    private static IInteractable targetInteractable;
-    public static IInteractable Target
+    private static Interactable targetInteractable;
+    public static Interactable Target
     {
         get
         {
             return targetInteractable;
         }
     }
+    private static List<Interactable> interactables;
 
-    private IInteractable[] interactables;
-
-    public InteractableManager(IInteractable[] interacts)
+    public static void AddInteractable(Interactable interactable)
     {
-        interactables = interacts;
+        if (interactables == null)
+        {
+            interactables = new List<Interactable>();
+        }
+        if (!interactables.Contains(interactable))
+        {
+            interactables.Add(interactable);
+        }
+    }
+
+    public static void RemoveInteractable(Interactable interactable)
+    {
+        if (interactables == null)
+        {
+            interactables = new List<Interactable>();
+        }
+        if (interactables.Contains(interactable))
+        {
+            interactables.Remove(interactable);
+        }
     }
 
     public void CheckNearestTarget(Vector2 playerPosition)
@@ -24,17 +43,11 @@ public class InteractableManager
         {
             return;
         }
-        IInteractable newTarget = null;
+        Interactable newTarget = null;
         float closestDistance = 1000;
-        for (int i = 0; i < interactables.Length; i++)
+        for (int i = 0; i < interactables.Count; i++)
         {
-            if (!interactables[i].Available)
-            {
-                continue;
-            }
-
-            float distance = Vector2.Distance(playerPosition, interactables[i].Position);
-
+            float distance = Vector2.Distance(playerPosition, interactables[i].transform.position);
             if (distance < closestDistance && distance < interactables[i].InteractDistance)
             {
                 newTarget = interactables[i];
@@ -73,11 +86,6 @@ public class InteractableManager
         else
         {
             targetInteractable.StartInteract();
-        }
-
-        if (!targetInteractable.Available)
-        {
-            targetInteractable = null;
         }
     }
 

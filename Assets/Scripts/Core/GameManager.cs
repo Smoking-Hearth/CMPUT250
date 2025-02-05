@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private static FireSettings fireSettings;
@@ -13,6 +14,20 @@ public class GameManager : MonoBehaviour
             return fireSettings;
         }
     }
+    private static LevelTimeManager levelTimeManager;
+    public static LevelTimeManager LevelTimeManager
+    {
+        get
+        {
+            if (levelTimeManager == null)
+            {
+
+            }
+
+            return levelTimeManager;
+        }
+    }
+
     private static InteractableManager interactableManager;
     public static InteractableManager InteractableManager
     {
@@ -22,8 +37,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [SerializeField] private float levelTimeLimitSeconds;
+    [SerializeField] private Slider timeLimitBar;
     [SerializeField] private GameObject[] sceneInteractables;
     [SerializeField] private PlayerController setPlayer;
+    [SerializeField] private GameObject gameOverScreen;
     private static PlayerController player;
     private static Health playerHealth;
 
@@ -61,14 +79,18 @@ public class GameManager : MonoBehaviour
         cameraAnimator = setCameraAnimator;
         playerHealth = player.GetComponent<Health>();
         dialogSystem = setDialogSystem;
+        interactableManager = new InteractableManager();
+        levelTimeManager = new LevelTimeManager(levelTimeLimitSeconds, timeLimitBar);
+    }
 
-        IInteractable[] interactables = new IInteractable[sceneInteractables.Length];
+    private void OnEnable()
+    {
+        levelTimeManager.onTimeout += GameOver;
+    }
 
-        for (int i = 0; i < sceneInteractables.Length; i++)
-        {
-            interactables[i] = sceneInteractables[i].GetComponent<IInteractable>();
-        }
-        interactableManager = new InteractableManager(interactables);
+    private void OnDisable()
+    {
+        levelTimeManager.onTimeout -= GameOver;
     }
 
     void Update()
@@ -90,5 +112,17 @@ public class GameManager : MonoBehaviour
                 onFireTick();
             }
         }
+
+        LevelTimeManager.DepleteTime(Time.fixedDeltaTime);
+    }
+
+    public void Restartlevel()
+    {
+        gameOverScreen.SetActive(false);
+    }
+
+    public void GameOver()
+    {
+        gameOverScreen.SetActive(true);
     }
 }
