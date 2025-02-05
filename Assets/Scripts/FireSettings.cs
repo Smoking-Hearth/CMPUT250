@@ -1,5 +1,8 @@
 using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [System.Serializable]
 public struct FireInfo
@@ -11,7 +14,7 @@ public struct FireInfo
 
 public class FireSettings : ScriptableObject
 {
-    public const string Path = "Assets/Settings/FireSettings.asset";
+    public const string Path = "Assets/Resources/FireSettings.asset";
 
     [SerializeField] float fireTickDelaySeconds;
     [SerializeField] FireInfo commonFireSettings;
@@ -49,6 +52,7 @@ public class FireSettings : ScriptableObject
 
     public static FireSettings GetOrCreate()
     {
+        #if UNITY_EDITOR
         FireSettings settings = AssetDatabase.LoadAssetAtPath<FireSettings>(Path);
         if (settings == null)
         {
@@ -56,11 +60,16 @@ public class FireSettings : ScriptableObject
             AssetDatabase.CreateAsset(settings, Path);
             AssetDatabase.SaveAssets();
         }
+        #else
+        FireSettings settings = Resources.Load<FireSettings>(Path);
+        #endif
         return settings;
     }
 
+    #if UNITY_EDITOR
     public static SerializedObject GetSerializedSettings()
     {
         return new SerializedObject(GetOrCreate());
     }
+    #endif
 }
