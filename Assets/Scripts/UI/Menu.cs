@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -39,7 +40,9 @@ public class Menu : MonoBehaviour
 
     void OnSettingsClick()
     {
-        Debug.Log("TODO :)");
+        Scene forest = SceneManager.GetSceneByBuildIndex((int)SceneIndex.Forest);
+        Unquenchable.SceneManager.SetSceneVisible(forest, false);
+        StartCoroutine(Unquenchable.SceneManager.SetSceneActive(SceneIndex.Settings));
     }
 
     void OnCreditsClick()

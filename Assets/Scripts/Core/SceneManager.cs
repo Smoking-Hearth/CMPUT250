@@ -94,12 +94,12 @@ namespace Unquenchable {
 
         // This is absolutely terrible. Becuase it overwrites active on objects
         // that we may want to be inactive when the scene is loaded.
-        public static void SetSceneActive(Scene scene, bool active)
+        public static void SetSceneVisible(Scene scene, bool visible = true)
         {
             int idx = scene.buildIndex;
             foreach (var ob in sceneInfos[idx].defaultEnabledRootObject) 
             {
-                ob.SetActive(active);
+                ob.SetActive(visible);
             }
         }
 
@@ -142,7 +142,7 @@ namespace Unquenchable {
 
             if (hideLoaded)
             {
-                SetSceneActive(loadedScene, false);
+                SetSceneVisible(loadedScene, false);
             }
 
             int mask = 1 << idx;
@@ -156,7 +156,7 @@ namespace Unquenchable {
 
             if (IsLoaded(sceneIdx))
             {
-                SetSceneActive(next, true);
+                SetSceneVisible(next, true);
 
             }
             else 
@@ -178,7 +178,7 @@ namespace Unquenchable {
             // Hide the current scene
             if (hideCurrent)
             {
-                SetSceneActive(UnityEngine.SceneManagement.SceneManager.GetActiveScene(), false);
+                SetSceneVisible(UnityEngine.SceneManagement.SceneManager.GetActiveScene(), false);
             }
 
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(next);
