@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.github.superunitybuild.buildactions": "4.0.1",
+    "com.github.superunitybuild.buildtool": "7.0.0",
     "com.unity.cinemachine": "3.1.2",
     "com.unity.collab-proxy": "2.6.0",
     "com.unity.feature.2d": "2.0.1",
@@ -44,5 +46,15 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.github.superunitybuild"
+      ],
+      "overrideBuiltIns": false
+    }
+  ]
 }

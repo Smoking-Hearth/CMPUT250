@@ -1,0 +1,305 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6174399834525098652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc439ce9d1bfb34a821f7d6fabc4fef, type: 3}
+  m_Name: Linux
+  m_EditorClassIdentifier: 
+  enabled: 1
+  distributionList:
+    distributions: []
+  architectures:
+  - target: 24
+    name: Linux x64
+    enabled: 1
+    binaryNameFormat: '{0}.x86_64'
+  variants: []
+  scriptingBackends:
+  - scriptingImplementation: 0
+    name: Mono
+    enabled: 1
+  - scriptingImplementation: 1
+    name: IL2CPP
+    enabled: 0
+  platformName: Linux
+  targetGroup: 1
+--- !u!114 &-5846275893448937083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d88f7d353534a4fbdeb11196057db7, type: 3}
+  m_Name: UploadItch
+  m_EditorClassIdentifier: 
+  actionType: 1
+  actionName: UploadItch
+  note: 
+  actionEnabled: 1
+  configureEditor: 0
+  filter:
+    condition: 0
+    clauses: []
+  pathToButlerExe: /usr/bin/butler
+  nameOfItchUser: GenericConfluent
+  nameOfItchGame: unquenchable
+  useGeneratedBuildVersion: 0
+  channelName: $PLATFORM-$ARCHITECTURE
+  showUploadProgress: 1
+  itchChannelOverride: 
+--- !u!114 &-3830885618399787027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0acaf75cc66fc934ea46bf602fc7c245, type: 3}
+  m_Name: WebGL
+  m_EditorClassIdentifier: 
+  enabled: 1
+  distributionList:
+    distributions: []
+  architectures:
+  - target: 20
+    name: WebGL
+    enabled: 1
+    binaryNameFormat: '{0}'
+  variants: []
+  scriptingBackends:
+  - scriptingImplementation: 1
+    name: IL2CPP
+    enabled: 1
+  platformName: WebGL
+  targetGroup: 13
+--- !u!114 &-1626787671051291658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2786f6b2301a94f4288672ff5305244c, type: 3}
+  m_Name: PC
+  m_EditorClassIdentifier: 
+  enabled: 1
+  distributionList:
+    distributions: []
+  architectures:
+  - target: 5
+    name: Windows x86
+    enabled: 1
+    binaryNameFormat: '{0}.exe'
+  - target: 19
+    name: Windows x64
+    enabled: 0
+    binaryNameFormat: '{0}.exe'
+  variants:
+  - variantName: Build Output
+    selectedIndex: 0
+    values:
+    - App
+    - Visual Studio Solution
+    isFlag: 0
+  scriptingBackends:
+  - scriptingImplementation: 0
+    name: Mono
+    enabled: 1
+  - scriptingImplementation: 1
+    name: IL2CPP
+    enabled: 0
+  platformName: PC
+  targetGroup: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5886119a5c7b34d8872ab527ca3e1b, type: 3}
+  m_Name: SuperUnityBuildSettings
+  m_EditorClassIdentifier: 
+  _basicSettings:
+    baseBuildFolder: Builds
+    buildPath: $VERSION/$RELEASE_TYPE/$PLATFORM/$ARCHITECTURE/$SCRIPTING_BACKEND
+    openFolderPostBuild: 1
+    constantsFileLocation: Assets/SuperUnityBuild
+  _productParameters:
+    buildCounter: 4
+    buildVersion: 1.0.0.4
+    versionTemplate: 1.0.0.$BUILD
+    autoGenerate: 1
+    syncWithPlayerSettings: 0
+  _releaseTypeList:
+    releaseTypes:
+    - typeName: Main
+      bundleIdentifier: com.smokinghearth.unquenchable
+      companyName: SmokingHearth
+      productName: Unquenchable
+      syncAppNameWithProduct: 1
+      appBuildName: Unquenchable
+      buildOptions: 0
+      customDefines: 
+      sceneList:
+        releaseScenes:
+        - fileGUID: 0ab0cd22ec4fdaffb92ecb2cc05bb24c
+          sceneActive: 1
+        - fileGUID: 7dfb944ac8bdd87b78d532e989b7cd57
+          sceneActive: 1
+        - fileGUID: 39d7c06774eca1f48b3518ccd0a968fc
+          sceneActive: 1
+        - fileGUID: 6f5daa7e2e6c3b29d8ae3917d72eeb6b
+          sceneActive: 1
+        - fileGUID: ce46e0dcd2a11d506a5ade6fc59ad253
+          sceneActive: 1
+  _platformList:
+    platforms:
+    - {fileID: -6174399834525098652}
+    - {fileID: 5586574024274459800}
+    - {fileID: -3830885618399787027}
+    - {fileID: -1626787671051291658}
+  _projectConfigurations:
+    configSet:
+      _Buckets: 0c0000000000000002000000ffffffffffffffffffffffff08000000060000000b000000ffffffffffffffff04000000ffffffffffffffff09000000ffffffff0a000000
+      _HashCodes: b112f657b5692f4122f032781709cc7f97515e19938d670656d06a20133854710bf8e20e213c021535ad0a67efc7971f13b7e25200000000000000000000000000000000
+      _Next: ffffffffffffffffffffffffffffffffffffffff0300000001000000ffffffff05000000ffffffffffffffffffffffff0700000000000000000000000000000000000000
+      _Count: 13
+      _Version: 13
+      _FreeList: -1
+      _FreeCount: 0
+      _Keys:
+      - Main/Linux/Linux x64/Mono
+      - Main/Linux/Linux x64
+      - Main/Linux
+      - Main/macOS/macOS (Intelx64,App)/Mono
+      - Main/macOS/macOS (Intelx64,App)
+      - Main/macOS
+      - Main/WebGL/WebGL/IL2CPP
+      - Main/WebGL/WebGL
+      - Main/WebGL
+      - Main/PC/Windows x86 (App)/Mono
+      - Main/PC/Windows x86 (App)
+      - Main/PC
+      - Main
+      - 
+      - 
+      - 
+      - 
+      _Values:
+      - enabled: 0
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - Main/Linux/Linux x64/Mono
+      - enabled: 1
+        childKeys:
+        - Main/Linux/Linux x64
+      - enabled: 0
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - Main/macOS/macOS (Intelx64,App)/Mono
+      - enabled: 1
+        childKeys:
+        - Main/macOS/macOS (Intelx64,App)
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - Main/WebGL/WebGL/IL2CPP
+      - enabled: 1
+        childKeys:
+        - Main/WebGL/WebGL
+      - enabled: 0
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - Main/PC/Windows x86 (App)/Mono
+      - enabled: 1
+        childKeys:
+        - Main/PC/Windows x86 (App)
+      - enabled: 1
+        childKeys:
+        - Main/Linux
+        - Main/macOS
+        - Main/WebGL
+        - Main/PC
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys: []
+    showViewOptions: 0
+    showConfigs: 0
+    showBuildInfo: 0
+    hideDisabled: 0
+    treeView: 0
+    selectedKeyChain: Main/WebGL/WebGL/IL2CPP
+  _preBuildActions:
+    buildActions: []
+  _postBuildActions:
+    buildActions:
+    - {fileID: -5846275893448937083}
+--- !u!114 &5586574024274459800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d962d142a259c394da2bdb301b72eeb5, type: 3}
+  m_Name: macOS
+  m_EditorClassIdentifier: 
+  enabled: 1
+  distributionList:
+    distributions: []
+  architectures:
+  - target: 2
+    name: macOS
+    enabled: 1
+    binaryNameFormat: '{0}.app'
+  variants:
+  - variantName: macOS Architecture
+    selectedIndex: 0
+    values:
+    - Intelx64
+    - Apple Silicon
+    - Universal
+    isFlag: 0
+  - variantName: Build Output
+    selectedIndex: 0
+    values:
+    - App
+    - Xcode Project
+    isFlag: 0
+  scriptingBackends:
+  - scriptingImplementation: 0
+    name: Mono
+    enabled: 1
+  - scriptingImplementation: 1
+    name: IL2CPP
+    enabled: 0
+  platformName: macOS
+  targetGroup: 1
