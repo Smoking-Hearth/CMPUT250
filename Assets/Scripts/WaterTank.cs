@@ -8,18 +8,28 @@ public class WaterTank
     private int maxWater;
     private int waterLevel;
 
-    public WaterTank(Slider bar, Slider inGame, int max)
+    public WaterTank(int max)
     {
-        waterTankBar = bar;
-        waterTankInGame = inGame;
         maxWater = max;
         waterLevel = max;
+    }
 
-        waterTankBar.maxValue = maxWater;
-        waterTankBar.value = waterLevel;
+    public void SetTank(Slider tankHUD, Slider tankInGame)
+    {
+        waterTankBar = tankHUD;
+        waterTankInGame = tankInGame;
 
-        waterTankInGame.maxValue = maxWater;
-        waterTankInGame.value = waterLevel;
+        if (waterTankBar != null)
+        {
+            waterTankBar.maxValue = maxWater;
+            waterTankBar.value = waterLevel;
+        }
+
+        if (waterTankInGame != null)
+        {
+            waterTankInGame.maxValue = maxWater;
+            waterTankInGame.value = waterLevel;
+        }
     }
 
     public void RefillWater(int amount)
@@ -47,7 +57,14 @@ public class WaterTank
 
     private void UpdateWaterHUD()
     {
-        waterTankBar.value = waterLevel;
-        waterTankInGame.value = waterLevel;
+        if (waterTankBar != null)
+        {
+            waterTankBar.value = waterLevel;
+        }
+
+        if (waterTankInGame != null)
+        {
+            waterTankInGame.value = waterLevel;
+        }
     }
 }

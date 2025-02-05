@@ -13,8 +13,9 @@ public class BCExtinguisherSpecial : SpecialAttack
     [SerializeField] private int cacheCapacity;
     private int cacheIndex;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         cloudCache = new Projectile[cacheCapacity];
     }
 
@@ -73,6 +74,14 @@ public class BCExtinguisherSpecial : SpecialAttack
         if (onPickupSpecial != null)
         {
             onPickupSpecial(this);
+        }
+    }
+
+    public void Drop()
+    {
+        if (onDropSpecial != null)
+        {
+            onDropSpecial(this);
         }
     }
 }

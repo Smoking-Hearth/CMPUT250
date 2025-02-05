@@ -141,10 +141,50 @@ MonoBehaviour:
   maintainCost: 20
   initialCost: 20
   inventoryIcon: {fileID: 21300000, guid: 73c091c726717f3488466f1077abaa7c, type: 3}
+  tankCapacity: 2000
   pushbackMultiplier: {x: 0.5, y: 2}
   pushbackInitial: 700
   pushbackAcceleration: 600
   initialPushDuration: 0.08
+  DropEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2914392082632029118}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: EnableInteractable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3952364912518327076}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody2D, UnityEngine
+        m_MethodName: set_simulated
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3267137941642443159}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   shootDelay: 0.2
   initialSpeed: 8
   cloudPrefab: {fileID: 1270616181453354984, guid: 75307c9914057314ca3c8c8b67a2c9b3, type: 3}
@@ -220,7 +260,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.4, y: 0.7}
   m_EdgeRadius: 0
 --- !u!114 &2914392082632029118
 MonoBehaviour:

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class SpecialAttack : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public abstract class SpecialAttack : MonoBehaviour
 
     public delegate void OnPickupSpecial(SpecialAttack special);
     public static OnPickupSpecial onPickupSpecial;
+    public static OnPickupSpecial onDropSpecial;
+
+    [SerializeField] protected int tankCapacity;
+    protected WaterTank resourceTank;
 
     [SerializeField] protected Vector2 pushbackMultiplier;
     [SerializeField] protected float pushbackInitial;
@@ -17,8 +22,30 @@ public abstract class SpecialAttack : MonoBehaviour
     [SerializeField] protected float initialPushDuration;
     protected float initialPushTime;
 
+    public UnityEvent DropEvent;
+
     public delegate void OnPushback(Vector2 acceleration);
     public static event OnPushback onPushback;
+
+    public CombustibleKind ExtinguishClass
+    {
+        get
+        {
+            return extinguishClass;
+        }
+    }
+    public WaterTank ResourceTank
+    {
+        get
+        {
+            return resourceTank;
+        }
+    }
+
+    protected virtual void Awake()
+    {
+        resourceTank = new WaterTank(tankCapacity);
+    }
 
     public abstract void Activate(Vector2 startPosition, bool active, Transform parent);
     public abstract void ResetAttack(float angle);

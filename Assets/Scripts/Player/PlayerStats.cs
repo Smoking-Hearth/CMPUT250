@@ -4,19 +4,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(PlayerController))]
 public class PlayerStats : MonoBehaviour
 {
-    private WaterTank waterTank;
-    public WaterTank WaterTank
-    {
-        get
-        {
-            return waterTank;
-        }
-    }
-
-    [SerializeField] private Slider waterTankBar;
-    [SerializeField] private Slider waterTankInGame;
-    [SerializeField] private int maxWater;
-
     private Health health;
     [SerializeField] private Slider healthBar;
 
@@ -25,8 +12,6 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
-        waterTank = new WaterTank(waterTankBar, waterTankInGame, maxWater);
-
         health = GetComponent<Health>();
         healthBar.maxValue = health.Max;
         healthBar.minValue = health.Min;
@@ -37,14 +22,12 @@ public class PlayerStats : MonoBehaviour
 
     private void OnEnable()
     {
-        WaterRefiller.onWaterRefill += waterTank.RefillWater;
         health.onChanged += UpdateHealthBar;
         GameManager.onEnemyAttack += CheckEnemyAttack;
     }
 
     private void OnDisable()
     {
-        WaterRefiller.onWaterRefill -= waterTank.RefillWater;
         health.onChanged -= UpdateHealthBar;
         GameManager.onEnemyAttack -= CheckEnemyAttack;
     }

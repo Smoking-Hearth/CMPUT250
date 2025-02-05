@@ -15,6 +15,14 @@ public class PlayerInventory
         get { return specials[currentIndex]; }
     }
 
+    public bool Full
+    {
+        get
+        {
+            return specials[specials.Length] != null;
+        }
+    }
+
     public PlayerInventory(int capacity, SpecialAttack current, Transform attach, Image[] icons)
     {
         specials = new SpecialAttack[capacity];
@@ -27,11 +35,17 @@ public class PlayerInventory
 
     public void PickUp(SpecialAttack newSpecial)
     {
-        if (currentIndex + 1 < specials.Length && specials[currentIndex + 1] == null)
+        if (currentIndex == 0)
         {
             otherIcon.sprite = specials[currentIndex].DisplayIcon;
             currentIndex++;
         }
+        if (specials[currentIndex] != null)
+        {
+            Drop();
+            currentIndex++;
+        }
+
         specials[currentIndex] = newSpecial;
         newSpecial.transform.parent = attachPoint;
         newSpecial.transform.localPosition = Vector2.zero;
@@ -49,5 +63,19 @@ public class PlayerInventory
             currentIndex = nextIndex;
             currentIcon.sprite = specials[currentIndex].DisplayIcon;
         }
+    }
+
+    public void Drop()
+    {
+        if (currentIndex == 0)
+        {
+            return;
+        }
+        specials[currentIndex].transform.parent = null;
+        currentIcon.sprite = null;
+        specials[currentIndex].DropEvent.Invoke();
+        specials[currentIndex].transform.localScale = Vector2.one;
+
+        currentIndex = 0;
     }
 }
