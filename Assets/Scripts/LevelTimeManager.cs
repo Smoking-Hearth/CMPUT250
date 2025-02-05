@@ -19,6 +19,11 @@ public class LevelTimeManager
         UpdateBar();
     }
 
+    public void Reset()
+    {
+        remainingSeconds = timeLimitSeconds;
+    }
+
     private void UpdateBar()
     {
         if (remainingSeconds < 0)

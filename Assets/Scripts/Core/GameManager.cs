@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
     public void Restartlevel()
     {
         gameOverScreen.SetActive(false);
+        levelTimeManager.Reset();
     }
 
     public void GameOver()
