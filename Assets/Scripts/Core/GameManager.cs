@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private FireSettings setFireSettings;
     private static FireSettings fireSettings;
     public static FireSettings FireSettings
     {
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        fireSettings = setFireSettings;
         player = setPlayer;
         cameraAnimator = setCameraAnimator;
         playerHealth = player.GetComponent<Health>();
