@@ -9,16 +9,25 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour 
 {
+
     static int waterLayer;
+
+    // public CircleCollider2D hitbox;
+    public float damage = 25f;
+    
     private Transform target;
     public float speed;
-    private float distance;
+    public float distance;
     public bool cannotDamage = false;
     public bool canMove = true;
     public float maxRange = 5f;
 
     private float attackTimer;
     public float attackCooldown = 1.5f;
+
+    public float touchDist = 1.05f;
+
+    
 
     //public ScriptableObject FlameDash;
     public enum EnemyState{
@@ -41,6 +50,8 @@ public class EnemyController : MonoBehaviour
         GetComponent<Health>().OnDepleted += () => {
             Destroy(gameObject);
         };
+
+        // hitbox = GetComponent<CircleCollider2D>();
         
         // Target will always be player
         target = GameObject.FindGameObjectWithTag("Target").GetComponent<Transform>();
@@ -76,6 +87,19 @@ public class EnemyController : MonoBehaviour
         currentState = EnemyState.stTargeting;
     }
 
+    // void OnTriggerEnter2D(Collider2D hitbox){
+
+    //     if (hitbox.CompareTag("Player")){
+
+    //         Debug.Log("We are burning them alive!");
+    //         //damage += playerHealth
+    //         // Knock player back?
+
+    //     }
+    //     else return;
+
+    // }
+
     void Update(){
     
         distance = Vector2.Distance(transform.position, target.position);
@@ -107,12 +131,13 @@ public class EnemyController : MonoBehaviour
 
     void Target(){
 
-        if(currentState == EnemyState.stBeforeAttack) return;
-        // Debug.Log("We are targetting");
+        if(currentState == EnemyState.stBeforeAttack || currentState == EnemyState.stDuringAttack) return;
 
         // Face Target, aim at them?
         // Walk towards them, assuming they can do that?
         // canMove = true;
+
+
         if (distance < maxRange && canMove){
             
             
@@ -120,14 +145,21 @@ public class EnemyController : MonoBehaviour
 
             attackTimer -= Time.deltaTime;
 
+            // Testing for when player within range
+            // if (distance < touchDist) {
+                
+            //     Debug.Log("We are burning them alive!");
+            //     // damage += playerHealth
+
+            // }
             if (attackTimer <= 0){
 
                 currentState = EnemyState.stBeforeAttack;
 
             }
         }
-        // If Target steps out of range? Reset Timer slightly, go back to idle (Allegedly)
-        else {attackTimer = attackCooldown/2f; currentState = EnemyState.stWaiting;}
+        // If Target steps out of range? Reset Timer, go back to idle (Allegedly)
+        else {attackTimer = attackCooldown; currentState = EnemyState.stWaiting;}
     }
 
     void Attack(string tag){

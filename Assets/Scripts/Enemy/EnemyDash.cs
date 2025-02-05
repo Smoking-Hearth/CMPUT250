@@ -4,8 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class EnemyDash : MonoBehaviour
+public class EnemyDash : EnemyController
 {
+    // public BoxCollider2D dashBox;
     private SpriteRenderer flameSprite;
     private Color oldColor;
     public Color newColor;
@@ -17,7 +18,7 @@ public class EnemyDash : MonoBehaviour
     private Vector3 targetPosition;
     private Vector3 enemyPosition;
     public float DashSpeed = 18f;
-    public float timeDashing = 0.5f;
+    public float timeDashing = 0.50f;
 
     public float cooldown = 0.5f;
 
@@ -38,6 +39,8 @@ public class EnemyDash : MonoBehaviour
         enemyPosition = enemy.transform.position;
         flameSprite = GetComponent<SpriteRenderer>();
         oldColor = flameSprite.color;
+        // dashBox = GetComponent<BoxCollider2D>();
+
 
         StartCoroutine(BeginToDash(targetPosition, timeDashing));
     }
@@ -63,6 +66,17 @@ public class EnemyDash : MonoBehaviour
         enemy.transform.Translate(DashSpeed * Time.deltaTime * direction);
         //enemy.transform.position = Vector3.Lerp(enemyPosition, targetPosition, dashingTime);
         overallTime += Time.deltaTime;
+
+        // Testing for if within contact range
+        // if (distance < touchDist) {
+
+        //     Debug.Log("We are burning them alive even more!");
+        //     Rigidbody2D playerForce = player.GetComponent<Rigidbody2D>();
+        //     playerForce.AddForce (direction * 50000f); // Kinda works, techniocally?
+        //         // damage*1.5f += playerHealth
+
+        // }
+
         yield return null;
         }
 
