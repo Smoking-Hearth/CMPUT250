@@ -92,10 +92,10 @@ public class DialogSystem : MonoBehaviour
         // FIXME: Update this to use Input System
         if (dialogSystemState == State.WaitingForContinue && Input.anyKeyDown)
         {
+            currentPosition = 0;
             if (currentDialog.MoveNext())
             {
                 dialogSystemState = State.DisplayingLine;
-                currentPosition = 0;
             }
             else
             {
