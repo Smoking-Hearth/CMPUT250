@@ -50,7 +50,10 @@ public class EnemyController : MonoBehaviour, IExtinguishable
         commitAttackTimer = commitAttackSeconds;
         frontSwingTimer = frontSwingSeconds;
         backSwingTimer = backSwingSeconds;
-        attackVisual.gameObject.SetActive(false);
+        if (attackVisual != null)
+        {
+            attackVisual.gameObject.SetActive(false);
+        }
     }
     protected virtual void FixedUpdate()
     {
@@ -189,7 +192,10 @@ public class EnemyController : MonoBehaviour, IExtinguishable
             return;
         }
 
-        attackVisual.gameObject.SetActive(false);
+        if (attackVisual != null)
+        {
+            attackVisual.gameObject.SetActive(false);
+        }
         backSwingTimer = backSwingSeconds;
         currentState = EnemyState.stTargeting;
     }
@@ -199,8 +205,11 @@ public class EnemyController : MonoBehaviour, IExtinguishable
         if (GameManager.onEnemyAttack != null)
         {
             Vector2 attackCenter = (Vector2)transform.position + (targetPosition - (Vector2)transform.position).normalized * attackRange;
-            attackVisual.position = attackCenter;
-            attackVisual.gameObject.SetActive(true);
+            if (attackVisual != null)
+            {
+                attackVisual.position = attackCenter;
+                attackVisual.gameObject.SetActive(true);
+            }
 
             GameManager.onEnemyAttack(attackCenter, transform.position, attackInfo);
         }

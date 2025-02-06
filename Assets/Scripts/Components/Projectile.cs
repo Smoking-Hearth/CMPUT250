@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] protected bool isEnemyProjectile;
     [Tooltip("Player projectile: the class of fires this projectile is effective against\nEnemy projectile: the class of fire this projectile is")]
     [SerializeField] protected CombustibleKind damageClass;
 
@@ -103,7 +102,7 @@ public class Projectile : MonoBehaviour
 
         spriteRenderer.enabled = true;
         projectileRigidbody.linearVelocity = Vector2.zero;
-        projectileRigidbody.gravityScale = 1;
+        projectileRigidbody.simulated = true;
     }
 
     //Propels the projectile with the specified force vector
@@ -128,7 +127,7 @@ public class Projectile : MonoBehaviour
 
         spriteRenderer.enabled = false;
         projectileRigidbody.linearVelocity = Vector2.zero;
-        projectileRigidbody.gravityScale = 0;
+        projectileRigidbody.simulated = false;
 
         //Checks for all targets hit and passes them onto HitEffect
         Collider2D[] hitTargets = Physics2D.OverlapCircleAll(transform.position, areaOfEffectRadius, hitLayers);
@@ -143,13 +142,12 @@ public class Projectile : MonoBehaviour
     //Describes the projectile's effect on a target it hits
     protected virtual void HitEffect(Collider2D hitTarget)
     {
-        if (isEnemyProjectile)
+        IExtinguishable extinguishable = null;
+        hitTarget.TryGetComponent(out extinguishable);
+
+        if (extinguishable != null)
         {
-            //TODO: hurt player
-        }
-        else
-        {
-            hitTarget.GetComponent<IExtinguishable>().Extinguish(damageClass, effectiveness);
+            extinguishable.Extinguish(damageClass, effectiveness);
         }
     }
     public virtual void OnTriggerEnter2D(Collider2D collision)

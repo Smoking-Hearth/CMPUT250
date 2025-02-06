@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
@@ -13,11 +14,19 @@ public class EnemySpawner : MonoBehaviour
     [Tooltip("Does the spawner respawn defeated enemies?")]
     [SerializeField] private bool continuous;
     [SerializeField] private bool activated;
+    [SerializeField] private UnityEvent completeEvent;
+    [SerializeField] private int enemiesToComplete;
+    private int enemiesFallen;
 
     void FixedUpdate()
     {
         if (!activated)
         {
+            return;
+        }
+        if (enemiesToComplete > 0 && enemiesFallen >= enemiesToComplete)
+        {
+            completeEvent.Invoke();
             return;
         }
         if (spawnTimer > 0)
@@ -30,15 +39,20 @@ public class EnemySpawner : MonoBehaviour
         else
         {
             spawnTimer = spawnInterval;
-            if (continuous)
+            for (int i = 0; i < spawnedEnemies.Count; i++)
             {
-                for (int i = 0; i < spawnedEnemies.Count; i++)
+                if (!spawnedEnemies[i].gameObject.activeSelf)
                 {
-                    if (!spawnedEnemies[i].gameObject.activeSelf)
+                    if (continuous)
                     {
                         storedEnemies.Add(spawnedEnemies[i]);
-                        spawnedEnemies.RemoveAt(i);
                     }
+                    else
+                    {
+                        Destroy(spawnedEnemies[i].gameObject);
+                    }
+                    spawnedEnemies.RemoveAt(i);
+                    enemiesFallen++;
                 }
             }
 
