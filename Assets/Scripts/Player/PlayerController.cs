@@ -121,16 +121,21 @@ public class PlayerController : MonoBehaviour
 
         if (isSpecialShooting)
         {
+            shootBehavior.AimSprites();
             if (!shootBehavior.AimStream())
             {
                 isSpecialShooting = false;
                 shootBehavior.SpecialShoot(false);
             }
         }
-        else if (isShooting && shootBehavior.ShootAvailable)
+        else if (isShooting)
         {
-            Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            shootBehavior.Shoot(targetPosition);
+            shootBehavior.AimSprites();
+            if (shootBehavior.ShootAvailable)
+            {
+                Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                shootBehavior.Shoot(targetPosition);
+            }
         }
 
         if (!isShooting && !isSpecialShooting && isInteracting)
@@ -200,6 +205,10 @@ public class PlayerController : MonoBehaviour
             {
                 targetMovement.x = inputAxes.x * moveSpeed;
             }
+        }
+        if (!isShooting && !isSpecialShooting)
+        {
+            shootBehavior.ResetAimedSprites(targetMovement.x < 0);
         }
 
         playerAnimator.SetFloat("MoveSpeed", targetMovement.x / moveSpeed);

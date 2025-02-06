@@ -93,52 +93,6 @@ public class PlayerShoot : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-
-        //For every object that needs to point towards the mouse
-        for (int i = 0; i < swingObjects.Length; i++) 
-        {
-            //Converting to an angle (need to conver radians to degrees)
-            Vector2 direction = mousePosition - (Vector2)swingObjects[i].objectTransform.position;
-            aimAngle = Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x);
-
-            if (aimAngle <= 90 && aimAngle > -90)
-            {
-                flipObject.localScale = Vector3.one;
-                float constrictAngle = aimAngle + 90;
-
-                if (constrictAngle > swingObjects[i].maxAngle)
-                {
-                    aimAngle = swingObjects[i].maxAngle - 90;
-                }
-                else if (constrictAngle < swingObjects[i].minAngle)
-                {
-                    aimAngle = swingObjects[i].minAngle - 90;
-                }
-                swingObjects[i].objectTransform.rotation = Quaternion.Euler(0, 0, aimAngle + swingObjects[i].offsetAngle);
-            }
-            else
-            {
-                flipObject.localScale = new Vector3(-1, 1, 1);
-                float constrictAngle = -aimAngle - 90;
-                if (constrictAngle < 0)
-                {
-                    constrictAngle = 360 + constrictAngle;
-                }
-
-                if (constrictAngle > swingObjects[i].maxAngle)
-                {
-                    aimAngle = -(swingObjects[i].maxAngle) - 90;
-                }
-                else if (constrictAngle < swingObjects[i].minAngle)
-                {
-                    aimAngle = -(swingObjects[i].minAngle) - 90;
-                }
-
-                swingObjects[i].objectTransform.rotation = Quaternion.Euler(0, 0, aimAngle + 180 - swingObjects[i].offsetAngle);
-            }
-        }
-
         if (shootCooldownTimer > 0)
         {
             shootCooldownTimer -= Time.fixedDeltaTime;
@@ -147,6 +101,72 @@ public class PlayerShoot : MonoBehaviour
         if (specialCooldownTimer > 0)
         {
             specialCooldownTimer -= Time.fixedDeltaTime;
+        }
+    }
+
+    public void ResetAimedSprites(bool flip)
+    {
+        for (int i = 0; i < swingObjects.Length; i++)
+        {
+            swingObjects[i].objectTransform.rotation = Quaternion.identity;
+        }
+        flipObject.localScale = new Vector2(flip ? -1 : 1, 1);
+    }
+
+    public void AimSprites()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+        //For every object that needs to point towards the mouse
+        for (int i = 0; i < swingObjects.Length; i++)
+        {
+            Vector2 spriteDirection = mousePosition - (Vector2)swingObjects[i].objectTransform.position;
+            float spriteAngle = Mathf.Rad2Deg * Mathf.Atan2(spriteDirection.y, spriteDirection.x);
+            if (spriteAngle <= 90 && spriteAngle > -90)
+            {
+                flipObject.localScale = Vector3.one;
+                float constrictAngle = spriteAngle + 90;
+
+                if (constrictAngle > swingObjects[i].maxAngle)
+                {
+                    spriteAngle = swingObjects[i].maxAngle - 90;
+                }
+                else if (constrictAngle < swingObjects[i].minAngle)
+                {
+                    spriteAngle = swingObjects[i].minAngle - 90;
+                }
+                swingObjects[i].objectTransform.rotation = Quaternion.Euler(0, 0, spriteAngle + swingObjects[i].offsetAngle);
+
+                if (i == swingObjects.Length - 1)
+                {
+                    aimAngle = spriteAngle + swingObjects[i].offsetAngle;
+                }
+            }
+            else
+            {
+                flipObject.localScale = new Vector3(-1, 1, 1);
+                float constrictAngle = -spriteAngle - 90;
+                if (constrictAngle < 0)
+                {
+                    constrictAngle = 360 + constrictAngle;
+                }
+
+                if (constrictAngle > swingObjects[i].maxAngle)
+                {
+                    spriteAngle = -(swingObjects[i].maxAngle) - 90;
+                }
+                else if (constrictAngle < swingObjects[i].minAngle)
+                {
+                    spriteAngle = -(swingObjects[i].minAngle) - 90;
+                }
+
+                swingObjects[i].objectTransform.rotation = Quaternion.Euler(0, 0, spriteAngle + 180 - swingObjects[i].offsetAngle);
+
+                if (i == swingObjects.Length - 1)
+                {
+                    aimAngle = spriteAngle - swingObjects[i].offsetAngle;
+                }
+            }
         }
     }
 
