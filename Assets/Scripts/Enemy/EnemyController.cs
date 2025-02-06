@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour, IExtinguishable
         stBackSwing
     };
 
+    [SerializeField] protected Transform flipTransform;
     [SerializeField] protected Health healthComponent;
     [SerializeField] protected CombustibleKind fireKind;
     [SerializeField] protected LayerMask waterLayer;
@@ -157,7 +158,16 @@ public class EnemyController : MonoBehaviour, IExtinguishable
 
     protected virtual void MoveToTarget()
     {
-        transform.position = Vector2.MoveTowards(transform.position, targetPosition, Time.fixedDeltaTime * speed);
+        Vector2 direction = targetPosition - (Vector2)transform.position;
+        transform.position = (Vector2)transform.position + direction.normalized * Time.fixedDeltaTime * speed;
+        if (direction.x < 0)
+        {
+            flipTransform.localScale = new Vector2(-1, 1);
+        }
+        else
+        {
+            flipTransform.localScale = Vector2.one;
+        }
     }
 
     protected virtual void FrontSwing()
