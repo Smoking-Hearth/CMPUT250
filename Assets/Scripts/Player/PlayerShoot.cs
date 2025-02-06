@@ -1,15 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerStats))]
 public class PlayerShoot : MonoBehaviour
 {
-    [SerializeField] private ExtinguisherProjectile bullet;
+    private WaterTank waterTank;
+    [SerializeField] private Slider waterTankBar;
+    [SerializeField] private Slider waterTankInGame;
+    [SerializeField] private Slider extinguisherTankBar;
+    [SerializeField] private Projectile bullet;
     [SerializeField] private float bulletInitialSpeed = 10.0f;
     [SerializeField] private float shootCooldown;
     private float shootCooldownTimer;
-    [SerializeField] private GameObject defaultSpecialAttack;
-    private ISpecialAttack specialAttack;
+    [SerializeField] private SpecialAttack defaultSpecialAttack;
     [SerializeField] private float specialCooldown;
     private float specialCooldownTimer;
 
@@ -37,12 +41,16 @@ public class PlayerShoot : MonoBehaviour
 
     [Range(1, 100)]
     [SerializeField] private int maxBullets;
-    private ExtinguisherProjectile[] bulletCache;
+    private Projectile[] bulletCache;
     private int bulletCounter;
 
     private PlayerStats stats;
     [SerializeField] private int costDelayTicks;
     private int costTicks;
+
+    [SerializeField] private Transform attachPoint;
+    [SerializeField] private Image[] inventoryIcons;
+    private PlayerInventory inventory;
 
     [System.Serializable]
     private struct SwingObject
@@ -55,17 +63,32 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
-        if (specialAttack == null)
-        {
-            ISpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<ISpecialAttack>();
-            SwitchSpecial(attack);
-        }
+        SpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<SpecialAttack>();
+        attack.ResourceTank.SetTank(waterTankBar, waterTankInGame);
+        waterTank = attack.ResourceTank;
+        inventory = new PlayerInventory(2, attack, attachPoint, inventoryIcons);
 
-        bulletCache = new ExtinguisherProjectile[maxBullets];
+        bulletCache = new Projectile[maxBullets];
         if (stats == null)
         {
             stats = GetComponent<PlayerStats>();
         }
+    }
+
+    private void OnEnable()
+    {
+        SpecialAttack.onPickupSpecial += PickUpSpecial;
+        SpecialAttack.onDropSpecial += DropSpecial;
+        PlayerController.Controls.PlayerMovement.SwapSpecial.performed += inventory.Swap;
+        WaterRefiller.onWaterRefill += waterTank.RefillWater;
+    }
+
+    private void OnDisable()
+    {
+        SpecialAttack.onPickupSpecial -= PickUpSpecial;
+        SpecialAttack.onDropSpecial -= DropSpecial;
+        PlayerController.Controls.PlayerMovement.SwapSpecial.performed -= inventory.Swap;
+        WaterRefiller.onWaterRefill -= waterTank.RefillWater;
     }
 
     private void FixedUpdate()
@@ -129,13 +152,13 @@ public class PlayerShoot : MonoBehaviour
 
     public void Shoot(Vector2 targetPosition)
     {
-        if (!stats.UseWater(bullet.Cost))
+        if (!waterTank.UseWater(bullet.Cost))
         {
             return;
         }
 
         Vector2 shootDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
-        ExtinguisherProjectile firedBullet = bulletCache[bulletCounter];
+        Projectile firedBullet = bulletCache[bulletCounter];
 
         if (firedBullet == null)
         {
@@ -157,7 +180,8 @@ public class PlayerShoot : MonoBehaviour
 
     public bool SpecialShoot(bool active)
     {
-        if (!stats.UseWater(specialAttack.InitialCost))
+        SpecialAttack specialAttack = inventory.CurrentSpecial;
+        if (active && !inventory.CurrentSpecial.ResourceTank.UseWater(specialAttack.InitialCost))
         {
             return false;
         }
@@ -177,11 +201,12 @@ public class PlayerShoot : MonoBehaviour
 
     public bool AimStream()
     {
+        SpecialAttack specialAttack = inventory.CurrentSpecial;
         costTicks++;
         if (costTicks == costDelayTicks)
         {
             costTicks = 0;
-            if (!stats.UseWater(specialAttack.MaintainCost))
+            if (!inventory.CurrentSpecial.ResourceTank.UseWater(specialAttack.MaintainCost))
             {
                 return false;
             }
@@ -190,8 +215,24 @@ public class PlayerShoot : MonoBehaviour
         return true;
     }
 
-    public void SwitchSpecial(ISpecialAttack attack)
+    private void PickUpSpecial(SpecialAttack special)
     {
-        specialAttack = attack;
+        inventory.PickUp(special);
+
+        switch(special.ExtinguishClass)
+        {
+            case CombustibleKind.A_COMMON:
+                special.ResourceTank.SetTank(waterTankBar, waterTankInGame);
+                break;
+            default:
+                special.ResourceTank.SetTank(extinguisherTankBar, null);
+                break;
+        }
+    }
+
+    private void DropSpecial(SpecialAttack special)
+    {
+        inventory.Drop();
+        special.ResourceTank.SetTank(null, null);
     }
 }

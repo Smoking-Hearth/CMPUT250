@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2915446813000964293}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.5772066, y: -3.0070465, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -80,7 +80,7 @@ SpriteShapeRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034689029
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_MaskInteraction: 2
@@ -96,8 +96,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: 3.1544209, y: -0.06486285, z: 0}
-    m_Extent: {x: 3.4510887, y: 0.66907024, z: 0}
+    m_Center: {x: 3.344987, y: -0.06486285, z: 0}
+    m_Extent: {x: 3.2605224, y: 0.66907024, z: 0}
   m_SpriteSortPoint: 0
 --- !u!114 &3579689046740529502
 MonoBehaviour:
@@ -114,11 +114,11 @@ MonoBehaviour:
   m_Spline:
     m_IsOpenEnded: 1
     m_ControlPoints:
-    - position: {x: 0, y: 0, z: 0}
+    - position: {x: 0.36, y: 0, z: 0}
       leftTangent: {x: -1.092752, y: -0.7948754, z: 0}
       rightTangent: {x: 0.05837822, y: 0.042464864, z: 0}
       mode: 1
-      height: 0.4
+      height: 0.3
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
@@ -196,21 +196,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1434409da2a9ac45bf08553f7ae37bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  extinguishClass: 1
+  effectiveness: 25
+  maintainCost: 10
+  initialCost: 40
+  inventoryIcon: {fileID: -8190699977588082832, guid: 483211a3db838c04da8d3d13b0b25185, type: 3}
+  tankCapacity: 2000
+  pushbackMultiplier: {x: 1.2, y: 1}
+  pushbackInitial: 2500
+  pushbackAcceleration: 100
+  initialPushDuration: 0.1
+  DropEvent:
+    m_PersistentCalls:
+      m_Calls: []
   segments: 6
   spriteShape: {fileID: 3579689046740529502}
   streamLength: 15
-  turnSpeed: 0.4
+  turnSpeed: 0.5
   streamDelay: 0.166
   nozzleParticles: {fileID: 5141380353842468619}
-  extinguishClass: 1
-  effectiveness: 10
   splashRadius: 1
   collideLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 1472
   fireLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1408
   splashCurve:
     serializedVersion: 2
     m_Curve:
@@ -246,11 +257,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   splashParticles: {fileID: 4869465151789196905}
   spriteMask: {fileID: 6061090633968271323}
-  pushbackInitial: 1000
-  pushbackAcceleration: 80
-  initialPushDuration: 0.3
-  maintainCost: 10
-  initialCost: 40
 --- !u!1 &3451816128614261905
 GameObject:
   m_ObjectHideFlags: 0
@@ -5137,7 +5143,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034689029
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -9970,7 +9976,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034689029
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0

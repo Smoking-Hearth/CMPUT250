@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
+public class HighPressureSpecial : SpecialAttack
 {
     [SerializeField] private int segments;
     [SerializeField] private SpriteShapeController spriteShape;
@@ -15,8 +15,6 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
     private bool activating;
     private float currentLength;
 
-    [SerializeField] private CombustibleKind extinguishClass;
-    [SerializeField] private float effectiveness;
     [SerializeField] private float splashRadius;
     [SerializeField] private LayerMask collideLayers;
     [SerializeField] private LayerMask fireLayers;
@@ -26,30 +24,20 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
     [SerializeField] private ParticleSystem splashParticles;
     [SerializeField] private Transform spriteMask;
 
-    [SerializeField] private float pushbackInitial;
-    [SerializeField] private float pushbackAcceleration;
-    [SerializeField] private float initialPushDuration;
-    private float initialPushTime;
-
-    [SerializeField] private int maintainCost;
-    [SerializeField] private int initialCost;
-    public int MaintainCost
+    public override int MaintainCost
     {
         get
         {
             return maintainCost;
         }
     }
-    public int InitialCost
+    public override int InitialCost
     {
         get
         {
             return initialCost;
         }
     }
-
-    public delegate void OnPushback(Vector2 acceleration);
-    public static event OnPushback onPushback;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -100,12 +88,12 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
 
         for (int i = 0; i < segments - 1; i++)
         {
-            spline.SetPosition(i, Vector2.Lerp(spline.GetPosition(i), spline.GetPosition(i + 1), 0.3f));
+            spline.SetPosition(i, Vector2.Lerp(spline.GetPosition(i), spline.GetPosition(i + 1), 0.4f));
         }
         return true;
     }
 
-    public void Activate(Vector2 startPosition, bool set, Transform parent)
+    public override void Activate(Vector2 startPosition, bool set, Transform parent)
     {
         if (set)
         {
@@ -127,8 +115,9 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
         spline.SetPosition(0, Vector2.zero);
     }
 
-    public void ResetAttack(float aimAngle)
+    public override void ResetAttack(float aimAngle)
     {
+        targetAngle = aimAngle;
         for (int i = 1; i < segments; i++)
         {
             float segmentDistance = streamLength / segments;
@@ -137,7 +126,7 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
         }
     }
 
-    public void AimAttack(Vector2 startPosition, float aimAngle)
+    public override void AimAttack(Vector2 startPosition, float aimAngle)
     {
         transform.position = startPosition;
         Vector2 targetDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
@@ -208,20 +197,7 @@ public class HighPressureSpecial : MonoBehaviour, ISpecialAttack
             spline.SetRightTangent(i, tangentOut.normalized * 0.75f);
         }
 
-        if (onPushback != null)
-        {
-            Vector2 pushDirection = new Vector2(-targetDirection.x, -targetDirection.y * 1.7f);
-
-            if (initialPushTime > 0)
-            {
-                onPushback(-targetDirection * pushbackInitial * Time.fixedDeltaTime);
-                initialPushTime -= Time.fixedDeltaTime;
-            }
-            else
-            {
-                onPushback(pushDirection * pushbackAcceleration * Time.fixedDeltaTime);
-            }
-        }
+        PushBack(targetDirection);
 
         if (extinguishRayTimer <= 0)
         {

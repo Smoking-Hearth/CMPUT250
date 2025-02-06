@@ -24,7 +24,7 @@ are browsing it.
 > close it.
 
 `msg` is active present tense describing the commit. Consider: "allowed players to walk through walls".
-We save a couple character in present tense: "allow players to walk through walls".
+We save a couple character in present tense: "players can walk through walls".
 
 (Conventional Commits)[https://www.conventionalcommits.org/en/v1.0.0/]
 

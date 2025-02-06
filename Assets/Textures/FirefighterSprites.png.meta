@@ -168,7 +168,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FirefighterSprites_2
+      name: MC_Water_Tank
       rect:
         serializedVersion: 2
         x: 4
@@ -190,7 +190,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FirefighterSprites_3
+      name: MC_Straps
       rect:
         serializedVersion: 2
         x: 32
@@ -212,15 +212,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FirefighterSprites_4
+      name: MC_Hose
       rect:
         serializedVersion: 2
-        x: 48
+        x: 47
         y: 22
-        width: 15
+        width: 16
         height: 7
       alignment: 9
-      pivot: {x: 0.4, y: 0.95}
+      pivot: {x: 0.44, y: 0.95}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -234,11 +234,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FirefighterSprites_5
+      name: MC_Head
       rect:
         serializedVersion: 2
         x: 21
-        y: 5
+        y: 1
         width: 20
         height: 15
       alignment: 9
@@ -256,7 +256,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FirefighterSprites_6
+      name: MC_Arm_Back
       rect:
         serializedVersion: 2
         x: 42
@@ -278,13 +278,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FirefighterSprites_7
+      name: MC_Body
       rect:
         serializedVersion: 2
         x: 50
-        y: 0
+        y: 4
         width: 13
-        height: 20
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,7 +300,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FirefighterSprites_8
+      name: MC_Arm_Front
       rect:
         serializedVersion: 2
         x: 42
@@ -321,6 +321,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: MC_Leg0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 18
+        width: 6
+        height: 11
+      alignment: 9
+      pivot: {x: 0.42, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69136ef66a83d1948a4c1ad840e8c9f3
+      internalID: 1607398068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MC_Leg1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 18
+        width: 6
+        height: 11
+      alignment: 9
+      pivot: {x: 0.42, y: 0.67}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aabea5c4e283c34086f6571149a1ec1
+      internalID: 1264547469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -337,13 +381,15 @@ TextureImporter:
     nameFileIdTable:
       FirefighterSprites_0: 7329548043313038211
       FirefighterSprites_1: -4521428977484286689
-      FirefighterSprites_2: -7570390172793818723
-      FirefighterSprites_3: 5252037097249880210
-      FirefighterSprites_4: 8469330839171382781
-      FirefighterSprites_5: -2921909968076475712
-      FirefighterSprites_6: 5127264417075413358
-      FirefighterSprites_7: -5420129288833285147
-      FirefighterSprites_8: -1400965934909324628
+      MC_Arm_Back: 5127264417075413358
+      MC_Arm_Front: -1400965934909324628
+      MC_Body: -5420129288833285147
+      MC_Head: -2921909968076475712
+      MC_Hose: 8469330839171382781
+      MC_Leg0: 1607398068
+      MC_Leg1: 1264547469
+      MC_Straps: 5252037097249880210
+      MC_Water_Tank: -7570390172793818723
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

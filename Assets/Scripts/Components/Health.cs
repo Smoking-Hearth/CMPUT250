@@ -1,38 +1,57 @@
 using UnityEngine;
 
-// NOTE: This code could be generalized a bit and work for keeping track of water.
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IStat
 {
-    public float max;
-    public float current;
-    public float regen = float.NegativeInfinity;
-
-    public delegate void OnDepletedCallback();
-    public event OnDepletedCallback OnDepleted;
-
-    // When this is negative the callback is only called once.
-    public float depletedCooldownDelay = float.NegativeInfinity;
-    private float depletedCooldown = float.NegativeInfinity; 
-
-    void Update()
+    public string Name 
     {
-        if (depletedCooldown <= 0.0) 
+        get { return $"{typeof(Health)}"; }
+    }
+    public float Min 
+    {
+        get { return 0f; }
+    }
+
+    [SerializeField] float max;
+    public float Max 
+    {
+        get { return max; }
+    }
+
+    [SerializeField] float current;
+    public float Current 
+    {
+        get { return current; }
+        set
         {
-            if (OnDepleted != null && current <= float.Epsilon)
+            current = Mathf.Clamp(value, 0f, max);
+            if (shouldTriggerCallback && onChanged != null)
             {
-                OnDepleted();
-                depletedCooldown = depletedCooldownDelay;
+                onChanged();
             }
-        } 
-        else if (!float.IsNegative(depletedCooldownDelay))
-        {
-            depletedCooldown -= Time.deltaTime;
         }
-        if (regen > 0.0 && current < max) 
+    }
+
+    [SerializeField] float regenerationRate = 0f;
+    public float RegenerationRate
+    {
+        get { return regenerationRate; }
+        set 
         {
-            current += regen * Time.deltaTime;
+            regenerationRate = Mathf.Min(value, max);
         }
-        // NOTE: Other systems may arbitrarily modify health. 
-        current = Mathf.Clamp(current, 0.0f, max);
+    }
+
+    public bool HealthZero
+    {
+        get { return current <= float.Epsilon; }
+    }
+
+    public delegate void OnChangedCallback();
+    public event OnChangedCallback onChanged;
+    public bool shouldTriggerCallback = true;
+
+    public void Update()
+    {
+        current += regenerationRate * Time.deltaTime;
     }
 }
