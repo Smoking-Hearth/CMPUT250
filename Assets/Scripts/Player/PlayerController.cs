@@ -230,10 +230,9 @@ public class PlayerController : MonoBehaviour
 
     public void PushPlayer(Vector2 acceleration)
     {
-        if (addedVelocity.y > 0 && isJumping)
+        if (addedVelocity.y > 0 && !isJumping)
         {
             addedVelocity.y *= 0.5f;
-            isJumping = false;
         }
 
         addedVelocity += acceleration;

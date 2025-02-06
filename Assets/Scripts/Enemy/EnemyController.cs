@@ -46,6 +46,7 @@ public class EnemyController : MonoBehaviour, IExtinguishable
 
     protected virtual void OnEnable()
     {
+        healthComponent.Current = healthComponent.Max;
         commitAttackTimer = commitAttackSeconds;
         frontSwingTimer = frontSwingSeconds;
         backSwingTimer = backSwingSeconds;
@@ -108,7 +109,6 @@ public class EnemyController : MonoBehaviour, IExtinguishable
         {
             health.Current -= damage.damage;
         }
-        Destroy(col.gameObject);
     }
 
     protected virtual void Idle()
