@@ -27,7 +27,19 @@ public class PlayerController : MonoBehaviour
     private float jumpBufferEndTime;  //The max time that a jump input will be checked
     private bool isGrounded;
     private bool isJumping;
-    public static PlayerControls controls;
+    private static PlayerControls controls;
+    public static PlayerControls Controls
+    {
+        get
+        {
+            if (controls == null)
+            {
+                controls = new PlayerControls();
+                controls.Enable();
+            }
+            return controls;
+        }
+    }
 
     private PlayerShoot shootBehavior;  //The script that handles player shooting
     private bool isShooting;
@@ -48,12 +60,6 @@ public class PlayerController : MonoBehaviour
             playerRigidbody = GetComponent<Rigidbody2D>();
         }
 
-        if (controls == null)
-        {
-            controls = new PlayerControls();
-            controls.Enable();
-        }
-
         if (shootBehavior == null)
         {
             shootBehavior = GetComponent<PlayerShoot>();
@@ -62,34 +68,34 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PlayerMovement.InputAxes.performed += OnAxisInput;
-        controls.PlayerMovement.InputAxes.canceled += OnAxisInput;
-        controls.PlayerMovement.Jump.performed += OnJumpInput;
-        controls.PlayerMovement.Jump.canceled += OnCancelJumpInput;
-        controls.PlayerMovement.Attack.performed += OnStartAttack;
-        controls.PlayerMovement.Attack.canceled += OnCancelAttack;
-        controls.PlayerMovement.SpecialAttack.performed += OnStartSpecial;
-        controls.PlayerMovement.SpecialAttack.canceled += OnCancelSpecial;
-        controls.PlayerMovement.SwapSpecial.performed += OnCancelSpecial;
+        Controls.PlayerMovement.InputAxes.performed += OnAxisInput;
+        Controls.PlayerMovement.InputAxes.canceled += OnAxisInput;
+        Controls.PlayerMovement.Jump.performed += OnJumpInput;
+        Controls.PlayerMovement.Jump.canceled += OnCancelJumpInput;
+        Controls.PlayerMovement.Attack.performed += OnStartAttack;
+        Controls.PlayerMovement.Attack.canceled += OnCancelAttack;
+        Controls.PlayerMovement.SpecialAttack.performed += OnStartSpecial;
+        Controls.PlayerMovement.SpecialAttack.canceled += OnCancelSpecial;
+        Controls.PlayerMovement.SwapSpecial.performed += OnCancelSpecial;
         SpecialAttack.onPushback += PushPlayer;
-        controls.PlayerMovement.Interact.performed += OnInteract;
-        controls.PlayerMovement.Interact.canceled += OnCancelInteract;
+        Controls.PlayerMovement.Interact.performed += OnInteract;
+        Controls.PlayerMovement.Interact.canceled += OnCancelInteract;
     }
 
     private void OnDisable()
     {
-        controls.PlayerMovement.InputAxes.performed -= OnAxisInput;
-        controls.PlayerMovement.InputAxes.canceled -= OnAxisInput;
-        controls.PlayerMovement.Jump.performed -= OnJumpInput;
-        controls.PlayerMovement.Jump.canceled -= OnCancelJumpInput;
-        controls.PlayerMovement.Attack.performed -= OnStartAttack;
-        controls.PlayerMovement.Attack.canceled -= OnCancelAttack;
-        controls.PlayerMovement.SpecialAttack.performed -= OnStartSpecial;
-        controls.PlayerMovement.SpecialAttack.canceled -= OnCancelSpecial;
-        controls.PlayerMovement.SwapSpecial.performed -= OnCancelSpecial;
+        Controls.PlayerMovement.InputAxes.performed -= OnAxisInput;
+        Controls.PlayerMovement.InputAxes.canceled -= OnAxisInput;
+        Controls.PlayerMovement.Jump.performed -= OnJumpInput;
+        Controls.PlayerMovement.Jump.canceled -= OnCancelJumpInput;
+        Controls.PlayerMovement.Attack.performed -= OnStartAttack;
+        Controls.PlayerMovement.Attack.canceled -= OnCancelAttack;
+        Controls.PlayerMovement.SpecialAttack.performed -= OnStartSpecial;
+        Controls.PlayerMovement.SpecialAttack.canceled -= OnCancelSpecial;
+        Controls.PlayerMovement.SwapSpecial.performed -= OnCancelSpecial;
         SpecialAttack.onPushback -= PushPlayer;
-        controls.PlayerMovement.Interact.performed -= OnInteract;
-        controls.PlayerMovement.Interact.canceled -= OnCancelInteract;
+        Controls.PlayerMovement.Interact.performed -= OnInteract;
+        Controls.PlayerMovement.Interact.canceled -= OnCancelInteract;
     }
 
     private void Update()
@@ -319,6 +325,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext context)
     {
+        if (GameManager.dialogSystem.DialogSystemState != DialogSystem.State.Inactive)
+        {
+            return;
+        }
         isInteracting = true;
         InteractableManager.Interact(false);
     }

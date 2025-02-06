@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Flags]
 public enum CombustibleKind
@@ -30,6 +31,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
     [SerializeField] float maxLifetime;
 
     [SerializeField] AnimationCurve extinguishEffectiveness = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
+    [SerializeField] private UnityEvent ExtinguishEvent;
 
     public bool Burning
     {
@@ -115,9 +117,10 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
             fire.SetLifetime(temperatureToLifetime.Evaluate(Temperature) * maxLifetime);
         }
-        if (fire != null && (temperature < autoIgnitionTemperature))
+        if (fire != null && fire.gameObject.activeSelf && (temperature < autoIgnitionTemperature))
         {
             fire.SetActive(false);
+            ExtinguishEvent.Invoke();
         }
     }
 

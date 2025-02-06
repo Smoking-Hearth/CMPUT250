@@ -11,7 +11,8 @@ public enum SceneIndex
     City = 2,
     Skyscraper = 3,
     Settings = 4,
-    Credits = 5,
+    TechDemo = 5,
+    Credits = 6,
 }
 
 namespace Unquenchable {

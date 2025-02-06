@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float levelTimeLimitSeconds;
     [SerializeField] private Slider timeLimitBar;
-    [SerializeField] private GameObject[] sceneInteractables;
     [SerializeField] private PlayerController setPlayer;
     [SerializeField] private GameObject gameOverScreen;
     private static PlayerController player;

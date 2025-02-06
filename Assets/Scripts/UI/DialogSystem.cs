@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameDialog : IEnumerator<String> {
     public String Title;
@@ -72,7 +73,17 @@ public class DialogSystem : MonoBehaviour
 
     int currentPosition = 0;
 
-    void Update()
+    private void OnEnable()
+    {
+        PlayerController.Controls.PlayerMovement.Interact.performed += OnContinue;
+    }
+
+    private void OnDisable()
+    {
+        PlayerController.Controls.PlayerMovement.Interact.performed -= OnContinue;
+    }
+
+    void FixedUpdate()
     {
         if (dialogSystemState == State.Inactive) return;
 
@@ -88,21 +99,6 @@ public class DialogSystem : MonoBehaviour
                 dialogSystemState = State.WaitingForContinue;
             }
         }
-
-        // FIXME: Update this to use Input System
-        if (dialogSystemState == State.WaitingForContinue && Input.anyKeyDown)
-        {
-            currentPosition = 0;
-            if (currentDialog.MoveNext())
-            {
-                dialogSystemState = State.DisplayingLine;
-            }
-            else
-            {
-                dialogSystemState = State.Inactive;
-                gameObject.SetActive(false);
-            }
-        }  
     }
 
     public bool Play(GameDialog gameDialog)
@@ -117,8 +113,26 @@ public class DialogSystem : MonoBehaviour
             contentText.text = "";
 
             gameObject.SetActive(true);
+
             return true;
         }
         return false;
+    }
+
+    private void OnContinue(InputAction.CallbackContext context)
+    {
+        if (dialogSystemState == State.WaitingForContinue)
+        {
+            currentPosition = 0;
+            if (currentDialog.MoveNext())
+            {
+                dialogSystemState = State.DisplayingLine;
+            }
+            else
+            {
+                dialogSystemState = State.Inactive;
+                gameObject.SetActive(false);
+            }
+        }
     }
 }

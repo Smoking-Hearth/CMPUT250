@@ -21,6 +21,9 @@ public class SceneManagerDelegate : MonoBehaviour
             case SceneIndex.Forest:
                 GameManager.cameraAnimator.Play("Game");
                 break;
+            case SceneIndex.TechDemo:
+                GameManager.cameraAnimator.Play("Game");
+                break;
             default:
                 break;
         }

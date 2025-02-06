@@ -79,7 +79,7 @@ public class PlayerShoot : MonoBehaviour
     {
         SpecialAttack.onPickupSpecial += PickUpSpecial;
         SpecialAttack.onDropSpecial += DropSpecial;
-        PlayerController.controls.PlayerMovement.SwapSpecial.performed += inventory.Swap;
+        PlayerController.Controls.PlayerMovement.SwapSpecial.performed += inventory.Swap;
         WaterRefiller.onWaterRefill += waterTank.RefillWater;
     }
 
@@ -87,7 +87,7 @@ public class PlayerShoot : MonoBehaviour
     {
         SpecialAttack.onPickupSpecial -= PickUpSpecial;
         SpecialAttack.onDropSpecial -= DropSpecial;
-        PlayerController.controls.PlayerMovement.SwapSpecial.performed -= inventory.Swap;
+        PlayerController.Controls.PlayerMovement.SwapSpecial.performed -= inventory.Swap;
         WaterRefiller.onWaterRefill -= waterTank.RefillWater;
     }
 
