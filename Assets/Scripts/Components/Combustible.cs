@@ -117,7 +117,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
             fire.SetLifetime(temperatureToLifetime.Evaluate(Temperature) * maxLifetime);
         }
-        if (fire != null && fire.gameObject.activeSelf && (temperature < autoIgnitionTemperature))
+        if (fire != null && fire.IsActivated && (temperature < autoIgnitionTemperature))
         {
             fire.SetActive(false);
             ExtinguishEvent.Invoke();
