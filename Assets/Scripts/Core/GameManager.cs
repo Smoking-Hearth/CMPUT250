@@ -73,8 +73,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private DialogSystem setDialogSystem;
     public static DialogSystem dialogSystem;
 
+    [SerializeField] private CheckpointManager setCheckpointManager;
+    public static CheckpointManager checkpointManager;
+
     void Awake()
     {
+        checkpointManager = setCheckpointManager;
         fireSettings = setFireSettings;
         player = setPlayer;
         cameraAnimator = setCameraAnimator;
