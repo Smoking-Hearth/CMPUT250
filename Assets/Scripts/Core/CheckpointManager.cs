@@ -20,7 +20,7 @@ public class CheckpointManager
 
     [SerializeField] private float triggerDist;
 
-    void UpdateCheckpoint(Vector3 playerPos)
+    public void UpdateCheckpoint(Vector3 playerPos)
     {
         for (int i = checkpoints.Count - 1; i > current; --i)
         {
