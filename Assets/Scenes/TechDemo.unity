@@ -2531,6 +2531,7 @@ MonoBehaviour:
   - Mind the gap!
   - 'You can use the high pressure mode of your fire hose with [Right Click]'
   - The pushback is pretty strong. Maybe you can use it to enhance your jump?
+  autoContinue: 0
 --- !u!1 &353328292
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,6 +2879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 0}
   contentText: {fileID: 0}
+  autoContinueDelaySeconds: 0
 --- !u!114 &397081013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9571,6 +9573,7 @@ MonoBehaviour:
   - Mind the gap!
   - 'You can use the high pressure mode of your fire hose with [Right Click]'
   - The pushback is pretty strong. Maybe you can use it to enhance your jump?
+  autoContinue: 0
 --- !u!50 &690579662
 Rigidbody2D:
   serializedVersion: 5
@@ -10141,6 +10144,7 @@ MonoBehaviour:
   title: Firetruck
   lines:
   - Good job!
+  autoContinue: 0
 --- !u!114 &883537775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13266,6 +13270,7 @@ GameObject:
   - component: {fileID: 1408041350}
   - component: {fileID: 1408041349}
   - component: {fileID: 1408041356}
+  - component: {fileID: 1408041357}
   m_Layer: 10
   m_Name: ObjectOnFire (2)
   m_TagString: Untagged
@@ -13380,6 +13385,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 690579659}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1408041357}
+        m_TargetAssemblyTypeName: DialogueHolder, Assembly-CSharp
+        m_MethodName: PlayDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
   temperature: 1000
   autoIgnitionTemperature: 373.15
@@ -13588,6 +13617,23 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   enemiesToComplete: 4
+--- !u!114 &1408041357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408041348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Firetruck
+  lines:
+  - Oh no, It looks like you've triggered a trap!
+  - Quickly defeat those Infernals and get out of there!
+  autoContinue: 1
 --- !u!1 &1436892328
 GameObject:
   m_ObjectHideFlags: 0
@@ -16119,7 +16165,8 @@ MonoBehaviour:
   - You probably already know this, but you can aim that fire hose of yours using
     your mouse
   - 'Then, you can actually shoot it using the [Left Mouse Button]'
-  - Go ahead and try putting out that object on fire over there
+  - Go ahead and try putting out this bush over here
+  autoContinue: 0
 --- !u!114 &1906659001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16209,6 +16256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 479508110}
   contentText: {fileID: 442839029}
+  autoContinueDelaySeconds: 1
 --- !u!114 &1931686360
 MonoBehaviour:
   m_ObjectHideFlags: 0
