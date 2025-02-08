@@ -70,6 +70,9 @@ public class DialogSystem : MonoBehaviour
 
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text contentText;
+    [SerializeField] private float autoContinueDelaySeconds;
+    private bool autoContinue;
+    private float continueTimer;
 
     int currentPosition = 0;
 
@@ -99,9 +102,24 @@ public class DialogSystem : MonoBehaviour
                 dialogSystemState = State.WaitingForContinue;
             }
         }
+
+        if (dialogSystemState == State.WaitingForContinue)
+        {
+            if (autoContinue)
+            {
+                if (continueTimer > 0)
+                {
+                    continueTimer -= Time.fixedDeltaTime;
+                }
+                else
+                {
+                    NextLine();
+                }
+            }
+        }
     }
 
-    public bool Play(GameDialog gameDialog)
+    public bool Play(GameDialog gameDialog, bool auto)
     {
         if (dialogSystemState == State.Inactive && gameDialog.lines.Count > 0)
         {
@@ -112,6 +130,9 @@ public class DialogSystem : MonoBehaviour
             titleText.text = currentDialog.Title;
             contentText.text = "";
 
+            autoContinue = auto;
+            continueTimer = autoContinueDelaySeconds;
+
             gameObject.SetActive(true);
 
             return true;
@@ -119,20 +140,26 @@ public class DialogSystem : MonoBehaviour
         return false;
     }
 
+    private void NextLine()
+    {
+        currentPosition = 0;
+        continueTimer = autoContinueDelaySeconds;
+        if (currentDialog.MoveNext())
+        {
+            dialogSystemState = State.DisplayingLine;
+        }
+        else
+        {
+            dialogSystemState = State.Inactive;
+            gameObject.SetActive(false);
+        }
+    }
+
     private void OnContinue(InputAction.CallbackContext context)
     {
         if (dialogSystemState == State.WaitingForContinue)
         {
-            currentPosition = 0;
-            if (currentDialog.MoveNext())
-            {
-                dialogSystemState = State.DisplayingLine;
-            }
-            else
-            {
-                dialogSystemState = State.Inactive;
-                gameObject.SetActive(false);
-            }
+            NextLine();
         }
     }
 }

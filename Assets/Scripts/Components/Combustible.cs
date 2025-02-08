@@ -119,8 +119,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
         if (fire != null && fire.IsActivated && (temperature < autoIgnitionTemperature))
         {
-            fire.SetActive(false);
-            ExtinguishEvent.Invoke();
+            CompleteExtinguish();
         }
     }
 
@@ -171,6 +170,14 @@ public class Combustible : MonoBehaviour, IExtinguishable
         if ((extinguishClass & fireKind) > 0)
         {
             Temperature -= quantity_L * extinguishEffectiveness.Evaluate(Mathf.Min(temperature - autoIgnitionTemperature, MAX_TEMP));
+            fire.HitSound();
         }
+    }
+
+    public void CompleteExtinguish()
+    {
+        fire.ExtinguishSound();
+        fire.SetActive(false);
+        ExtinguishEvent.Invoke();
     }
 }

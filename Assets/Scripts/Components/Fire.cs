@@ -5,6 +5,7 @@ public class Fire : MonoBehaviour
 {
     [SerializeField] protected ParticleSystem particles;
     [SerializeField] protected Light2D fireLight;
+    [SerializeField] protected FireSounds sounds;
     protected bool activated;
 
     public bool IsActivated
@@ -45,5 +46,13 @@ public class Fire : MonoBehaviour
     {
         ParticleSystem.MainModule main = particles.main;
         main.startLifetime = particleLifetime;
+    }
+    public void HitSound()
+    {
+        sounds.HitSound();
+    }
+    public void ExtinguishSound()
+    {
+        sounds.ExtinguishSound();
     }
 }

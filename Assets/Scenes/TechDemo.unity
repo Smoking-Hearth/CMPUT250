@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: 780418}
   - component: {fileID: 780420}
   - component: {fileID: 780421}
+  - component: {fileID: 780423}
+  - component: {fileID: 780422}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -216,6 +218,7 @@ MonoBehaviour:
   gravityAcceleration: 30
   jumpBufferSeconds: 0.2
   playerAnimator: {fileID: 1272924072}
+  sounds: {fileID: 780423}
 --- !u!114 &780418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +238,7 @@ MonoBehaviour:
   bulletInitialSpeed: 14
   shootCooldown: 0.3
   defaultSpecialAttack: {fileID: 7939722130492425773, guid: fca732d58c1b4ee47867e0df265f6347, type: 3}
-  specialCooldown: 0.3
+  specialCooldown: 0.6
   swingRadius: 1
   swingPivotPosition: {x: 0, y: 0}
   swingObjects:
@@ -250,7 +253,7 @@ MonoBehaviour:
   - objectTransform: {fileID: 449870707}
     minAngle: 10
     maxAngle: 160
-    offsetAngle: 0
+    offsetAngle: 2
   flipObject: {fileID: 1272924070}
   nozzle: {fileID: 353328293}
   maxBullets: 15
@@ -326,6 +329,120 @@ MonoBehaviour:
   current: 100
   regenerationRate: 0
   shouldTriggerCallback: 1
+--- !u!82 &780422
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780412}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &780423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba83b8d4e65b04543bc12527f0619d72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 780422}
+  mainShootSound: {fileID: 8300000, guid: b46cfa4f094fa7c48909e81342ba2ab8, type: 3}
+  footstepInterval: 20
+  footstepCounter: 0
+  grassFootsteps: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
 --- !u!1 &3542359
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +750,9 @@ MonoBehaviour:
   gameOverScreen: {fileID: 262475523}
   setCameraAnimator: {fileID: 1371211914}
   setDialogSystem: {fileID: 1931686359}
+  setCheckpointManager:
+    checkpoints: []
+    triggerDist: 0
 --- !u!4 &77890080
 Transform:
   m_ObjectHideFlags: 0
@@ -1382,7 +1502,7 @@ Transform:
   m_GameObject: {fileID: 219908591}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 84.61, y: -2.82, z: 0}
+  m_LocalPosition: {x: 100.2, y: -2.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1550,7 +1670,7 @@ Transform:
   m_GameObject: {fileID: 259880035}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 75, y: -13.95, z: 0.03441182}
+  m_LocalPosition: {x: 100, y: -13.95, z: 0.03441182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1605,7 +1725,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 70, y: 20}
+  m_Size: {x: 120, y: 20}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1915,7 +2035,7 @@ Transform:
   m_GameObject: {fileID: 275202157}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90.61, y: -2.82, z: 0}
+  m_LocalPosition: {x: 104, y: -2.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2071,7 +2191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 80
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2411,6 +2531,7 @@ MonoBehaviour:
   - Mind the gap!
   - 'You can use the high pressure mode of your fire hose with [Right Click]'
   - The pushback is pretty strong. Maybe you can use it to enhance your jump?
+  autoContinue: 0
 --- !u!1 &353328292
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,6 +2879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 0}
   contentText: {fileID: 0}
+  autoContinueDelaySeconds: 0
 --- !u!114 &397081013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8982,7 +9104,7 @@ Transform:
   m_GameObject: {fileID: 618481407}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 88.61, y: -2.82, z: 0}
+  m_LocalPosition: {x: 102.4, y: -2.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9126,63 +9248,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636205020}
   m_CullTransparentMesh: 1
---- !u!1001 &637286178
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1296189351281241401, guid: ad6c72de77d995d419add9540441b811, type: 3}
-      propertyPath: m_Name
-      value: FireColumn (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ad6c72de77d995d419add9540441b811, type: 3}
 --- !u!1 &679635671
 GameObject:
   m_ObjectHideFlags: 0
@@ -9210,7 +9275,7 @@ Transform:
   m_GameObject: {fileID: 679635671}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 75, y: -3.4634962, z: 0}
+  m_LocalPosition: {x: 100, y: -3.4634962, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9255,12 +9320,12 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.45, y: 1.05}
-    newSize: {x: 70, y: 1}
+    newSize: {x: 120, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 70, y: 5}
+  m_Size: {x: 120, y: 5}
   m_EdgeRadius: 0
 --- !u!212 &679635674
 SpriteRenderer:
@@ -9311,7 +9376,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 70, y: 1}
+  m_Size: {x: 120, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9508,6 +9573,7 @@ MonoBehaviour:
   - Mind the gap!
   - 'You can use the high pressure mode of your fire hose with [Right Click]'
   - The pushback is pretty strong. Maybe you can use it to enhance your jump?
+  autoContinue: 0
 --- !u!50 &690579662
 Rigidbody2D:
   serializedVersion: 5
@@ -10078,6 +10144,7 @@ MonoBehaviour:
   title: Firetruck
   lines:
   - Good job!
+  autoContinue: 0
 --- !u!114 &883537775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10558,10 +10625,10 @@ GameObject:
   m_Component:
   - component: {fileID: 993505455}
   - component: {fileID: 993505454}
-  - component: {fileID: 993505453}
   - component: {fileID: 993505456}
   - component: {fileID: 993505458}
   - component: {fileID: 993505459}
+  - component: {fileID: 993505460}
   m_Layer: 10
   m_Name: BurnableObject
   m_TagString: Untagged
@@ -10569,52 +10636,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &993505453
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993505452}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!212 &993505454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10659,7 +10680,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 340677381394866566, guid: 7f44751e58fd7c242b130c5020792bf6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10711,7 +10732,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &993505458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10836,6 +10857,42 @@ MonoBehaviour:
   heatCopyRate: 0.2
   fule: 100
   fuleToTemp: 10
+--- !u!58 &993505460
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993505452}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.6
 --- !u!1 &1056637399
 GameObject:
   m_ObjectHideFlags: 0
@@ -13213,6 +13270,7 @@ GameObject:
   - component: {fileID: 1408041350}
   - component: {fileID: 1408041349}
   - component: {fileID: 1408041356}
+  - component: {fileID: 1408041357}
   m_Layer: 10
   m_Name: ObjectOnFire (2)
   m_TagString: Untagged
@@ -13327,6 +13385,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 690579659}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1408041357}
+        m_TargetAssemblyTypeName: DialogueHolder, Assembly-CSharp
+        m_MethodName: PlayDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
   temperature: 1000
   autoIgnitionTemperature: 373.15
@@ -13490,7 +13572,7 @@ Transform:
   m_GameObject: {fileID: 1408041348}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 67.5, y: -2.82, z: 0}
+  m_LocalPosition: {x: 72, y: -2.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13535,6 +13617,23 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   enemiesToComplete: 4
+--- !u!114 &1408041357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408041348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Firetruck
+  lines:
+  - Oh no, It looks like you've triggered a trap!
+  - Quickly defeat those Infernals and get out of there!
+  autoContinue: 1
 --- !u!1 &1436892328
 GameObject:
   m_ObjectHideFlags: 0
@@ -15422,7 +15521,7 @@ Transform:
   m_GameObject: {fileID: 1836864831}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 75, y: -4, z: 0}
+  m_LocalPosition: {x: 80, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16066,7 +16165,8 @@ MonoBehaviour:
   - You probably already know this, but you can aim that fire hose of yours using
     your mouse
   - 'Then, you can actually shoot it using the [Left Mouse Button]'
-  - Go ahead and try putting out that object on fire over there
+  - Go ahead and try putting out this bush over here
+  autoContinue: 0
 --- !u!114 &1906659001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16156,6 +16256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 479508110}
   contentText: {fileID: 442839029}
+  autoContinueDelaySeconds: 1
 --- !u!114 &1931686360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16764,7 +16865,7 @@ Transform:
   m_GameObject: {fileID: 2005819295}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 82.61, y: -2.82, z: 0}
+  m_LocalPosition: {x: 97.77, y: -2.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17164,7 +17265,7 @@ Transform:
   m_GameObject: {fileID: 2069497815}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 75, y: -3.2634964, z: 0}
+  m_LocalPosition: {x: 100, y: -3.2634964, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17219,7 +17320,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 70, y: 0.8}
+  m_Size: {x: 120, y: 0.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -17303,7 +17404,6 @@ SceneRoots:
   - {fileID: 2064284792}
   - {fileID: 1806037439}
   - {fileID: 2622801703724303538}
-  - {fileID: 637286178}
   - {fileID: 69566084}
   - {fileID: 1097693424}
   - {fileID: 309558351}

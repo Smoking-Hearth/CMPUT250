@@ -31,10 +31,7 @@ public class EnemySpawner : MonoBehaviour
         }
         if (spawnTimer > 0)
         {
-            if (storedEnemies.Count > 0)
-            {
-                spawnTimer -= Time.fixedDeltaTime;
-            }
+            spawnTimer -= Time.fixedDeltaTime;
         }
         else
         {

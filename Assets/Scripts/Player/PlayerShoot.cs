@@ -81,6 +81,7 @@ public class PlayerShoot : MonoBehaviour
         SpecialAttack.onDropSpecial += DropSpecial;
         PlayerController.Controls.PlayerMovement.SwapSpecial.performed += inventory.Swap;
         WaterRefiller.onWaterRefill += waterTank.RefillWater;
+        PlayerController.onLand += PlayerLand;
     }
 
     private void OnDisable()
@@ -89,56 +90,11 @@ public class PlayerShoot : MonoBehaviour
         SpecialAttack.onDropSpecial -= DropSpecial;
         PlayerController.Controls.PlayerMovement.SwapSpecial.performed -= inventory.Swap;
         WaterRefiller.onWaterRefill -= waterTank.RefillWater;
+        PlayerController.onLand -= PlayerLand;
     }
 
     private void FixedUpdate()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-
-        //For every object that needs to point towards the mouse
-        for (int i = 0; i < swingObjects.Length; i++) 
-        {
-            //Converting to an angle (need to conver radians to degrees)
-            Vector2 direction = mousePosition - (Vector2)swingObjects[i].objectTransform.position;
-            aimAngle = Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x);
-
-            if (aimAngle <= 90 && aimAngle > -90)
-            {
-                flipObject.localScale = Vector3.one;
-                float constrictAngle = aimAngle + 90;
-
-                if (constrictAngle > swingObjects[i].maxAngle)
-                {
-                    aimAngle = swingObjects[i].maxAngle - 90;
-                }
-                else if (constrictAngle < swingObjects[i].minAngle)
-                {
-                    aimAngle = swingObjects[i].minAngle - 90;
-                }
-                swingObjects[i].objectTransform.rotation = Quaternion.Euler(0, 0, aimAngle + swingObjects[i].offsetAngle);
-            }
-            else
-            {
-                flipObject.localScale = new Vector3(-1, 1, 1);
-                float constrictAngle = -aimAngle - 90;
-                if (constrictAngle < 0)
-                {
-                    constrictAngle = 360 + constrictAngle;
-                }
-
-                if (constrictAngle > swingObjects[i].maxAngle)
-                {
-                    aimAngle = -(swingObjects[i].maxAngle) - 90;
-                }
-                else if (constrictAngle < swingObjects[i].minAngle)
-                {
-                    aimAngle = -(swingObjects[i].minAngle) - 90;
-                }
-
-                swingObjects[i].objectTransform.rotation = Quaternion.Euler(0, 0, aimAngle + 180 - swingObjects[i].offsetAngle);
-            }
-        }
-
         if (shootCooldownTimer > 0)
         {
             shootCooldownTimer -= Time.fixedDeltaTime;
@@ -150,11 +106,77 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector2 targetPosition)
+    public void ResetAimedSprites(bool flip)
+    {
+        for (int i = 0; i < swingObjects.Length; i++)
+        {
+            swingObjects[i].objectTransform.rotation = Quaternion.identity;
+        }
+        flipObject.localScale = new Vector2(flip ? -1 : 1, 1);
+    }
+
+    public void AimSprites()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+        //For every object that needs to point towards the mouse
+        for (int i = 0; i < swingObjects.Length; i++)
+        {
+            Vector2 spriteDirection = mousePosition - (Vector2)swingObjects[i].objectTransform.position;
+            float spriteAngle = Mathf.Rad2Deg * Mathf.Atan2(spriteDirection.y, spriteDirection.x);
+            if (spriteAngle <= 90 && spriteAngle > -90)
+            {
+                flipObject.localScale = Vector3.one;
+                float constrictAngle = spriteAngle + 90;
+
+                if (constrictAngle > swingObjects[i].maxAngle)
+                {
+                    spriteAngle = swingObjects[i].maxAngle - 90;
+                }
+                else if (constrictAngle < swingObjects[i].minAngle)
+                {
+                    spriteAngle = swingObjects[i].minAngle - 90;
+                }
+                swingObjects[i].objectTransform.rotation = Quaternion.Euler(0, 0, spriteAngle + swingObjects[i].offsetAngle);
+
+                if (i == swingObjects.Length - 1)
+                {
+                    aimAngle = spriteAngle + swingObjects[i].offsetAngle;
+                }
+            }
+            else
+            {
+                flipObject.localScale = new Vector3(-1, 1, 1);
+                float constrictAngle = -spriteAngle - 90;
+                if (constrictAngle < 0)
+                {
+                    constrictAngle = 360 + constrictAngle;
+                }
+
+                if (constrictAngle > swingObjects[i].maxAngle)
+                {
+                    spriteAngle = -(swingObjects[i].maxAngle) - 90;
+                }
+                else if (constrictAngle < swingObjects[i].minAngle)
+                {
+                    spriteAngle = -(swingObjects[i].minAngle) - 90;
+                }
+
+                swingObjects[i].objectTransform.rotation = Quaternion.Euler(0, 0, spriteAngle + 180 - swingObjects[i].offsetAngle);
+
+                if (i == swingObjects.Length - 1)
+                {
+                    aimAngle = spriteAngle - swingObjects[i].offsetAngle;
+                }
+            }
+        }
+    }
+
+    public bool Shoot(Vector2 targetPosition)
     {
         if (!waterTank.UseWater(bullet.Cost))
         {
-            return;
+            return false;
         }
 
         Vector2 shootDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
@@ -176,6 +198,7 @@ public class PlayerShoot : MonoBehaviour
         shootCooldownTimer = shootCooldown;
 
         bulletCounter = (bulletCounter + 1) % maxBullets;
+        return true;
     }
 
     public bool SpecialShoot(bool active)
@@ -191,9 +214,6 @@ public class PlayerShoot : MonoBehaviour
         if (active)
         {
             specialAttack.ResetAttack(aimAngle);
-        }
-        else
-        {
             specialCooldownTimer = specialCooldown;
         }
         return true;
@@ -213,6 +233,15 @@ public class PlayerShoot : MonoBehaviour
         }
         specialAttack.AimAttack(nozzle.position, aimAngle);
         return true;
+    }
+
+    private void ResetSpecialCooldown()
+    {
+        specialCooldownTimer = 0;
+    }
+    private void PlayerLand(Vector2 landPosition, float force)
+    {
+        ResetSpecialCooldown();
     }
 
     private void PickUpSpecial(SpecialAttack special)

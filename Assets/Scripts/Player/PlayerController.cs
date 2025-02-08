@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 inputAxes;
 
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private PlayerSounds sounds;
 
     private float jumpBufferEndTime;  //The max time that a jump input will be checked
     private bool isGrounded;
@@ -121,16 +122,24 @@ public class PlayerController : MonoBehaviour
 
         if (isSpecialShooting)
         {
+            shootBehavior.AimSprites();
             if (!shootBehavior.AimStream())
             {
                 isSpecialShooting = false;
                 shootBehavior.SpecialShoot(false);
             }
         }
-        else if (isShooting && shootBehavior.ShootAvailable)
+        else if (isShooting)
         {
-            Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            shootBehavior.Shoot(targetPosition);
+            shootBehavior.AimSprites();
+            if (shootBehavior.ShootAvailable)
+            {
+                Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                if (shootBehavior.Shoot(targetPosition))
+                {
+                    sounds.PlayMainShoot();
+                }
+            }
         }
 
         if (!isShooting && !isSpecialShooting && isInteracting)
@@ -175,16 +184,20 @@ public class PlayerController : MonoBehaviour
     //Should only be called once per frame
     private void Move()
     {
-        if (inputAxes.x == 0 && targetMovement.x != 0)  //Deccelerates if the player does not give a horizontal input
+        if (inputAxes.x == 0)  //Deccelerates if the player does not give a horizontal input
         {
-            playerAnimator.SetBool("IsWalking", false);
-            if (Mathf.Abs(targetMovement.x) > 0.02f)
+            sounds.ResetFootsteps();
+            if (targetMovement.x != 0)
             {
-                targetMovement.x *= 0.9f;
-            }
-            else
-            {
-                targetMovement.x = 0;
+                playerAnimator.SetBool("IsWalking", false);
+                if (Mathf.Abs(targetMovement.x) > 0.02f)
+                {
+                    targetMovement.x *= 0.9f;
+                }
+                else
+                {
+                    targetMovement.x = 0;
+                }
             }
         }
         else
@@ -192,7 +205,13 @@ public class PlayerController : MonoBehaviour
             //Accelerates according to horizontal input
             if ((inputAxes.x > 0 && targetMovement.x < moveSpeed) || (inputAxes.x < 0 && targetMovement.x > -moveSpeed))
             {
-                float acceleration = groundAcceleration * (isGrounded ? 1 : 0.6f);
+                float acceleration = groundAcceleration;
+
+                if (!isGrounded)
+                {
+                    acceleration *= 0.6f;
+                }
+
                 targetMovement.x += inputAxes.x * acceleration;
                 playerAnimator.SetBool("IsWalking", true);
             }
@@ -200,6 +219,14 @@ public class PlayerController : MonoBehaviour
             {
                 targetMovement.x = inputAxes.x * moveSpeed;
             }
+            if (isGrounded && Mathf.Sign(inputAxes.x) == Mathf.Sign(targetMovement.x))
+            {
+                sounds.PlayGrassFootsteps();
+            }
+        }
+        if (!isShooting && !isSpecialShooting && targetMovement.x != 0)
+        {
+            shootBehavior.ResetAimedSprites(targetMovement.x < 0);
         }
 
         playerAnimator.SetFloat("MoveSpeed", targetMovement.x / moveSpeed);

@@ -25,7 +25,7 @@ public class EnvironmentalFire : Fire, IExtinguishable
         SetActive(true);
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (!activated)
         {
@@ -46,10 +46,12 @@ public class EnvironmentalFire : Fire, IExtinguishable
         {
             Temperature -= quantity_L * extinguishEffectiveness.Evaluate(Mathf.Min(temperature - minTemperature, Combustible.MAX_TEMP));
             SetLifetime(temperatureToLifetime.Evaluate(Temperature) * peakFireHeight);
+            HitSound();
         }
 
         if (temperature == 0)
         {
+            ExtinguishSound();
             SetActive(false);
             lingerTimer = particles.main.startLifetime.constant;
         }

@@ -6,17 +6,23 @@ public class LevelTimeManager
     private float timeLimitSeconds;
     private float remainingSeconds;
     private Slider progressBar;
+    public bool activated;
 
     public delegate void OnTimeout();
     public event OnTimeout onTimeout;
 
     public LevelTimeManager(float limit, Slider bar)
     {
+        progressBar = bar;
+        Reset(limit);
+        UpdateBar();
+    }
+
+    public void Reset(float limit)
+    {
         timeLimitSeconds = limit;
         remainingSeconds = timeLimitSeconds;
-        progressBar = bar;
         progressBar.maxValue = timeLimitSeconds;
-        UpdateBar();
     }
 
     public void Reset()

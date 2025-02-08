@@ -73,8 +73,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private DialogSystem setDialogSystem;
     public static DialogSystem dialogSystem;
 
+    [SerializeField] private CheckpointManager setCheckpointManager;
+    public static CheckpointManager checkpointManager;
+
     void Awake()
     {
+        checkpointManager = setCheckpointManager;
         fireSettings = setFireSettings;
         player = setPlayer;
         cameraAnimator = setCameraAnimator;
@@ -97,6 +101,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         interactableManager.CheckNearestTarget(player.transform.position);
+        checkpointManager.UpdateCheckpoint(player.transform.position);
     }
 
     private void FixedUpdate()
@@ -114,17 +119,31 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        LevelTimeManager.DepleteTime(Time.fixedDeltaTime);
+        if (LevelTimeManager.activated)
+        {
+            LevelTimeManager.DepleteTime(Time.fixedDeltaTime);
+        }
     }
 
     public void Restartlevel()
     {
         gameOverScreen.SetActive(false);
-        levelTimeManager.Reset();
+        LevelTimeManager.Reset();
     }
 
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
+    }
+
+    public void SetTimer(float limit)
+    {
+        LevelTimeManager.Reset(limit);
+        levelTimeManager.activated = true;
+    }
+
+    public void StopTimer()
+    {
+        LevelTimeManager.activated = false;
     }
 }

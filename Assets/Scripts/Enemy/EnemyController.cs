@@ -6,13 +6,15 @@ public class EnemyController : MonoBehaviour, IExtinguishable
     public enum EnemyState
     {
         stWaiting,
+        stDefeated,
         stTargeting, // Either Aiming at player OR Moving towards/away from player
         stFrontSwing,
         stDuringAttack,
         stBackSwing
     };
 
-    [SerializeField] protected Transform flipTransform;
+    [Tooltip("The part of the enemy that can actually interact with the world")]
+    [SerializeField] protected Transform body;
     [SerializeField] protected Health healthComponent;
     [SerializeField] protected CombustibleKind fireKind;
     [SerializeField] protected LayerMask waterLayer;
@@ -36,6 +38,9 @@ public class EnemyController : MonoBehaviour, IExtinguishable
     [SerializeField] protected float backSwingSeconds;
     protected float backSwingTimer;
 
+    [SerializeField] protected float defeatDurationSeconds;
+    protected float defeatTimer;
+
     //public ScriptableObject FlameDash;
 
     // Centre of Attacl
@@ -43,6 +48,17 @@ public class EnemyController : MonoBehaviour, IExtinguishable
     // Radius of attack hitbox
 
     public EnemyState currentState = EnemyState.stWaiting;
+
+    [Header("Sound")]
+    [SerializeField] protected FireSounds sounds;
+
+    public bool Active
+    {
+        get
+        {
+            return currentState != EnemyState.stDefeated;
+        }
+    }
 
     protected virtual void OnEnable()
     {
@@ -55,6 +71,8 @@ public class EnemyController : MonoBehaviour, IExtinguishable
             attackVisual.gameObject.SetActive(false);
         }
     }
+
+
     protected virtual void FixedUpdate()
     {
         distance = Vector2.Distance(transform.position, GameManager.PlayerPosition);
@@ -63,6 +81,14 @@ public class EnemyController : MonoBehaviour, IExtinguishable
         {
             case EnemyState.stWaiting:
                 Idle();
+                break;
+            case EnemyState.stDefeated:
+                if (defeatTimer > 0)
+                {
+                    defeatTimer -= Time.fixedDeltaTime;
+                    break;
+                }
+                gameObject.SetActive(false);
                 break;
             case EnemyState.stTargeting:
                 Target();
@@ -78,19 +104,28 @@ public class EnemyController : MonoBehaviour, IExtinguishable
                 break;
         }
 
-        if (healthComponent.HealthZero)
-        {
-            gameObject.SetActive(false);
-        }
     }
     public virtual void Extinguish(CombustibleKind extinguishClass, float quantity_L)
     {
-        if (fireKind != extinguishClass)
+        if (fireKind != extinguishClass || healthComponent.HealthZero)
         {
             return;
         }
 
+        sounds.HitSound();
         healthComponent.Current -= quantity_L;
+
+        if (healthComponent.HealthZero)
+        {
+            sounds.ExtinguishSound();
+            CompleteExtinguish();
+        }
+    }
+
+    public virtual void CompleteExtinguish()
+    {
+        currentState = EnemyState.stDefeated;
+        defeatTimer = defeatDurationSeconds;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D col)
@@ -165,11 +200,11 @@ public class EnemyController : MonoBehaviour, IExtinguishable
         transform.position = (Vector2)transform.position + direction.normalized * Time.fixedDeltaTime * speed;
         if (direction.x < 0)
         {
-            flipTransform.localScale = new Vector2(-1, 1);
+            body.localScale = new Vector2(-1, 1);
         }
         else
         {
-            flipTransform.localScale = Vector2.one;
+            body.localScale = Vector2.one;
         }
     }
 

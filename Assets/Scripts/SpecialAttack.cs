@@ -22,6 +22,10 @@ public abstract class SpecialAttack : MonoBehaviour
     [SerializeField] protected float initialPushDuration;
     protected float initialPushTime;
 
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected AudioClip deploySound;
+    [SerializeField] protected AudioClip endSound;
+
     public UnityEvent DropEvent;
 
     public delegate void OnPushback(Vector2 acceleration);
