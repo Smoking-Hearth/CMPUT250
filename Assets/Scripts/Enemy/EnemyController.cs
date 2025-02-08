@@ -112,13 +112,16 @@ public class EnemyController : MonoBehaviour, IExtinguishable
             return;
         }
 
-        sounds.HitSound();
         healthComponent.Current -= quantity_L;
 
         if (healthComponent.HealthZero)
         {
             sounds.ExtinguishSound();
             CompleteExtinguish();
+        }
+        else
+        {
+            sounds.HitSound();
         }
     }
 

@@ -105,6 +105,8 @@ public class HighPressureSpecial : SpecialAttack
             persistSoundSource.Play();
             nozzleParticles.Play();
             splashParticles.Play();
+            nozzleParticles.Clear();
+            splashParticles.Clear();
             transform.parent = parent;
         }
         else
@@ -127,7 +129,7 @@ public class HighPressureSpecial : SpecialAttack
         for (int i = 1; i < segments; i++)
         {
             float segmentDistance = streamLength / segments;
-            Vector2 newPosition = Vector2.right * i * segmentDistance;
+            Vector2 newPosition = Quaternion.Euler(0, 0, aimAngle) * Vector2.right * i * segmentDistance;
             spline.SetPosition(i, newPosition);
         }
     }

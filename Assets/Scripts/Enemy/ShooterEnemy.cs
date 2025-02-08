@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class ShooterEnemy : EnemyController
 {
+    [Header("Shooting")]
     [SerializeField] private float standRange;
+    [SerializeField] private float targetHeight;
     [SerializeField] private EnemyProjectile projectilePrefab;
+    [SerializeField] private float inaccuracy;
     [SerializeField] private float shootStartDistance;
     [SerializeField] private float shootSpeed;
     [SerializeField] private int cacheCapacity;
@@ -16,7 +19,7 @@ public class ShooterEnemy : EnemyController
     }
     protected override void MoveToTarget()
     {
-        Vector2 direction = targetPosition - (Vector2)transform.position;
+        Vector2 direction = targetPosition - (Vector2)transform.position + Vector2.up * targetHeight;
         if (direction.magnitude < standRange)
         {
             return;
@@ -34,7 +37,8 @@ public class ShooterEnemy : EnemyController
 
     protected override void Attack()
     {
-        Vector2 direction = targetPosition - (Vector2)transform.position;
+        Vector2 randomDirection = new Vector2(Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy));
+        Vector2 direction = targetPosition - (Vector2)transform.position + randomDirection;
 
         if (cache[currentIndex] == null)
         {

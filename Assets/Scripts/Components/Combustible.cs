@@ -117,10 +117,6 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
             fire.SetLifetime(temperatureToLifetime.Evaluate(Temperature) * maxLifetime);
         }
-        if (fire != null && fire.IsActivated && (temperature < autoIgnitionTemperature))
-        {
-            CompleteExtinguish();
-        }
     }
 
     private void CheckFireSpread()
@@ -170,7 +166,15 @@ public class Combustible : MonoBehaviour, IExtinguishable
         if ((extinguishClass & fireKind) > 0)
         {
             Temperature -= quantity_L * extinguishEffectiveness.Evaluate(Mathf.Min(temperature - autoIgnitionTemperature, MAX_TEMP));
-            fire.HitSound();
+
+            if (fire != null && fire.IsActivated && (temperature < autoIgnitionTemperature))
+            {
+                CompleteExtinguish();
+            }
+            else
+            {
+                fire.HitSound();
+            }
         }
     }
 

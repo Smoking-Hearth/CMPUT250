@@ -5,10 +5,12 @@ public class FireSounds : MonoBehaviour
     [SerializeField] protected AudioSource audioSource;
     [SerializeField] protected AudioClip hitClip;
     [SerializeField] protected AudioClip extinguishClip;
-    protected bool playedHit;
+    static protected bool playedHit;
+    static protected bool playedExtinguish;
     private void FixedUpdate()
     {
         playedHit = false;
+        playedExtinguish = false;
     }
 
     public void HitSound()
@@ -21,6 +23,10 @@ public class FireSounds : MonoBehaviour
     }
     public void ExtinguishSound()
     {
-        audioSource.PlayOneShot(extinguishClip);
+        if (!playedExtinguish)
+        {
+            audioSource.PlayOneShot(extinguishClip);
+            playedExtinguish = true;
+        }
     }
 }

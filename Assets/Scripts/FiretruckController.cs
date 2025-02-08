@@ -87,7 +87,7 @@ public class FiretruckController : MonoBehaviour
     {
         if (firetruckRigidbody.linearVelocityX > 0)
         {
-            firetruckRigidbody.linearVelocityX -= acceleration * Time.fixedDeltaTime;
+            firetruckRigidbody.linearVelocityX -= acceleration * Time.fixedDeltaTime * 2;
         }
         else
         {
