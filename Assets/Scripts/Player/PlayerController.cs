@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     private float jumpBufferEndTime;  //The max time that a jump input will be checked
     private bool isGrounded;
     private bool isJumping;
+
+    private Rigidbody2D attached;
+
     private static PlayerControls controls;
     public static PlayerControls Controls
     {
@@ -235,6 +238,11 @@ public class PlayerController : MonoBehaviour
 
         playerRigidbody.linearVelocity = Time.fixedDeltaTime * finalVelocity;
 
+        if (attached != null)
+        {
+            playerRigidbody.linearVelocity += attached.linearVelocity;
+        }
+
         if (addedVelocity.x != 0)
         {
             if (Mathf.Abs(addedVelocity.x) > 0.1f)
@@ -253,6 +261,11 @@ public class PlayerController : MonoBehaviour
                 addedVelocity.x = 0;
             }
         }
+    }
+
+    public void SetAttached(Rigidbody2D attach)
+    {
+        attached = attach;
     }
 
     public void PushPlayer(Vector2 acceleration)
