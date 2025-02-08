@@ -44,6 +44,9 @@ public class EnemyController : MonoBehaviour, IExtinguishable
 
     public EnemyState currentState = EnemyState.stWaiting;
 
+    [Header("Sound")]
+    [SerializeField] protected FireSounds sounds;
+
     protected virtual void OnEnable()
     {
         healthComponent.Current = healthComponent.Max;
@@ -80,6 +83,7 @@ public class EnemyController : MonoBehaviour, IExtinguishable
 
         if (healthComponent.HealthZero)
         {
+            sounds.ExtinguishSound();
             gameObject.SetActive(false);
         }
     }
@@ -90,6 +94,7 @@ public class EnemyController : MonoBehaviour, IExtinguishable
             return;
         }
 
+        sounds.HitSound();
         healthComponent.Current -= quantity_L;
     }
 

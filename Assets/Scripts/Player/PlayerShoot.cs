@@ -170,11 +170,11 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector2 targetPosition)
+    public bool Shoot(Vector2 targetPosition)
     {
         if (!waterTank.UseWater(bullet.Cost))
         {
-            return;
+            return false;
         }
 
         Vector2 shootDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
@@ -196,6 +196,7 @@ public class PlayerShoot : MonoBehaviour
         shootCooldownTimer = shootCooldown;
 
         bulletCounter = (bulletCounter + 1) % maxBullets;
+        return true;
     }
 
     public bool SpecialShoot(bool active)
