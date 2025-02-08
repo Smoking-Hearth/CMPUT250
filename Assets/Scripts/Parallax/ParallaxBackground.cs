@@ -11,24 +11,69 @@ public class ParallaxBackground : MonoBehaviour
 {
     [SerializeField] private List<ParallaxLayer> layers;
 
+    [Tooltip("This is the origin as far as parallax is concerned")]
+    [SerializeField] private GameObject relativeTo;
+
+    // These are attached to the active camera
+    [SerializeField] private MeshRenderer tiledLayerPrefab;
+    private GameObject tiledLayerAnchor;
+
     void Awake()
     {
+        Vector2 minTiledSize = Vector2.positiveInfinity;
+
         foreach (var layer in layers)
         {
-            layer.MeshRenderer.material.SetTexture("_MainTex", layer.Texture);
-            Debug.Log(layer.Texture);
+            if (layer.IsTiled)
+            {
+                if (tiledLayerAnchor == null)                
+                {
+                    Vector3 pos = Vector3.zero;
+                    pos.z = transform.position.z;
+                    tiledLayerAnchor = new GameObject("ParallaxTiledLayerAnchor");
+                    tiledLayerAnchor.transform.SetParent(Camera.main.transform);
+                    tiledLayerAnchor.transform.localPosition = pos;
+                }
+
+                layer.meshRenderer = Instantiate(tiledLayerPrefab, tiledLayerAnchor.transform);
+                Vector2 size = layer.meshRenderer.bounds.extents;
+                minTiledSize = Vector2.Min(minTiledSize, layer.meshRenderer.bounds.extents);
+                layer.meshRenderer.material.SetTexture("_MainTex", layer.Texture);
+            }
+        }
+
+        if (tiledLayerAnchor != null) 
+        {
+            float height = Camera.main.orthographicSize;
+            float width = Camera.main.aspect * height;
+
+            Vector3 scale = tiledLayerAnchor.transform.localScale;
+            scale.x = width / minTiledSize.x;
+            scale.y = height / minTiledSize.y;
+            tiledLayerAnchor.transform.localScale = scale;
         }
     }
 
     void Update()
     {
-        Vector2 cameraTransform = Camera.main.transform.transform.position;
-        // FIXME
-        cameraTransform.y = 0;
+        Vector3 cameraTransform = Camera.main.transform.transform.position;
+        if (relativeTo != null)
+        {
+            cameraTransform -= relativeTo.transform.position;
+        }
+
         foreach (var layer in layers)
         {
-            // This is just a pseudo perspective divide but weird.
-            layer.MeshRenderer.material.SetTextureOffset("_MainTex", cameraTransform / layer.transform.position.z);
+            Vector3 offset = cameraTransform / layer.transform.position.z;
+            if (layer.IsTiled)
+            {
+                // This is just a pseudo perspective divide but weird.
+                layer.meshRenderer.material.SetTextureOffset("_MainTex", offset);
+            }
+            else
+            {
+                layer.transform.position = layer.InitPosition + offset;
+            }
         }
     }
 }

@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 7947579474238843449}
   - component: {fileID: 2972621808435147334}
   - component: {fileID: 8181603127322463833}
-  - component: {fileID: 1782082566863437477}
   m_Layer: 0
-  m_Name: ParallaxLayer
+  m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,17 +86,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1782082566863437477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5470051622304641538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adcabf62c7ab3a4b4b7b352d11a85e4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <MeshRenderer>k__BackingField: {fileID: 8181603127322463833}
-  <Texture>k__BackingField: {fileID: 0}

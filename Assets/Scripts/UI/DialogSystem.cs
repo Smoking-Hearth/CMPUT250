@@ -1,18 +1,16 @@
-using System;
 using System.Collections.Generic;
 using System.Collections;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameDialog : IEnumerator<String> {
-    public String Title;
+public class GameDialog : IEnumerator<string> {
+    public string Title;
 
-    public IList<String> lines;
+    public IList<string> lines;
     private int idx = 0;
 
-    public String Current
+    public string Current
     {
         get 
         { 
@@ -29,7 +27,7 @@ public class GameDialog : IEnumerator<String> {
     }
 
 
-    public GameDialog(IList<String> inner, String title = null)
+    public GameDialog(IList<string> inner, string title = null)
     {
         Title = title;
         lines = inner;
