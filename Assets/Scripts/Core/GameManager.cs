@@ -119,17 +119,31 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        LevelTimeManager.DepleteTime(Time.fixedDeltaTime);
+        if (LevelTimeManager.activated)
+        {
+            LevelTimeManager.DepleteTime(Time.fixedDeltaTime);
+        }
     }
 
     public void Restartlevel()
     {
         gameOverScreen.SetActive(false);
-        levelTimeManager.Reset();
+        LevelTimeManager.Reset();
     }
 
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
+    }
+
+    public void SetTimer(float limit)
+    {
+        LevelTimeManager.Reset(limit);
+        levelTimeManager.activated = true;
+    }
+
+    public void StopTimer()
+    {
+        LevelTimeManager.activated = false;
     }
 }
