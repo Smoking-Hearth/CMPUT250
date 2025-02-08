@@ -81,6 +81,7 @@ public class PlayerShoot : MonoBehaviour
         SpecialAttack.onDropSpecial += DropSpecial;
         PlayerController.Controls.PlayerMovement.SwapSpecial.performed += inventory.Swap;
         WaterRefiller.onWaterRefill += waterTank.RefillWater;
+        PlayerController.onLand += PlayerLand;
     }
 
     private void OnDisable()
@@ -89,6 +90,7 @@ public class PlayerShoot : MonoBehaviour
         SpecialAttack.onDropSpecial -= DropSpecial;
         PlayerController.Controls.PlayerMovement.SwapSpecial.performed -= inventory.Swap;
         WaterRefiller.onWaterRefill -= waterTank.RefillWater;
+        PlayerController.onLand -= PlayerLand;
     }
 
     private void FixedUpdate()
@@ -212,9 +214,6 @@ public class PlayerShoot : MonoBehaviour
         if (active)
         {
             specialAttack.ResetAttack(aimAngle);
-        }
-        else
-        {
             specialCooldownTimer = specialCooldown;
         }
         return true;
@@ -234,6 +233,15 @@ public class PlayerShoot : MonoBehaviour
         }
         specialAttack.AimAttack(nozzle.position, aimAngle);
         return true;
+    }
+
+    private void ResetSpecialCooldown()
+    {
+        specialCooldownTimer = 0;
+    }
+    private void PlayerLand(Vector2 landPosition, float force)
+    {
+        ResetSpecialCooldown();
     }
 
     private void PickUpSpecial(SpecialAttack special)
