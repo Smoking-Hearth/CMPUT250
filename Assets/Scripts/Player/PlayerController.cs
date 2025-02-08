@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 inputAxes;
 
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private PlayerSounds sounds;
 
     private float jumpBufferEndTime;  //The max time that a jump input will be checked
     private bool isGrounded;
@@ -133,6 +134,7 @@ public class PlayerController : MonoBehaviour
             shootBehavior.AimSprites();
             if (shootBehavior.ShootAvailable)
             {
+                sounds.PlayMainShoot();
                 Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                 shootBehavior.Shoot(targetPosition);
             }

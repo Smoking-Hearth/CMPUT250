@@ -6,6 +6,10 @@ public class Fire : MonoBehaviour
     [SerializeField] protected ParticleSystem particles;
     [SerializeField] protected Light2D fireLight;
     protected bool activated;
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected AudioClip hitClip;
+    [SerializeField] protected AudioClip extinguishClip;
+    protected bool playedHit;
 
     public bool IsActivated
     {
@@ -13,6 +17,11 @@ public class Fire : MonoBehaviour
         {
             return activated;
         }
+    }
+
+    protected void FixedUpdate()
+    {
+        playedHit = false;
     }
 
     public void Initialize(FireInfo info)
@@ -45,5 +54,18 @@ public class Fire : MonoBehaviour
     {
         ParticleSystem.MainModule main = particles.main;
         main.startLifetime = particleLifetime;
+    }
+
+    public void HitSound()
+    {
+        if (!playedHit)
+        {
+            audioSource.PlayOneShot(hitClip);
+            playedHit = true;
+        }
+    }
+    public void ExtinguishSound()
+    {
+        audioSource.PlayOneShot(extinguishClip);
     }
 }

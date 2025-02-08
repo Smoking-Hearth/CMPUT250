@@ -18,11 +18,14 @@ public class HighPressureSpecial : SpecialAttack
     [SerializeField] private float splashRadius;
     [SerializeField] private LayerMask collideLayers;
     [SerializeField] private LayerMask fireLayers;
+    [SerializeField] private float extinguishRate;
     private float extinguishRayTimer;
 
     [SerializeField] private AnimationCurve splashCurve;
     [SerializeField] private ParticleSystem splashParticles;
     [SerializeField] private Transform spriteMask;
+
+    [SerializeField] private AudioSource persistSoundSource;
 
     public override int MaintainCost
     {
@@ -80,6 +83,7 @@ public class HighPressureSpecial : SpecialAttack
     private bool Retract()
     {
         Vector2 targetDirection = spline.GetPosition(segments - 1);
+        persistSoundSource.Stop();
 
         if (Vector2.Distance(targetDirection, spline.GetPosition(segments - 2)) < 0.2f)
         {
@@ -97,6 +101,8 @@ public class HighPressureSpecial : SpecialAttack
     {
         if (set)
         {
+            audioSource.PlayOneShot(deploySound);
+            persistSoundSource.Play();
             nozzleParticles.Play();
             splashParticles.Play();
             transform.parent = parent;
@@ -246,7 +252,7 @@ public class HighPressureSpecial : SpecialAttack
             OnSplash(trailingRay.point);
             Debug.DrawRay(trailingRay.point, Vector2.up, Color.green, 2);
         }
-        extinguishRayTimer = streamDelay;
+        extinguishRayTimer = extinguishRate;
     }
 
     private void OnSplash(Vector2 splashPosition)
