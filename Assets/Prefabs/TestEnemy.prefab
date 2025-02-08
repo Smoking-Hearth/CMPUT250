@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1138bb1fb0265b7daa0428b5f52ea8b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flipTransform: {fileID: 2211365204300477947}
+  body: {fileID: 2211365204300477947}
   healthComponent: {fileID: 1073195595969500279}
   fireKind: 1
   waterLayer:
@@ -188,6 +188,7 @@ MonoBehaviour:
   commitAttackSeconds: 0.6
   frontSwingSeconds: 0.5
   backSwingSeconds: 0.5
+  defeatDurationSeconds: 0.5
   currentState: 0
   sounds: {fileID: -8181541046412710059}
 --- !u!114 &1073195595969500279
@@ -202,8 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8e80934f8b14db3be0a9ac568f19f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max: 1000
-  current: 1000
+  max: 700
+  current: 700
   regenerationRate: 0
   shouldTriggerCallback: 1
 --- !u!58 &2471601280667227481

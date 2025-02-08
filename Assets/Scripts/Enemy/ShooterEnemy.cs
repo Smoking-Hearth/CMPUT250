@@ -24,11 +24,11 @@ public class ShooterEnemy : EnemyController
         transform.position = (Vector2)transform.position + direction.normalized * Time.fixedDeltaTime * speed;
         if (direction.x < 0)
         {
-            flipTransform.localScale = new Vector2(-1, 1);
+            body.localScale = new Vector2(-1, 1);
         }
         else
         {
-            flipTransform.localScale = Vector2.one;
+            body.localScale = Vector2.one;
         }
     }
 
@@ -49,11 +49,11 @@ public class ShooterEnemy : EnemyController
 
         if (direction.x < 0)
         {
-            flipTransform.localScale = new Vector2(-1, 1);
+            body.localScale = new Vector2(-1, 1);
         }
         else
         {
-            flipTransform.localScale = Vector2.one;
+            body.localScale = Vector2.one;
         }
 
         currentIndex = (currentIndex + 1) % cacheCapacity;
