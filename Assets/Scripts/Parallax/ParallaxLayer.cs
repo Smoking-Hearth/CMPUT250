@@ -2,6 +2,21 @@ using UnityEngine;
 
 public class ParallaxLayer : MonoBehaviour
 {
-    [field: SerializeField] public MeshRenderer MeshRenderer { get; private set;}
+    [HideInInspector] public MeshRenderer meshRenderer = null;
     [field: SerializeField] public Texture Texture { get; private set;}
+    [field: SerializeField] public bool IsTiled {get; private set; }
+
+    private Vector3 initPosition;
+    public Vector3 InitPosition 
+    { 
+        get { return initPosition; }
+    }
+
+    // This can be thought of as the same thing as the speed
+    private float depth = 1f;
+
+    void Awake()
+    {
+        initPosition = transform.localPosition;
+    }
 }
