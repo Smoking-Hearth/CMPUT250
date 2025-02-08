@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
                 sounds.PlayGrassFootsteps();
             }
         }
-        if (!isShooting && !isSpecialShooting)
+        if (!isShooting && !isSpecialShooting && targetMovement.x != 0)
         {
             shootBehavior.ResetAimedSprites(targetMovement.x < 0);
         }
