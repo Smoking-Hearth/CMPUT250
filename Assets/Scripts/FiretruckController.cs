@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FiretruckController : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class FiretruckController : MonoBehaviour
     [SerializeField] private float topSpeed;
     [SerializeField] private float endX;
 
+    private bool started;
+    [SerializeField] private UnityEvent startEvent;
+    [SerializeField] private UnityEvent completeEvent;
+    [SerializeField] private UnityEvent stopEvent;
+    [SerializeField] private UnityEvent continueEvent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -66,6 +72,15 @@ public class FiretruckController : MonoBehaviour
         activeArea.center = transform.position + activeAreaOffset;
         if (activeArea.Contains(GameManager.PlayerPosition) && transform.position.x < endX)
         {
+            if (!started)
+            {
+                started = true;
+                startEvent.Invoke();
+            }
+            else
+            {
+                continueEvent.Invoke();
+            }
             firetruckState = State.Accelerating;
         }
     }
@@ -99,8 +114,14 @@ public class FiretruckController : MonoBehaviour
     {
         activeArea.center = transform.position + activeAreaOffset;
         firetruckRigidbody.linearVelocityX = topSpeed * Time.fixedDeltaTime;
-        if (!activeArea.Contains(GameManager.PlayerPosition) || transform.position.x >= endX)
+        if (transform.position.x >= endX)
         {
+            completeEvent.Invoke();
+            firetruckState = State.Deccelerating;
+        }
+        else if (!activeArea.Contains(GameManager.PlayerPosition))
+        {
+            stopEvent.Invoke();
             firetruckState = State.Deccelerating;
         }
     }
