@@ -19,7 +19,8 @@ public class ObjectSpawner : MonoBehaviour
         currentIndex = (currentIndex + 1) % maxObjects;
         if (spawnedObjects[currentIndex] != null)
         {
-            Destroy(spawnedObjects[currentIndex].gameObject);
+            spawnedObjects[currentIndex].parent = null;
+            spawnedObjects[currentIndex].gameObject.SetActive(false);
         }
 
         spawnedObjects[currentIndex] = Instantiate(spawnPrefab, (Vector2)transform.position + spawnPosition, Quaternion.identity, transform);

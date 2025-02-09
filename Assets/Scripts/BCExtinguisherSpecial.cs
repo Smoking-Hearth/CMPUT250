@@ -19,12 +19,29 @@ public class BCExtinguisherSpecial : SpecialAttack
         cloudCache = new Projectile[cacheCapacity];
     }
 
+    private void OnDisable()
+    {
+        if (pickedUp)
+        {
+            pickedUp = false;
+            if (onDropSpecial != null)
+            {
+                onDropSpecial(this);
+            }
+        }
+    }
+
     // Update is called once per frame
     private void FixedUpdate()
     {
         if (shootDelayTimer > 0)
         {
             shootDelayTimer -= Time.fixedDeltaTime;
+        }
+
+        if (!pickedUp && transform.parent != null)
+        {
+            transform.parent = null;
         }
     }
 
@@ -51,6 +68,7 @@ public class BCExtinguisherSpecial : SpecialAttack
             return;
         }
 
+        audioSource.PlayOneShot(deploySound);
         Projectile firedBullet = cloudCache[cacheIndex];
 
         if (firedBullet == null)
@@ -71,17 +89,11 @@ public class BCExtinguisherSpecial : SpecialAttack
 
     public void PickUp()
     {
+        pickedUp = true;
         if (onPickupSpecial != null)
         {
             onPickupSpecial(this);
         }
     }
 
-    public void Drop()
-    {
-        if (onDropSpecial != null)
-        {
-            onDropSpecial(this);
-        }
-    }
 }

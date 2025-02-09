@@ -27,6 +27,7 @@ public abstract class SpecialAttack : MonoBehaviour
     [SerializeField] protected AudioClip endSound;
 
     public UnityEvent DropEvent;
+    protected bool pickedUp;
 
     public delegate void OnPushback(Vector2 acceleration);
     public static event OnPushback onPushback;
@@ -91,6 +92,15 @@ public abstract class SpecialAttack : MonoBehaviour
             {
                 onPushback(pushDirection * pushbackAcceleration * Time.fixedDeltaTime);
             }
+        }
+    }
+
+    public void Drop()
+    {
+        DropEvent.Invoke();
+        if (transform.parent != null)
+        {
+            transform.parent = null;
         }
     }
 }

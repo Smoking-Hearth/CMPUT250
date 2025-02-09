@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5119167304586901053}
   - component: {fileID: 2042772807835467173}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,8 @@ GameObject:
   - component: {fileID: 3952364912518327076}
   - component: {fileID: 3267137941642443159}
   - component: {fileID: 2914392082632029118}
-  m_Layer: 0
+  - component: {fileID: -252026861301856817}
+  m_Layer: 3
   m_Name: Extinguisher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,11 +144,11 @@ MonoBehaviour:
   inventoryIcon: {fileID: 21300000, guid: 73c091c726717f3488466f1077abaa7c, type: 3}
   tankCapacity: 2000
   pushbackMultiplier: {x: 0.5, y: 2}
-  pushbackInitial: 500
+  pushbackInitial: 300
   pushbackAcceleration: 450
   initialPushDuration: 0.08
-  audioSource: {fileID: 0}
-  deploySound: {fileID: 0}
+  audioSource: {fileID: -252026861301856817}
+  deploySound: {fileID: 8300000, guid: 6f692b600274db949b79592f3887c04c, type: 3}
   endSound: {fileID: 0}
   DropEvent:
     m_PersistentCalls:
@@ -336,6 +337,103 @@ MonoBehaviour:
   stopInteractEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!82 &-252026861301856817
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2577985618727057976}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4556201826236971887
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +446,7 @@ GameObject:
   - component: {fileID: 2371143867144840696}
   - component: {fileID: 4905921920637607158}
   - component: {fileID: 6982475449521629676}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Canvas (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +547,7 @@ GameObject:
   - component: {fileID: 3543071842052164305}
   - component: {fileID: 9223053606930484043}
   - component: {fileID: 3212224839635089913}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

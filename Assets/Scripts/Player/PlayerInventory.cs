@@ -69,12 +69,13 @@ public class PlayerInventory
     {
         if (currentIndex == 0)
         {
-            return;
+            currentIndex++;
         }
-        specials[currentIndex].transform.parent = null;
-        currentIcon.sprite = null;
-        specials[currentIndex].DropEvent.Invoke();
+        currentIcon.sprite = specials[0].DisplayIcon;
+        otherIcon.sprite = null;
+        specials[currentIndex].Drop();
         specials[currentIndex].transform.localScale = Vector2.one;
+        specials[currentIndex] = null;
 
         currentIndex = 0;
     }
