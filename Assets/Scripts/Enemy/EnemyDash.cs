@@ -15,8 +15,7 @@ public class EnemyDash : EnemyController
 
     public GameObject enemy;
 
-    private Vector3 targetPosition;
-    private Vector3 enemyPosition;
+    // private Vector3 enemyPosition;
     public float DashSpeed = 18f;
     public float timeDashing = 0.50f;
 
@@ -35,11 +34,11 @@ public class EnemyDash : EnemyController
     public void Dash(){
 
         // Save To and From positions
-        targetPosition = player.transform.position;
         enemyPosition = enemy.transform.position;
         flameSprite = GetComponent<SpriteRenderer>();
         oldColor = flameSprite.color;
         // dashBox = GetComponent<BoxCollider2D>();
+        //Vector3 direction = (1f, 1f, 1f);
 
 
         StartCoroutine(BeginToDash(targetPosition, timeDashing));
@@ -48,12 +47,12 @@ public class EnemyDash : EnemyController
     public IEnumerator BeginToDash(Vector3 target, float time)
     {   
 
-        GetComponent<EnemyController>().cannotDamage = true;
-        GetComponent<EnemyController>().canMove = false;
+        cannotDamage = true;
+        canMove = false;
 
         flameSprite.color = newColor;
 
-        Vector3 direction = (targetPosition - enemyPosition).normalized;
+        //Vector3 direction = (targetPosition - enemyPosition).normalized; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         float overallTime = 0f;
 
@@ -84,8 +83,8 @@ public class EnemyDash : EnemyController
         flameSprite.color = oldColor;
 
         // Resume previous movement
-        GetComponent<EnemyController>().cannotDamage = false;
-        GetComponent<EnemyController>().canMove = true;
+        cannotDamage = false;
+        canMove = true;
 
 
         OnDashComplete?.Invoke();

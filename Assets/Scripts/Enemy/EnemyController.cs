@@ -20,6 +20,9 @@ public class EnemyController : MonoBehaviour, IExtinguishable
     [SerializeField] protected LayerMask waterLayer;
     [SerializeField] protected EnemyAttackInfo attackInfo;
     protected Vector2 targetPosition;
+    protected Vector2 enemyPosition;
+
+    protected Vector3 direction;
     public float speed;
     protected float distance;
     public bool cannotDamage = false;
@@ -75,7 +78,9 @@ public class EnemyController : MonoBehaviour, IExtinguishable
 
     protected virtual void FixedUpdate()
     {
+        // Calculate distance between player and enemy
         distance = Vector2.Distance(transform.position, GameManager.PlayerPosition);
+        direction = (targetPosition - (Vector2)transform.position).normalized;
 
         switch (currentState)
         {
