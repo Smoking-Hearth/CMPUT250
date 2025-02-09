@@ -1,4 +1,7 @@
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerController))]
@@ -10,12 +13,16 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float hurtRadius;
     private PlayerController controller;
 
+    public CheckpointManager checkPointManager;
+    public GameManager gameManager;
+
     void Awake()
     {
         health = GetComponent<Health>();
         healthBar.maxValue = health.Max;
         healthBar.minValue = health.Min;
         healthBar.value = health.Current;
+        //CheckpointManager checkPointManager = GetComponent<CheckpointManager>();
 
         controller = GetComponent<PlayerController>();
     }
@@ -35,7 +42,22 @@ public class PlayerStats : MonoBehaviour
     void UpdateHealthBar()
     {
         healthBar.value = health.Current;
+
+        if (healthBar.value <= 0f  || transform.position.y <= -40f){  //PROBLEM: Doesn't respawn you when you fall off edge, but may not matter
+            OnDeath();
+        }
+
     }
+
+    void OnDeath(){
+        // Teleports player to most recent checkpoint from checkPointManager, also resets health/healthbar
+        int current = checkPointManager.Current;
+        transform.position = checkPointManager.Checkpoints[current].transform.position;
+        GetComponent<Health>().Current = 100;
+        healthBar.value = healthBar.maxValue;
+
+    }
+
 
     private void CheckEnemyAttack(Vector2 position, Vector2 sourcePosition, EnemyAttackInfo attackInfo)
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class CheckpointManager
+public class CheckpointManager: MonoBehaviour
 {
     private int current = -1;
     public int Current 
@@ -27,6 +27,9 @@ public class CheckpointManager
             if (Vector2.Distance(checkpoints[i].position, playerPos) <= triggerDist)
             {
                 current = i;
+                // Debug.Log("New checkpoint appointed: "+ checkpoints[current].position);
+                // Debug.Log("Current: " + current);
+                
             }
         }
     }
