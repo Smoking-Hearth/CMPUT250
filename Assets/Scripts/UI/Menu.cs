@@ -50,13 +50,15 @@ public class Menu : MonoBehaviour
 
     void OnSettingsClick()
     {
-        Scene forest = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
-        Unquenchable.SceneManager.SetSceneVisible(forest, false);
+        Scene selected = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
+        Unquenchable.SceneManager.SetSceneVisible(selected, false);
         StartCoroutine(Unquenchable.SceneManager.SetSceneActive(SceneIndex.Settings));
     }
 
     void OnCreditsClick()
     {
-        Debug.Log("TODO :)");
+        Scene selected = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
+        Unquenchable.SceneManager.SetSceneVisible(selected, false);
+        StartCoroutine(Unquenchable.SceneManager.SetSceneActive(SceneIndex.Credits));
     }
 }

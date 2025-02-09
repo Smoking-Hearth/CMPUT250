@@ -72,7 +72,7 @@ namespace Unquenchable {
         // These are bitflags. The nth bit belongs to the nth scene.
         // e.g. First bit is for MainMenu since (1 << 0).
         static int loaded = 0;
-        static SceneInfo[] sceneInfos = new SceneInfo[6];
+        static SceneInfo[] sceneInfos = new SceneInfo[7];
 
         public static SceneInfo[] SceneInfos
         {
