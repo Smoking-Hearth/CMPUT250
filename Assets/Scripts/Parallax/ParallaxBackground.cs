@@ -18,9 +18,20 @@ public class ParallaxBackground : MonoBehaviour
     [SerializeField] private MeshRenderer tiledLayerPrefab;
     private GameObject tiledLayerAnchor;
 
+    private Vector2 previousScreenSize;
+    private Vector2 minTiledSize;
+
+    void UpdateTiledLayerAnchorSize()
+    {
+        Vector3 scale = tiledLayerAnchor.transform.localScale;
+        scale.x = previousScreenSize.x / minTiledSize.x;
+        scale.y = previousScreenSize.y / minTiledSize.y;
+        tiledLayerAnchor.transform.localScale = scale;
+    }
+
     void Awake()
     {
-        Vector2 minTiledSize = Vector2.positiveInfinity;
+        minTiledSize = Vector2.positiveInfinity;
 
         foreach (var layer in layers)
         {
@@ -44,18 +55,23 @@ public class ParallaxBackground : MonoBehaviour
 
         if (tiledLayerAnchor != null) 
         {
-            float height = Camera.main.orthographicSize;
-            float width = Camera.main.aspect * height;
-
-            Vector3 scale = tiledLayerAnchor.transform.localScale;
-            scale.x = width / minTiledSize.x;
-            scale.y = height / minTiledSize.y;
-            tiledLayerAnchor.transform.localScale = scale;
+            float halfheight = Camera.main.orthographicSize;
+            previousScreenSize = new Vector2(Camera.main.aspect * halfheight, halfheight);
+            UpdateTiledLayerAnchorSize();
         }
     }
 
     void Update()
     {
+        // Detect resizes. This is VERY inefficient.
+        Vector2 currentScreenSize = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
+
+        if (currentScreenSize != previousScreenSize)
+        {
+            previousScreenSize = currentScreenSize;
+            UpdateTiledLayerAnchorSize();
+        }
+
         Vector3 cameraTransform = Camera.main.transform.transform.position;
         if (relativeTo != null)
         {
