@@ -22,6 +22,7 @@ public class FireSettings : ScriptableObject
     [SerializeField] FireInfo electricalFireSettings;
     [SerializeField] FireInfo metalFireSettings;
     [SerializeField] FireInfo cookingFireSettings;
+    public EnemyAttackInfo electricBackfire;
 
     public float FireDelay
     {

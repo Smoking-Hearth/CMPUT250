@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034689029
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.23137255, g: 0.89411765, b: 1, a: 1}
@@ -4888,7 +4888,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034689029
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -5035,7 +5035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0f494653bb6fd4680933da879257e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnemyProjectile: 0
   damageClass: 6
   onShootParticles: {fileID: 0}
   cost: 5
@@ -9874,7 +9873,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034689029
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -14765,7 +14764,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034689029
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -14853,5 +14852,5 @@ MonoBehaviour:
   secondsBetweenTicks: 0.7
   areaOffset: {x: 0, y: 0}
   areaRadius: 2
-  damage: 50
+  damage: 30
   particles: {fileID: 2240957381722007580}

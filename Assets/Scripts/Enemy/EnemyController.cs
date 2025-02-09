@@ -107,8 +107,17 @@ public class EnemyController : MonoBehaviour, IExtinguishable
     }
     public virtual void Extinguish(CombustibleKind extinguishClass, float quantity_L)
     {
-        if (fireKind != extinguishClass || healthComponent.HealthZero)
+        if (healthComponent.HealthZero)
         {
+            return;
+        }
+        if ((extinguishClass & fireKind) == 0)
+        {
+            if (fireKind == CombustibleKind.C_ELECTRICAL)
+            {
+                Vector2 direction = (Vector2)transform.position - GameManager.PlayerPosition;
+                GameManager.onEnemyAttack(GameManager.PlayerPosition + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
+            }
             return;
         }
 

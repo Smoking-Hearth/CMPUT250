@@ -48,6 +48,11 @@ public class EnvironmentalFire : Fire, IExtinguishable
             SetLifetime(temperatureToLifetime.Evaluate(Temperature) * peakFireHeight);
             HitSound();
         }
+        else if (fireKind == CombustibleKind.C_ELECTRICAL)
+        {
+            Vector2 direction = (Vector2)transform.position - GameManager.PlayerPosition;
+            GameManager.onEnemyAttack(GameManager.PlayerPosition + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
+        }
 
         if (temperature == 0)
         {

@@ -176,6 +176,11 @@ public class Combustible : MonoBehaviour, IExtinguishable
                 fire.HitSound();
             }
         }
+        else if (fireKind == CombustibleKind.C_ELECTRICAL)
+        {
+            Vector2 direction = (Vector2)transform.position - GameManager.PlayerPosition;
+            GameManager.onEnemyAttack(GameManager.PlayerPosition + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
+        }
     }
 
     public void CompleteExtinguish()

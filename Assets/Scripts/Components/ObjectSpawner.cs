@@ -8,6 +8,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] private Vector2 spawnPosition;
     private Transform[] spawnedObjects;
     private int currentIndex;
+    private Transform lastDisabledObject;
 
     void Start()
     {
@@ -21,6 +22,12 @@ public class ObjectSpawner : MonoBehaviour
         {
             spawnedObjects[currentIndex].parent = null;
             spawnedObjects[currentIndex].gameObject.SetActive(false);
+
+            if (lastDisabledObject != null)
+            {
+                Destroy(lastDisabledObject.gameObject);
+            }
+            lastDisabledObject = spawnedObjects[currentIndex];
         }
 
         spawnedObjects[currentIndex] = Instantiate(spawnPrefab, (Vector2)transform.position + spawnPosition, Quaternion.identity, transform);

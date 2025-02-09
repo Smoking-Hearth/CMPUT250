@@ -46,6 +46,7 @@ static class FireSettingsUIElementsRegister
                 properties.Add(new PropertyField(settings.FindProperty("electricalFireSettings")));
                 properties.Add(new PropertyField(settings.FindProperty("metalFireSettings")));
                 properties.Add(new PropertyField(settings.FindProperty("cookingFireSettings")));
+                properties.Add(new PropertyField(settings.FindProperty("electricBackfire")));
 
                 rootElement.Bind(settings);
             },

@@ -65,12 +65,11 @@ public class PlayerStats : MonoBehaviour
         float attackDistance = attackDirection.magnitude;
 
         Vector2 directionFromSource = (Vector2)transform.position - sourcePosition;
-        float sourceDistance = directionFromSource.magnitude;
         if (attackDistance < hurtRadius + attackInfo.radius)
         {
             health.Current -= attackInfo.damage;
 
-            float closeness = Mathf.Clamp01(1 - sourceDistance / (attackInfo.radius + hurtRadius));
+            float closeness = Mathf.Clamp01(1 - attackDistance / (attackInfo.radius + hurtRadius));
             Vector2 knockback = new Vector2(closeness * directionFromSource.normalized.x * attackInfo.knockbackPower.x, attackInfo.knockbackPower.y);
             controller.PushPlayer(knockback);
         }
