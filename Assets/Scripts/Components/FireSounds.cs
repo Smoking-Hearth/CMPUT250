@@ -6,18 +6,24 @@ public class FireSounds : MonoBehaviour
     [SerializeField] protected AudioClip hitClip;
     [SerializeField] protected AudioClip extinguishClip;
     static protected bool playedHit;
+    protected float hitTimer;
     static protected bool playedExtinguish;
     private void FixedUpdate()
     {
         playedHit = false;
         playedExtinguish = false;
+        if (hitTimer > 0)
+        {
+            hitTimer -= Time.fixedDeltaTime;
+        }
     }
 
     public void HitSound()
     {
-        if (!playedHit)
+        if (hitTimer <= 0 && !playedHit)
         {
             audioSource.PlayOneShot(hitClip);
+            hitTimer = 0.2f;
             playedHit = true;
         }
     }

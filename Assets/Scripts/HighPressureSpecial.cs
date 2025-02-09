@@ -126,7 +126,7 @@ public class HighPressureSpecial : SpecialAttack
     public override void ResetAttack(float aimAngle)
     {
         targetAngle = aimAngle;
-        for (int i = 1; i < segments; i++)
+        for (int i = segments - 1; i >= 1; i--)
         {
             float segmentDistance = streamLength / segments;
             Vector2 newPosition = Quaternion.Euler(0, 0, aimAngle) * Vector2.right * i * segmentDistance;

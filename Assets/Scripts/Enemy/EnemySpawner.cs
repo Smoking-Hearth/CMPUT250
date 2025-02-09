@@ -26,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
         }
         if (enemiesToComplete > 0 && enemiesFallen >= enemiesToComplete)
         {
+            activated = false;
             completeEvent.Invoke();
             return;
         }

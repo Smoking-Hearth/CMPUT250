@@ -28,7 +28,7 @@ public class Fire : MonoBehaviour
         fireLight.intensity = info.lightIntensity;
     }
 
-    public void SetActive(bool set)
+    public virtual void SetActive(bool set)
     {
         activated = set;
         fireLight.enabled = set;

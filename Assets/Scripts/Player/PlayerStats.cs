@@ -51,8 +51,11 @@ public class PlayerStats : MonoBehaviour
 
     void OnDeath(){
         // Teleports player to most recent checkpoint from checkPointManager, also resets health/healthbar
-        int current = checkPointManager.Current;
-        transform.position = checkPointManager.Checkpoints[current].transform.position;
+        if (checkPointManager != null)
+        {
+            int current = checkPointManager.Current;
+            transform.position = checkPointManager.Checkpoints[current].transform.position;
+        }
         GetComponent<Health>().Current = 100;
         healthBar.value = healthBar.maxValue;
 

@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class FinalBossFloor : MonoBehaviour
 {
-    private GameObject storedObject;
+    private GameObject storedDoorObject;
     [SerializeField] private Transform door;
+    [SerializeField] private SpriteRenderer doorGraphics;
+
+    [SerializeField] private FinalBossArm arm;
 
     [SerializeField] private float activateAltitude;
     private bool isOpen;
@@ -11,7 +14,7 @@ public class FinalBossFloor : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (storedObject != null && !isOpen)
+        if (storedDoorObject != null && !isOpen)
         {
             if (GameManager.PlayerPosition.y >= door.position.y + activateAltitude)
             {
@@ -22,19 +25,30 @@ public class FinalBossFloor : MonoBehaviour
 
     public bool LoadDoor(GameObject prefab)
     {
-        if (isOpen && storedObject != null)
+        if (isOpen && storedDoorObject != null)
         {
             return false;
         }
 
-        storedObject = Instantiate(prefab, door.position, Quaternion.identity, null).gameObject;
-        storedObject.SetActive(false);
+        storedDoorObject = Instantiate(prefab, door.position, Quaternion.identity, null).gameObject;
+        storedDoorObject.SetActive(false);
         return true;
     }
 
     public void OpenDoor()
     {
-        storedObject.SetActive(true);
+        storedDoorObject.SetActive(true);
         isOpen = true;
+        doorGraphics.enabled = true;
+    }
+
+    public bool ActivateArm()
+    {
+        if (!arm.IsActivated)
+        {
+            arm.gameObject.SetActive(true);
+            arm.SetActive(true);
+        }
+        return true;
     }
 }

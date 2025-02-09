@@ -21,14 +21,15 @@ public class FinalBoss : MonoBehaviour
     private int currentFloor;
 
     [SerializeField] private GameObject[] spawnObjects;
-    [SerializeField] private FinalBossFloor floorPrefab;
+    [SerializeField] private FinalBossFloor[] floorPrefabs;
 
     public void Generate()
     {
         floors = new FinalBossFloor[floorCount];
         for (int i = 0; i < floorCount; i++)
         {
-            floors[i] = Instantiate(floorPrefab, transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
+            int randomFloor = Random.Range(0, floorPrefabs.Length);
+            floors[i] = Instantiate(floorPrefabs[randomFloor], transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
         }
         buildingHeight = floorHeight * floors.Length;
     }
@@ -107,8 +108,12 @@ public class FinalBoss : MonoBehaviour
     }
     private void PunchAttack()
     {
+        int random = Random.Range(0, 2);
+        if (currentFloor + random < floorCount)
+        {
+            floors[currentFloor + random].ActivateArm();
+        }
         state = FinalBossState.STANDBY;
-
     }
     private void ColumnAttack()
     {

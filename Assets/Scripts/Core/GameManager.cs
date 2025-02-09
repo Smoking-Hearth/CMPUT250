@@ -101,7 +101,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         interactableManager.CheckNearestTarget(player.transform.position);
-        checkpointManager.UpdateCheckpoint(player.transform.position);
+
+        if (checkpointManager != null)
+        {
+            checkpointManager.UpdateCheckpoint(player.transform.position);
+        }
     }
 
     private void FixedUpdate()
