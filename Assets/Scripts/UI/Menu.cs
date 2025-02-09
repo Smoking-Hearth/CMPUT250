@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour
 {
     [SerializeField] Button play, settings, credits;
 
-    SceneIndex selectedLevel = SceneIndex.Forest;
+    SceneIndex selectedLevel = SceneIndex.TechDemo;
 
     void Awake()
     {
