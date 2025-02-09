@@ -146,6 +146,9 @@ MonoBehaviour:
   pushbackInitial: 500
   pushbackAcceleration: 450
   initialPushDuration: 0.08
+  audioSource: {fileID: 0}
+  deploySound: {fileID: 0}
+  endSound: {fileID: 0}
   DropEvent:
     m_PersistentCalls:
       m_Calls:
@@ -215,7 +218,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3267137941642443159
 BoxCollider2D:
   m_ObjectHideFlags: 0
