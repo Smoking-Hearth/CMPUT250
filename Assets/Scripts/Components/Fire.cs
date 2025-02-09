@@ -51,6 +51,10 @@ public class Fire : MonoBehaviour
     {
         sounds.HitSound();
     }
+    public void ElectrocuteSound()
+    {
+        sounds.ElectrocuteSound();
+    }
     public void ExtinguishSound()
     {
         sounds.ExtinguishSound();

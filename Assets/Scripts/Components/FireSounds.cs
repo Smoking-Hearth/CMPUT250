@@ -5,6 +5,7 @@ public class FireSounds : MonoBehaviour
     [SerializeField] protected AudioSource audioSource;
     [SerializeField] protected AudioClip hitClip;
     [SerializeField] protected AudioClip extinguishClip;
+    [SerializeField] protected AudioClip electrocuteClip;
     static protected bool playedHit;
     protected float hitTimer;
     static protected bool playedExtinguish;
@@ -26,6 +27,11 @@ public class FireSounds : MonoBehaviour
             hitTimer = 0.2f;
             playedHit = true;
         }
+    }
+    public void ElectrocuteSound()
+    {
+        audioSource.PlayOneShot(electrocuteClip);
+        playedHit = true;
     }
     public void ExtinguishSound()
     {
