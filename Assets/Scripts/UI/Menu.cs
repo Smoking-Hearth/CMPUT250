@@ -20,6 +20,16 @@ public class Menu : MonoBehaviour
 
     void OnEnable()
     {
+        // FIXME: impl proper transition functions to get rid of this trash.
+        if (Unquenchable.SceneManager.IsLoaded(selectedLevel))
+        {
+            Scene scene = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
+            if (scene != null && scene.IsValid())
+            {
+                Unquenchable.SceneManager.SetSceneVisible(scene);
+            }
+        }
+
         play.onClick.AddListener(OnPlayClick);
         settings.onClick.AddListener(OnSettingsClick);
         credits.onClick.AddListener(OnCreditsClick);
@@ -40,7 +50,7 @@ public class Menu : MonoBehaviour
 
     void OnSettingsClick()
     {
-        Scene forest = SceneManager.GetSceneByBuildIndex((int)SceneIndex.Forest);
+        Scene forest = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
         Unquenchable.SceneManager.SetSceneVisible(forest, false);
         StartCoroutine(Unquenchable.SceneManager.SetSceneActive(SceneIndex.Settings));
     }

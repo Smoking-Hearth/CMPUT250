@@ -730,7 +730,7 @@ MonoBehaviour:
   setPlayer: {fileID: 780417}
   gameOverScreen: {fileID: 262475523}
   setCameraAnimator: {fileID: 1371211914}
-  setDialogSystem: {fileID: 0}
+  setDialogSystem: {fileID: 971241398}
   setCheckpointManager:
     checkpoints: []
     triggerDist: 4.24
@@ -9065,6 +9065,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7362516972561327739, guid: 6dffde27c0cc1406699f0900a96bee77, type: 3}
   m_PrefabInstance: {fileID: 971241396}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &971241398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 635744471786573338, guid: 6dffde27c0cc1406699f0900a96bee77, type: 3}
+  m_PrefabInstance: {fileID: 971241396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a59df2bda40d40d8ac4eecb49c61b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &988408626
 GameObject:
   m_ObjectHideFlags: 0
