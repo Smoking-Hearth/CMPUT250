@@ -144,7 +144,9 @@ public class Combustible : MonoBehaviour, IExtinguishable
         float distance = Vector2.Distance(GameManager.PlayerPosition, (Vector2)transform.position);
         if (distance < fireSpreadRadius * 0.5f)
         {
-            GameManager.PlayerHealth.Current -= 7f * Mathf.Pow(0.5f, distance);
+            fire.damageInfo.damage = 7f * Mathf.Pow(0.5f, distance);
+            fire.damageInfo.radius = fireSpreadRadius * 0.5f;
+            GameManager.onEnemyAttack(transform.position, transform.position, fire.damageInfo);
         }
     }
 
@@ -180,7 +182,6 @@ public class Combustible : MonoBehaviour, IExtinguishable
         {
             Vector2 direction = (Vector2)transform.position - GameManager.PlayerPosition;
             GameManager.onEnemyAttack(GameManager.PlayerPosition + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
-            fire.ElectrocuteSound();
         }
     }
 

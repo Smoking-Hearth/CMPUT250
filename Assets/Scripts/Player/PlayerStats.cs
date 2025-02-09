@@ -4,6 +4,11 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public enum DamageType
+{
+    Fire, Electricity
+}
+
 [RequireComponent(typeof(PlayerController))]
 public class PlayerStats : MonoBehaviour
 {
@@ -12,6 +17,7 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] private float hurtRadius;
     private PlayerController controller;
+    private PlayerSounds sounds;
 
     public CheckpointManager checkPointManager;
     public GameManager gameManager;
@@ -25,6 +31,7 @@ public class PlayerStats : MonoBehaviour
         //CheckpointManager checkPointManager = GetComponent<CheckpointManager>();
 
         controller = GetComponent<PlayerController>();
+        sounds = controller.Sounds;
     }
 
     private void OnEnable()
@@ -71,6 +78,7 @@ public class PlayerStats : MonoBehaviour
         if (attackDistance < hurtRadius + attackInfo.radius)
         {
             health.Current -= attackInfo.damage;
+            sounds.PlayHurt(attackInfo.damageType);
 
             float closeness = Mathf.Clamp01(1 - attackDistance / (attackInfo.radius + hurtRadius));
             Vector2 knockback = new Vector2(closeness * directionFromSource.normalized.x * attackInfo.knockbackPower.x, attackInfo.knockbackPower.y);

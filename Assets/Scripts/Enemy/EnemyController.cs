@@ -117,7 +117,6 @@ public class EnemyController : MonoBehaviour, IExtinguishable
             {
                 Vector2 direction = (Vector2)transform.position - GameManager.PlayerPosition;
                 GameManager.onEnemyAttack(GameManager.PlayerPosition + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
-                sounds.ElectrocuteSound();
             }
             return;
         }

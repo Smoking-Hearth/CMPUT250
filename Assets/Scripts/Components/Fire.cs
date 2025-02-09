@@ -3,6 +3,7 @@ using UnityEngine.Rendering.Universal;
 
 public class Fire : MonoBehaviour
 {
+    public EnemyAttackInfo damageInfo;
     [SerializeField] protected ParticleSystem particles;
     [SerializeField] protected Light2D fireLight;
     [SerializeField] protected FireSounds sounds;
@@ -50,10 +51,6 @@ public class Fire : MonoBehaviour
     public void HitSound()
     {
         sounds.HitSound();
-    }
-    public void ElectrocuteSound()
-    {
-        sounds.ElectrocuteSound();
     }
     public void ExtinguishSound()
     {

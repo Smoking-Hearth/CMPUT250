@@ -443,8 +443,9 @@ MonoBehaviour:
   audioSource: {fileID: 780422}
   mainShootSound: {fileID: 8300000, guid: b46cfa4f094fa7c48909e81342ba2ab8, type: 3}
   footstepInterval: 20
-  footstepCounter: 0
   grassFootsteps: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  fireHurtClip: {fileID: 8300000, guid: 7ce529fa74a7e1549a3c3aab2c9024f8, type: 3}
+  electricityHurtClip: {fileID: 8300000, guid: 9a0c35a08723f114f8890edd6632edee, type: 3}
 --- !u!1 &3542359
 GameObject:
   m_ObjectHideFlags: 0
@@ -9877,6 +9878,7 @@ MonoBehaviour:
   checkpoints:
   - {fileID: 80774209}
   - {fileID: 2114128967}
+  - {fileID: 1340221346}
   - {fileID: 695023016}
   - {fileID: 1637499118}
   triggerDist: 5
@@ -11435,7 +11437,7 @@ GameObject:
   - component: {fileID: 695023016}
   - component: {fileID: 695023017}
   m_Layer: 0
-  m_Name: CheckPointClasses
+  m_Name: CheckPointClassesFight
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -12814,7 +12816,6 @@ Transform:
   - {fileID: 770934632}
   - {fileID: 735436499}
   - {fileID: 44841434}
-  - {fileID: 1682705992}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &988408626
@@ -17593,6 +17594,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336605616}
   m_CullTransparentMesh: 1
+--- !u!1 &1340221345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1340221346}
+  - component: {fileID: 1340221347}
+  m_Layer: 0
+  m_Name: CheckPointClasses
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1340221346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340221345}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 320, y: -2.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1340221347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340221345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796efb98dea56f1a4ab007d852b280cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpoints: []
+  triggerDist: 5
 --- !u!1 &1341617393
 GameObject:
   m_ObjectHideFlags: 0
@@ -19992,7 +20039,7 @@ Transform:
   m_GameObject: {fileID: 1637499117}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 490, y: -2.01, z: 0}
+  m_LocalPosition: {x: 430, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20901,7 +20948,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 961280742}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1613979387586651009, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20952,11 +20999,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
---- !u!4 &1682705992 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1613979387586651009, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-  m_PrefabInstance: {fileID: 1682705991}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1682705993 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
@@ -24863,6 +24905,7 @@ SceneRoots:
   - {fileID: 135773063}
   - {fileID: 80774209}
   - {fileID: 2114128967}
+  - {fileID: 1340221346}
   - {fileID: 695023016}
   - {fileID: 1637499118}
   - {fileID: 1729780211}
@@ -24886,4 +24929,5 @@ SceneRoots:
   - {fileID: 1828276771}
   - {fileID: 961280742}
   - {fileID: 479508109}
+  - {fileID: 1682705991}
   - {fileID: 674412442}

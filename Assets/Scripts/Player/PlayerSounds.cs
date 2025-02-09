@@ -6,8 +6,11 @@ public class PlayerSounds : MonoBehaviour
     [SerializeField] private AudioClip mainShootSound;
 
     [SerializeField] private int footstepInterval;
-    [SerializeField] private int footstepCounter;
+    private int footstepCounter;
     [SerializeField] private AudioClip grassFootsteps;
+
+    [SerializeField] private AudioClip fireHurtClip;
+    [SerializeField] private AudioClip electricityHurtClip;
 
     private void Start()
     {
@@ -26,6 +29,19 @@ public class PlayerSounds : MonoBehaviour
         {
             footstepCounter = 0;
             audioSource.PlayOneShot(grassFootsteps);
+        }
+    }
+    
+    public void PlayHurt(DamageType damageType)
+    {
+        switch (damageType)
+        {
+            case DamageType.Fire:
+                audioSource.PlayOneShot(fireHurtClip);
+                break;
+            case DamageType.Electricity:
+                audioSource.PlayOneShot(electricityHurtClip);
+                break;
         }
     }
 

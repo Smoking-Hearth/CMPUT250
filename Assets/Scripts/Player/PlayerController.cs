@@ -45,6 +45,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public PlayerSounds Sounds
+    {
+        get
+        {
+            return sounds;
+        }
+    }
+
     private PlayerShoot shootBehavior;  //The script that handles player shooting
     private bool isShooting;
     private bool isSpecialShooting;
