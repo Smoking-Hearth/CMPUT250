@@ -1,7 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+
+public enum LevelState
+{
+    Paused, Playing, Defeat, Win, Cutscene
+}
 public class GameManager : MonoBehaviour
 {
+    public static LevelState levelState;
     [SerializeField] private FireSettings setFireSettings;
     private static FireSettings fireSettings;
     public static FireSettings FireSettings
@@ -91,6 +97,7 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         levelTimeManager.onTimeout += GameOver;
+        levelState = LevelState.Playing;
     }
 
     private void OnDisable()
@@ -110,22 +117,36 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (fireTickTimer > 0)
+        switch(levelState)
         {
-            fireTickTimer -= Time.fixedDeltaTime;
-        }
-        else
-        {
-            fireTickTimer = FireSettings.FireDelay;
-            if (onFireTick != null)
-            {
-                onFireTick();
-            }
-        }
+            case LevelState.Paused:
+                break;
+            case LevelState.Playing:
+                if (fireTickTimer > 0)
+                {
+                    fireTickTimer -= Time.fixedDeltaTime;
+                }
+                else
+                {
+                    fireTickTimer = FireSettings.FireDelay;
+                    if (onFireTick != null)
+                    {
+                        onFireTick();
+                    }
+                }
 
-        if (LevelTimeManager.activated)
-        {
-            LevelTimeManager.DepleteTime(Time.fixedDeltaTime);
+                if (LevelTimeManager.activated)
+                {
+                    LevelTimeManager.DepleteTime(Time.fixedDeltaTime);
+                }
+                break;
+            case LevelState.Defeat:
+                GameOver();
+                break;
+            case LevelState.Win:
+                break;
+            case LevelState.Cutscene:
+                break;
         }
     }
 
@@ -135,9 +156,23 @@ public class GameManager : MonoBehaviour
         LevelTimeManager.Reset();
     }
 
+    public void RespawnCheckpoint()
+    {
+        // Teleports player to most recent checkpoint from checkPointManager, also resets health/healthbar
+        PlayerController.Controls.Enable();
+        gameOverScreen.SetActive(false);
+        levelState = LevelState.Playing;
+        checkpointManager.ReturnToCurrent(player);
+        playerHealth.ResetHealth();
+    }
+
     public void GameOver()
     {
-        gameOverScreen.SetActive(true);
+        if (!gameOverScreen.activeSelf)
+        {
+            gameOverScreen.SetActive(true);
+            PlayerController.Controls.Disable();
+        }
     }
 
     public void SetTimer(float limit)

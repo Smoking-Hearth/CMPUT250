@@ -54,4 +54,9 @@ public class Health : MonoBehaviour, IStat
     {
         current += regenerationRate * Time.deltaTime;
     }
+
+    public void ResetHealth()
+    {
+        current = max;
+    }
 }

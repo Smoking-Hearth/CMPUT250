@@ -78,7 +78,7 @@ public class PlayerShoot : MonoBehaviour
     private void OnEnable()
     {
         SpecialAttack.onPickupSpecial += PickUpSpecial;
-        SpecialAttack.onDropSpecial += DropSpecial;
+        SpecialAttack.onClearSpecial += DropSpecial;
         PlayerController.Controls.PlayerMovement.SwapSpecial.performed += inventory.Swap;
         WaterRefiller.onWaterRefill += waterTank.RefillWater;
         PlayerController.onLand += PlayerLand;
@@ -87,7 +87,7 @@ public class PlayerShoot : MonoBehaviour
     private void OnDisable()
     {
         SpecialAttack.onPickupSpecial -= PickUpSpecial;
-        SpecialAttack.onDropSpecial -= DropSpecial;
+        SpecialAttack.onClearSpecial -= DropSpecial;
         PlayerController.Controls.PlayerMovement.SwapSpecial.performed -= inventory.Swap;
         WaterRefiller.onWaterRefill -= waterTank.RefillWater;
         PlayerController.onLand -= PlayerLand;
@@ -261,7 +261,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void DropSpecial(SpecialAttack special)
     {
-        inventory.Drop();
+        inventory.ClearCurrentSpecial();
         special.ResourceTank.SetTank(null, null);
     }
 }

@@ -77,6 +77,15 @@ public class EnemyController : MonoBehaviour, IExtinguishable
     {
         distance = Vector2.Distance(transform.position, GameManager.PlayerPosition);
 
+        if (GameManager.levelState != LevelState.Playing)
+        {
+            currentState = EnemyState.stWaiting;
+            if (attackVisual != null)
+            {
+                attackVisual.gameObject.SetActive(false);
+            }
+        }
+
         switch (currentState)
         {
             case EnemyState.stWaiting:

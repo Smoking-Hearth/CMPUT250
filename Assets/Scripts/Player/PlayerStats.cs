@@ -19,16 +19,12 @@ public class PlayerStats : MonoBehaviour
     private PlayerController controller;
     private PlayerSounds sounds;
 
-    public CheckpointManager checkPointManager;
-    public GameManager gameManager;
-
     void Awake()
     {
         health = GetComponent<Health>();
         healthBar.maxValue = health.Max;
         healthBar.minValue = health.Min;
         healthBar.value = health.Current;
-        //CheckpointManager checkPointManager = GetComponent<CheckpointManager>();
 
         controller = GetComponent<PlayerController>();
         sounds = controller.Sounds;
@@ -53,19 +49,10 @@ public class PlayerStats : MonoBehaviour
         if (healthBar.value <= 0f  || transform.position.y <= -40f){  //PROBLEM: Doesn't respawn you when you fall off edge, but may not matter
             OnDeath();
         }
-
     }
 
     void OnDeath(){
-        // Teleports player to most recent checkpoint from checkPointManager, also resets health/healthbar
-        if (checkPointManager != null)
-        {
-            int current = checkPointManager.Current;
-            transform.position = checkPointManager.Checkpoints[current].transform.position;
-        }
-        GetComponent<Health>().Current = 100;
-        healthBar.value = healthBar.maxValue;
-
+        GameManager.levelState = LevelState.Defeat;
     }
 
 

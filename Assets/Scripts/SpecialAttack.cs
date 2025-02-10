@@ -11,7 +11,7 @@ public abstract class SpecialAttack : MonoBehaviour
 
     public delegate void OnPickupSpecial(SpecialAttack special);
     public static OnPickupSpecial onPickupSpecial;
-    public static OnPickupSpecial onDropSpecial;
+    public static OnPickupSpecial onClearSpecial;
 
     [SerializeField] protected int tankCapacity;
     protected WaterTank resourceTank;
@@ -102,5 +102,6 @@ public abstract class SpecialAttack : MonoBehaviour
         {
             transform.parent = null;
         }
+        transform.localScale = Vector2.one;
     }
 }

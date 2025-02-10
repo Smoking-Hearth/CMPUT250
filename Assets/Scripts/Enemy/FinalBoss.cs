@@ -108,7 +108,7 @@ public class FinalBoss : MonoBehaviour
     }
     private void PunchAttack()
     {
-        int random = Random.Range(0, 2);
+        int random = Random.Range(0, 1);
         if (currentFloor + random < floorCount)
         {
             floors[currentFloor + random].ActivateArm();

@@ -4,7 +4,9 @@ public class FinalBossArm : Fire, IExtinguishable
 {
     [SerializeField] private EnemyAttackInfo attackInfo;
     [SerializeField] private float attackInterval;
+    [SerializeField] private Vector2 startAttackPosition;
     [SerializeField] private Vector2 attackPosition;
+    [Min(1)]
     [SerializeField] private float armTemperature;
     private float attackTimer;
     [SerializeField] private float extendTimeSeconds;
@@ -47,13 +49,21 @@ public class FinalBossArm : Fire, IExtinguishable
         SetActive(true);
     }
 
+    private void OnEnable()
+    {
+        SetLifetime(0.1f);
+    }
+
     void FixedUpdate()
     {
         if (extendTimer > 0)
         {
-            float lerp = Mathf.Lerp(temperatureToLifetime.Evaluate(Temperature) * peakFireHeight, 0, extendTimer / extendTimeSeconds);
             extendTimer -= Time.fixedDeltaTime;
-            SetLifetime(lerp);
+
+            if (extendTimer <= 0)
+            {
+                SetLifetime(temperatureToLifetime.Evaluate(Temperature) * peakFireHeight);
+            }
         }
         else if (attackTimer > 0)
         {
@@ -63,7 +73,9 @@ public class FinalBossArm : Fire, IExtinguishable
         {
             if (GameManager.onEnemyAttack != null)
             {
-                GameManager.onEnemyAttack((Vector2)transform.position + attackPosition, transform.position, attackInfo);
+                float ratio = Temperature / armTemperature;
+                Vector2 lerpPosition = Vector2.Lerp(startAttackPosition + (Vector2)transform.position, attackPosition + (Vector2)transform.position, ratio);
+                GameManager.onEnemyAttack(lerpPosition, transform.position, attackInfo);
                 attackTimer = attackInterval;
             }
         }

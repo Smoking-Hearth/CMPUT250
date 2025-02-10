@@ -33,4 +33,13 @@ public class CheckpointManager: MonoBehaviour
             }
         }
     }
+
+    public void ReturnToCurrent(PlayerController player)
+    {
+        if (current < 0)
+        {
+            return;
+        }
+        player.transform.position = checkpoints[current].position;
+    }
 }

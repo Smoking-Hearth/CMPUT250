@@ -37,15 +37,20 @@ public class PlayerInventory
     {
         if (currentIndex == 0)
         {
-            otherIcon.sprite = specials[currentIndex].DisplayIcon;
             currentIndex++;
         }
         if (specials[currentIndex] != null)
         {
-            Drop();
+            if (currentIndex == 0)
+            {
+                currentIndex++;
+            }
+            specials[currentIndex].Drop();
+            ClearCurrentSpecial();
             currentIndex++;
         }
 
+        otherIcon.sprite = specials[0].DisplayIcon;
         specials[currentIndex] = newSpecial;
         newSpecial.transform.parent = attachPoint;
         newSpecial.transform.localPosition = Vector2.zero;
@@ -65,16 +70,15 @@ public class PlayerInventory
         }
     }
 
-    public void Drop()
+    public void ClearCurrentSpecial()
     {
         if (currentIndex == 0)
         {
             currentIndex++;
         }
+
         currentIcon.sprite = specials[0].DisplayIcon;
         otherIcon.sprite = null;
-        specials[currentIndex].Drop();
-        specials[currentIndex].transform.localScale = Vector2.one;
         specials[currentIndex] = null;
 
         currentIndex = 0;

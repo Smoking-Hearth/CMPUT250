@@ -24,9 +24,9 @@ public class BCExtinguisherSpecial : SpecialAttack
         if (pickedUp)
         {
             pickedUp = false;
-            if (onDropSpecial != null)
+            if (onClearSpecial != null)
             {
-                onDropSpecial(this);
+                onClearSpecial(this);
             }
         }
     }
