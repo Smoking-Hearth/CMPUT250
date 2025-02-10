@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
         dialogSystem = setDialogSystem;
         interactableManager = new InteractableManager();
         levelTimeManager = new LevelTimeManager(levelTimeLimitSeconds, timeLimitBar);
+        SetTimer(levelTimeLimitSeconds);
     }
 
     private void OnEnable()
@@ -164,6 +165,7 @@ public class GameManager : MonoBehaviour
         levelState = LevelState.Playing;
         checkpointManager.ReturnToCurrent(player);
         playerHealth.ResetHealth();
+        SetTimer(levelTimeLimitSeconds);
     }
 
     public void GameOver()
