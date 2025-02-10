@@ -105,7 +105,10 @@ public class FinalBossArm : Fire, IExtinguishable
         if ((extinguishClass & fireKind) > 0)
         {
             Temperature -= quantity_L * extinguishEffectiveness.Evaluate(Mathf.Min(temperature - minTemperature, Combustible.MAX_TEMP));
-            SetLifetime(temperatureToLifetime.Evaluate(Temperature) * peakFireHeight);
+            if (extendTimer <= 0)
+            {
+                SetLifetime(temperatureToLifetime.Evaluate(Temperature) * peakFireHeight);
+            }
             HitSound();
         }
         else if (fireKind == CombustibleKind.C_ELECTRICAL)

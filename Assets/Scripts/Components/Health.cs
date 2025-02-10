@@ -52,11 +52,11 @@ public class Health : MonoBehaviour, IStat
 
     public void Update()
     {
-        current += regenerationRate * Time.deltaTime;
+        Current += regenerationRate * Time.deltaTime;
     }
 
     public void ResetHealth()
     {
-        current = max;
+        Current = max;
     }
 }

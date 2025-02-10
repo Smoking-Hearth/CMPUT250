@@ -27,6 +27,6 @@ public class Settings : MonoBehaviour
 
     void VolumeChanged(float value)
     {
-        mixer.SetFloat("Master", value);
+        mixer.SetFloat("MasterVolume", value);
     }
 }

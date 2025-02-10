@@ -132,6 +132,7 @@ public class PlayerController : MonoBehaviour
         {
             addedVelocity = Vector2.zero;
             targetMovement = Vector2.zero;
+            playerRigidbody.gravityScale = 1;
             return;
         }
 
