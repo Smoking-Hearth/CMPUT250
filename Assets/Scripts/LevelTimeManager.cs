@@ -1,21 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelTimeManager
+public class LevelTimeManager: MonoBehaviour
 {
     private float timeLimitSeconds;
     private float remainingSeconds;
-    private Slider progressBar;
+    [SerializeField] private Slider progressBar;
     public bool activated;
 
     public delegate void OnTimeout();
     public event OnTimeout onTimeout;
 
-    public LevelTimeManager(float limit, Slider bar)
+    [SerializeField] public float levelTimeLimitSeconds;
+
+    void Awake()
     {
-        progressBar = bar;
-        Reset(limit);
+        Reset(levelTimeLimitSeconds);
         UpdateBar();
+        SetTimer(levelTimeLimitSeconds);
     }
 
     public void Reset(float limit)
@@ -25,9 +27,22 @@ public class LevelTimeManager
         progressBar.maxValue = timeLimitSeconds;
     }
 
+    // WARN: This may be unity lifecycle.
     public void Reset()
     {
         remainingSeconds = timeLimitSeconds;
+    }
+
+
+    public void SetTimer(float limit)
+    {
+        Reset(limit);
+        activated = true;
+    }
+
+    public void StopTimer()
+    {
+        activated = false;
     }
 
     private void UpdateBar()
@@ -53,5 +68,13 @@ public class LevelTimeManager
     public void SetVisibility(bool show)
     {
         progressBar.gameObject.SetActive(show);
+    }
+
+    void FixedUpdate()
+    {
+        if (activated && GameManager.CurrentLevel.levelState == LevelState.Playing)
+        {
+            DepleteTime(Time.fixedDeltaTime);
+        }
     }
 }

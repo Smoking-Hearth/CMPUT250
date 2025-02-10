@@ -1,8 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class InteractableManager
+public class InteractableManager: MonoBehaviour
 {
+    [SerializeField] private PlayerController player;
+
+
     private static Interactable targetInteractable;
     public static Interactable Target
     {
@@ -37,8 +40,10 @@ public class InteractableManager
         }
     }
 
-    public void CheckNearestTarget(Vector2 playerPosition)
+    void Update()
     {
+        Vector2 playerPosition = player.transform.position;
+
         if (interactables == null)
         {
             return;

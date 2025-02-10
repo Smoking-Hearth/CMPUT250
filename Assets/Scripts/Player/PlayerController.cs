@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour
     public delegate void OnJump(Vector2 jumpPosition);
     public static event OnJump onJump;
 
+    private DialogSystem dialogSystem;
+
     void Awake()
     {
         if (playerRigidbody == null)
@@ -380,7 +382,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext context)
     {
-        if (GameManager.dialogSystem.DialogSystemState != DialogSystem.State.Inactive)
+        if (dialogSystem.DialogSystemState != DialogSystem.State.Inactive)
         {
             return;
         }
