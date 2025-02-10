@@ -23,6 +23,13 @@ namespace Unquenchable {
 
         public Canvas UI;
         public EventSystem eventSystem;
+        public DialogSystem dialogSystem;
+        public CheckpointManager checkpointSystem;
+        public InteractableManager interactableSystem;
+        public LevelTimeManager timeSystem;
+        // FIXME: This may be global state
+        public MusicManager musicSystem;
+
         public List<GameObject> defaultEnabledRootObject;
 
         // PERF: If the scene doesn't have the things in expected places this is...
@@ -31,6 +38,12 @@ namespace Unquenchable {
         {
             UI = null;
             eventSystem = null;
+            dialogSystem = null;
+            checkpointSystem = null;
+            interactableSystem = null;
+            timeSystem = null;
+            musicSystem = null;
+
             defaultEnabledRootObject = new List<GameObject>();
 
             GameObject[] rootObjects = scene.GetRootGameObjects();
@@ -65,7 +78,7 @@ namespace Unquenchable {
     /// Querying for load is pretty cheap.
     /// Wraps LoadSceneAsync so that it can be run as a coroutine.
     /// </summary>
-    public static class SceneManager
+    public class SceneManager
     {
         static bool hasBeenInit = false;
 
@@ -77,6 +90,18 @@ namespace Unquenchable {
         public static SceneInfo[] SceneInfos
         {
             get { return sceneInfos; }
+        }
+
+        /// <summary>
+        /// Gives the SceneInfo for the current Scene.
+        /// </summary>
+        public SceneInfo Data
+        {
+            get 
+            { 
+                int current = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+                return sceneInfos[current];
+            }
         }
 
         /// <returns>If we did the initialization</returns>
