@@ -75,9 +75,9 @@ public class EnemyController : MonoBehaviour, IExtinguishable
 
     protected virtual void FixedUpdate()
     {
-        distance = Vector2.Distance(transform.position, GameManager.CurrentLevel.PlayerPosition);
+        distance = Vector2.Distance(transform.position, LevelManager.Active.PlayerPosition);
 
-        if (GameManager.CurrentLevel.levelState != LevelState.Playing)
+        if (LevelManager.Active.levelState != LevelState.Playing)
         {
             currentState = EnemyState.stWaiting;
             if (attackVisual != null)
@@ -124,8 +124,8 @@ public class EnemyController : MonoBehaviour, IExtinguishable
         {
             if (fireKind == CombustibleKind.C_ELECTRICAL)
             {
-                Vector2 direction = (Vector2)transform.position - GameManager.CurrentLevel.PlayerPosition;
-                GameManager.onEnemyAttack(GameManager.CurrentLevel.PlayerPosition + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
+                Vector2 direction = (Vector2)transform.position - LevelManager.Active.PlayerPosition;
+                GameManager.onEnemyAttack(LevelManager.Active.PlayerPosition + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
             }
             return;
         }
@@ -185,7 +185,7 @@ public class EnemyController : MonoBehaviour, IExtinguishable
 
     protected virtual void Target()
     {
-        targetPosition = GameManager.CurrentLevel.PlayerPosition;
+        targetPosition = LevelManager.Active.PlayerPosition;
 
         // Face Target, aim at them?
         // Walk towards them, assuming they can do that?

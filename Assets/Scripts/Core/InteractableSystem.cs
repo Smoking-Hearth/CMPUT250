@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class InteractableManager: MonoBehaviour
+public class InteractableSystem: MonoBehaviour
 {
     [SerializeField] private PlayerController player;
 

@@ -95,11 +95,11 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
     private void OnEnable()
     {
-        GameManager.CurrentLevel.onFireTick += CheckFireSpread;
+        LevelManager.Active.onFireTick += CheckFireSpread;
     }
     private void OnDisable()
     {
-        GameManager.CurrentLevel.onFireTick -= CheckFireSpread;
+        LevelManager.Active.onFireTick -= CheckFireSpread;
     }
 
     void Update()
@@ -141,7 +141,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
         // We shouldn't damage the player if not on fire.
         if (!Burning) return;
-        float distance = Vector2.Distance(GameManager.CurrentLevel.PlayerPosition, (Vector2)transform.position);
+        float distance = Vector2.Distance(LevelManager.Active.PlayerPosition, (Vector2)transform.position);
         if (distance < fireSpreadRadius * 0.5f)
         {
             fire.damageInfo.damage = 7f * Mathf.Pow(0.5f, distance);
@@ -180,8 +180,8 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
         else if (fireKind == CombustibleKind.C_ELECTRICAL)
         {
-            Vector2 direction = (Vector2)transform.position - GameManager.CurrentLevel.PlayerPosition;
-            GameManager.onEnemyAttack(GameManager.CurrentLevel.PlayerPosition + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
+            Vector2 direction = (Vector2)transform.position - LevelManager.Active.PlayerPosition;
+            GameManager.onEnemyAttack(LevelManager.Active.PlayerPosition + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
         }
     }
 

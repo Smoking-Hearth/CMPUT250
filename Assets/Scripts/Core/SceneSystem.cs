@@ -15,66 +15,6 @@ public enum SceneIndex
     Credits = 6,
 }
 
-public struct SceneData
-{
-    const int k_EventSystemIdx = 0;
-    const int k_UIIdx = 1;
-
-    public Canvas UI;
-    public EventSystem eventSystem;
-    public DialogSystem dialogSystem;
-    public CheckpointManager checkpointSystem;
-    public InteractableManager interactableSystem;
-    public LevelTimeManager timeSystem;
-    // FIXME: This may be global state
-    public MusicManager musicSystem;
-    public Scene scene;
-
-    public List<GameObject> defaultEnabledRootObject;
-
-    // PERF: If the scene doesn't have the things in expected places this is...
-    // expensive.
-    public SceneData(Scene scene)
-    {
-        UI = null;
-        eventSystem = null;
-        dialogSystem = null;
-        checkpointSystem = null;
-        interactableSystem = null;
-        timeSystem = null;
-        musicSystem = null;
-        this.scene = scene;
-
-        defaultEnabledRootObject = new List<GameObject>();
-
-        GameObject[] rootObjects = scene.GetRootGameObjects();
-        if (rootObjects.Length > k_EventSystemIdx)
-        {
-            eventSystem = rootObjects[k_EventSystemIdx].GetComponent<EventSystem>();
-        }
-        if (rootObjects.Length > k_UIIdx)
-        {
-            UI = rootObjects[k_UIIdx].GetComponent<Canvas>();
-        }
-
-        foreach (var go in rootObjects)
-        {
-            if (go.activeSelf)
-            {
-                defaultEnabledRootObject.Add(go);
-            }
-            if (eventSystem == null)
-            {
-                eventSystem = go.GetComponent<EventSystem>();
-            }
-            if (UI == null)
-            {
-                UI = go.GetComponent<Canvas>();
-            }
-        }
-    }
-}
-
 /// <summary>
 /// This is a wrapper for `SceneManager` to add some structure to the idea of a `Scene`
 /// and make it easier to do things like have two scenes loaded at once but only one "Active"
@@ -83,24 +23,24 @@ public class SceneSystem
 {
     // These are bitflags. The nth bit belongs to the nth scene.
     // e.g. First bit is for MainMenu since (1 << 0).
+    private int loading = 0;
     private int loaded = 0;
-    private SceneData[] data = new SceneData[7];
+    private int visible = 0;
+    private int active = 0;
+    
+    private LevelManager[] levelManagers = new LevelManager[7];
 
-    public SceneData[] Data
+    public LevelManager[] LevelManagers
     {
-        get { return data; }
+        get { return levelManagers; }
     }
 
     /// <summary>
     /// This gives you access to data for the currently active scene.
     /// </summary>
-    public SceneData CurrentData
+    public LevelManager ActiveLevel
     {
-        get 
-        { 
-            int current = SceneManager.GetActiveScene().buildIndex;
-            return data[current];
-        }
+        get { return levelManagers[active]; }
     }
 
     public void RegisterLoad(Scene scene)
@@ -118,19 +58,27 @@ public class SceneSystem
         loaded |= 1 << buildIndex;
     }
 
-    public void RegisterData(SceneIndex sceneIndex)
+    public void RegisterLevelManager(SceneIndex sceneIndex)
     {
-        RegisterData((int)sceneIndex);
+        RegisterLevelManager((int)sceneIndex);
     }
 
-    public void RegisterData(int buildIndex)
+    public void RegisterLevelManager(int buildIndex)
     {
-        RegisterData(SceneManager.GetSceneByBuildIndex(buildIndex));
+        RegisterLevelManager(SceneManager.GetSceneByBuildIndex(buildIndex));
     }
 
-    public void RegisterData(Scene scene)
+    public void RegisterLevelManager(Scene scene)
     {
-        data[scene.buildIndex] = new SceneData(scene);
+        foreach (var go in scene.GetRootGameObjects())
+        {
+            LevelManager lm = go.GetComponent<LevelManager>();
+            if (lm != null)
+            {
+                levelManagers[scene.buildIndex] = lm;
+                break;
+            }
+        }
     }
 
     /// <returns>If we did the initialization</returns>
@@ -138,7 +86,7 @@ public class SceneSystem
     {
         Scene first = SceneManager.GetActiveScene();
         RegisterLoad(first);
-        RegisterData(first);
+        RegisterLevelManager(first);
     }
 
     // This is absolutely terrible. Becuase it overwrites active on objects
@@ -146,9 +94,16 @@ public class SceneSystem
     public void SetSceneVisible(Scene scene, bool visible = true)
     {
         int idx = scene.buildIndex;
-        foreach (var ob in data[idx].defaultEnabledRootObject) 
+
+        if (!IsLoaded(idx))
         {
-            ob.SetActive(visible);
+            DevLog.Error($"Tried to set (unloaded) scene {(SceneIndex)idx} visible");
+            return;
+        }
+
+        foreach (var go in levelManagers[scene.buildIndex].UI)
+        {
+            go.SetActive(visible);
         }
     }
 
@@ -165,7 +120,12 @@ public class SceneSystem
     
     public bool IsLoaded(SceneIndex sceneIdx)
     {
-        return (loaded & (1 << (int)sceneIdx)) != 0;
+        return IsLoaded((int)sceneIdx);
+    }
+
+    public bool IsLoaded(int buildIndex)
+    {
+        return (loaded & (1 << buildIndex)) != 0;
     }
 
     public IEnumerator Load(SceneIndex sceneIdx, bool hideLoaded = true)
@@ -178,11 +138,10 @@ public class SceneSystem
         while (!op.isDone) yield return null;
 
         Scene loadedScene = SceneManager.GetSceneByBuildIndex(idx);
-        data[idx] = new SceneData(loadedScene);
+        RegisterLevelManager(loadedScene);
 
-        // Even if we aren't hiding the scene we probably want these inactive
-        data[idx].eventSystem.gameObject.SetActive(false);
-        data[idx].UI.gameObject.SetActive(false);
+        // An active level manager means time is passing. We don't want that.
+        levelManagers[idx].gameObject.SetActive(false);
 
         if (hideLoaded)
         {
@@ -213,11 +172,8 @@ public class SceneSystem
             next = SceneManager.GetSceneByBuildIndex((int)sceneIdx);
         }
 
-        data[prev.buildIndex].eventSystem.gameObject.SetActive(false);
-        data[prev.buildIndex].UI.gameObject.SetActive(false);
-
-        data[next.buildIndex].eventSystem.gameObject.SetActive(true);
-        data[next.buildIndex].UI.gameObject.SetActive(true);
+        levelManagers[prev.buildIndex].gameObject.SetActive(false);
+        levelManagers[next.buildIndex].gameObject.SetActive(true);
 
         // Hide the current scene
         if (hideCurrent)
