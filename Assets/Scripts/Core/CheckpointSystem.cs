@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class CheckpointManager: MonoBehaviour
+public class CheckpointSystem: MonoBehaviour
 {
     private int current = -1;
     public int Current 

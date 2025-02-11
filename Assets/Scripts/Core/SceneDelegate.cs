@@ -1,22 +1,7 @@
-using UnityEngine;
-
-public class SceneDelegate : MonoBehaviour
+public interface SceneDelegate
 {
-    public void Start()
-    {
-        // If we are here then this is the first scene loaded.
-        SceneIndex sceneIdx = (SceneIndex)gameObject.scene.buildIndex;
-
-        // switch (sceneIdx)
-        // {
-            // case SceneIndex.Forest:
-                // GameManager.cameraAnimator.Play("Game");
-                // break;
-            // case SceneIndex.TechDemo:
-                // GameManager.cameraAnimator.Play("Game");
-                // break;
-            // default:
-                // break;
-        // }
-    }
+    void Load();
+    void Activate();
+    void Deactivate();
+    void Unload();
 }

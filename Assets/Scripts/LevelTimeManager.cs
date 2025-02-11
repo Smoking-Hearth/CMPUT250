@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelTimeManager: MonoBehaviour
+public class TimeSystem: MonoBehaviour
 {
     private float timeLimitSeconds;
     private float remainingSeconds;

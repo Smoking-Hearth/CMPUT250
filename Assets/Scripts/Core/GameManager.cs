@@ -38,12 +38,6 @@ public class GameManager : MonoBehaviour
         get { return Instance.sceneSystem; }
     }
 
-    private LevelManager currentLevel;
-    public static LevelManager CurrentLevel 
-    {
-        get { return Instance.sceneSystem.CurrentData; }
-    }
-
     public delegate void OnEnemyAttack(Vector2 attackCenter, Vector2 sourcePosition, EnemyAttackInfo attackInfo);
     public static OnEnemyAttack onEnemyAttack;
 

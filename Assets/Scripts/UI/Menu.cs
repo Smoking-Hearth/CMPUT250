@@ -15,18 +15,18 @@ public class Menu : MonoBehaviour
     {
         // NOTE: This doesn't load in the sense you may think. This will start a background
         // task to load the given scene, and it will be immediatly visible in the game world.
-        StartCoroutine(Unquenchable.SceneManagerWrapper.Load(selectedLevel, false));
+        StartCoroutine(GameManager.SceneSystem.Load(selectedLevel, false));
     }
 
     void OnEnable()
     {
         // FIXME: impl proper transition functions to get rid of this trash.
-        if (Unquenchable.SceneManagerWrapper.IsLoaded(selectedLevel))
+        if (GameManager.SceneSystem.IsLoaded(selectedLevel))
         {
             Scene scene = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
             if (scene != null && scene.IsValid())
             {
-                Unquenchable.SceneManagerWrapper.SetSceneVisible(scene);
+                GameManager.SceneSystem.SetSceneVisible(scene);
             }
         }
 
@@ -44,20 +44,20 @@ public class Menu : MonoBehaviour
 
     void OnPlayClick()
     {
-        StartCoroutine(Unquenchable.SceneManagerWrapper.SetSceneActive(selectedLevel));
+        StartCoroutine(GameManager.SceneSystem.SetSceneActive(selectedLevel));
     }
 
     void OnSettingsClick()
     {
         Scene selected = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
-        Unquenchable.SceneManagerWrapper.SetSceneVisible(selected, false);
-        StartCoroutine(Unquenchable.SceneManagerWrapper.SetSceneActive(SceneIndex.Settings));
+        GameManager.SceneSystem.SetSceneVisible(selected, false);
+        StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Settings));
     }
 
     void OnCreditsClick()
     {
         Scene selected = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
-        Unquenchable.SceneManagerWrapper.SetSceneVisible(selected, false);
-        StartCoroutine(Unquenchable.SceneManagerWrapper.SetSceneActive(SceneIndex.Credits));
+        GameManager.SceneSystem.SetSceneVisible(selected, false);
+        StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Credits));
     }
 }

@@ -5,7 +5,7 @@ public enum MusicState
 {
     Normal, Battle
 }
-public class MusicManager : MonoBehaviour
+public class MusicSystem : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip battleMusic;

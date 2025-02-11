@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
 
         if (!isShooting && !isSpecialShooting && isInteracting)
         {
-            InteractableManager.Interact(true);
+            InteractableSystem.Interact(true);
         }
 
         //Checks if the player is currently on stairs to make sure they don't slide down
@@ -349,7 +349,7 @@ public class PlayerController : MonoBehaviour
     private void OnStartAttack(InputAction.CallbackContext context) 
     {
         isShooting = true;
-        InteractableManager.StopInteract();
+        InteractableSystem.StopInteract();
     }
 
     private void OnCancelAttack(InputAction.CallbackContext context)
@@ -364,7 +364,7 @@ public class PlayerController : MonoBehaviour
             if (shootBehavior.SpecialShoot(true))
             {
                 isSpecialShooting = true;
-                InteractableManager.StopInteract();
+                InteractableSystem.StopInteract();
                 playerAnimator.SetBool("SpecialAttacking", isSpecialShooting);
             }
         }
@@ -387,11 +387,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
         isInteracting = true;
-        InteractableManager.Interact(false);
+        InteractableSystem.Interact(false);
     }
     private void OnCancelInteract(InputAction.CallbackContext context)
     {
         isInteracting = false;
-        InteractableManager.StopInteract();
+        InteractableSystem.StopInteract();
     }
 }

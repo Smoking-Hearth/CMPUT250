@@ -30,12 +30,12 @@ public class Interactable : MonoBehaviour
 
     public void EnableInteractable()
     {
-        InteractableManager.AddInteractable(this);
+        InteractableSystem.AddInteractable(this);
     }
 
     public void DisableInteractable()
     {
-        InteractableManager.RemoveInteractable(this);
+        InteractableSystem.RemoveInteractable(this);
     }
 
     public void StartInteract()
