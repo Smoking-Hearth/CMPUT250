@@ -58,6 +58,11 @@ public class PlayerStats : MonoBehaviour
 
     private void CheckEnemyAttack(Vector2 position, Vector2 sourcePosition, EnemyAttackInfo attackInfo)
     {
+        if (GameManager.levelState != LevelState.Playing)
+        {
+            return;
+        }
+
         Vector2 attackDirection = (Vector2)transform.position - position;
         float attackDistance = attackDirection.magnitude;
 

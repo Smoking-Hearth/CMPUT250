@@ -30,6 +30,7 @@ public class MusicManager : MonoBehaviour
     public void PlayBattleMusic()
     {
         mixer.SetFloat("MusicVolume", 1);
+        fadeTimer = 0;
 
         audioSource.clip = battleMusic;
         audioSource.Play();

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FinalBoss : MonoBehaviour
 {
@@ -21,12 +22,18 @@ public class FinalBoss : MonoBehaviour
     private int currentFloor;
 
     [SerializeField] private GameObject[] spawnObjects;
+    [SerializeField] private FinalBossFloor groundFloor;
+    [SerializeField] private FinalBossFloor topFloor;
     [SerializeField] private FinalBossFloor[] floorPrefabs;
+
+    [SerializeField] private UnityEvent completeEvent;
 
     public void Generate()
     {
         floors = new FinalBossFloor[floorCount];
-        for (int i = 0; i < floorCount; i++)
+        floors[0] = Instantiate(groundFloor, transform.position + new Vector3(0, baseAltitude), Quaternion.identity, transform);
+        floors[floorCount - 1] = Instantiate(topFloor, transform.position + new Vector3(0, baseAltitude + floorCount * floorHeight), Quaternion.identity, transform);
+        for (int i = 1; i < floorCount - 1; i++)
         {
             int randomFloor = Random.Range(0, floorPrefabs.Length);
             floors[i] = Instantiate(floorPrefabs[randomFloor], transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
@@ -79,6 +86,7 @@ public class FinalBoss : MonoBehaviour
 
         if (currentFloor >= floorCount - 1)
         {
+            completeEvent.Invoke();
             return;
         }
 

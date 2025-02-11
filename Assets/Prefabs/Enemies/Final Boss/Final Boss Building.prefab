@@ -53,7 +53,36 @@ MonoBehaviour:
   - {fileID: 7248960090352284795, guid: c0f3db2b6d255ae45a2aecc2ff1cf012, type: 3}
   - {fileID: 7248960090352284795, guid: c524b1be3d85bc24e931a859c6062d05, type: 3}
   - {fileID: 7248960090352284795, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+  groundFloor: {fileID: 2125614613325450071, guid: b0fbde73ce4f6704397f35db59d021ed, type: 3}
+  topFloor: {fileID: 2125614613325450071, guid: 0cfe62a0133a34d45a5baaafb2be14ed, type: 3}
   floorPrefabs:
   - {fileID: 2125614613325450071, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
   - {fileID: 2125614613325450071, guid: 0ed931e0546d45348a4b180c76e3af2c, type: 3}
   - {fileID: 2125614613325450071, guid: 9e40d216cb30ad74fa2320ccb164d97b, type: 3}
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+        m_MethodName: StopMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
