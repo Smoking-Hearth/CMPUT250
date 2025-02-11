@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public enum LevelState
 {
@@ -12,7 +10,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance
     {
         get 
-        {
+        { 
+            if (instance != null) return instance; 
+            instance = new GameObject("SceneLoader").AddComponent<GameManager>();
             return instance;
         }
     }
@@ -37,36 +37,35 @@ public class GameManager : MonoBehaviour
         get { return sceneManager; }
     }
 
-    public static LevelManager CurrentLevel;
-
-    private static PlayerController player;
-    private static Health playerHealth;
-
-    public delegate void OnFireTick();
-    public static event OnFireTick onFireTick;
-    private float fireTickTimer;
+    LevelManager currentLevel;
+    public static LevelManager CurrentLevel 
+    {
+        get { return Instance.currentLevel; }
+    }
 
     public delegate void OnEnemyAttack(Vector2 attackCenter, Vector2 sourcePosition, EnemyAttackInfo attackInfo);
     public static OnEnemyAttack onEnemyAttack;
 
-    public static Vector2 PlayerPosition
-    {
-        get
-        {
-            return player.transform.position;
-        }
-    }
-    public static Health PlayerHealth
-    {
-        get
-        {
-            return playerHealth;
-        }
-    }
 
     void Awake()
     {
+        if (instance == null)
+        {
+            // Scene Loader was manually added to the scene.
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (this != instance)
+        {
+            // Somehow we ended up with a duplicate.
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            // Instance was created upon request in the getter.
+            DontDestroyOnLoad(gameObject);
+        } 
+
         fireSettings = setFireSettings;
-        playerHealth = player.GetComponent<Health>();
     }
 }
