@@ -100,7 +100,10 @@ namespace Unquenchable {
             int idx = scene.buildIndex;
             foreach (var ob in sceneInfos[idx].defaultEnabledRootObject) 
             {
-                ob.SetActive(visible);
+                if (ob != null)
+                {
+                    ob.SetActive(visible);
+                }
             }
         }
 

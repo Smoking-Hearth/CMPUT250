@@ -49,4 +49,9 @@ public class LevelTimeManager
             onTimeout();
         }
     }
+
+    public void SetVisibility(bool show)
+    {
+        progressBar.gameObject.SetActive(show);
+    }
 }

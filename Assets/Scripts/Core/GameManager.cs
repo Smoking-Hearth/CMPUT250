@@ -26,11 +26,6 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (levelTimeManager == null)
-            {
-
-            }
-
             return levelTimeManager;
         }
     }
@@ -180,11 +175,17 @@ public class GameManager : MonoBehaviour
     public void SetTimer(float limit)
     {
         LevelTimeManager.Reset(limit);
+    }
+
+    public void StartTimer()
+    {
+        levelTimeManager.SetVisibility(true);
         levelTimeManager.activated = true;
     }
 
     public void StopTimer()
     {
+        levelTimeManager.SetVisibility(false);
         LevelTimeManager.activated = false;
     }
 }
