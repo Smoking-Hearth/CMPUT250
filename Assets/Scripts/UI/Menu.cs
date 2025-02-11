@@ -16,14 +16,13 @@ public class Menu : MonoBehaviour
     {
         // NOTE: This doesn't load in the sense you may think. This will start a background
         // task to load the given scene, and it will be immediatly visible in the game world.
-        StartCoroutine(Unquenchable.SceneManager.Load(selectedLevel, false));
-        SceneManager.sceneUnloaded += Unquenchable.SceneManager.UnloadHook;
+        StartCoroutine(Unquenchable.SceneManagerWrapper.Load(selectedLevel, false));
     }
 
     void OnEnable()
     {
         // FIXME: impl proper transition functions to get rid of this trash.
-        if (firstLoad)
+        if (Unquenchable.SceneManagerWrapper.IsLoaded(selectedLevel))
         {
             firstLoad = false;
         }
@@ -31,8 +30,8 @@ public class Menu : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync((int)selectedLevel).completed += (_) =>
             {
-                StartCoroutine(Unquenchable.SceneManager.Load(selectedLevel, false));
-            };
+                Unquenchable.SceneManagerWrapper.SetSceneVisible(scene);
+            }
         }
 
         play.onClick.AddListener(OnPlayClick);
@@ -49,20 +48,20 @@ public class Menu : MonoBehaviour
 
     void OnPlayClick()
     {
-        StartCoroutine(Unquenchable.SceneManager.SetSceneActive(selectedLevel));
+        StartCoroutine(Unquenchable.SceneManagerWrapper.SetSceneActive(selectedLevel));
     }
 
     void OnSettingsClick()
     {
         Scene selected = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
-        Unquenchable.SceneManager.SetSceneVisible(selected, false);
-        StartCoroutine(Unquenchable.SceneManager.SetSceneActive(SceneIndex.Settings));
+        Unquenchable.SceneManagerWrapper.SetSceneVisible(selected, false);
+        StartCoroutine(Unquenchable.SceneManagerWrapper.SetSceneActive(SceneIndex.Settings));
     }
 
     void OnCreditsClick()
     {
         Scene selected = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
-        Unquenchable.SceneManager.SetSceneVisible(selected, false);
-        StartCoroutine(Unquenchable.SceneManager.SetSceneActive(SceneIndex.Credits));
+        Unquenchable.SceneManagerWrapper.SetSceneVisible(selected, false);
+        StartCoroutine(Unquenchable.SceneManagerWrapper.SetSceneActive(SceneIndex.Credits));
     }
 }
