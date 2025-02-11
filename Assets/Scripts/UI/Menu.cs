@@ -10,24 +10,29 @@ public class Menu : MonoBehaviour
     [SerializeField] Button play, settings, credits;
 
     SceneIndex selectedLevel = SceneIndex.TechDemo;
+    bool firstLoad = true;
 
     void Awake()
     {
         // NOTE: This doesn't load in the sense you may think. This will start a background
         // task to load the given scene, and it will be immediatly visible in the game world.
         StartCoroutine(Unquenchable.SceneManager.Load(selectedLevel, false));
+        SceneManager.sceneUnloaded += Unquenchable.SceneManager.UnloadHook;
     }
 
     void OnEnable()
     {
         // FIXME: impl proper transition functions to get rid of this trash.
-        if (Unquenchable.SceneManager.IsLoaded(selectedLevel))
+        if (firstLoad)
         {
-            Scene scene = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
-            if (scene != null && scene.IsValid())
+            firstLoad = false;
+        }
+        else 
+        {
+            SceneManager.UnloadSceneAsync((int)selectedLevel).completed += (_) =>
             {
-                Unquenchable.SceneManager.SetSceneVisible(scene);
-            }
+                StartCoroutine(Unquenchable.SceneManager.Load(selectedLevel, false));
+            };
         }
 
         play.onClick.AddListener(OnPlayClick);
