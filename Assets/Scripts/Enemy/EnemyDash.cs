@@ -10,9 +10,6 @@ public class EnemyDash : EnemyController
     private SpriteRenderer flameSprite;
     private Color oldColor;
     public Color newColor;
-
-    public GameObject player;
-
     public GameObject enemy;
 
     // private Vector3 enemyPosition;
