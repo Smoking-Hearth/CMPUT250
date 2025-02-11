@@ -46,3 +46,8 @@ A `Controller` works on the level of an individual things, a general rule of thu
 ## Enemy
 
 ## Player
+
+# A Note On Logging
+Logs are helpful but slow. DO NOT USE `Debug.Log` Instead use one of: `DevLog.Info(...);`, `DevLog.Warn(...);`, or `DevLog.Error(...);`. They automatically get stripped out in the production builds and only get run in the editor. Leave them in to give people information when things go wrong.
+
+This should make a couple troubleshoots faster but will by consequence slow down our editor build. So don't profile in the editor (we should be profiling the web and native anyways since there is other editor stuff that makes the editor profiles less efficient).
