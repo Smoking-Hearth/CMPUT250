@@ -13,10 +13,30 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PlayerController player;
     private Health playerHealth;
 
+    public Vector2 PlayerPosition
+    {
+        get
+        {
+            return player.transform.position;
+        }
+    }
+    public Health PlayerHealth
+    {
+        get
+        {
+            return playerHealth;
+        }
+    }
+
+    public delegate void OnFireTick();
+    public event OnFireTick onFireTick;
+    private float fireTickTimer;
+
     void Awake()
     {
         cameraAnimator.Play("Game");
         playerHealth = player.GetComponent<Health>();
+        
     }
 
     void OnEnable()
@@ -52,7 +72,7 @@ public class LevelManager : MonoBehaviour
                 }
                 else
                 {
-                    fireTickTimer = FireSettings.FireDelay;
+                    fireTickTimer = GameManager.FireSettings.FireDelay;
                     if (onFireTick != null)
                     {
                         onFireTick();

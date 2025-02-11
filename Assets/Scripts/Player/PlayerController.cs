@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.levelState == LevelState.Defeat)
+        if (GameManager.CurrentLevel.levelState == LevelState.Defeat)
         {
             addedVelocity = Vector2.zero;
             targetMovement = Vector2.zero;
