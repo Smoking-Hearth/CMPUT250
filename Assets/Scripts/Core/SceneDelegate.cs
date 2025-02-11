@@ -2,18 +2,8 @@ using UnityEngine;
 
 public class SceneDelegate : MonoBehaviour
 {
-    public static GameManager gameManager;
-    private bool isStartScene = false;
-
-    public void Awake() 
-    {
-        isStartScene = Unquenchable.SceneManager.Init();
-    }
-
     public void Start()
     {
-        if (!isStartScene) return;
-
         // If we are here then this is the first scene loaded.
         SceneIndex sceneIdx = (SceneIndex)gameObject.scene.buildIndex;
 

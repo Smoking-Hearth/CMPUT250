@@ -41,13 +41,13 @@ public class LevelManager : MonoBehaviour
 
     void OnEnable()
     {
-        GameManager.SceneSystem.Data.timeSystem.onTimeout += GameOver;
+        GameManager.SceneSystem.CurrentData.timeSystem.onTimeout += GameOver;
         levelState = LevelState.Playing;
     }
 
     void OnDisable()
     {
-        GameManager.SceneSystem.Data.timeSystem.onTimeout -= GameOver;
+        GameManager.SceneSystem.CurrentData.timeSystem.onTimeout -= GameOver;
     }
 
     public void GameOver()
@@ -92,7 +92,7 @@ public class LevelManager : MonoBehaviour
     public void Restartlevel()
     {
         gameOverScreen.SetActive(false);
-        GameManager.SceneSystem.Data.timeSystem.Reset();
+        GameManager.SceneSystem.CurrentData.timeSystem.Reset();
     }
 
     public void RespawnCheckpoint()
@@ -101,7 +101,7 @@ public class LevelManager : MonoBehaviour
         PlayerController.Controls.Enable();
         gameOverScreen.SetActive(false);
         levelState = LevelState.Playing;
-        SceneInfo data = GameManager.SceneSystem.Data;
+        SceneData data = GameManager.SceneSystem.CurrentData;
 
         data.checkpointSystem.ReturnToCurrent(player);
         playerHealth.ResetHealth();

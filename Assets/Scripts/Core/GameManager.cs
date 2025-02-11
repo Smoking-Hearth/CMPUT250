@@ -6,6 +6,7 @@ public enum LevelState
 }
 public class GameManager : MonoBehaviour
 {
+    private bool isInit = false;
     private static GameManager instance;
     public static GameManager Instance
     {
@@ -31,21 +32,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private static Unquenchable.SceneManager sceneManager;
-    public static Unquenchable.SceneManager SceneSystem
+    private SceneSystem sceneSystem;
+    public static SceneSystem SceneSystem
     {
-        get { return sceneManager; }
+        get { return Instance.sceneSystem; }
     }
 
-    LevelManager currentLevel;
+    private LevelManager currentLevel;
     public static LevelManager CurrentLevel 
     {
-        get { return Instance.currentLevel; }
+        get { return Instance.sceneSystem.CurrentData; }
     }
 
     public delegate void OnEnemyAttack(Vector2 attackCenter, Vector2 sourcePosition, EnemyAttackInfo attackInfo);
     public static OnEnemyAttack onEnemyAttack;
 
+    void Init()
+    {
+        sceneSystem = new SceneSystem();
+        fireSettings = setFireSettings;
+    }
 
     void Awake()
     {
@@ -59,6 +65,7 @@ public class GameManager : MonoBehaviour
         {
             // Somehow we ended up with a duplicate.
             Destroy(this.gameObject);
+            return;
         }
         else
         {
@@ -66,6 +73,10 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         } 
 
-        fireSettings = setFireSettings;
+        if (!isInit)
+        {
+            Init();
+            isInit = true;
+        }
     }
 }

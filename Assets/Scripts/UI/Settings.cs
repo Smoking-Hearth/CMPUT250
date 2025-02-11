@@ -22,7 +22,7 @@ public class Settings : MonoBehaviour
 
     void BackClick()
     {
-        StartCoroutine(Unquenchable.SceneManager.SetSceneActive(SceneIndex.MainMenu));
+        StartCoroutine(Unquenchable.SceneManagerWrapper.SetSceneActive(SceneIndex.MainMenu));
     }
 
     void VolumeChanged(float value)

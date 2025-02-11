@@ -12,6 +12,6 @@ public class DialogueHolder : MonoBehaviour
 
     public void PlayDialogue()
     {
-        GameManager.SceneSystem.Data.dialogSystem.Play(new GameDialog(lines, title), autoContinue);
+        GameManager.SceneSystem.CurrentData.dialogSystem.Play(new GameDialog(lines, title), autoContinue);
     }
 }

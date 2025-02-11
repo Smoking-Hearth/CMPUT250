@@ -17,6 +17,6 @@ public class Credits : MonoBehaviour
 
     void OnBackClick()
     {
-        StartCoroutine(Unquenchable.SceneManager.SetSceneActive(SceneIndex.MainMenu));
+        StartCoroutine(Unquenchable.SceneManagerWrapper.SetSceneActive(SceneIndex.MainMenu));
     }
 }
