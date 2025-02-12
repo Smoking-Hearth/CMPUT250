@@ -52,7 +52,7 @@ public class PlayerStats : MonoBehaviour
     }
 
     void OnDeath(){
-        GameManager.CurrentLevel.levelState = LevelState.Defeat;
+        LevelManager.Active.levelState = LevelState.Defeat;
     }
 
 

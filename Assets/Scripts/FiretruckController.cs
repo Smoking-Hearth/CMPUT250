@@ -70,7 +70,7 @@ public class FiretruckController : MonoBehaviour
     {
         player.SetAttached(null);
         activeArea.center = transform.position + activeAreaOffset;
-        if (activeArea.Contains(GameManager.CurrentLevel.PlayerPosition) && transform.position.x < endX)
+        if (activeArea.Contains(LevelManager.Active.PlayerPosition) && transform.position.x < endX)
         {
             if (!started)
             {
@@ -119,7 +119,7 @@ public class FiretruckController : MonoBehaviour
             completeEvent.Invoke();
             firetruckState = State.Deccelerating;
         }
-        else if (!activeArea.Contains(GameManager.CurrentLevel.PlayerPosition))
+        else if (!activeArea.Contains(LevelManager.Active.PlayerPosition))
         {
             stopEvent.Invoke();
             firetruckState = State.Deccelerating;
