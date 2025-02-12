@@ -75,6 +75,8 @@ public class EnemyController : MonoBehaviour, IExtinguishable
 
     protected virtual void FixedUpdate()
     {
+        if (!gameObject.ShouldUpdate()) return;
+
         distance = Vector2.Distance(transform.position, LevelManager.Active.PlayerPosition);
 
         if (LevelManager.Active.levelState != LevelState.Playing)

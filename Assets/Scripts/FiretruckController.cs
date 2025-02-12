@@ -37,6 +37,7 @@ public class FiretruckController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!gameObject.ShouldUpdate()) return;
         switch(firetruckState)
         {
             case State.Inactive:
