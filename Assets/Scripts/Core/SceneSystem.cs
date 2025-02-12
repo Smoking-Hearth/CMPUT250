@@ -1,8 +1,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Collections;
-using UnityEngine.EventSystems;
-using System.Collections.Generic;
 
 public enum SceneIndex
 {
@@ -85,6 +83,7 @@ public class SceneSystem
     public SceneSystem()
     {
         Scene first = SceneManager.GetActiveScene();
+        active = first.buildIndex;
         RegisterLoad(first);
         RegisterLevelManager(first);
     }

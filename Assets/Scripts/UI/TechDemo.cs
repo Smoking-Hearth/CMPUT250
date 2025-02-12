@@ -6,8 +6,7 @@ public class TechDemo : MonoBehaviour
     public void BackToMenu()
     {
         // I've really gotta fix this mess.
-        GameManager.CurrentLevel.cameraAnimator.Play("MainMenu");
-        Unquenchable.SceneManagerWrapper.UnloadHook(SceneManager.GetActiveScene());
-        StartCoroutine(Unquenchable.SceneManagerWrapper.SetSceneActive(SceneIndex.MainMenu));
+        LevelManager.Active.cameraAnimator.Play("MainMenu");
+        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.MainMenu));
     }
 }

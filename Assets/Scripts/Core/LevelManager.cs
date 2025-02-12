@@ -2,6 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public static class LevelManagerExtension
+{
+    // This will get the `LevelManager` for the scene the gameObject 
+    // belongs to. This is basically an alias and the most robust way
+    public static LevelManager MyLevelManager(this GameObject gameObject)
+    {
+        return GameManager.SceneSystem.LevelManagers[gameObject.scene.buildIndex];
+    }
+}
+
 // TODO: Give this info about how it got loaded.
 public class LevelManager : MonoBehaviour 
 {
@@ -58,11 +68,22 @@ public class LevelManager : MonoBehaviour
     public event OnFireTick onFireTick;
     private float fireTickTimer;
 
+    
+    public delegate void LoadCallback();
+    public event LoadCallback onLoad;
+
+    public delegate void UnloadCallback();
+    public event UnloadCallback onUnload;
+
+    public delegate void ActivateCallback();
+    public event ActivateCallback onActivate;
+
+    public delegate void DeactivateCallback();
+    public event DeactivateCallback onDeactivate;
+
     void Awake()
     {
-        cameraAnimator.Play("Game");
-        playerHealth = player.GetComponent<Health>();
-        
+        gameObject.MyLevelManager().onLoad += Load;
     }
 
     void OnEnable()
@@ -74,6 +95,12 @@ public class LevelManager : MonoBehaviour
     void OnDisable()
     {
         TimeSystem.onTimeout -= GameOver;
+    }
+
+    void Load()
+    {
+        cameraAnimator.Play("Game");
+        playerHealth = player.GetComponent<Health>();
     }
 
     public void GameOver()
