@@ -91,19 +91,23 @@ public class Combustible : MonoBehaviour, IExtinguishable
         // NOTE: Something weird was happening here. I had set shouldBurn to Player in the
         // editor but when I logged it it was Fire. So that's why it's getting set manually
         shouldBurn = LayerMask.NameToLayer("Player");
+        gameObject.MyLevelManager().onActivate += Activate;
+        gameObject.MyLevelManager().onDeactivate += Deactivate;
     }
 
-    private void OnEnable()
+    private void Activate()
     {
         LevelManager.Active.onFireTick += CheckFireSpread;
     }
-    private void OnDisable()
+    private void Deactivate()
     {
         LevelManager.Active.onFireTick -= CheckFireSpread;
     }
 
     void Update()
     {
+        if (!gameObject.ShouldUpdate()) return;
+
         bool haveFule = fule > 0f;
         if (temperature > autoIgnitionTemperature && haveFule)
         {

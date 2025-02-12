@@ -10,6 +10,19 @@ public static class LevelManagerExtension
     {
         return GameManager.SceneSystem.LevelManagers[gameObject.scene.buildIndex];
     }
+
+    public static bool ShouldUpdate(this GameObject gameObject)
+    {
+        return GameManager.IsInit && gameObject.MyLevelManager().IsLevelActive;
+    }
+}
+
+public enum LevelCommand
+{
+    Load,
+    Activate,
+    Deactivate,
+    Unload,
 }
 
 // TODO: Give this info about how it got loaded.
@@ -38,6 +51,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("State")]
     [SerializeField] public LevelState levelState;
+    
     [SerializeField] public Animator cameraAnimator;
 
     [Header("Key Objects")]
@@ -48,6 +62,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PlayerController player;
     private Health playerHealth;
     public GameObject[] defaultEnabledRootObjects;
+    public bool IsLevelActive = false;
 
     public Vector2 PlayerPosition
     {
@@ -67,7 +82,6 @@ public class LevelManager : MonoBehaviour
     public delegate void OnFireTick();
     public event OnFireTick onFireTick;
     private float fireTickTimer;
-
     
     public delegate void LoadCallback();
     public event LoadCallback onLoad;
@@ -81,24 +95,52 @@ public class LevelManager : MonoBehaviour
     public delegate void DeactivateCallback();
     public event DeactivateCallback onDeactivate;
 
+    public void NotifyLevel(LevelCommand cmd)
+    {
+        switch (cmd)
+        {
+            case LevelCommand.Load:
+                onLoad?.Invoke();
+                break;
+            case LevelCommand.Activate:
+                onActivate?.Invoke();
+                break;
+            case LevelCommand.Deactivate:
+                onDeactivate?.Invoke();
+                break;
+            case LevelCommand.Unload:
+                onUnload?.Invoke();
+                break;
+        }
+    }
+
     void Awake()
     {
         gameObject.MyLevelManager().onLoad += Load;
+        gameObject.MyLevelManager().onActivate += Activate;
+        gameObject.MyLevelManager().onDeactivate += Deactivate;
     }
 
-    void OnEnable()
+    void Start()
+    {
+        GameManager.Init();
+    }
+
+    void Activate()
     {
         TimeSystem.onTimeout += GameOver;
         levelState = LevelState.Playing;
+        DevLog.Info("Activate called");
     }
 
-    void OnDisable()
+    void Deactivate()
     {
         TimeSystem.onTimeout -= GameOver;
     }
 
     void Load()
     {
+        DevLog.Info("Load called");
         cameraAnimator.Play("Game");
         playerHealth = player.GetComponent<Health>();
     }

@@ -4,17 +4,21 @@ public enum LevelState
 {
     Paused, Playing, Defeat, Win, Cutscene
 }
+
 public class GameManager : MonoBehaviour
 {
-    private bool isInit = false;
-    private static GameManager instance;
+    private static bool isInit = false;
+    public static bool IsInit 
+    {
+        get { return isInit; }
+    }
+
+    private static GameManager instance = null;
     public static GameManager Instance
     {
         get 
         { 
-            if (instance != null) return instance; 
-            instance = new GameObject("SceneLoader").AddComponent<GameManager>();
-            return instance;
+            return instance; 
         }
     }
 
@@ -35,23 +39,32 @@ public class GameManager : MonoBehaviour
     private SceneSystem sceneSystem;
     public static SceneSystem SceneSystem
     {
-        get { return Instance.sceneSystem; }
+        get { return Instance?.sceneSystem; }
     }
 
     public delegate void OnEnemyAttack(Vector2 attackCenter, Vector2 sourcePosition, EnemyAttackInfo attackInfo);
     public static OnEnemyAttack onEnemyAttack;
 
-    void Init()
+    public static void Init()
     {
-        sceneSystem = new SceneSystem();
-        fireSettings = setFireSettings;
+        if (isInit) return;
+        isInit = true;
+
+        if (instance == null)
+        {
+            instance = new GameObject("GameManager").AddComponent<GameManager>();
+        }
+        if (instance.sceneSystem == null)
+        {
+            instance.sceneSystem = new SceneSystem();
+        }
     }
 
     void Awake()
     {
         if (instance == null)
         {
-            // Scene Loader was manually added to the scene.
+            // GameManager was manually added to the scene.
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -66,11 +79,6 @@ public class GameManager : MonoBehaviour
             // Instance was created upon request in the getter.
             DontDestroyOnLoad(gameObject);
         } 
-
-        if (!isInit)
-        {
-            Init();
-            isInit = true;
-        }
+        Init();
     }
 }

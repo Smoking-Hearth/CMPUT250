@@ -86,6 +86,8 @@ public class SceneSystem
         active = first.buildIndex;
         RegisterLoad(first);
         RegisterLevelManager(first);
+        levelManagers[active].NotifyLevel(LevelCommand.Load);
+        levelManagers[active].NotifyLevel(LevelCommand.Activate);
     }
 
     // This is absolutely terrible. Becuase it overwrites active on objects
@@ -136,19 +138,21 @@ public class SceneSystem
 
         while (!op.isDone) yield return null;
 
+        int mask = 1 << idx;
+        loaded |= mask;
+
         Scene loadedScene = SceneManager.GetSceneByBuildIndex(idx);
         RegisterLevelManager(loadedScene);
 
         // An active level manager means time is passing. We don't want that.
-        levelManagers[idx].gameObject.SetActive(false);
+        LevelManager loadedManager = levelManagers[idx];
+        loadedManager.NotifyLevel(LevelCommand.Load);
+        loadedManager.gameObject.SetActive(false);
 
         if (hideLoaded)
         {
             SetSceneVisible(loadedScene, false);
         }
-
-        int mask = 1 << idx;
-        loaded |= mask;
     }
 
     public IEnumerator SetSceneActive(SceneIndex sceneIdx, bool hideCurrent = true)
@@ -171,8 +175,14 @@ public class SceneSystem
             next = SceneManager.GetSceneByBuildIndex((int)sceneIdx);
         }
 
-        levelManagers[prev.buildIndex].gameObject.SetActive(false);
-        levelManagers[next.buildIndex].gameObject.SetActive(true);
+        LevelManager prevManager = levelManagers[prev.buildIndex];
+        LevelManager nextManager = levelManagers[next.buildIndex];
+
+        prevManager.NotifyLevel(LevelCommand.Deactivate);
+        prevManager.gameObject.SetActive(false);
+
+        nextManager.gameObject.SetActive(true);
+        nextManager.NotifyLevel(LevelCommand.Activate);
 
         // Hide the current scene
         if (hideCurrent)
