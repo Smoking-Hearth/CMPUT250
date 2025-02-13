@@ -11,6 +11,14 @@ public static class LevelManagerExtension
         return GameManager.SceneSystem.LevelManagers[gameObject.scene.buildIndex];
     }
 
+    public static bool MyLevelLoaded(this GameObject gameObject)
+    {
+        return GameManager.SceneSystem.IsLoaded(gameObject.scene.buildIndex);
+    }
+
+    /// <summary>
+    ///  Use this to guard Update and FixedUpdate
+    /// </summary>
     public static bool ShouldUpdate(this GameObject gameObject)
     {
         return GameManager.IsInit && gameObject.MyLevelManager().IsLevelActive;
@@ -116,33 +124,26 @@ public class LevelManager : MonoBehaviour
 
     void Awake()
     {
-        gameObject.MyLevelManager().onLoad += Load;
-        gameObject.MyLevelManager().onActivate += Activate;
-        gameObject.MyLevelManager().onDeactivate += Deactivate;
+        GameManager.Init();
+        DevLog.Info("Trylog");
     }
 
     void Start()
     {
-        GameManager.Init();
+        gameObject.MyLevelManager().onLoad += Load;
+        gameObject.MyLevelManager().onActivate += Activate;
     }
 
     void Activate()
     {
-        TimeSystem.onTimeout += GameOver;
-        levelState = LevelState.Playing;
         DevLog.Info("Activate called");
-    }
-
-    void Deactivate()
-    {
-        TimeSystem.onTimeout -= GameOver;
     }
 
     void Load()
     {
         DevLog.Info("Load called");
-        cameraAnimator.Play("Game");
-        playerHealth = player.GetComponent<Health>();
+        if (player != null)
+            playerHealth = player.GetComponent<Health>();
     }
 
     public void GameOver()
