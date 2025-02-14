@@ -39,25 +39,20 @@ public class GameManager : MonoBehaviour
     private SceneSystem sceneSystem;
     public static SceneSystem SceneSystem
     {
-        get { return Instance?.sceneSystem; }
+        get { return Instance.sceneSystem; }
     }
 
     public delegate void OnEnemyAttack(Vector2 attackCenter, Vector2 sourcePosition, EnemyAttackInfo attackInfo);
     public static OnEnemyAttack onEnemyAttack;
-
+    
     public static void Init()
     {
         if (isInit) return;
         isInit = true;
 
-        if (instance == null)
-        {
-            instance = new GameObject("GameManager").AddComponent<GameManager>();
-        }
-        if (instance.sceneSystem == null)
-        {
-            instance.sceneSystem = new SceneSystem();
-        }
+        instance ??= new GameObject("GameManager").AddComponent<GameManager>();
+        instance.sceneSystem ??= new SceneSystem();
+        Debug.Log($"Active level: {instance.sceneSystem.ActiveLevel}");
     }
 
     void Awake()

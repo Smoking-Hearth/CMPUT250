@@ -21,7 +21,7 @@ public static class LevelManagerExtension
     /// </summary>
     public static bool ShouldUpdate(this GameObject gameObject)
     {
-        return GameManager.IsInit && gameObject.MyLevelManager().IsLevelActive;
+        return GameManager.IsInit && gameObject.MyLevelManager()?.IsLevelRunning == true;
     }
 }
 
@@ -70,7 +70,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PlayerController player;
     private Health playerHealth;
     public GameObject[] defaultEnabledRootObjects;
-    public bool IsLevelActive = false;
+    public bool IsLevelRunning = false;
 
     public Vector2 PlayerPosition
     {
@@ -103,29 +103,47 @@ public class LevelManager : MonoBehaviour
     public delegate void DeactivateCallback();
     public event DeactivateCallback onDeactivate;
 
+    private readonly Queue<LevelCommand> callbackCommands = new();
+
+    // Why a Queue? There is a race condition here hiding with a gun.
+    // - GameManager.Init() runs in Awake
+    // - Objects subscribe to the lifecycle stuff in Start (hopefully)
+    // - GameManager initializes the SceneSystem which triggers the active levels
+    // hooks for onLoad and onActivate.
+    // If we aren't careful the setup and activation code won't be run.
     public void NotifyLevel(LevelCommand cmd)
     {
-        switch (cmd)
-        {
-            case LevelCommand.Load:
-                onLoad?.Invoke();
-                break;
-            case LevelCommand.Activate:
-                onActivate?.Invoke();
-                break;
-            case LevelCommand.Deactivate:
-                onDeactivate?.Invoke();
-                break;
-            case LevelCommand.Unload:
-                onUnload?.Invoke();
-                break;
-        }
+        callbackCommands.Enqueue(cmd);
     }
 
     void Awake()
     {
         GameManager.Init();
-        DevLog.Info("Trylog");
+    }
+
+    void Update()
+    {
+        LevelCommand cmd;
+        if (callbackCommands.TryDequeue(out cmd))
+        {
+            switch (cmd)
+            {
+                case LevelCommand.Load:
+                    onLoad?.Invoke();
+                    break;
+                case LevelCommand.Activate:
+                    onActivate?.Invoke();
+                    IsLevelRunning = true;
+                    break;
+                case LevelCommand.Deactivate:
+                    IsLevelRunning = false;
+                    onDeactivate?.Invoke();
+                    break;
+                case LevelCommand.Unload:
+                    onUnload?.Invoke();
+                    break;
+            }
+        }
     }
 
     void Start()
