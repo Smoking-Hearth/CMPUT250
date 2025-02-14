@@ -79,7 +79,6 @@ public class SceneSystem
         }
     }
 
-    /// <returns>If we did the initialization</returns>
     public SceneSystem()
     {
         Scene first = SceneManager.GetActiveScene();
