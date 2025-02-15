@@ -80,7 +80,6 @@ public class LevelManager : MonoBehaviour
             return player;
         }
     }
-    private Health playerHealth;
     public GameObject[] defaultEnabledRootObjects;
     
     private bool isLevelRunning = false;
@@ -215,8 +214,8 @@ public class LevelManager : MonoBehaviour
         gameOverScreen.SetActive(false);
         levelState = LevelState.Playing;
 
-        CheckpointSystem.ReturnToCurrent(setPlayer.transform);
-        playerHealth.ResetHealth();
+        CheckpointSystem.ReturnToCurrent(setPlayer);
+        Player.Health.ResetHealth();
         TimeSystem.SetTimer(TimeSystem.levelTimeLimitSeconds);
     }
 }

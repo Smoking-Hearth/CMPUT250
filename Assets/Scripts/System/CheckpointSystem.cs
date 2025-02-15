@@ -20,8 +20,9 @@ public class CheckpointSystem: MonoBehaviour
 
     [SerializeField] private float triggerDist;
 
-    public void UpdateCheckpoint(Vector3 playerPos)
+    void FixedUpdate()
     {
+        Vector2 playerPos = gameObject.MyLevelManager().Player.Position;
         for (int i = checkpoints.Count - 1; i > current; --i)
         {
             if (Vector2.Distance(checkpoints[i].position, playerPos) <= triggerDist)
@@ -34,12 +35,12 @@ public class CheckpointSystem: MonoBehaviour
         }
     }
 
-    public void ReturnToCurrent(Transform player)
+    public void ReturnToCurrent(Rigidbody2D player)
     {
         if (current < 0)
         {
             return;
         }
-        player.transform.position = checkpoints[current].position;
+        player.position = checkpoints[current].position;
     }
 }

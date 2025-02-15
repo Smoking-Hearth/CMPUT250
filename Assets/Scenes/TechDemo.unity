@@ -10254,8 +10254,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796efb98dea56f1a4ab007d852b280cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpoints: []
-  triggerDist: 0
+  checkpoints:
+  - {fileID: 80774209}
+  - {fileID: 2114128967}
+  - {fileID: 1340221346}
+  - {fileID: 695023016}
+  - {fileID: 1637499118}
+  triggerDist: 5
 --- !u!1 &589712665
 GameObject:
   m_ObjectHideFlags: 0
@@ -21327,8 +21332,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 77890083}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: RespawnCheckpoint
         m_Mode: 1
         m_Arguments:
