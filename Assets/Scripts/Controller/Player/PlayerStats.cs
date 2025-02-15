@@ -58,7 +58,7 @@ public class PlayerStats : MonoBehaviour
 
     private void CheckEnemyAttack(Vector2 position, Vector2 sourcePosition, EnemyAttackInfo attackInfo)
     {
-        if (GameManager.levelState != LevelState.Playing)
+        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
         {
             return;
         }

@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
 
         instance ??= new GameObject("GameManager").AddComponent<GameManager>();
         instance.sceneSystem ??= new SceneSystem();
-        Debug.Log($"Active level: {instance.sceneSystem.ActiveLevel}");
     }
 
     void Awake()

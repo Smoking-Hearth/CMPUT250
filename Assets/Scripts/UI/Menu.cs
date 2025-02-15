@@ -30,8 +30,9 @@ public class Menu : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync((int)selectedLevel).completed += (_) =>
             {
+                Scene scene = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
                 GameManager.SceneSystem.SetSceneVisible(scene);
-            }
+            };
         }
 
         play.onClick.AddListener(OnPlayClick);
