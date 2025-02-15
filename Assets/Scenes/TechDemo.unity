@@ -1068,6 +1068,8 @@ GameObject:
   - component: {fileID: 77890080}
   - component: {fileID: 77890083}
   - component: {fileID: 77890082}
+  - component: {fileID: 77890084}
+  - component: {fileID: 77890085}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -1120,18 +1122,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1e1843186004ef0a6be3a153690b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogSystem: {fileID: 0}
+  DialogSystem: {fileID: 1931686359}
   EventSystem: {fileID: 1729780210}
-  CheckpointSystem: {fileID: 0}
-  InteractableSystem: {fileID: 0}
+  CheckpointSystem: {fileID: 579178969}
+  InteractableSystem: {fileID: 77890084}
   MusicSystem: {fileID: 77890082}
-  TimeSystem: {fileID: 0}
+  TimeSystem: {fileID: 77890085}
   levelState: 0
   cameraAnimator: {fileID: 1371211914}
   UI: []
   gameOverScreen: {fileID: 262475523}
   player: {fileID: 780417}
   defaultEnabledRootObjects: []
+  IsLevelRunning: 0
+--- !u!114 &77890084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77890078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b895b9885eee11f4b8c37c37beea5cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 780417}
+--- !u!114 &77890085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77890078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f22f2ecd82ae946953fb6ed0dc9c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressBar: {fileID: 715128002}
+  activated: 0
+  levelTimeLimitSeconds: 90
 --- !u!1 &80774208
 GameObject:
   m_ObjectHideFlags: 0
@@ -10183,6 +10214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 579178968}
+  - component: {fileID: 579178969}
   m_Layer: 0
   m_Name: CheckPoints
   m_TagString: Untagged
@@ -10210,6 +10242,20 @@ Transform:
   - {fileID: 1637499118}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &579178969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579178966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796efb98dea56f1a4ab007d852b280cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpoints: []
+  triggerDist: 0
 --- !u!1 &589712665
 GameObject:
   m_ObjectHideFlags: 0
@@ -24418,6 +24464,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7362516972561327739, guid: 6dffde27c0cc1406699f0900a96bee77, type: 3}
   m_PrefabInstance: {fileID: 4205998715448362278}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1931686359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 635744471786573338, guid: 6dffde27c0cc1406699f0900a96bee77, type: 3}
+  m_PrefabInstance: {fileID: 4205998715448362278}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a59df2bda40d40d8ac4eecb49c61b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1933454053 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5163516732209342275, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}

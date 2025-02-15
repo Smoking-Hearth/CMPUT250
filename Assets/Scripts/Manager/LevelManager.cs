@@ -70,7 +70,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PlayerController player;
     private Health playerHealth;
     public GameObject[] defaultEnabledRootObjects;
-    public bool IsLevelRunning = false;
+    
+    private bool isLevelRunning = false;
+    public bool IsLevelRunning
+    {
+        get { return isLevelRunning; }
+    }
+
 
     public Vector2 PlayerPosition
     {
@@ -133,10 +139,10 @@ public class LevelManager : MonoBehaviour
                     break;
                 case LevelCommand.Activate:
                     onActivate?.Invoke();
-                    IsLevelRunning = true;
+                    isLevelRunning = true;
                     break;
                 case LevelCommand.Deactivate:
-                    IsLevelRunning = false;
+                    isLevelRunning = false;
                     onDeactivate?.Invoke();
                     break;
                 case LevelCommand.Unload:
@@ -152,16 +158,15 @@ public class LevelManager : MonoBehaviour
         gameObject.MyLevelManager().onActivate += Activate;
     }
 
-    void Activate()
-    {
-        DevLog.Info("Activate called");
-    }
-
     void Load()
     {
-        DevLog.Info("Load called");
         if (player != null)
             playerHealth = player.GetComponent<Health>();
+    }
+
+    void Activate()
+    {
+        cameraAnimator.Play("Game");
     }
 
     public void GameOver()
