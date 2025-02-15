@@ -12,7 +12,7 @@ public class FiretruckController : MonoBehaviour
         Moving
     }
 
-    [SerializeField] private PlayerController player;
+    [SerializeField] private PlayerMovement player;
     [SerializeField] private State firetruckState;
     [SerializeField] private Bounds activeArea;
     private Vector3 activeAreaOffset;
@@ -71,7 +71,7 @@ public class FiretruckController : MonoBehaviour
     {
         player.SetAttached(null);
         activeArea.center = transform.position + activeAreaOffset;
-        if (activeArea.Contains(LevelManager.Active.PlayerPosition) && transform.position.x < endX)
+        if (activeArea.Contains(LevelManager.Active.Player.Position) && transform.position.x < endX)
         {
             if (!started)
             {
@@ -120,7 +120,7 @@ public class FiretruckController : MonoBehaviour
             completeEvent.Invoke();
             firetruckState = State.Deccelerating;
         }
-        else if (!activeArea.Contains(LevelManager.Active.PlayerPosition))
+        else if (!activeArea.Contains(LevelManager.Active.Player.Position))
         {
             stopEvent.Invoke();
             firetruckState = State.Deccelerating;

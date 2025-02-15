@@ -67,7 +67,19 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private GameObject gameOverScreen;
 
-    [SerializeField] private PlayerController player;
+    [SerializeField] private Rigidbody2D setPlayer;
+    private Player player;
+    public Player Player
+    {
+        get
+        {
+            if (player == null)
+            {
+                player = new Player(setPlayer);
+            }
+            return player;
+        }
+    }
     private Health playerHealth;
     public GameObject[] defaultEnabledRootObjects;
     
@@ -75,22 +87,6 @@ public class LevelManager : MonoBehaviour
     public bool IsLevelRunning
     {
         get { return isLevelRunning; }
-    }
-
-
-    public Vector2 PlayerPosition
-    {
-        get
-        {
-            return player.transform.position;
-        }
-    }
-    public Health PlayerHealth
-    {
-        get
-        {
-            return playerHealth;
-        }
     }
 
     public delegate void OnFireTick();
@@ -160,8 +156,6 @@ public class LevelManager : MonoBehaviour
 
     void Load()
     {
-        if (player != null)
-            playerHealth = player.GetComponent<Health>();
     }
 
     void Activate()
@@ -221,7 +215,7 @@ public class LevelManager : MonoBehaviour
         gameOverScreen.SetActive(false);
         levelState = LevelState.Playing;
 
-        CheckpointSystem.ReturnToCurrent(player);
+        CheckpointSystem.ReturnToCurrent(setPlayer.transform);
         playerHealth.ResetHealth();
         TimeSystem.SetTimer(TimeSystem.levelTimeLimitSeconds);
     }

@@ -34,7 +34,7 @@ public class CheckpointSystem: MonoBehaviour
         }
     }
 
-    public void ReturnToCurrent(PlayerController player)
+    public void ReturnToCurrent(Transform player)
     {
         if (current < 0)
         {

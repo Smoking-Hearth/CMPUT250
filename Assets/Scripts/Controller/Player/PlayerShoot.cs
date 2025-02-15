@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerStats))]
 public class PlayerShoot : MonoBehaviour
 {
     private WaterTank waterTank;
@@ -44,7 +43,6 @@ public class PlayerShoot : MonoBehaviour
     private Projectile[] bulletCache;
     private int bulletCounter;
 
-    private PlayerStats stats;
     [SerializeField] private int costDelayTicks;
     private int costTicks;
 
@@ -69,10 +67,6 @@ public class PlayerShoot : MonoBehaviour
         inventory = new PlayerInventory(2, attack, attachPoint, inventoryIcons);
 
         bulletCache = new Projectile[maxBullets];
-        if (stats == null)
-        {
-            stats = GetComponent<PlayerStats>();
-        }
     }
 
     private void OnEnable()
@@ -81,7 +75,7 @@ public class PlayerShoot : MonoBehaviour
         SpecialAttack.onClearSpecial += DropSpecial;
         PlayerController.Controls.PlayerMovement.SwapSpecial.performed += inventory.Swap;
         WaterRefiller.onWaterRefill += waterTank.RefillWater;
-        PlayerController.onLand += PlayerLand;
+        PlayerMovement.onLand += PlayerLand;
     }
 
     private void OnDisable()
@@ -90,7 +84,7 @@ public class PlayerShoot : MonoBehaviour
         SpecialAttack.onClearSpecial -= DropSpecial;
         PlayerController.Controls.PlayerMovement.SwapSpecial.performed -= inventory.Swap;
         WaterRefiller.onWaterRefill -= waterTank.RefillWater;
-        PlayerController.onLand -= PlayerLand;
+        PlayerMovement.onLand -= PlayerLand;
     }
 
     private void FixedUpdate()
@@ -106,13 +100,12 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
-    public void ResetAimedSprites(bool flip)
+    public void ResetAimedSprites()
     {
         for (int i = 0; i < swingObjects.Length; i++)
         {
             swingObjects[i].objectTransform.rotation = Quaternion.identity;
         }
-        flipObject.localScale = new Vector2(flip ? -1 : 1, 1);
     }
 
     public void AimSprites()

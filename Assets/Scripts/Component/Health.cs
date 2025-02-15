@@ -11,14 +11,14 @@ public class Health : MonoBehaviour, IStat
         get { return 0f; }
     }
 
-    [SerializeField] float max;
+    [SerializeField] protected float max;
     public float Max 
     {
         get { return max; }
     }
 
-    [SerializeField] float current;
-    public float Current 
+    [SerializeField] protected float current;
+    public virtual float Current 
     {
         get { return current; }
         set
@@ -47,7 +47,7 @@ public class Health : MonoBehaviour, IStat
     }
 
     public delegate void OnChangedCallback();
-    public event OnChangedCallback onChanged;
+    public OnChangedCallback onChanged;
     public bool shouldTriggerCallback = true;
 
     public void Update()

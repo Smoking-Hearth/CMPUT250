@@ -113,8 +113,8 @@ public class FinalBossArm : Fire, IExtinguishable
         }
         else if (fireKind == CombustibleKind.C_ELECTRICAL)
         {
-            Vector2 direction = (Vector2)transform.position - LevelManager.Active.PlayerPosition;
-            GameManager.onEnemyAttack(LevelManager.Active.PlayerPosition + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
+            Vector2 direction = (Vector2)transform.position - LevelManager.Active.Player.Position;
+            GameManager.onEnemyAttack(LevelManager.Active.Player.Position + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
         }
 
         if (temperature == 0)
