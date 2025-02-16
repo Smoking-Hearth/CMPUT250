@@ -71,18 +71,21 @@ public class PlayerMovement : MonoBehaviour
         //Checks if the player is grounded
         if (Physics2D.OverlapCircle((Vector2)transform.position + groundCheckOffset, groundCheckRadius, groundLayer))
         {
-            //Checks if the player has landed
             if (addedVelocity.y < 0)
             {
-                playerAnimator.SetBool("IsGrounded", true);
-                player.GroundState = GroundState.Grass;
-                isJumping = false;
-
-                if (onLand != null)
+                //Checks if the player has landed
+                if (player.GroundState == GroundState.None)
                 {
-                    onLand(transform.position, -addedVelocity.y);
-                }
+                    playerAnimator.SetBool("IsGrounded", true);
+                    player.GroundState = GroundState.Grass;
+                    isJumping = false;
 
+                    if (onLand != null)
+                    {
+                        onLand(transform.position, -addedVelocity.y);
+                    }
+
+                }
                 addedVelocity.y = 0;
             }
         }
@@ -160,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (player.GroundState != GroundState.None)
                 {
-                    addedVelocity.x *= 0.8f;
+                    addedVelocity.x *= 0.9f;
                 }
                 else
                 {

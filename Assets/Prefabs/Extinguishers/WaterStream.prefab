@@ -200,13 +200,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   extinguishClass: 1
   effectiveness: 25
-  maintainCost: 10
+  maintainCost: 20
   initialCost: 40
   inventoryIcon: {fileID: 21300000, guid: beeec65685d5955408e6856793ea6677, type: 3}
   tankCapacity: 2000
-  pushbackMultiplier: {x: 1.2, y: 1}
-  pushbackInitial: 2500
-  pushbackAcceleration: 100
+  pushbackMultiplier: {x: 1.6, y: 1}
+  pushbackInitial: 2100
+  pushbackAcceleration: 300
   initialPushDuration: 0.1
   audioSource: {fileID: 4878935707283839080}
   deploySound: {fileID: 8300000, guid: aa69b1b8052d3ea4fbdd2888487edbfd, type: 3}
