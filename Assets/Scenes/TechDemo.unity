@@ -414,7 +414,18 @@ MonoBehaviour:
   shouldTriggerCallback: 1
   healthBar: {fileID: 1165224371}
   hurtRadius: 0.7
-  invincibleDuration: 1
+  invulnerableDuration: 0.5
+  blinkRenderers:
+  - {fileID: 1123579054}
+  - {fileID: 199648331}
+  - {fileID: 219801626}
+  - {fileID: 602987954}
+  - {fileID: 573345871}
+  - {fileID: 1188701426}
+  - {fileID: 922653879}
+  blinkFrequency: 3
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  blinkColor: {r: 1, g: 0.29354292, b: 0, a: 0}
 --- !u!114 &780425
 MonoBehaviour:
   m_ObjectHideFlags: 0

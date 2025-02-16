@@ -9,8 +9,12 @@ public class PlayerHealth : Health
 {
     [SerializeField] private Slider healthBar;
     [SerializeField] private float hurtRadius;
-    [SerializeField] private float invincibleDuration;
-    private float invincibleTimer;
+    [SerializeField] private float invulnerableDuration;
+    private float invulnerableTimer;
+    [SerializeField] private SpriteRenderer[] blinkRenderers;
+    [SerializeField] private int blinkFrequency;
+    [SerializeField] private Color normalColor;
+    [SerializeField] private Color blinkColor;
 
     public override float Current
     {
@@ -44,6 +48,24 @@ public class PlayerHealth : Health
         GameManager.onEnemyAttack -= CheckEnemyAttack;
     }
 
+    private void FixedUpdate()
+    {
+        if (invulnerableTimer > 0)
+        {
+            invulnerableTimer -= Time.fixedDeltaTime;
+            if (invulnerableTimer <= 0)
+            {
+                InvulnerabilityBlink(1);
+            }
+            else
+            {
+                float time = (Mathf.Cos(invulnerableTimer / invulnerableDuration * blinkFrequency * Mathf.PI * 2) + 1) * 0.5f;
+                Debug.Log(time);
+                InvulnerabilityBlink(time);
+            }
+        }
+    }
+
     void UpdateHealthBar()
     {
         healthBar.value = Current;
@@ -59,9 +81,22 @@ public class PlayerHealth : Health
         LevelManager.Active.levelState = LevelState.Defeat;
     }
 
+    private void InvulnerabilityBlink(float time)
+    {
+        for (int i = 0; i < blinkRenderers.Length; i++)
+        {
+            blinkRenderers[i].color = Color.Lerp(blinkColor, normalColor, time);
+        }
+    }
+
     private void CheckEnemyAttack(Vector2 position, Vector2 sourcePosition, EnemyAttackInfo attackInfo)
     {
         if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        {
+            return;
+        }
+
+        if (invulnerableTimer > 0)
         {
             return;
         }
@@ -73,6 +108,8 @@ public class PlayerHealth : Health
         if (attackDistance < hurtRadius + attackInfo.radius)
         {
             Current -= attackInfo.damage;
+            invulnerableTimer = invulnerableDuration;
+
             //Play hurt sound depending on damage type
             gameObject.MyLevelManager().Player.Sounds.PlayHurt(attackInfo.damageType);
 
