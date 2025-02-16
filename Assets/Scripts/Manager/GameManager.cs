@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance
     {
         get 
-        { 
+        {
+            instance ??= new GameObject("GameManager").AddComponent<GameManager>();
             return instance; 
         }
     }
@@ -39,7 +40,11 @@ public class GameManager : MonoBehaviour
     private SceneSystem sceneSystem;
     public static SceneSystem SceneSystem
     {
-        get { return Instance.sceneSystem; }
+        get 
+        {
+            Instance.sceneSystem ??= new SceneSystem();
+            return Instance.sceneSystem; 
+        }
     }
 
     public delegate void OnEnemyAttack(Vector2 attackCenter, Vector2 sourcePosition, EnemyAttackInfo attackInfo);

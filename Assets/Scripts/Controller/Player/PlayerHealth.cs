@@ -60,7 +60,6 @@ public class PlayerHealth : Health
             else
             {
                 float time = (Mathf.Cos(invulnerableTimer / invulnerableDuration * blinkFrequency * Mathf.PI * 2) + 1) * 0.5f;
-                Debug.Log(time);
                 InvulnerabilityBlink(time);
             }
         }
