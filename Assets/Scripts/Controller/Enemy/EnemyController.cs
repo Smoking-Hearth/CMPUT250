@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour, IExtinguishable
 
     [Tooltip("The part of the enemy that can actually interact with the world")]
     [SerializeField] protected Transform body;
-    [SerializeField] protected Health healthComponent;
+    [SerializeField] protected EnemyHealth healthComponent;
     [SerializeField] protected CombustibleKind fireKind;
     [SerializeField] protected LayerMask waterLayer;
     [SerializeField] protected EnemyAttackInfo attackInfo;
@@ -132,7 +132,7 @@ public class EnemyController : MonoBehaviour, IExtinguishable
             return;
         }
 
-        healthComponent.Current -= quantity_L;
+        healthComponent.Hurt(extinguishClass, quantity_L);
 
         if (healthComponent.HealthZero)
         {
