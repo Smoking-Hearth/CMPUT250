@@ -221,6 +221,7 @@ public class PlayerShoot : MonoBehaviour
             costTicks = 0;
             if (!inventory.CurrentSpecial.ResourceTank.UseWater(specialAttack.MaintainCost))
             {
+                ResetAimedSprites();
                 return false;
             }
         }
