@@ -1302,6 +1302,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8626405323839708017, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
   m_PrefabInstance: {fileID: 2414277497693016561}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &628512154 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3180771244551300279, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
+  m_PrefabInstance: {fileID: 2414277497693016561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39aac619193445d9a0780e5799a3d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &639173886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1829,6 +1840,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1647316234}
     m_Modifications:
+    - target: {fileID: 3180771244551300279, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
+      propertyPath: <levelIndex>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4745081222906322023, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
+      propertyPath: m_text
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6920008191316971806, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
       propertyPath: m_TargetGraphic
       value: 
@@ -2074,6 +2093,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070739444}
   m_CullTransparentMesh: 1
+--- !u!114 &1356621544 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3180771244551300279, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
+  m_PrefabInstance: {fileID: 996228815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39aac619193445d9a0780e5799a3d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1390896712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2082,6 +2112,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1647316234}
     m_Modifications:
+    - target: {fileID: 3180771244551300279, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
+      propertyPath: <levelIndex>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4745081222906322023, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
+      propertyPath: m_text
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6920008191316971806, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
       propertyPath: m_TargetGraphic
       value: 
@@ -2189,6 +2227,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1390896715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3180771244551300279, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
+  m_PrefabInstance: {fileID: 1390896712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39aac619193445d9a0780e5799a3d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1549923016
@@ -2744,6 +2793,9 @@ MonoBehaviour:
   play: {fileID: 36930291}
   settings: {fileID: 510362555}
   credits: {fileID: 446179857}
+  forestContainer: {fileID: 628512154}
+  cityContainer: {fileID: 1390896715}
+  skyscraperContainer: {fileID: 1356621544}
 --- !u!114 &1916546478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2816,6 +2868,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 0}
   setPlayer: {fileID: 0}
   defaultEnabledRootObjects: []
+  isLevelRunning: 0
 --- !u!1 &2026532635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2988,6 +3041,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1647316234}
     m_Modifications:
+    - target: {fileID: 3180771244551300279, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
+      propertyPath: <levelIndex>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4745081222906322023, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
+      propertyPath: m_text
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8242999728275115795, guid: b7fa3b46cfc194fe2a6b21c8ed47b6d5, type: 3}
       propertyPath: m_Name
       value: Forest

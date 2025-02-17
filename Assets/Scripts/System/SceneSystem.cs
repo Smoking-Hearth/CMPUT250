@@ -141,6 +141,7 @@ public class SceneSystem
         // An active level manager means time is passing. We don't want that.
         LevelManager loadedManager = levelManagers[idx];
         loadedManager.NotifyLevel(LevelCommand.Load);
+        loadedManager.NotifyLevel(LevelCommand.Deactivate);
         loadedManager.gameObject.SetActive(false);
     }
 

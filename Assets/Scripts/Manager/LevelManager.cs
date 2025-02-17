@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -21,7 +22,10 @@ public static class LevelManagerExtension
     /// </summary>
     public static bool ShouldUpdate(this GameObject gameObject)
     {
-        return GameManager.IsInit && gameObject.MyLevelManager()?.IsLevelRunning == true;
+        if (!GameManager.IsInit) return false;
+        LevelManager levelManager = gameObject.MyLevelManager();
+        if (levelManager == null) return false;
+        return levelManager.IsLevelRunning;
     }
 }
 
@@ -83,7 +87,7 @@ public class LevelManager : MonoBehaviour
     }
     public GameObject[] defaultEnabledRootObjects;
     
-    private bool isLevelRunning = false;
+    [SerializeField] private bool isLevelRunning = false;
     public bool IsLevelRunning
     {
         get { return isLevelRunning; }
@@ -125,8 +129,7 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        LevelCommand cmd;
-        if (callbackCommands.TryDequeue(out cmd))
+        if (callbackCommands.TryDequeue(out LevelCommand cmd))
         {
             switch (cmd)
             {
@@ -134,7 +137,14 @@ public class LevelManager : MonoBehaviour
                     onLoad?.Invoke();
                     break;
                 case LevelCommand.Activate:
-                    onActivate?.Invoke();
+                    try 
+                    {
+                        onActivate?.Invoke();
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogException(ex);
+                    }
                     isLevelRunning = true;
                     break;
                 case LevelCommand.Deactivate:
@@ -147,22 +157,6 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
-
-    void Start()
-    {
-        gameObject.MyLevelManager().onLoad += Load;
-        gameObject.MyLevelManager().onActivate += Activate;
-    }
-
-    void Load()
-    {
-    }
-
-    void Activate()
-    {
-        cameraAnimator.Play("Game");
-    }
-
     public void GameOver()
     {
         if (!gameOverScreen.activeSelf)

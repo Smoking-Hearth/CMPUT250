@@ -9,16 +9,14 @@ public class Menu : MonoBehaviour
 {
     [SerializeField] Button play, settings, credits;
 
-    bool forestLoaded = false, cityLoaded = false, skyscraperLoaded = false;
-    Texture2D forestPreview, cityPreview, skyscraperPreview;
+    [SerializeField] private LevelContainer forestContainer;
+    [SerializeField] private LevelContainer cityContainer;
+    [SerializeField] private LevelContainer skyscraperContainer;
 
     void Awake()
     {
         // NOTE: This doesn't load in the sense you may think. This will start a background
         // task to load the given scene, and it will be immediatly visible in the game world.
-        StartCoroutine(GameManager.SceneSystem.Load(SceneIndex.Forest));
-        StartCoroutine(GameManager.SceneSystem.Load(SceneIndex.City));
-        StartCoroutine(GameManager.SceneSystem.Load(SceneIndex.Skyscraper));
     }
 
     void Update()
