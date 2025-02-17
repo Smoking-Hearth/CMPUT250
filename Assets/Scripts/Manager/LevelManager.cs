@@ -41,12 +41,6 @@ public enum LevelCommand
 public class LevelManager : MonoBehaviour 
 {
 
-    // To make this object available for editor callbacks
-    [HideInInspector] public static GameManager GameManager
-    {
-        get { return GameManager.Instance; }
-    }
-
     // For convenience
     [HideInInspector] public static LevelManager Active
     {
@@ -125,7 +119,12 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         GameManager.Init();
+        onActivate += () => 
+        {
+            cameraAnimator?.Play("Game");
+        };
     }
+
 
     void Update()
     {
