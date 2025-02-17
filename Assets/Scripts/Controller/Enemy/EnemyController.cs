@@ -54,9 +54,16 @@ public class EnemyController : MonoBehaviour
         backSwingTimer = enemyInfo.backSwingSeconds;
         if (attackVisual == null)
         {
-            attackVisual = Instantiate(enemyInfo.attackPrefab, Vector2.zero, Quaternion.identity, transform);
+            if (enemyInfo.attackPrefab != null)
+            {
+                attackVisual = Instantiate(enemyInfo.attackPrefab, Vector2.zero, Quaternion.identity, transform);
+                attackVisual.gameObject.SetActive(false);
+            }
         }
-        attackVisual.gameObject.SetActive(false);
+        else
+        {
+            attackVisual.gameObject.SetActive(false);
+        }
 
         if (spawnParticles != null)
         {
