@@ -71,7 +71,7 @@ public class PlayerHealth : Health
         if (zapTimer > 0)
         {
             zapTimer -= Time.fixedDeltaTime;
-            zapEffect.color = Color.Lerp(Color.clear, Color.white, zapTimer / zapDurationSeconds * 1.2f);
+            zapEffect.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, zapTimer / zapDurationSeconds * 1.2f);
         }
     }
 

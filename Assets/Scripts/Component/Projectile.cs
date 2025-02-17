@@ -152,7 +152,7 @@ public class Projectile : MonoBehaviour
     }
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.isTrigger || hasHit)
+        if ((collision.isTrigger && (hitLayers & (1 << collision.gameObject.layer)) == 0) || hasHit)
         {
             return;
         }
