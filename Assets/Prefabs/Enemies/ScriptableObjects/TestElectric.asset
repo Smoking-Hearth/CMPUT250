@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df888b4237d85a48bc749f584357ecf, type: 3}
+  m_Name: TestElectric
+  m_EditorClassIdentifier: 
+  fireKind: 4
+  attackInfo:
+    damageType: 1
+    radius: 1
+    damage: 10
+    knockbackPower: {x: 500, y: 200}
+  attackPrefab: {fileID: 5484523356682874790, guid: 94d9e37eb584e9b4ea527a984a89a5b7, type: 3}
+  aggroRange: 15
+  attackRange: 2
+  commitAttackSeconds: 0.6
+  frontSwingSeconds: 0.5
+  backSwingSeconds: 0.5
+  maxHealth: 1000
+  defeatDurationSeconds: 0.5
+  blinkDuration: 0.3
+  blinkFrequency: 2
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  blinkColor: {r: 1, g: 1, b: 1, a: 0.5882353}
+  speed: 5
+  spawnParticles: {fileID: 3006873478955555893, guid: adb043a0aefce574da5b14a1bb290d5d, type: 3}
+  hurtParticles: {fileID: 8638484002547717531, guid: 448d9ee9f6ff9f34380258c091c10cde, type: 3}
+  backfireParticles: {fileID: 0}
+  hurtClip: {fileID: 8300000, guid: 6f692b600274db949b79592f3887c04c, type: 3}
+  attackClip: {fileID: 0}
+  extinguishClip: {fileID: 8300000, guid: 38d58901f7394e7489bcf7114f06d9eb, type: 3}
