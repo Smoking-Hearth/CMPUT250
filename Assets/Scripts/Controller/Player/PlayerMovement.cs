@@ -139,16 +139,15 @@ public class PlayerMovement : MonoBehaviour
             {
                 player.Sounds.PlayGrassFootsteps();
             }
+            if (flipGraphics)
+            {
+                playerAnimator.transform.localScale = new Vector2(Mathf.Sign(inputAxes.x), 1);
+            }
         }
 
         playerAnimator.SetFloat("MoveSpeed", targetMovement.x / moveSpeed);
 
         Vector2 finalVelocity = targetMovement + addedVelocity;
-
-        if (flipGraphics && finalVelocity.x != 0)
-        {
-            playerAnimator.transform.localScale = new Vector2(Mathf.Sign(finalVelocity.x), 1);
-        }
 
         playerRigidbody.linearVelocity = Time.fixedDeltaTime * finalVelocity;
 

@@ -24,7 +24,7 @@ public class ShooterEnemy : EnemyController
         {
             return;
         }
-        transform.position = (Vector2)transform.position + direction.normalized * Time.fixedDeltaTime * speed;
+        transform.position = (Vector2)transform.position + direction.normalized * Time.fixedDeltaTime * enemyInfo.speed;
         if (direction.x < 0)
         {
             body.localScale = new Vector2(-1, 1);
@@ -61,7 +61,7 @@ public class ShooterEnemy : EnemyController
         }
 
         currentIndex = (currentIndex + 1) % cacheCapacity;
-        commitAttackTimer = commitAttackSeconds;
+        commitAttackTimer = enemyInfo.commitAttackSeconds;
         currentState = EnemyState.stBackSwing;
     }
 }

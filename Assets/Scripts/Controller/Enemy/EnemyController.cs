@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour, IExtinguishable
+public class EnemyController : MonoBehaviour
 {
     public enum EnemyState
     {
@@ -13,39 +13,24 @@ public class EnemyController : MonoBehaviour, IExtinguishable
         stBackSwing
     };
 
+    [SerializeField] protected EnemySO enemyInfo;
+
+    private ParticleSystem spawnParticles;
+
     [Tooltip("The part of the enemy that can actually interact with the world")]
     [SerializeField] protected Transform body;
     [SerializeField] protected EnemyHealth healthComponent;
-    [SerializeField] protected CombustibleKind fireKind;
     [SerializeField] protected LayerMask waterLayer;
-    [SerializeField] protected EnemyAttackInfo attackInfo;
     protected Vector2 targetPosition;
-    public float speed;
     protected float distance;
     public bool cannotDamage = false;
     public bool canMove = true;
 
-    [SerializeField] protected Transform attackVisual; //PLACEHOLDER
-    [SerializeField] protected float aggroRange = 5f;
-    [SerializeField] protected float attackRange = 2f;
-
-    [SerializeField] protected float commitAttackSeconds = 1.5f;
+    protected Transform attackVisual; //PLACEHOLDER
     protected float commitAttackTimer;
-
-    [SerializeField] protected float frontSwingSeconds;
     protected float frontSwingTimer;
-
-    [SerializeField] protected float backSwingSeconds;
     protected float backSwingTimer;
-
-    [SerializeField] protected float defeatDurationSeconds;
     protected float defeatTimer;
-
-    //public ScriptableObject FlameDash;
-
-    // Centre of Attacl
-    // Radious of Attack
-    // Radius of attack hitbox
 
     public EnemyState currentState = EnemyState.stWaiting;
 
@@ -62,16 +47,29 @@ public class EnemyController : MonoBehaviour, IExtinguishable
 
     protected virtual void OnEnable()
     {
+        healthComponent.EnemyInfo = enemyInfo;
         healthComponent.Current = healthComponent.Max;
-        commitAttackTimer = commitAttackSeconds;
-        frontSwingTimer = frontSwingSeconds;
-        backSwingTimer = backSwingSeconds;
+        commitAttackTimer = enemyInfo.commitAttackSeconds;
+        frontSwingTimer = enemyInfo.frontSwingSeconds;
+        backSwingTimer = enemyInfo.backSwingSeconds;
         if (attackVisual != null)
         {
             attackVisual.gameObject.SetActive(false);
         }
+
+        if (spawnParticles != null)
+        {
+            Destroy(spawnParticles);
+        }
+        spawnParticles = Instantiate(enemyInfo.spawnParticles, Vector2.zero, Quaternion.identity, transform);
+
+        healthComponent.onHurt += Hurt;
     }
 
+    protected virtual void OnDisable()
+    {
+        healthComponent.onHurt -= Hurt;
+    }
 
     protected virtual void FixedUpdate()
     {
@@ -116,39 +114,18 @@ public class EnemyController : MonoBehaviour, IExtinguishable
         }
 
     }
-    public virtual void Extinguish(CombustibleKind extinguishClass, float quantity_L)
+    public virtual void Hurt()
     {
         if (healthComponent.HealthZero)
         {
-            return;
-        }
-        if ((extinguishClass & fireKind) == 0)
-        {
-            if (fireKind == CombustibleKind.C_ELECTRICAL)
-            {
-                Vector2 direction = (Vector2)transform.position - LevelManager.Active.Player.Position;
-                GameManager.onEnemyAttack(LevelManager.Active.Player.Position + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
-            }
-            return;
-        }
-
-        healthComponent.Hurt(extinguishClass, quantity_L);
-
-        if (healthComponent.HealthZero)
-        {
+            currentState = EnemyState.stDefeated;
+            defeatTimer = enemyInfo.defeatDurationSeconds;
             sounds.ExtinguishSound();
-            CompleteExtinguish();
         }
         else
         {
             sounds.HitSound();
         }
-    }
-
-    public virtual void CompleteExtinguish()
-    {
-        currentState = EnemyState.stDefeated;
-        defeatTimer = defeatDurationSeconds;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D col)
@@ -178,7 +155,7 @@ public class EnemyController : MonoBehaviour, IExtinguishable
         //
         // PLay idle animation? Sounds?
         //
-        if (distance < aggroRange)
+        if (distance < enemyInfo.aggroRange)
         {
             currentState = EnemyState.stTargeting;
         }
@@ -192,10 +169,10 @@ public class EnemyController : MonoBehaviour, IExtinguishable
         // Face Target, aim at them?
         // Walk towards them, assuming they can do that?
         // canMove = true;
-        if (distance < aggroRange && canMove)
+        if (distance < enemyInfo.aggroRange && canMove)
         {
             MoveToTarget();
-            if (distance <= attackRange)
+            if (distance <= enemyInfo.attackRange)
             {
                 commitAttackTimer -= Time.fixedDeltaTime;
 
@@ -207,7 +184,7 @@ public class EnemyController : MonoBehaviour, IExtinguishable
             // If Target steps out of range? Reset Timer slightly, go back to targetting
             else
             {
-                commitAttackTimer = commitAttackSeconds / 2f;
+                commitAttackTimer = enemyInfo.commitAttackSeconds / 2f;
                 currentState = EnemyState.stTargeting;
             }
         }
@@ -220,7 +197,7 @@ public class EnemyController : MonoBehaviour, IExtinguishable
     protected virtual void MoveToTarget()
     {
         Vector2 direction = targetPosition - (Vector2)transform.position;
-        transform.position = (Vector2)transform.position + direction.normalized * Time.fixedDeltaTime * speed;
+        transform.position = (Vector2)transform.position + direction.normalized * Time.fixedDeltaTime * enemyInfo.speed;
         if (direction.x < 0)
         {
             body.localScale = new Vector2(-1, 1);
@@ -238,7 +215,7 @@ public class EnemyController : MonoBehaviour, IExtinguishable
             frontSwingTimer -= Time.fixedDeltaTime;
             return;
         }
-        frontSwingTimer = frontSwingSeconds;
+        frontSwingTimer = enemyInfo.frontSwingSeconds;
         currentState = EnemyState.stDuringAttack;
     }
 
@@ -254,7 +231,7 @@ public class EnemyController : MonoBehaviour, IExtinguishable
         {
             attackVisual.gameObject.SetActive(false);
         }
-        backSwingTimer = backSwingSeconds;
+        backSwingTimer = enemyInfo.backSwingSeconds;
         currentState = EnemyState.stTargeting;
     }
 
@@ -262,16 +239,16 @@ public class EnemyController : MonoBehaviour, IExtinguishable
     {
         if (GameManager.onEnemyAttack != null)
         {
-            Vector2 attackCenter = (Vector2)transform.position + (targetPosition - (Vector2)transform.position).normalized * attackRange;
+            Vector2 attackCenter = (Vector2)transform.position + (targetPosition - (Vector2)transform.position).normalized * enemyInfo.attackRange;
             if (attackVisual != null)
             {
                 attackVisual.position = attackCenter;
                 attackVisual.gameObject.SetActive(true);
             }
 
-            GameManager.onEnemyAttack(attackCenter, transform.position, attackInfo);
+            GameManager.onEnemyAttack(attackCenter, transform.position, enemyInfo.attackInfo);
         }
-        commitAttackTimer = commitAttackSeconds;
+        commitAttackTimer = enemyInfo.commitAttackSeconds;
         currentState = EnemyState.stBackSwing;
     }
 }

@@ -1,14 +1,30 @@
 using UnityEngine;
 
-public class EnemyHealth : Health
+public class EnemyHealth : Health, IExtinguishable
 {
-    [SerializeField] private float blinkDuration;
     private float blinkTimer;
-    [SerializeField] private ParticleSystem hurtParticles;
     [SerializeField] private SpriteRenderer[] blinkRenderers;
-    [SerializeField] private int blinkFrequency;
     [SerializeField] private Color normalColor;
     [SerializeField] private Color blinkColor;
+    private ParticleSystem hurtParticles;
+
+    private EnemySO enemyInfo;
+    public EnemySO EnemyInfo {
+        get
+        {
+            return enemyInfo;
+        }
+        set
+        {
+            if (hurtParticles == null)
+            {
+                hurtParticles = Instantiate(value.hurtParticles, transform.position, Quaternion.identity, transform);
+            }
+            enemyInfo = value;
+        }
+    }
+    public delegate void OnHurt();
+    public event OnHurt onHurt;
 
     private void FixedUpdate()
     {
@@ -21,17 +37,10 @@ public class EnemyHealth : Health
             }
             else
             {
-                float time = (Mathf.Cos(blinkTimer / blinkDuration * blinkFrequency * Mathf.PI * 2) + 1) * 0.5f;
+                float time = (Mathf.Cos(blinkTimer / EnemyInfo.blinkDuration * EnemyInfo.blinkFrequency * Mathf.PI * 2) + 1) * 0.5f;
                 HurtBlink(time);
             }
         }
-    }
-
-    public void Hurt(CombustibleKind extinguishClass, float amount)
-    {
-        Current -= amount;
-        blinkTimer = blinkDuration;
-        hurtParticles.Play();
     }
 
     private void HurtBlink(float time)
@@ -39,6 +48,31 @@ public class EnemyHealth : Health
         for (int i = 0; i < blinkRenderers.Length; i++)
         {
             blinkRenderers[i].color = Color.Lerp(blinkColor, normalColor, time);
+        }
+    }
+
+    public virtual void Extinguish(CombustibleKind extinguishClass, float quantity_L)
+    {
+        if (HealthZero)
+        {
+            return;
+        }
+        if ((extinguishClass & enemyInfo.fireKind) == 0)
+        {
+            if (enemyInfo.fireKind == CombustibleKind.C_ELECTRICAL)
+            {
+                Vector2 direction = (Vector2)transform.position - LevelManager.Active.Player.Position;
+                GameManager.onEnemyAttack(LevelManager.Active.Player.Position + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
+            }
+            return;
+        }
+        Current -= quantity_L;
+        blinkTimer = EnemyInfo.blinkDuration;
+        hurtParticles.Play();
+
+        if (onHurt != null)
+        {
+            onHurt();
         }
     }
 }
