@@ -8691,11 +8691,13 @@ MonoBehaviour:
   TimeSystem: {fileID: 1155746457}
   levelState: 1
   cameraAnimator: {fileID: 1738979219}
-  UI: []
+  UI:
+  - {fileID: 853149699}
   LevelCamera: {fileID: 586130181}
   gameOverScreen: {fileID: 1041189409}
   setPlayer: {fileID: 744739953}
   defaultEnabledRootObjects: []
+  isLevelRunning: 0
 --- !u!114 &1155746457
 MonoBehaviour:
   m_ObjectHideFlags: 0

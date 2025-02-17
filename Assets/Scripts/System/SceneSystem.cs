@@ -99,6 +99,10 @@ public class SceneSystem
             position.z += offset;
             go.transform.position = position;
         }
+        Camera camera = levelManagers[scene.buildIndex].LevelCamera;
+        Vector3 cameraPos = camera.transform.position;
+        cameraPos.z = offset;
+        camera.transform.position = cameraPos;
     }
 
     public void LoadHook(Scene scene, LoadSceneMode _)
@@ -141,7 +145,7 @@ public class SceneSystem
         // An active level manager means time is passing. We don't want that.
         LevelManager loadedManager = levelManagers[idx];
         loadedManager.NotifyLevel(LevelCommand.Load);
-        loadedManager.NotifyLevel(LevelCommand.Deactivate);
+        loadedManager.Deactivate();
         loadedManager.gameObject.SetActive(false);
     }
 

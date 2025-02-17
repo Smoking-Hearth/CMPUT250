@@ -119,12 +119,24 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         GameManager.Init();
-        onActivate += () => 
-        {
-            cameraAnimator?.Play("Game");
-        };
     }
 
+    public void Activate()
+    {
+        cameraAnimator?.Play("Game");
+        foreach (var uiObject in UI)
+        {
+            uiObject.SetActive(true);
+        }
+    }
+
+    public void Deactivate()
+    {
+        foreach (var uiObject in UI)
+        {
+            uiObject.SetActive(false);
+        }
+    }
 
     void Update()
     {
@@ -139,6 +151,7 @@ public class LevelManager : MonoBehaviour
                     try 
                     {
                         onActivate?.Invoke();
+                        Activate();
                     }
                     catch (Exception ex)
                     {
@@ -149,6 +162,7 @@ public class LevelManager : MonoBehaviour
                 case LevelCommand.Deactivate:
                     isLevelRunning = false;
                     onDeactivate?.Invoke();
+                    Deactivate();
                     break;
                 case LevelCommand.Unload:
                     onUnload?.Invoke();

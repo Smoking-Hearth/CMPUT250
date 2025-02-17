@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class LevelContainer: MonoBehaviour
 {
+    [field: SerializeField] public Button button { get; private set; }
     [SerializeField] public RawImage previewImage;
     private RectTransform rectTransform;
 
@@ -19,6 +20,13 @@ public class LevelContainer: MonoBehaviour
         {
             DevLog.Error("LevelContainer should be attached to a UI Object");
         }
+
+        button.onClick.AddListener(ContainerClicked);
+    }
+
+    void ContainerClicked()
+    {
+        StartCoroutine(GameManager.SceneSystem.SetSceneActive(levelIndex));
     }
 
     void Update()
