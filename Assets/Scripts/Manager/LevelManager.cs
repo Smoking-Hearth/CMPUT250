@@ -64,6 +64,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Key Objects")]
     [SerializeField] public List<GameObject> UI;
+    [field: SerializeField] public Camera LevelCamera; 
 
     [SerializeField] private GameObject gameOverScreen;
 

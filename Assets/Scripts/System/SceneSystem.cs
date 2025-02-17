@@ -89,21 +89,15 @@ public class SceneSystem
         levelManagers[active].NotifyLevel(LevelCommand.Activate);
     }
 
-    // This is absolutely terrible. Becuase it overwrites active on objects
-    // that we may want to be inactive when the scene is loaded.
-    public void SetSceneVisible(Scene scene, bool visible = true)
+    public void SceneObjectsToContainer(Scene scene, int container)
     {
-        int idx = scene.buildIndex;
-
-        if (!IsLoaded(idx))
+        if (container == 0) return;
+        float offset = (float)(container * 1000);
+        foreach (var go in scene.GetRootGameObjects())
         {
-            DevLog.Error($"Tried to set (unloaded) scene {(SceneIndex)idx} visible");
-            return;
-        }
-
-        foreach (var go in levelManagers[scene.buildIndex].UI)
-        {
-            go.SetActive(visible);
+            Vector3 position = go.transform.position;
+            position.z += offset;
+            go.transform.position = position;
         }
     }
 
@@ -128,7 +122,7 @@ public class SceneSystem
         return (loaded & (1 << buildIndex)) != 0;
     }
 
-    public IEnumerator Load(SceneIndex sceneIdx, bool hideLoaded = true)
+    public IEnumerator Load(SceneIndex sceneIdx)
     {
         // Don't reload loaded scenes
         if (IsLoaded(sceneIdx)) yield break;
@@ -142,32 +136,23 @@ public class SceneSystem
 
         Scene loadedScene = SceneManager.GetSceneByBuildIndex(idx);
         RegisterLevelManager(loadedScene);
+        SceneObjectsToContainer(loadedScene, idx);
 
         // An active level manager means time is passing. We don't want that.
         LevelManager loadedManager = levelManagers[idx];
         loadedManager.NotifyLevel(LevelCommand.Load);
         loadedManager.gameObject.SetActive(false);
-
-        if (hideLoaded)
-        {
-            SetSceneVisible(loadedScene, false);
-        }
     }
 
-    public IEnumerator SetSceneActive(SceneIndex sceneIdx, bool hideCurrent = true)
+    public IEnumerator SetSceneActive(SceneIndex sceneIdx)
     {
         Scene prev = SceneManager.GetActiveScene();
         Scene next = SceneManager.GetSceneByBuildIndex((int)sceneIdx);
 
-        if (IsLoaded(sceneIdx))
-        {
-            SetSceneVisible(next, true);
-
-        }
-        else 
+        if (!IsLoaded(sceneIdx))
         {
             // We don't hide the objects on this load
-            yield return Load(sceneIdx, false);
+            yield return Load(sceneIdx);
 
             // FIXME: This may not be necessary, SceneManager could be updating
             // the object previously returned.
@@ -182,12 +167,6 @@ public class SceneSystem
 
         nextManager.gameObject.SetActive(true);
         nextManager.NotifyLevel(LevelCommand.Activate);
-
-        // Hide the current scene
-        if (hideCurrent)
-        {
-            SetSceneVisible(SceneManager.GetActiveScene(), false);
-        }
 
         SceneManager.SetActiveScene(next);
     }
