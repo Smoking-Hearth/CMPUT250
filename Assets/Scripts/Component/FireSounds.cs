@@ -23,7 +23,7 @@ public class FireSounds : MonoBehaviour
         if (hitTimer <= 0 && !playedHit)
         {
             audioSource.PlayOneShot(hitClip);
-            hitTimer = 0.2f;
+            hitTimer = 0.1f;
             playedHit = true;
         }
     }

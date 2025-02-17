@@ -114,6 +114,7 @@ public class HighPressureSpecial : SpecialAttack
             nozzleParticles.Stop();
             splashParticles.Stop();
             transform.parent = null;
+            persistSoundSource.Stop();
         }
 
         initialPushTime = initialPushDuration;

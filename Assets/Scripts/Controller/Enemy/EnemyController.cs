@@ -52,10 +52,11 @@ public class EnemyController : MonoBehaviour
         commitAttackTimer = enemyInfo.commitAttackSeconds;
         frontSwingTimer = enemyInfo.frontSwingSeconds;
         backSwingTimer = enemyInfo.backSwingSeconds;
-        if (attackVisual != null)
+        if (attackVisual == null)
         {
-            attackVisual.gameObject.SetActive(false);
+            attackVisual = Instantiate(enemyInfo.attackPrefab, Vector2.zero, Quaternion.identity, transform);
         }
+        attackVisual.gameObject.SetActive(false);
 
         if (spawnParticles != null)
         {

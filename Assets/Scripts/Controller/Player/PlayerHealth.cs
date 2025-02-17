@@ -15,6 +15,10 @@ public class PlayerHealth : Health
     [SerializeField] private int blinkFrequency;
     [SerializeField] private Color normalColor;
     [SerializeField] private Color blinkColor;
+    [SerializeField] private SpriteRenderer zapEffect;
+    [Min(0.01f)]
+    [SerializeField] private float zapDurationSeconds = 0.1f;
+    private float zapTimer;
 
     public override float Current
     {
@@ -62,6 +66,12 @@ public class PlayerHealth : Health
                 float time = (Mathf.Cos(invulnerableTimer / invulnerableDuration * blinkFrequency * Mathf.PI * 2) + 1) * 0.5f;
                 InvulnerabilityBlink(time);
             }
+        }
+
+        if (zapTimer > 0)
+        {
+            zapTimer -= Time.fixedDeltaTime;
+            zapEffect.color = Color.Lerp(Color.clear, Color.white, zapTimer / zapDurationSeconds * 1.2f);
         }
     }
 
@@ -116,6 +126,20 @@ public class PlayerHealth : Health
             float closeness = Mathf.Clamp01(1 - attackDistance / (attackInfo.radius + hurtRadius));
             Vector2 knockback = new Vector2(closeness * directionFromSource.normalized.x * attackInfo.knockbackPower.x, attackInfo.knockbackPower.y);
             gameObject.MyLevelManager().Player.Movement.PushPlayer(knockback);
+
+            switch (attackInfo.damageType)
+            {
+                case DamageType.Electricity:
+                    float attackAngle = Mathf.Atan2(-directionFromSource.y, -directionFromSource.x);
+                    zapTimer = zapDurationSeconds;
+                    zapEffect.color = Color.white;
+                    zapEffect.size = new Vector2(directionFromSource.magnitude, 0.75f);
+                    zapEffect.transform.position = transform.position;
+                    zapEffect.transform.localRotation = Quaternion.Euler(0, 0, attackAngle * Mathf.Rad2Deg);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
