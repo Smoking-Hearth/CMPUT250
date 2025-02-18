@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,6 +10,13 @@ public static class LevelManagerExtension
     // belongs to. This is basically an alias and the most robust way
     public static LevelManager MyLevelManager(this GameObject gameObject)
     {
+        int buildIndex = gameObject.scene.buildIndex;
+        if (!GameManager.SceneSystem.IsLoaded(buildIndex))
+        {
+            // The Coroutine running the load wan't polled. But this object is calling
+            // it's start/awake so the rest of the Scene must be loaded.
+            GameManager.SceneSystem.RegisterScene(gameObject.scene);
+        }
         return GameManager.SceneSystem.LevelManagers[gameObject.scene.buildIndex];
     }
 
@@ -54,6 +62,7 @@ public class LevelManager : MonoBehaviour
     [field: SerializeField] public InteractableSystem InteractableSystem;
     [field: SerializeField] public MusicSystem MusicSystem;
     [field: SerializeField] public TimeSystem TimeSystem;
+    [field: SerializeField] public AudioListener AudioListener;
 
     [Header("State")]
     [SerializeField] public LevelState levelState;
@@ -127,6 +136,11 @@ public class LevelManager : MonoBehaviour
         LevelCamera.gameObject.SetActive(true);
         LevelCamera.enabled = true;
 
+        if (EventSystem != null)
+            EventSystem.enabled = true;
+        if (AudioListener != null)
+            AudioListener.enabled = true;
+
         if (cameraAnimator != null)
             cameraAnimator?.Play("Game");
 
@@ -143,6 +157,12 @@ public class LevelManager : MonoBehaviour
             uiObject.SetActive(false);
         }
         LevelCamera?.gameObject.SetActive(false);
+
+        if (EventSystem != null)
+            EventSystem.enabled =  false;
+        if (AudioListener != null)
+            AudioListener.enabled = false;
+        
         gameObject.SetActive(false);
     }
 
