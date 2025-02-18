@@ -88,6 +88,7 @@ public class Menu : MonoBehaviour
     {
         if (!HasSelected) return;
         SceneIndex selectedLevel = containers[expandedLevel].levelIndex;
+        GameManager.SceneSystem.LevelManagers[(int)selectedLevel].LevelCamera.targetTexture = null;
         StartCoroutine(GameManager.SceneSystem.SetSceneActive(selectedLevel));
     }
 

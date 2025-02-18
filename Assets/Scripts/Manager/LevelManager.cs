@@ -142,8 +142,8 @@ public class LevelManager : MonoBehaviour
         {
             uiObject.SetActive(false);
         }
-        // LevelCamera?.gameObject.SetActive(false);
-        // gameObject.SetActive(false);
+        LevelCamera?.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     void Update()
