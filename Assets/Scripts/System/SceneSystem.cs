@@ -168,9 +168,9 @@ public class SceneSystem
         LevelManager nextManager = levelManagers[next.buildIndex];
 
         prevManager.NotifyLevel(LevelCommand.Deactivate);
-        prevManager.gameObject.SetActive(false);
+        prevManager.Deactivate();
 
-        nextManager.gameObject.SetActive(true);
+        nextManager.Activate();
         nextManager.NotifyLevel(LevelCommand.Activate);
 
         SceneManager.SetActiveScene(next);

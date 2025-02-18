@@ -5,8 +5,24 @@ using LitMotion.Extensions;
 
 public class LevelContainer: MonoBehaviour
 {
+    struct CompactState
+    {
+        public Vector2 containerPos;
+        public Vector2 containerSize;
+
+        public CompactState(Vector2 pos, Vector2 size)
+        {
+            containerPos = pos;
+            containerSize = size;
+        }
+    }
+
     [field: SerializeField] private RectTransform canvasRectTransform;
+    [field: SerializeField] private CanvasGroup containerButtons;
     [field: SerializeField] public Button button { get; private set; }
+    [field: SerializeField] private RectTransform labelRectTransform;
+
+
     [SerializeField] public RawImage previewImage;
     private RectTransform previewRectTransform;
     private RectTransform myRectTransform;
@@ -16,6 +32,7 @@ public class LevelContainer: MonoBehaviour
     private bool previewLoaded = false;
 
     private MotionHandle anim = MotionHandle.None;
+    private CompactState compactState;
 
     void Start()
     {
@@ -26,13 +43,20 @@ public class LevelContainer: MonoBehaviour
         {
             DevLog.Error("LevelContainer should be attached to a UI Object");
         }
+        compactState = new CompactState(myRectTransform.anchoredPosition, myRectTransform.sizeDelta);
 
         button.onClick.AddListener(ContainerClicked);
+    }
+    
+    public void Release()
+    {
+        GameManager.SceneSystem.LevelManagers[(int)levelIndex].LevelCamera.targetTexture = null;
     }
 
     void ContainerClicked()
     {
         gameObject.transform.SetAsLastSibling();
+        button.interactable = false;
 
         MotionHandle center = LMotion.Create(myRectTransform.anchoredPosition, Vector2.zero, 1f)
             .WithEase(Ease.OutSine)
@@ -42,9 +66,40 @@ public class LevelContainer: MonoBehaviour
             .WithEase(Ease.OutSine)
             .BindToSizeDelta(myRectTransform);
 
+        MotionHandle moveLableUp = LMotion.Create(Vector2.zero, Vector2.up, 1f)
+            .WithEase(Ease.OutSine)
+            .BindToAnchoredPosition(labelRectTransform);
+        
+        MotionHandle fadeInPlay = LMotion.Create(0f, 1f, 0.3f)
+            .WithEase(Ease.InSine)
+            .BindToAlpha(containerButtons);
+
         anim = LSequence.Create()
             .Join(center)
             .Join(grow)
+            .Append(fadeInPlay)
+            .Run();
+    }
+
+    public void BackToMenu()
+    {
+        button.interactable = true;
+        MotionHandle fadeOutPlay = LMotion.Create(1f, 0f, 1f)
+            .WithEase(Ease.OutSine)
+            .BindToAlpha(containerButtons);
+
+        MotionHandle shrink = LMotion.Create(canvasRectTransform.rect.size, compactState.containerSize, 1f)
+            .WithEase(Ease.OutSine)
+            .BindToSizeDelta(myRectTransform);
+
+        MotionHandle returnToSpot = LMotion.Create(Vector2.zero, compactState.containerPos, 1f)
+            .WithEase(Ease.OutSine)
+            .BindToAnchoredPosition(myRectTransform);
+
+        anim = LSequence.Create()
+            .Join(fadeOutPlay)
+            .Append(shrink)
+            .Join(returnToSpot)
             .Run();
     }
 
@@ -60,6 +115,9 @@ public class LevelContainer: MonoBehaviour
             preview = new RenderTexture(Mathf.CeilToInt(size.x), Mathf.CeilToInt(size.y), 16, RenderTextureFormat.Default);
             preview.filterMode = FilterMode.Point;
             preview.autoGenerateMips = false;
+
+            levelManager.LevelCamera.gameObject.SetActive(true);
+            levelManager.LevelCamera.enabled = true;
 
             levelManager.LevelCamera.targetTexture = preview;
             previewImage.texture = preview;
