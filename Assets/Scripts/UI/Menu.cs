@@ -95,6 +95,7 @@ public class Menu : MonoBehaviour
     {
         if (!HasSelected) return;
         containers[expandedLevel].BackToMenu();
+        expandedLevel = -1;
     }
 
     void OnSettingsClick()
