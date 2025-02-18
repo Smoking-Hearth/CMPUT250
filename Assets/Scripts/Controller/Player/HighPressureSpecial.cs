@@ -118,7 +118,7 @@ public class HighPressureSpecial : SpecialAttack
         }
 
         initialPushTime = initialPushDuration;
-        transform.position = startPosition.WithZ(parent);
+        transform.position = startPosition;
         activating = set;
         currentLength = 2;
         spline.SetPosition(0, Vector2.zero);
@@ -131,13 +131,13 @@ public class HighPressureSpecial : SpecialAttack
         {
             float segmentDistance = streamLength / segments;
             Vector2 newPosition = Quaternion.Euler(0, 0, aimAngle) * Vector2.right * i * segmentDistance;
-            spline.SetPosition(i, newPosition.WithZ(transform));
+            spline.SetPosition(i, newPosition);
         }
     }
 
     public override void AimAttack(Vector2 startPosition, float aimAngle)
     {
-        transform.position = startPosition.WithZ(transform);
+        transform.position = startPosition;
         Vector2 targetDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.right;
         targetAngle = Mathf.LerpAngle(targetAngle, Mathf.Rad2Deg * Mathf.Atan2(targetDirection.y, targetDirection.x), turnSpeed);
         Vector2 delayedDirection = Quaternion.Euler(0, 0, targetAngle) * Vector2.right;
@@ -164,7 +164,7 @@ public class HighPressureSpecial : SpecialAttack
             }
 
             spline.SetHeight(i, height);
-            spline.SetPosition(i, newPosition.WithZ(transform));
+            spline.SetPosition(i, newPosition);
         }
 
         for (int i = 0; i < segments; i++)
@@ -220,10 +220,10 @@ public class HighPressureSpecial : SpecialAttack
         float angle = Mathf.Atan2(direction.y, direction.x);
 
         splashParticles.transform.localScale = new Vector2(1, width * 0.5f);
-        splashParticles.transform.position = position.WithZ(transform);
+        splashParticles.transform.position = position;
         splashParticles.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
 
-        spriteMask.position = (position + direction * streamLength * 0.5f).WithZ(transform);
+        spriteMask.position = (position + direction * streamLength * 0.5f);
         spriteMask.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
     }
 

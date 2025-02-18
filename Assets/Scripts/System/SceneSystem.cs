@@ -92,16 +92,16 @@ public class SceneSystem
     public void SceneObjectsToContainer(Scene scene, int container)
     {
         if (container == 0) return;
-        float offset = (float)(container * 1000);
+        float offset = (float)((container - 1) * 1000);
         foreach (var go in scene.GetRootGameObjects())
         {
             Vector3 position = go.transform.position;
-            position.z += offset;
+            position.x += offset;
             go.transform.position = position;
         }
         Camera camera = levelManagers[scene.buildIndex].LevelCamera;
         Vector3 cameraPos = camera.transform.position;
-        cameraPos.z = offset;
+        cameraPos.x = offset;
         camera.transform.position = cameraPos;
     }
 
