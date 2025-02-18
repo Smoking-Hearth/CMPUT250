@@ -48,13 +48,6 @@ public enum LevelCommand
 // TODO: Give this info about how it got loaded.
 public class LevelManager : MonoBehaviour 
 {
-
-    // For convenience
-    [HideInInspector] public static LevelManager Active
-    {
-        get { return GameManager.SceneSystem.ActiveLevel; }
-    }
-
     [Header("Systems")]
     [field: SerializeField] public DialogSystem DialogSystem;
     [field: SerializeField] public EventSystem EventSystem;

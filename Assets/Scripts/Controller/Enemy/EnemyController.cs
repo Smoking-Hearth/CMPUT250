@@ -83,9 +83,10 @@ public class EnemyController : MonoBehaviour
     {
         if (!gameObject.ShouldUpdate()) return;
 
-        distance = Vector2.Distance(transform.position, LevelManager.Active.Player.Position);
+        LevelManager lm = gameObject.MyLevelManager();
+        distance = Vector2.Distance(transform.position, lm.Player.Position);
 
-        if (LevelManager.Active.levelState != LevelState.Playing)
+        if (lm.levelState != LevelState.Playing)
         {
             currentState = EnemyState.stWaiting;
             if (attackVisual != null)
@@ -172,7 +173,7 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Target()
     {
-        targetPosition = LevelManager.Active.Player.Position;
+        targetPosition = gameObject.MyLevelManager().Player.Position;
 
         // Face Target, aim at them?
         // Walk towards them, assuming they can do that?

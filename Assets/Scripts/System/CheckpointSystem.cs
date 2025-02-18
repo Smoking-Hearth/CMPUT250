@@ -30,7 +30,6 @@ public class CheckpointSystem: MonoBehaviour
                 current = i;
                 // Debug.Log("New checkpoint appointed: "+ checkpoints[current].position);
                 // Debug.Log("Current: " + current);
-                
             }
         }
     }

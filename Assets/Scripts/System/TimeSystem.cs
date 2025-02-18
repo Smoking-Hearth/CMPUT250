@@ -73,7 +73,7 @@ public class TimeSystem: MonoBehaviour
     void FixedUpdate()
     {
         if (!gameObject.MyLevelManager().IsLevelRunning) return;
-        if (activated && LevelManager.Active.levelState == LevelState.Playing)
+        if (activated && gameObject.MyLevelManager().levelState == LevelState.Playing)
         {
             DepleteTime(Time.fixedDeltaTime);
         }

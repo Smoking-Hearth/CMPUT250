@@ -87,7 +87,7 @@ public class PlayerHealth : Health
 
     void OnDeath()
     {
-        LevelManager.Active.levelState = LevelState.Defeat;
+        gameObject.MyLevelManager().levelState = LevelState.Defeat;
     }
 
     private void InvulnerabilityBlink(float time)
