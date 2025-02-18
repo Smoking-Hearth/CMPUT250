@@ -74,15 +74,15 @@ public class ParallaxBackground : MonoBehaviour
             UpdateTiledLayerAnchorSize();
         }
 
-        Vector3 cameraTransform = targetCamera.transform.transform.position;
+        Vector2 cameraTransform = targetCamera.transform.transform.position;
         if (relativeTo != null)
         {
-            cameraTransform -= relativeTo.transform.position;
+            cameraTransform -= (Vector2)relativeTo.transform.position;
         }
 
         foreach (var layer in layers)
         {
-            Vector3 offset = cameraTransform / layer.transform.position.z;
+            Vector2 offset = cameraTransform / layer.transform.position.z;
             if (layer.IsTiled)
             {
                 // This is just a pseudo perspective divide but weird.

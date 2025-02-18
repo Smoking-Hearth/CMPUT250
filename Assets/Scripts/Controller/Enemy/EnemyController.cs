@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -206,7 +205,12 @@ public class EnemyController : MonoBehaviour
     protected virtual void MoveToTarget()
     {
         Vector2 direction = targetPosition - (Vector2)transform.position;
-        transform.position = (Vector2)transform.position + direction.normalized * Time.fixedDeltaTime * enemyInfo.speed;
+        
+        // NOTE: We need to retain z otherwise the enemy will be culled by Camera
+        Vector3 position = (Vector2)transform.position + direction.normalized * Time.fixedDeltaTime * enemyInfo.speed;
+        position.z = transform.position.z;
+        transform.position = position;
+
         if (direction.x < 0)
         {
             body.localScale = new Vector2(-1, 1);
