@@ -24,16 +24,24 @@ public class PauseScreen : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerController.Controls.Menu.Pause.performed += TogglePause;
+        PlayerController.Controls.Menu.Pause.performed += TogglePauseKeybind;
+        resume.onClick.AddListener(OnResumeClick);
+        menu.onClick.AddListener(OnMenuClick);
     }
 
     void OnDisable()
     {
-        PlayerController.Controls.Menu.Pause.performed -= TogglePause;
+        PlayerController.Controls.Menu.Pause.performed -= TogglePauseKeybind;
+        resume.onClick.RemoveListener(OnResumeClick);
+        menu.onClick.RemoveListener(OnMenuClick);
     }
 
+    public void TogglePauseKeybind(InputAction.CallbackContext callbackContext)
+    {
+        TogglePause();
+    }
 
-    public void TogglePause(InputAction.CallbackContext callbackContext)
+    public void TogglePause()
     {
         if (prevState == LevelState.None)
         {
@@ -84,4 +92,13 @@ public class PauseScreen : MonoBehaviour
             .BindToAlpha(pauseScreen);
     }
 
+    void OnResumeClick()
+    {
+        TogglePause();
+    }
+
+    void OnMenuClick()
+    {
+        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.MainMenu));
+    }
 }
