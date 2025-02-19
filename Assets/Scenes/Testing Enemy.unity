@@ -155,26 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0912dfe449e6e2e4f97e70280d4f0721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 500
-  moveSpeed: 350
-  groundAcceleration: 50
-  terminalVelocity: {x: 1000, y: 800}
-  playerRigidbody: {fileID: 12672029}
-  groundCheckRadius: 0.2
-  groundCheckOffset: {x: 0, y: -0.54}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 3649
-  stairsLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  platformLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  gravityAcceleration: 30
   jumpBufferSeconds: 0.2
   playerAnimator: {fileID: 1900694091}
-  sounds: {fileID: 12672026}
 --- !u!114 &12672026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,8 +344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1d840f3afe132478f29de6eb4648b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1927251690}
-  hurtRadius: 1
 --- !u!114 &12672032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1804,17 +1784,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7248960090352284795, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
   m_PrefabInstance: {fileID: 614458597}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &386335301 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1073195595969500279, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
-  m_PrefabInstance: {fileID: 614458597}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386335297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8e80934f8b14db3be0a9ac568f19f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &386335303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
@@ -1905,29 +1874,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1138bb1fb0265b7daa0428b5f52ea8b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyInfo: {fileID: 11400000, guid: 014536f8bbf53c8458624c8eb39d40aa, type: 2}
   body: {fileID: 386335303}
-  healthComponent: {fileID: 386335301}
-  fireKind: 1
+  healthComponent: {fileID: 386335309}
   waterLayer:
     serializedVersion: 2
     m_Bits: 16
-  attackInfo:
-    damageType: 0
-    radius: 0
-    damage: 0
-    knockbackPower: {x: 0, y: 0}
-  speed: 2
   cannotDamage: 0
   canMove: 1
-  attackVisual: {fileID: 0}
-  aggroRange: 5
-  attackRange: 2
-  commitAttackSeconds: 1.5
-  frontSwingSeconds: 0.5
-  backSwingSeconds: 0.5
-  defeatDurationSeconds: 0.5
   currentState: 0
   sounds: {fileID: 0}
+--- !u!114 &386335309 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1401252599262919132, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+  m_PrefabInstance: {fileID: 614458597}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386335297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18dcbc5729f3284990586f6ec79eb38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &393633207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3081,13 +3048,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setFireSettings: {fileID: 11400000, guid: 64b8c708d2d4f5e199f6a0214efca5a4, type: 2}
-  levelTimeLimitSeconds: 60
-  timeLimitBar: {fileID: 1459130166}
-  setPlayer: {fileID: 12672025}
-  gameOverScreen: {fileID: 0}
-  setCameraAnimator: {fileID: 1647013128}
-  setDialogSystem: {fileID: 2021766636}
-  setCheckpointManager: {fileID: 786495713}
 --- !u!4 &655036161
 Transform:
   m_ObjectHideFlags: 0
@@ -7510,17 +7470,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005114877}
   m_CullTransparentMesh: 1
---- !u!114 &2021766636 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 635744471786573338, guid: 6dffde27c0cc1406699f0900a96bee77, type: 3}
-  m_PrefabInstance: {fileID: 1317013755}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a59df2bda40d40d8ac4eecb49c61b91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &2021766639 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7362516972561327739, guid: 6dffde27c0cc1406699f0900a96bee77, type: 3}
