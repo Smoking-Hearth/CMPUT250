@@ -59,7 +59,6 @@ public class LevelManager : MonoBehaviour
 
     [Header("State")]
     [SerializeField] public LevelState levelState;
-    
     [SerializeField] public Animator cameraAnimator;
 
     [Header("Key Objects")]
