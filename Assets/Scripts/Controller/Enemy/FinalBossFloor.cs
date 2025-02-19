@@ -16,7 +16,7 @@ public class FinalBossFloor : MonoBehaviour
     {
         if (storedDoorObject != null && !isOpen)
         {
-            if (LevelManager.Active.Player.Position.y >= door.position.y + activateAltitude)
+            if (gameObject.MyLevelManager().Player.Position.y >= door.position.y + activateAltitude)
             {
                 OpenDoor();
             }

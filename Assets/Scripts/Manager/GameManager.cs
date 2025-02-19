@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum LevelState
 {
-    Paused, Playing, Defeat, Win, Cutscene
+    None, Paused, Playing, Defeat, Win, Cutscene
 }
 
 public class GameManager : MonoBehaviour

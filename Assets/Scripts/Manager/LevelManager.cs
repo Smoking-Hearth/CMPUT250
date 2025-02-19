@@ -9,6 +9,13 @@ public static class LevelManagerExtension
     // belongs to. This is basically an alias and the most robust way
     public static LevelManager MyLevelManager(this GameObject gameObject)
     {
+        int buildIndex = gameObject.scene.buildIndex;
+        if (!GameManager.SceneSystem.IsLoaded(buildIndex))
+        {
+            // The Coroutine running the load wan't polled. But this object is calling
+            // it's start/awake so the rest of the Scene must be loaded.
+            GameManager.SceneSystem.RegisterScene(gameObject.scene);
+        }
         return GameManager.SceneSystem.LevelManagers[gameObject.scene.buildIndex];
     }
 
@@ -40,13 +47,6 @@ public enum LevelCommand
 // TODO: Give this info about how it got loaded.
 public class LevelManager : MonoBehaviour 
 {
-
-    // For convenience
-    [HideInInspector] public static LevelManager Active
-    {
-        get { return GameManager.SceneSystem.ActiveLevel; }
-    }
-
     [Header("Systems")]
     [field: SerializeField] public DialogSystem DialogSystem;
     [field: SerializeField] public EventSystem EventSystem;
@@ -54,10 +54,10 @@ public class LevelManager : MonoBehaviour
     [field: SerializeField] public InteractableSystem InteractableSystem;
     [field: SerializeField] public MusicSystem MusicSystem;
     [field: SerializeField] public TimeSystem TimeSystem;
+    [field: SerializeField] public AudioListener AudioListener;
 
     [Header("State")]
     [SerializeField] public LevelState levelState;
-    
     [SerializeField] public Animator cameraAnimator;
 
     [Header("Key Objects")]
@@ -123,7 +123,18 @@ public class LevelManager : MonoBehaviour
 
     public void Activate()
     {
-        cameraAnimator?.Play("Game");
+        gameObject.SetActive(true);
+        LevelCamera.gameObject.SetActive(true);
+        LevelCamera.enabled = true;
+
+        if (EventSystem != null)
+            EventSystem.enabled = true;
+        if (AudioListener != null)
+            AudioListener.enabled = true;
+
+        if (cameraAnimator != null)
+            cameraAnimator.Play("Game");
+
         foreach (var uiObject in UI)
         {
             uiObject.SetActive(true);
@@ -136,6 +147,14 @@ public class LevelManager : MonoBehaviour
         {
             uiObject.SetActive(false);
         }
+        LevelCamera?.gameObject.SetActive(false);
+
+        if (EventSystem != null)
+            EventSystem.enabled =  false;
+        if (AudioListener != null)
+            AudioListener.enabled = false;
+        
+        gameObject.SetActive(false);
     }
 
     void Update()
@@ -151,7 +170,6 @@ public class LevelManager : MonoBehaviour
                     try 
                     {
                         onActivate?.Invoke();
-                        Activate();
                     }
                     catch (Exception ex)
                     {
@@ -162,7 +180,6 @@ public class LevelManager : MonoBehaviour
                 case LevelCommand.Deactivate:
                     isLevelRunning = false;
                     onDeactivate?.Invoke();
-                    Deactivate();
                     break;
                 case LevelCommand.Unload:
                     onUnload?.Invoke();

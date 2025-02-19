@@ -76,7 +76,7 @@ public class FinalBoss : MonoBehaviour
 
     private void CheckCurrentFloor()
     {
-        float playerY = LevelManager.Active.Player.Position.y - baseAltitude;
+        float playerY = gameObject.MyLevelManager().Player.Position.y - baseAltitude;
         currentFloor = Mathf.Clamp(Mathf.CeilToInt(playerY / buildingHeight * floorCount), 0, floorCount);
     }
 

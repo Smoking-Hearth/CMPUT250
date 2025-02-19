@@ -50,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Player player = gameObject.MyLevelManager().Player;
         if (gameObject.MyLevelManager().levelState != LevelState.Playing)
         {
             addedVelocity = Vector2.zero;
@@ -68,24 +67,25 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRigidbody.gravityScale = 1; //The player catches onto ledges, but slowly falls down
         }
-        //Checks if the player is grounded
-        if (Physics2D.OverlapCircle((Vector2)transform.position + groundCheckOffset, groundCheckRadius, groundLayer))
+
+        GroundCheck();
+    }
+
+    //Checks if the player is grounded
+    private void GroundCheck()
+    {
+        Player player = gameObject.MyLevelManager().Player;
+        Vector2 groundCheckPosition = (Vector2)transform.position + groundCheckOffset;
+
+        if (Physics2D.OverlapCircle(groundCheckPosition, groundCheckRadius, groundLayer))
         {
+            Vector2 rayPosition = groundCheckPosition + Vector2.down * 0.5f * groundCheckRadius;
+            if (!GroundRays(rayPosition))
+            {
+                return;
+            }
             if (addedVelocity.y < 0)
             {
-                //Checks if the player has landed
-                if (player.GroundState == GroundState.None)
-                {
-                    playerAnimator.SetBool("IsGrounded", true);
-                    player.GroundState = GroundState.Grass;
-                    isJumping = false;
-
-                    if (onLand != null)
-                    {
-                        onLand(transform.position, -addedVelocity.y);
-                    }
-
-                }
                 addedVelocity.y = 0;
             }
         }
@@ -94,6 +94,41 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("IsGrounded", false);
             player.GroundState = GroundState.None;
         }
+    }
+
+    private bool GroundRays(Vector2 rayPosition)
+    {
+        Player player = gameObject.MyLevelManager().Player;
+        Physics2D.queriesHitTriggers = false;
+        RaycastHit2D leftHit = Physics2D.Raycast(rayPosition + Vector2.left * groundCheckRadius, Vector2.down, groundCheckRadius, groundLayer);
+        RaycastHit2D centerHit = Physics2D.Raycast(rayPosition, Vector2.down, groundCheckRadius, groundLayer);
+        RaycastHit2D rightHit = Physics2D.Raycast(rayPosition + Vector2.right * groundCheckRadius, Vector2.down, groundCheckRadius, groundLayer);
+        Physics2D.queriesHitTriggers = true;
+
+        if (!leftHit && !centerHit && !rightHit)
+        {
+            return false;
+        }
+
+        if (playerRigidbody.linearVelocityY < 0.5f && player.GroundState == GroundState.None)
+        {
+            float smallestDistance = centerHit.distance;
+            if (leftHit.distance + groundCheckRadius < centerHit.distance || rightHit.distance + groundCheckRadius < centerHit.distance)
+            {
+                smallestDistance = Mathf.Min(leftHit.distance, rightHit.distance);
+            }
+            playerRigidbody.position = new Vector2(playerRigidbody.position.x, playerRigidbody.position.y - smallestDistance + groundCheckRadius * 0.5f);
+            playerAnimator.SetBool("IsGrounded", true);
+            player.GroundState = GroundState.Grass;
+            isJumping = false;
+
+            if (onLand != null)
+            {
+                onLand(transform.position, -addedVelocity.y);
+            }
+        }
+
+        return true;
     }
 
     //Should only be called once per frame

@@ -223,7 +223,7 @@ public class HighPressureSpecial : SpecialAttack
         splashParticles.transform.position = position;
         splashParticles.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
 
-        spriteMask.position = position + direction * streamLength * 0.5f;
+        spriteMask.position = (position + direction * streamLength * 0.5f);
         spriteMask.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
     }
 

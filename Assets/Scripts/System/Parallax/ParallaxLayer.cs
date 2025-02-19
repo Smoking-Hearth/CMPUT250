@@ -6,8 +6,8 @@ public class ParallaxLayer : MonoBehaviour
     [field: SerializeField] public Texture Texture { get; private set;}
     [field: SerializeField] public bool IsTiled {get; private set; }
 
-    private Vector3 initPosition;
-    public Vector3 InitPosition 
+    private Vector2 initPosition;
+    public Vector2 InitPosition 
     { 
         get { return initPosition; }
     }

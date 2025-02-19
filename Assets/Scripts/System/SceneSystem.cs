@@ -83,8 +83,7 @@ public class SceneSystem
     {
         Scene first = SceneManager.GetActiveScene();
         active = first.buildIndex;
-        RegisterLoad(first);
-        RegisterLevelManager(first);
+        RegisterScene(first, true);
         levelManagers[active].NotifyLevel(LevelCommand.Load);
         levelManagers[active].NotifyLevel(LevelCommand.Activate);
     }
@@ -92,16 +91,16 @@ public class SceneSystem
     public void SceneObjectsToContainer(Scene scene, int container)
     {
         if (container == 0) return;
-        float offset = (float)(container * 1000);
+        float offset = (float)((container - 1) * 1000);
         foreach (var go in scene.GetRootGameObjects())
         {
             Vector3 position = go.transform.position;
-            position.z += offset;
+            position.x += offset;
             go.transform.position = position;
         }
         Camera camera = levelManagers[scene.buildIndex].LevelCamera;
         Vector3 cameraPos = camera.transform.position;
-        cameraPos.z = offset;
+        cameraPos.x = offset;
         camera.transform.position = cameraPos;
     }
 
@@ -126,6 +125,31 @@ public class SceneSystem
         return (loaded & (1 << buildIndex)) != 0;
     }
 
+    public void RegisterScene(Scene scene, bool isFirst = false)
+    {
+        if (IsLoaded(scene.buildIndex)) return;
+        int idx = scene.buildIndex;
+
+        RegisterLoad(scene);
+        RegisterLevelManager(scene);
+        SceneObjectsToContainer(scene, idx);
+
+        // An active level manager means time is passing. We don't want that.
+        LevelManager loadedManager = levelManagers[idx];
+        loadedManager.NotifyLevel(LevelCommand.Load);
+
+        if (isFirst)
+        {
+            loadedManager.gameObject.SetActive(true);
+            loadedManager.Activate();
+        }
+        else
+        {
+            loadedManager.Deactivate();
+            loadedManager.gameObject.SetActive(false);
+        }
+    }
+
     public IEnumerator Load(SceneIndex sceneIdx)
     {
         // Don't reload loaded scenes
@@ -134,19 +158,8 @@ public class SceneSystem
         AsyncOperation op = SceneManager.LoadSceneAsync(idx, LoadSceneMode.Additive);
 
         while (!op.isDone) yield return null;
-
-        int mask = 1 << idx;
-        loaded |= mask;
-
-        Scene loadedScene = SceneManager.GetSceneByBuildIndex(idx);
-        RegisterLevelManager(loadedScene);
-        SceneObjectsToContainer(loadedScene, idx);
-
-        // An active level manager means time is passing. We don't want that.
-        LevelManager loadedManager = levelManagers[idx];
-        loadedManager.NotifyLevel(LevelCommand.Load);
-        loadedManager.Deactivate();
-        loadedManager.gameObject.SetActive(false);
+        DevLog.Info($"Load for {sceneIdx} finished");
+        RegisterScene(SceneManager.GetSceneByBuildIndex(idx));
     }
 
     public IEnumerator SetSceneActive(SceneIndex sceneIdx)
@@ -168,9 +181,9 @@ public class SceneSystem
         LevelManager nextManager = levelManagers[next.buildIndex];
 
         prevManager.NotifyLevel(LevelCommand.Deactivate);
-        prevManager.gameObject.SetActive(false);
+        prevManager.Deactivate();
 
-        nextManager.gameObject.SetActive(true);
+        nextManager.Activate();
         nextManager.NotifyLevel(LevelCommand.Activate);
 
         SceneManager.SetActiveScene(next);

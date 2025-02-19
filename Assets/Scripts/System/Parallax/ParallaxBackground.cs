@@ -20,6 +20,7 @@ public class ParallaxBackground : MonoBehaviour
 
     private Vector2 previousScreenSize;
     private Vector2 minTiledSize;
+    private Camera targetCamera;
 
     void UpdateTiledLayerAnchorSize()
     {
@@ -31,6 +32,7 @@ public class ParallaxBackground : MonoBehaviour
 
     void Awake()
     {
+        targetCamera = gameObject.MyLevelManager().LevelCamera;
         minTiledSize = Vector2.positiveInfinity;
 
         foreach (var layer in layers)
@@ -42,7 +44,7 @@ public class ParallaxBackground : MonoBehaviour
                     Vector3 pos = Vector3.zero;
                     pos.z = transform.position.z;
                     tiledLayerAnchor = new GameObject("ParallaxTiledLayerAnchor");
-                    tiledLayerAnchor.transform.SetParent(Camera.main.transform);
+                    tiledLayerAnchor.transform.SetParent(targetCamera.transform);
                     tiledLayerAnchor.transform.localPosition = pos;
                 }
 
@@ -55,8 +57,8 @@ public class ParallaxBackground : MonoBehaviour
 
         if (tiledLayerAnchor != null) 
         {
-            float halfheight = Camera.main.orthographicSize;
-            previousScreenSize = new Vector2(Camera.main.aspect * halfheight, halfheight);
+            float halfheight = targetCamera.orthographicSize;
+            previousScreenSize = new Vector2(targetCamera.aspect * halfheight, halfheight);
             UpdateTiledLayerAnchorSize();
         }
     }
@@ -64,7 +66,7 @@ public class ParallaxBackground : MonoBehaviour
     void Update()
     {
         // Detect resizes. This is VERY inefficient.
-        Vector2 currentScreenSize = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
+        Vector2 currentScreenSize = new Vector2(targetCamera.orthographicSize * targetCamera.aspect, targetCamera.orthographicSize);
 
         if (currentScreenSize != previousScreenSize)
         {
@@ -72,15 +74,15 @@ public class ParallaxBackground : MonoBehaviour
             UpdateTiledLayerAnchorSize();
         }
 
-        Vector3 cameraTransform = Camera.main.transform.transform.position;
+        Vector2 cameraTransform = targetCamera.transform.transform.position;
         if (relativeTo != null)
         {
-            cameraTransform -= relativeTo.transform.position;
+            cameraTransform -= (Vector2)relativeTo.transform.position;
         }
 
         foreach (var layer in layers)
         {
-            Vector3 offset = cameraTransform / layer.transform.position.z;
+            Vector2 offset = cameraTransform / layer.transform.position.z;
             if (layer.IsTiled)
             {
                 // This is just a pseudo perspective divide but weird.

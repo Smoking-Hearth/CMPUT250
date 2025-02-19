@@ -10,6 +10,6 @@ public class DialogueHolder : MonoBehaviour
 
     public void PlayDialogue()
     {
-        LevelManager.Active.DialogSystem.Play(new GameDialog(lines, title), autoContinue);
+        gameObject.MyLevelManager().DialogSystem.Play(new GameDialog(lines, title), autoContinue);
     }
 }
