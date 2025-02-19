@@ -134,7 +134,7 @@ public class LevelManager : MonoBehaviour
             AudioListener.enabled = true;
 
         if (cameraAnimator != null)
-            cameraAnimator?.Play("Game");
+            cameraAnimator.Play("Game");
 
         foreach (var uiObject in UI)
         {

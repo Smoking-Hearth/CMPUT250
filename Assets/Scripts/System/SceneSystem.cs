@@ -83,8 +83,7 @@ public class SceneSystem
     {
         Scene first = SceneManager.GetActiveScene();
         active = first.buildIndex;
-        RegisterLoad(first);
-        RegisterLevelManager(first);
+        RegisterScene(first, true);
         levelManagers[active].NotifyLevel(LevelCommand.Load);
         levelManagers[active].NotifyLevel(LevelCommand.Activate);
     }
@@ -126,7 +125,7 @@ public class SceneSystem
         return (loaded & (1 << buildIndex)) != 0;
     }
 
-    public void RegisterScene(Scene scene)
+    public void RegisterScene(Scene scene, bool isFirst = false)
     {
         if (IsLoaded(scene.buildIndex)) return;
         int idx = scene.buildIndex;
@@ -138,8 +137,17 @@ public class SceneSystem
         // An active level manager means time is passing. We don't want that.
         LevelManager loadedManager = levelManagers[idx];
         loadedManager.NotifyLevel(LevelCommand.Load);
-        loadedManager.Deactivate();
-        loadedManager.gameObject.SetActive(false);
+
+        if (isFirst)
+        {
+            loadedManager.gameObject.SetActive(true);
+            loadedManager.Activate();
+        }
+        else
+        {
+            loadedManager.Deactivate();
+            loadedManager.gameObject.SetActive(false);
+        }
     }
 
     public IEnumerator Load(SceneIndex sceneIdx)
