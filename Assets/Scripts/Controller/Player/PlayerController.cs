@@ -4,13 +4,15 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerShoot))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float jumpBufferSeconds;   //The amount of time after an input that a jump will still be registered
+    [SerializeField] private float jumpBufferSeconds;   //The amount of time after an input that a jump will still be registered
+    [SerializeField] private float dropBufferSeconds;
 
     private Vector2 inputAxes;  //The directional movement inputs that the player is currently inputting
 
     [SerializeField] private Animator playerAnimator;
 
     private float jumpBufferEndTime;  //The max time that a jump input will be checked
+    private float dropBufferEndTime;
 
     private static PlayerControls controls;
     public static PlayerControls Controls   //Other scripts can get this to listen to player inputs
@@ -102,6 +104,15 @@ public class PlayerController : MonoBehaviour
         player.Movement.Gravity();
         player.Movement.Move(inputAxes, !(isShooting || isSpecialShooting));
 
+        if (dropBufferEndTime > 0)
+        {
+            dropBufferEndTime -= Time.deltaTime;
+            if (player.Movement.DropPlatform())
+            {
+                dropBufferEndTime = 0;
+            }
+        }
+
         if (isSpecialShooting)  //Holding special attack (has priority over primary)
         {
             shootBehavior.AimSprites();
@@ -155,7 +166,11 @@ public class PlayerController : MonoBehaviour
     private void OnDrop(InputAction.CallbackContext context)
     {
         Player player = gameObject.MyLevelManager().Player;
-        player.Movement.DropPlatform();
+        
+        if (!player.Movement.DropPlatform())
+        {
+            dropBufferEndTime = dropBufferSeconds;
+        }
     }
 
     private void OnStartAttack(InputAction.CallbackContext context) 

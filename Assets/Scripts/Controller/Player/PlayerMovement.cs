@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
                 EnablePlatforms();
             }
 
-            Vector2 rayPosition = groundCheckPosition + Vector2.down * 0.5f * groundCheckRadius;
+            Vector2 rayPosition = groundCheckPosition + Vector2.down * 0.4f * groundCheckRadius;
             if (!GroundRays(rayPosition))
             {
                 return;
@@ -253,15 +253,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //Drop from the current platform
-    public void DropPlatform()
+    //Drop from the current platform. Returns true if there was a platform to drop from
+    public bool DropPlatform()
     {
         Vector2 groundCheckPosition = (Vector2)transform.position + groundCheckOffset;
         Collider2D[] platformColliders = Physics2D.OverlapCircleAll(groundCheckPosition, groundCheckRadius, platformLayer);
 
         if (platformColliders.Length == 0)
         {
-            return;
+            return false;
         }
 
         if ((playerRigidbody.excludeLayers & (platformLayer)) == 0)
@@ -278,6 +278,8 @@ public class PlayerMovement : MonoBehaviour
                 disabledPlatforms.Add(effector);
             }
         }
+
+        return true;
     }
 
     //Checks if the player collides with any platforms

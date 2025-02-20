@@ -103,10 +103,10 @@ public class HighPressureSpecial : SpecialAttack
         {
             audioSource.PlayOneShot(deploySound);
             persistSoundSource.Play();
-            nozzleParticles.Play();
-            splashParticles.Play();
             nozzleParticles.Clear();
+            nozzleParticles.Play();
             splashParticles.Clear();
+            splashParticles.Play();
             transform.parent = parent;
         }
         else
@@ -130,9 +130,15 @@ public class HighPressureSpecial : SpecialAttack
         for (int i = segments - 1; i >= 1; i--)
         {
             float segmentDistance = streamLength / segments;
-            Vector2 newPosition = Quaternion.Euler(0, 0, aimAngle) * Vector2.right * i * segmentDistance;
+            Vector2 newPosition = Quaternion.Euler(0, 0, aimAngle) * Vector2.right * i * segmentDistance * 0.1f;
             spline.SetPosition(i, newPosition);
         }
+
+        Debug.DrawLine(spline.GetPosition(segments - 1) + transform.position, (Vector2)(spline.GetPosition(segments - 1) + transform.position) + Vector2.up, Color.black, 15);
+
+        splashParticles.transform.localScale = new Vector2(1, 0.5f);
+        splashParticles.transform.localPosition = spline.GetPosition(segments - 1);
+        splashParticles.transform.rotation = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg);
     }
 
     public override void AimAttack(Vector2 startPosition, float aimAngle)

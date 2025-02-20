@@ -206,6 +206,7 @@ public class PlayerShoot : MonoBehaviour
 
         if (active)
         {
+            AimSprites();
             specialAttack.ResetAttack(aimAngle);
             specialCooldownTimer = specialCooldown;
         }
