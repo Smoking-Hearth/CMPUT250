@@ -3,11 +3,10 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] private GameObject interactText;
-    [SerializeField] private float interactDistance;
-    private bool isInteracting;
-
-    public float InteractDistance 
+    [SerializeField] protected GameObject interactText;   //Text that pops up to prompt the user to interact
+    [SerializeField] protected float interactDistance;    //Max distance the player can be to interact
+    protected bool isInteracting;     //If the player is currently holding the interact button
+    public float InteractDistance
     {
         get
         {
@@ -15,15 +14,15 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    [SerializeField] private UnityEvent startInteractEvent;
-    [SerializeField] private UnityEvent holdInteractEvent;
-    [SerializeField] private UnityEvent stopInteractEvent;
+    [SerializeField] protected UnityEvent startInteractEvent;
+    [SerializeField] protected UnityEvent holdInteractEvent;
+    [SerializeField] protected UnityEvent stopInteractEvent;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         EnableInteractable();
     }
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         DisableInteractable();
     }
@@ -56,11 +55,11 @@ public class Interactable : MonoBehaviour
         stopInteractEvent.Invoke();
         isInteracting = false;
     }
-    public void Target()
+    public virtual void Target()
     {
         interactText.SetActive(true);
     }
-    public void Untarget()
+    public virtual void Untarget()
     {
         interactText.SetActive(false);
     }

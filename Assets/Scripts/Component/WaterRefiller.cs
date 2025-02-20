@@ -17,30 +17,25 @@ public class WaterRefiller : MonoBehaviour
     {
         progressBar.maxValue = refillDelayTicks;
         progressBar.value = 0;
+        progressBar.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
     {
-        if (!interacting && refillDelayCounter > 0)
+        if (refillDelayCounter > 0)
         {
-            refillDelayCounter -= interactResetRate;
-
-            if (refillDelayCounter < 0)
+            if (!interacting)
             {
-                refillDelayCounter = 0;
-            }
-        }
+                refillDelayCounter -= interactResetRate;
 
-        if (progressBar.gameObject.activeSelf)
-        {
-            if (refillDelayCounter == 0)
-            {
-                if (!interacting)
+                if (refillDelayCounter <= 0)
                 {
+                    refillDelayCounter = 0;
                     progressBar.gameObject.SetActive(false);
                 }
             }
-            else
+
+            if (progressBar.gameObject.activeSelf)
             {
                 progressBar.value = refillDelayCounter;
             }
