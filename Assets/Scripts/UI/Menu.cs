@@ -104,13 +104,13 @@ public class Menu : MonoBehaviour
     {
         // Scene selected = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
         // GameManager.SceneSystem.SetSceneVisible(selected, false);
-        StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Settings));
+        StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Settings, keepInHistory: true));
     }
 
     void OnCreditsClick()
     {
         // Scene selected = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
         // GameManager.SceneSystem.SetSceneVisible(selected, false);
-        StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Credits));
+        StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Credits, keepInHistory: true));
     }
 }

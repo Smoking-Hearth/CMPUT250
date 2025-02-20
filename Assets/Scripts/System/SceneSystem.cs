@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum SceneIndex
 {
@@ -33,13 +34,7 @@ public class SceneSystem
         get { return levelManagers; }
     }
 
-    /// <summary>
-    /// This gives you access to data for the currently active scene.
-    /// </summary>
-    public LevelManager ActiveLevel
-    {
-        get { return levelManagers[active]; }
-    }
+    public Stack<int> history;
 
     public void RegisterLoad(Scene scene)
     {
@@ -81,6 +76,7 @@ public class SceneSystem
 
     public SceneSystem()
     {
+        history = new();
         Scene first = SceneManager.GetActiveScene();
         active = first.buildIndex;
         RegisterScene(first, true);
@@ -162,7 +158,13 @@ public class SceneSystem
         RegisterScene(SceneManager.GetSceneByBuildIndex(idx));
     }
 
-    public IEnumerator SetSceneActive(SceneIndex sceneIdx)
+    public IEnumerator GoBack()
+    {
+        if (!history.TryPop(out int buildIndex)) yield break;
+        yield return SetSceneActive((SceneIndex)buildIndex);
+    }
+
+    public IEnumerator SetSceneActive(SceneIndex sceneIdx, bool keepInHistory = false)
     {
         Scene prev = SceneManager.GetActiveScene();
         Scene next = SceneManager.GetSceneByBuildIndex((int)sceneIdx);
@@ -182,6 +184,11 @@ public class SceneSystem
 
         prevManager.NotifyLevel(LevelCommand.Deactivate);
         prevManager.Deactivate();
+
+        if (keepInHistory)
+        {
+            history.Push(prev.buildIndex);
+        }
 
         nextManager.Activate();
         nextManager.NotifyLevel(LevelCommand.Activate);

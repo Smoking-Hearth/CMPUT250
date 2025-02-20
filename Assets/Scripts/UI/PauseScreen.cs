@@ -9,7 +9,7 @@ public class PauseScreen : MonoBehaviour
     enum State { Showing, Hiding }
 
     [SerializeField] CanvasGroup pauseScreen;
-    [SerializeField] Button resume, menu;
+    [SerializeField] Button resume, settings, menu;
 
     private State state;
     private MotionHandle anim = MotionHandle.None;
@@ -26,6 +26,7 @@ public class PauseScreen : MonoBehaviour
     {
         PlayerController.Controls.Menu.Pause.performed += TogglePauseKeybind;
         resume.onClick.AddListener(OnResumeClick);
+        settings.onClick.AddListener(OnSettingsClick);
         menu.onClick.AddListener(OnMenuClick);
     }
 
@@ -33,6 +34,7 @@ public class PauseScreen : MonoBehaviour
     {
         PlayerController.Controls.Menu.Pause.performed -= TogglePauseKeybind;
         resume.onClick.RemoveListener(OnResumeClick);
+        settings.onClick.AddListener(OnSettingsClick);
         menu.onClick.RemoveListener(OnMenuClick);
     }
 
@@ -95,6 +97,11 @@ public class PauseScreen : MonoBehaviour
     void OnResumeClick()
     {
         TogglePause();
+    }
+
+    void OnSettingsClick()
+    {
+        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Settings, keepInHistory: true));
     }
 
     void OnMenuClick()
