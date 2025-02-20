@@ -36,7 +36,6 @@ public class LevelContainer: MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(GameManager.SceneSystem.Load(levelIndex));
         previewRectTransform = previewImage.GetComponent<RectTransform>();
         myRectTransform = GetComponent<RectTransform>();
         if (previewRectTransform == null)
@@ -44,11 +43,20 @@ public class LevelContainer: MonoBehaviour
             DevLog.Error("LevelContainer should be attached to a UI Object");
         }
         compactState = new CompactState(myRectTransform.anchoredPosition, myRectTransform.sizeDelta);
-
         button.onClick.AddListener(ContainerClicked);
+
+        gameObject.MyLevelManager().onActivate += Activate;
+        gameObject.MyLevelManager().onDeactivate += Deactivate;
     }
     
-    public void Release()
+    void Activate()
+    {
+        // We have entered/re-entered make sure the contained scene is loaded
+        StartCoroutine(GameManager.SceneSystem.Load(levelIndex));
+        previewLoaded = false;
+    }
+    
+    public void Deactivate()
     {
         GameManager.SceneSystem.LevelManagers[(int)levelIndex].LevelCamera.targetTexture = null;
     }

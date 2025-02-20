@@ -80,6 +80,7 @@ public class Menu : MonoBehaviour
     void OnDisable()
     {
         play.onClick.RemoveListener(OnPlayClick);
+        back.onClick.RemoveListener(OnBackClick);
         settings.onClick.RemoveListener(OnSettingsClick);
         credits.onClick.RemoveListener(OnCreditsClick);
     }
