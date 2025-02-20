@@ -92,12 +92,14 @@ public class PlayerMovement : MonoBehaviour
                 EnablePlatforms();
             }
 
-            Vector2 rayPosition = groundCheckPosition + Vector2.down * 0.4f * groundCheckRadius;
+            Vector2 rayPosition = groundCheckPosition + Vector2.down * 0.5f * groundCheckRadius;
             if (!GroundRays(rayPosition))
             {
+                Debug.Log("a");
                 return;
             }
 
+            Debug.Log("b");
             if (addedVelocity.y < 0)
             {
                 addedVelocity.y = 0;
@@ -121,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!leftHit && !centerHit && !rightHit)
         {
+            player.GroundState = GroundState.None;
             return false;
         }
 
