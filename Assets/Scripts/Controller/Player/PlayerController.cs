@@ -5,14 +5,18 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float jumpBufferSeconds;   //The amount of time after an input that a jump will still be registered
-    [SerializeField] private float dropBufferSeconds;
+    [SerializeField] private float coyoteTimeSeconds;   //The amount of time after walking off a ledge that the player can still jump
+    [SerializeField] private float dropBufferSeconds;   //Buffer time for "drop from platform" input
+
+    private float jumpBufferEndTime;  //Timer for jump buffer
+    private float coyoteEndTime;      //Timer for coyote time
+    private float dropBufferEndTime;  //Timer for drop platform buffer
+
 
     private Vector2 inputAxes;  //The directional movement inputs that the player is currently inputting
 
     [SerializeField] private Animator playerAnimator;
 
-    private float jumpBufferEndTime;  //The max time that a jump input will be checked
-    private float dropBufferEndTime;
 
     private static PlayerControls controls;
     public static PlayerControls Controls   //Other scripts can get this to listen to player inputs
@@ -78,10 +82,19 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Player player = gameObject.MyLevelManager().Player;
+        if (player.GroundState == GroundState.None)
+        {
+            coyoteEndTime -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            coyoteEndTime = coyoteTimeSeconds;
+        }
+
         //Jumps if the player has pressed jump within the jump buffer time
         if (jumpBufferEndTime > 0)
         {
-            if (player.GroundState != GroundState.None)
+            if (coyoteEndTime > 0)
             {
                 jumpBufferEndTime = 0;
                 player.Movement.Jump();

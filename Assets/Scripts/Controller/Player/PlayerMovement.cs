@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Player player = gameObject.MyLevelManager().Player;
         Vector2 groundCheckPosition = (Vector2)transform.position + groundCheckOffset;
+        Vector2 rayPosition = groundCheckPosition + Vector2.down * 0.5f * groundCheckRadius;
 
         if (Physics2D.OverlapCircle(groundCheckPosition, groundCheckRadius, groundLayer & ~(playerRigidbody.excludeLayers)))
         {
@@ -92,7 +93,6 @@ public class PlayerMovement : MonoBehaviour
                 EnablePlatforms();
             }
 
-            Vector2 rayPosition = groundCheckPosition + Vector2.down * 0.5f * groundCheckRadius;
             if (!GroundRays(rayPosition))
             {
                 return;
@@ -105,7 +105,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            playerAnimator.SetBool("IsGrounded", false);
+            RaycastHit2D ray = Physics2D.Raycast(rayPosition, Vector2.down, groundCheckRadius * 2, groundLayer);
+
+            if (!ray)
+            {
+                playerAnimator.SetBool("IsGrounded", false);
+            }
             player.GroundState = GroundState.None;
         }
     }
@@ -128,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerRigidbody.linearVelocityY < 0.5f && player.GroundState == GroundState.None)
         {
             float smallestDistance = centerHit.distance;
-            if (leftHit.distance + groundCheckRadius < centerHit.distance || rightHit.distance + groundCheckRadius < centerHit.distance)
+            if (leftHit.distance + groundCheckRadius + targetMovement.x < centerHit.distance || rightHit.distance + groundCheckRadius - targetMovement.x < centerHit.distance)
             {
                 smallestDistance = Mathf.Min(leftHit.distance, rightHit.distance);
             }
@@ -259,8 +264,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 groundCheckPosition = (Vector2)transform.position + groundCheckOffset;
         Collider2D[] platformColliders = Physics2D.OverlapCircleAll(groundCheckPosition, groundCheckRadius, platformLayer);
+        RaycastHit2D ray = Physics2D.Raycast(groundCheckPosition + Vector2.down * 0.5f * groundCheckRadius, Vector2.down, groundCheckRadius * 4, ~(platformLayer) & groundLayer);
 
-        if (platformColliders.Length == 0)
+        if (platformColliders.Length == 0 || ray)
         {
             return false;
         }
@@ -315,8 +321,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        Player player = gameObject.MyLevelManager().Player;
-        if (player.GroundState == GroundState.None || isJumping)
+        if (isJumping)
         {
             return;
         }
