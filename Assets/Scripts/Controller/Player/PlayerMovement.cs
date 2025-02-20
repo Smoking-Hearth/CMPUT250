@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping;
 
     private Rigidbody2D attached;
+
+    private List<Effector2D> disabledPlatforms = new List<Effector2D>();
 
     public delegate void OnLand(Vector2 landPosition, float force);
     public static event OnLand onLand;
@@ -69,6 +72,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         GroundCheck();
+
+        if (disabledPlatforms.Count != 0)
+        {
+            CheckEnablePlatforms();
+        }
     }
 
     //Checks if the player is grounded
@@ -77,13 +85,19 @@ public class PlayerMovement : MonoBehaviour
         Player player = gameObject.MyLevelManager().Player;
         Vector2 groundCheckPosition = (Vector2)transform.position + groundCheckOffset;
 
-        if (Physics2D.OverlapCircle(groundCheckPosition, groundCheckRadius, groundLayer))
+        if (Physics2D.OverlapCircle(groundCheckPosition, groundCheckRadius, groundLayer & ~(playerRigidbody.excludeLayers)))
         {
+            if (disabledPlatforms.Count != 0)
+            {
+                EnablePlatforms();
+            }
+
             Vector2 rayPosition = groundCheckPosition + Vector2.down * 0.5f * groundCheckRadius;
             if (!GroundRays(rayPosition))
             {
                 return;
             }
+
             if (addedVelocity.y < 0)
             {
                 addedVelocity.y = 0;
@@ -237,6 +251,63 @@ public class PlayerMovement : MonoBehaviour
         {
             addedVelocity.y -= gravityAcceleration;
         }
+    }
+
+    //Drop from the current platform
+    public void DropPlatform()
+    {
+        Vector2 groundCheckPosition = (Vector2)transform.position + groundCheckOffset;
+        Collider2D[] platformColliders = Physics2D.OverlapCircleAll(groundCheckPosition, groundCheckRadius, platformLayer);
+
+        if (platformColliders.Length == 0)
+        {
+            return;
+        }
+
+        if ((playerRigidbody.excludeLayers & (platformLayer)) == 0)
+        {
+            playerRigidbody.excludeLayers |= platformLayer;
+        }
+
+        for (int i = 0; i < platformColliders.Length; i++)
+        {
+            Effector2D effector = platformColliders[i].GetComponent<Effector2D>();
+            if (!disabledPlatforms.Contains(effector))
+            {
+                effector.colliderMask &= ~(1 << gameObject.layer);
+                disabledPlatforms.Add(effector);
+            }
+        }
+    }
+
+    //Checks if the player collides with any platforms
+    public void CheckEnablePlatforms()
+    {
+        Vector2 groundCheckPosition = (Vector2)transform.position + groundCheckOffset;
+        Collider2D[] platformColliders = Physics2D.OverlapCircleAll(groundCheckPosition, groundCheckRadius, platformLayer);
+
+        for (int i = 0; i < platformColliders.Length; i++)
+        {
+            if (!disabledPlatforms.Contains(platformColliders[i].GetComponent<Effector2D>()))
+            {
+                EnablePlatforms();
+            }
+        }
+    }
+
+    //Re-enables platform collision
+    public void EnablePlatforms()
+    {
+        if ((playerRigidbody.excludeLayers & (platformLayer)) != 0)
+        {
+            playerRigidbody.excludeLayers &= ~(platformLayer);
+        }
+        for (int i = 0; i < disabledPlatforms.Count; i++)
+        {
+            disabledPlatforms[i].colliderMask |= (1 << gameObject.layer);
+        }
+
+        disabledPlatforms = new List<Effector2D>();
     }
 
     public void Jump()
