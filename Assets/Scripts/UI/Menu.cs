@@ -90,7 +90,7 @@ public class Menu : MonoBehaviour
         if (!HasSelected) return;
         SceneIndex selectedLevel = containers[expandedLevel].levelIndex;
         GameManager.SceneSystem.LevelManagers[(int)selectedLevel].LevelCamera.targetTexture = null;
-        StartCoroutine(GameManager.SceneSystem.SetSceneActive(selectedLevel));
+        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(selectedLevel));
     }
 
     void OnBackClick()
@@ -104,13 +104,13 @@ public class Menu : MonoBehaviour
     {
         // Scene selected = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
         // GameManager.SceneSystem.SetSceneVisible(selected, false);
-        StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Settings, keepInHistory: true));
+        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Settings, keepInHistory: true));
     }
 
     void OnCreditsClick()
     {
         // Scene selected = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
         // GameManager.SceneSystem.SetSceneVisible(selected, false);
-        StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Credits, keepInHistory: true));
+        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Credits, keepInHistory: true));
     }
 }

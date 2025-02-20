@@ -146,25 +146,25 @@ public class SceneSystem
         }
     }
 
-    public IEnumerator Load(SceneIndex sceneIdx)
+    public async Awaitable Preload(SceneIndex sceneIdx)
     {
         // Don't reload loaded scenes
-        if (IsLoaded(sceneIdx)) yield break;
+        if (IsLoaded(sceneIdx)) return;
         int idx = (int)sceneIdx;
-        AsyncOperation op = SceneManager.LoadSceneAsync(idx, LoadSceneMode.Additive);
 
-        while (!op.isDone) yield return null;
+        await SceneManager.LoadSceneAsync(idx, LoadSceneMode.Additive);
+
         DevLog.Info($"Load for {sceneIdx} finished");
         RegisterScene(SceneManager.GetSceneByBuildIndex(idx));
     }
 
-    public IEnumerator GoBack()
+    public async Awaitable GoBack()
     {
-        if (!history.TryPop(out int buildIndex)) yield break;
-        yield return SetSceneActive((SceneIndex)buildIndex);
+        if (!history.TryPop(out int buildIndex)) return;
+        await SetSceneActive((SceneIndex)buildIndex);
     }
 
-    public IEnumerator SetSceneActive(SceneIndex sceneIdx, bool keepInHistory = false)
+    public async Awaitable SetSceneActive(SceneIndex sceneIdx, bool keepInHistory = false)
     {
         Scene prev = SceneManager.GetActiveScene();
         Scene next = SceneManager.GetSceneByBuildIndex((int)sceneIdx);
@@ -172,7 +172,7 @@ public class SceneSystem
         if (!IsLoaded(sceneIdx))
         {
             // We don't hide the objects on this load
-            yield return Load(sceneIdx);
+            await Preload(sceneIdx);
 
             // FIXME: This may not be necessary, SceneManager could be updating
             // the object previously returned.

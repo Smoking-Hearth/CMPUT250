@@ -52,7 +52,7 @@ public class LevelContainer: MonoBehaviour
     void Activate()
     {
         // We have entered/re-entered make sure the contained scene is loaded
-        StartCoroutine(GameManager.SceneSystem.Load(levelIndex));
+        StartCoroutine(GameManager.SceneSystem.Preload(levelIndex));
         previewLoaded = false;
     }
     
