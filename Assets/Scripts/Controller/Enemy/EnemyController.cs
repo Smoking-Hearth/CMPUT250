@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class EnemyController : MonoBehaviour
     protected float defeatTimer;
 
     public EnemyState currentState = EnemyState.stWaiting;
+
+    [SerializeField] protected UnityEvent moveFunction;
 
     [Header("Sound")]
     [SerializeField] protected FireSounds sounds;
@@ -204,6 +207,7 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void MoveToTarget()
     {
+        moveFunction.Invoke();
         Vector2 direction = targetPosition - (Vector2)transform.position;
         
         // NOTE: We need to retain z otherwise the enemy will be culled by Camera
