@@ -3,7 +3,6 @@ using UnityEngine;
 public class ShooterEnemy : EnemyController
 {
     [Header("Shooting")]
-    [SerializeField] private float standRange;
     [SerializeField] private float targetHeight;
     [SerializeField] private EnemyProjectile projectilePrefab;
     [SerializeField] private float inaccuracy;
@@ -20,7 +19,7 @@ public class ShooterEnemy : EnemyController
     protected override void MoveToTarget()
     {
         Vector2 direction = targetPosition - (Vector2)transform.position + Vector2.up * targetHeight;
-        if (direction.magnitude < standRange)
+        if (direction.magnitude < enemyInfo.standRange)
         {
             return;
         }

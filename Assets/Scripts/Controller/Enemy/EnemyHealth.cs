@@ -7,6 +7,11 @@ public class EnemyHealth : Health, IExtinguishable
     [SerializeField] private Color normalColor;
     [SerializeField] private Color blinkColor;
     private ParticleSystem hurtParticles;
+    [SerializeField] private Vector2 hurtParticlesOffset;
+    public override float Max
+    {
+        get { return enemyInfo.maxHealth; }
+    }
 
     private EnemySO enemyInfo;
     public EnemySO EnemyInfo {
@@ -18,7 +23,7 @@ public class EnemyHealth : Health, IExtinguishable
         {
             if (hurtParticles == null)
             {
-                hurtParticles = Instantiate(value.hurtParticles, transform.position, Quaternion.identity, transform);
+                hurtParticles = Instantiate(value.hurtParticles, (Vector2)transform.position + hurtParticlesOffset, Quaternion.identity, transform);
             }
             enemyInfo = value;
         }

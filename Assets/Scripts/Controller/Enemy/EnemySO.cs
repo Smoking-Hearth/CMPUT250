@@ -10,6 +10,7 @@ public class EnemySO : ScriptableObject
     public Transform attackPrefab; //PLACEHOLDER
     public float aggroRange = 5f;
     public float attackRange = 2f;
+    public float standRange = 2f;
     public float commitAttackSeconds = 1.5f;
     public float frontSwingSeconds;
     public float backSwingSeconds;

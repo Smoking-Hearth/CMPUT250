@@ -12,7 +12,7 @@ public class Health : MonoBehaviour, IStat
     }
 
     [SerializeField] protected float max;
-    public float Max 
+    public virtual float Max 
     {
         get { return max; }
     }
@@ -23,7 +23,7 @@ public class Health : MonoBehaviour, IStat
         get { return current; }
         set
         {
-            current = Mathf.Clamp(value, 0f, max);
+            current = Mathf.Clamp(value, 0f, Max);
             if (shouldTriggerCallback && onChanged != null)
             {
                 onChanged();
