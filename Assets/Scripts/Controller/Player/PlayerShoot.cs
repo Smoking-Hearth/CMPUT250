@@ -266,6 +266,10 @@ public class PlayerShoot : MonoBehaviour
     private void PickUpSpecial(SpecialAttack special)
     {
         inventory.PickUp(special);
+        if (!extinguisherTankBar.gameObject.activeSelf)
+        {
+            extinguisherTankBar.gameObject.SetActive(true);
+        }
 
         switch(special.ExtinguishClass)
         {
