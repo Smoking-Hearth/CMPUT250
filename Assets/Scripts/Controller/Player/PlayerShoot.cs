@@ -8,10 +8,14 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private Slider waterTankBar;
     [SerializeField] private Slider waterTankInGame;
     [SerializeField] private Slider extinguisherTankBar;
+    [SerializeField] private Slider pressureBar;
     [SerializeField] private Projectile bullet;
     [SerializeField] private float bulletInitialSpeed = 10.0f;
     [SerializeField] private float shootCooldown;
     private float shootCooldownTimer;
+    [SerializeField] private float pressurizeSeconds;
+    [SerializeField] private float pressureReleasePerSecond;
+    [SerializeField] private float pressurizeTimer;
     [SerializeField] private SpecialAttack defaultSpecialAttack;
     [SerializeField] private float specialCooldown;
     private float specialCooldownTimer;
@@ -20,6 +24,15 @@ public class PlayerShoot : MonoBehaviour
     {
         get
         {
+            if (pressurizeTimer > 0)
+            {
+                pressurizeTimer -= pressureReleasePerSecond * Time.fixedDeltaTime;
+
+                if (pressurizeTimer < 0)
+                {
+                    pressurizeTimer = 0;
+                }
+            }
             return shootCooldownTimer <= 0;
         }
     }
@@ -98,6 +111,17 @@ public class PlayerShoot : MonoBehaviour
         {
             specialCooldownTimer -= Time.fixedDeltaTime;
         }
+
+        if (pressurizeTimer < pressurizeSeconds)
+        {
+            pressurizeTimer += Time.fixedDeltaTime;
+            if (pressurizeTimer > pressurizeSeconds)
+            {
+                pressurizeTimer = pressurizeSeconds;
+            }
+        }
+
+        pressureBar.value = pressurizeTimer / pressurizeSeconds;
     }
 
     public void ResetAimedSprites()
@@ -188,7 +212,7 @@ public class PlayerShoot : MonoBehaviour
         }
 
         firedBullet.Propel(shootDirection * bulletInitialSpeed);
-        shootCooldownTimer = shootCooldown;
+        shootCooldownTimer = Mathf.Lerp(shootCooldown, 0.05f, pressurizeTimer / pressurizeSeconds);
 
         bulletCounter = (bulletCounter + 1) % maxBullets;
         return true;

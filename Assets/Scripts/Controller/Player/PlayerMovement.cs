@@ -135,7 +135,18 @@ public class PlayerMovement : MonoBehaviour
             float smallestDistance = centerHit.distance;
             if (leftHit.distance + groundCheckRadius + targetMovement.x < centerHit.distance || rightHit.distance + groundCheckRadius - targetMovement.x < centerHit.distance)
             {
-                smallestDistance = Mathf.Min(leftHit.distance, rightHit.distance);
+                if (targetMovement.x < 0)
+                {
+                    smallestDistance = leftHit.distance;
+                }
+                else if (targetMovement.x > 0)
+                {
+                    smallestDistance = rightHit.distance;
+                }
+                else
+                {
+                    smallestDistance = Mathf.Min(leftHit.distance, rightHit.distance);
+                }
             }
             playerRigidbody.position = new Vector2(playerRigidbody.position.x, playerRigidbody.position.y - smallestDistance + groundCheckRadius * 0.5f);
             playerAnimator.SetBool("IsGrounded", true);
