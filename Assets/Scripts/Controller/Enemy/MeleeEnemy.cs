@@ -4,6 +4,7 @@ public class MeleeEnemy : EnemyController
 {
     [SerializeField] private Rigidbody2D enemyRigidBody;
     [SerializeField] private float acceleration;
+    [SerializeField] private bool stopWhenAttacking;
 
     protected override void Target()
     {
@@ -18,7 +19,7 @@ public class MeleeEnemy : EnemyController
                 {
                     commitAttackTimer -= Time.fixedDeltaTime;
                 }
-                else if (enemyRigidBody.linearVelocityX == 0)
+                else if (enemyRigidBody.linearVelocityX == 0 || !stopWhenAttacking)
                 {
                     currentState = EnemyState.stFrontSwing;
                 }
@@ -50,8 +51,6 @@ public class MeleeEnemy : EnemyController
         }
         if (direction.x > 0)
         {
-            body.localScale = Vector2.one;
-
             if (enemyRigidBody.linearVelocityX < enemyInfo.speed)
             {
                 enemyRigidBody.linearVelocityX += acceleration;
@@ -63,7 +62,6 @@ public class MeleeEnemy : EnemyController
         }
         else if (direction.x < 0)
         {
-            body.localScale = new Vector2(-1, 1);
             if (enemyRigidBody.linearVelocityX > -enemyInfo.speed)
             {
                 enemyRigidBody.linearVelocityX -= acceleration;
@@ -72,6 +70,15 @@ public class MeleeEnemy : EnemyController
             {
                 enemyRigidBody.linearVelocityX = -enemyInfo.speed;
             }
+        }
+
+        if (enemyRigidBody.linearVelocityX > 0)
+        {
+            body.localScale = Vector2.one;
+        }
+        else if (enemyRigidBody.linearVelocityX < 0)
+        {
+            body.localScale = new Vector2(-1, 1);
         }
     }
 }

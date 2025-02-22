@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour
         {
             if (enemyInfo.attackPrefab != null)
             {
-                attackVisual = Instantiate(enemyInfo.attackPrefab, Vector2.zero, Quaternion.identity, transform);
+                attackVisual = Instantiate(enemyInfo.attackPrefab, Vector2.zero, Quaternion.identity, null);
                 attackVisual.gameObject.SetActive(false);
             }
         }
