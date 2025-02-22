@@ -4,44 +4,74 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    private float min = 0f;
+    [SerializeField] private Image height;
+
+    [SerializeField] private float minValue = 0f;
     public float Min
     {
-        get { return min; }
-        set { min = value; }
+        get { return minValue; }
+        set { minValue = value; }
     }
 
 
-    private float max = 0f;
+    [SerializeField] private float maxValue = 1f;
     public float Max 
     {
-        get { return max; }
-        set { max = value; }
+        get { return maxValue; }
+        set { maxValue = value; }
     }
 
-    private float current = 0f;
+
+    private float barPosition = 1f;
+
+    private float lossIntensity = 0.2f;
+
+    [SerializeField] private float current = 1f;
     public float Current 
     {
         get { return current;}
         set 
         {
-            current = value;
+            if (anim.IsPlaying()) return;
 
-            anim.TryCancel();
-            anim = LMotion.Create(slider.value, current, 0.2f)
-            .WithEase(Ease.OutQuad)
-                .Bind(val => { slider.value = val; });
+            current = Mathf.Clamp(value, minValue, maxValue);
+
+            const float duration = 0.4f;
+            const float intensityDecreasePoint = duration / 2f;
+
+            MotionHandle changeHeight = LMotion.Create(barPosition, current, duration)
+                .WithEase(Ease.OutQuad)
+                .Bind(val => barPosition = val);
+
+            MotionHandle increaseIntensity = LMotion.Create(lossIntensity, 1f, 0.2f)
+                .Bind(val => lossIntensity = val);
+
+            MotionHandle reduceIntensity = LMotion.Create(lossIntensity, 0.2f, 0.2f)
+                .Bind(val => lossIntensity = val);
+
+            anim = LSequence.Create()
+                .Join(increaseIntensity)
+                .Append(reduceIntensity)
+                .Insert(0f, changeHeight)
+                .Run();
         }
     }
-
-    [SerializeField] private Slider slider;
 
     // This is where the display shows the health to be at.
     private MotionHandle anim = MotionHandle.None;
 
+    private void Awake()
+    {
+        current = Mathf.Clamp(current, minValue, maxValue);
+        barPosition = current;
+    }
+
     public void Update()
     {
-        
+        barPosition = Mathf.Clamp(barPosition, minValue, maxValue);
+        float normalizedPosition = barPosition / (maxValue - minValue);
 
+        height.material.SetFloat("_BarPosition", normalizedPosition);
+        height.material.SetFloat("_Intensity", lossIntensity);
     }
 }

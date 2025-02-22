@@ -7,7 +7,7 @@ public enum DamageType
 }
 public class PlayerHealth : Health
 {
-    [SerializeField] private Slider healthBar;
+    [SerializeField] private HealthBar healthBar;
     [SerializeField] private float hurtRadius;
     [SerializeField] private float invulnerableDuration;
     private float invulnerableTimer;
@@ -35,9 +35,9 @@ public class PlayerHealth : Health
 
     void Awake()
     {
-        healthBar.maxValue = Max;
-        healthBar.minValue = Min;
-        healthBar.value = Current;
+        healthBar.Max = Max;
+        healthBar.Min = Min;
+        healthBar.Current = Current;
     }
 
     private void OnEnable()
@@ -77,9 +77,9 @@ public class PlayerHealth : Health
 
     void UpdateHealthBar()
     {
-        healthBar.value = Current;
+        healthBar.Current = Current;
 
-        if (healthBar.value <= 0f || transform.position.y <= -40f)
+        if (healthBar.Current <= 0f || transform.position.y <= -40f)
         {
             OnDeath();
         }
