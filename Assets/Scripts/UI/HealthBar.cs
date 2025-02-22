@@ -4,8 +4,17 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    enum State {
+        Stable, 
+        IntensityIncreasing,
+        IntensityDecreasing,
+    }
+
+    private State state = State.Stable;
+
     [SerializeField] private Image height;
 
+    [Header("Slider")]
     [SerializeField] private float minValue = 0f;
     public float Min
     {
@@ -32,46 +41,73 @@ public class HealthBar : MonoBehaviour
         get { return current;}
         set 
         {
-            if (anim.IsPlaying()) return;
-
             current = Mathf.Clamp(value, minValue, maxValue);
-
-            const float duration = 0.4f;
-            const float intensityDecreasePoint = duration / 2f;
-
-            MotionHandle changeHeight = LMotion.Create(barPosition, current, duration)
-                .WithEase(Ease.OutQuad)
-                .Bind(val => barPosition = val);
-
-            MotionHandle increaseIntensity = LMotion.Create(lossIntensity, 1f, 0.2f)
-                .Bind(val => lossIntensity = val);
-
-            MotionHandle reduceIntensity = LMotion.Create(lossIntensity, 0.2f, 0.2f)
-                .Bind(val => lossIntensity = val);
-
-            anim = LSequence.Create()
-                .Join(increaseIntensity)
-                .Append(reduceIntensity)
-                .Insert(0f, changeHeight)
-                .Run();
         }
     }
 
+    [Header("Animation")]
+    [SerializeField] private float duration = 0.7f;
+    [SerializeField] private float intensityDecreasePoint = 0.3f;
+
     // This is where the display shows the health to be at.
-    private MotionHandle anim = MotionHandle.None;
+    private MotionHandle barPosAnim = MotionHandle.None;
+    private MotionHandle intensityAnim = MotionHandle.None;
 
     private void Awake()
     {
         current = Mathf.Clamp(current, minValue, maxValue);
         barPosition = current;
+        state = State.Stable;
+        UpdateUniforms();
+    }
+
+    private void UpdateUniforms()
+    {
+        float normalizedPosition = barPosition / (maxValue - minValue);
+        height.material.SetFloat("_BarPosition", normalizedPosition);
+        height.material.SetFloat("_Intensity", lossIntensity);
+    }
+
+    private void SetIntensity(float val)
+    {
+        lossIntensity = val;
+    }
+
+    private void StableUpdate()
+    {
+        if (Mathf.Abs(barPosition - current) < 0.02) return;
+        
+        state = State.IntensityIncreasing;
+        
+        barPosAnim = LMotion.Create(barPosition, current, duration)
+            .WithEase(Ease.OutQuad)
+            .Bind(val => barPosition = val);
+
+        intensityAnim = LMotion.Create(lossIntensity, 1f, intensityDecreasePoint)
+            .Bind(SetIntensity);
     }
 
     public void Update()
     {
-        barPosition = Mathf.Clamp(barPosition, minValue, maxValue);
-        float normalizedPosition = barPosition / (maxValue - minValue);
+        if (state != State.Stable) UpdateUniforms();
 
-        height.material.SetFloat("_BarPosition", normalizedPosition);
-        height.material.SetFloat("_Intensity", lossIntensity);
+        switch (state)
+        {
+            case State.Stable:
+                StableUpdate();
+                break;
+
+            case State.IntensityIncreasing:
+                if (intensityAnim.IsPlaying()) return;
+                state = State.IntensityDecreasing;
+                intensityAnim = LMotion.Create(lossIntensity, 0.2f, duration - intensityDecreasePoint)
+                    .Bind(SetIntensity);
+                break;
+
+            case State.IntensityDecreasing:
+                if (intensityAnim.IsPlaying() || barPosAnim.IsPlaying()) return;
+                state = State.Stable;
+                break;
+        }
     }
 }
