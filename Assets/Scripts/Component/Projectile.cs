@@ -34,6 +34,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected LayerMask hitLayers;
     [SerializeField] protected float areaOfEffectRadius;
     [SerializeField] protected float effectiveness;
+    [SerializeField] protected AudioSource hitAudio;
     protected bool hasHit;
 
     protected virtual void OnEnable()
@@ -134,6 +135,11 @@ public class Projectile : MonoBehaviour
         for (int i = 0; i < hitTargets.Length; i++)
         {
             HitEffect(hitTargets[i]);
+        }
+
+        if (hitAudio != null)
+        {
+            hitAudio.Play();
         }
 
         hasHit = true;
