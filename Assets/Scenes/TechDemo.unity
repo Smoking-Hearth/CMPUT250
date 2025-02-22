@@ -1142,14 +1142,15 @@ MonoBehaviour:
   InteractableSystem: {fileID: 77890084}
   MusicSystem: {fileID: 77890082}
   TimeSystem: {fileID: 77890085}
+  AudioListener: {fileID: 0}
   levelState: 1
   cameraAnimator: {fileID: 1371211914}
   UI: []
-  LevelCamera: {fileID: 0}
+  LevelCamera: {fileID: 1940856887}
   gameOverScreen: {fileID: 262475523}
   setPlayer: {fileID: 780415}
   defaultEnabledRootObjects: []
-  isLevelRunning: 0
+  isLevelRunning: 1
 --- !u!114 &77890084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10489,6 +10490,7 @@ MonoBehaviour:
   refillDelayTicks: 30
   available: 1
   interactResetRate: 10
+  levelManager: {fileID: 0}
 --- !u!1 &602987952
 GameObject:
   m_ObjectHideFlags: 0
@@ -17859,6 +17861,7 @@ MonoBehaviour:
   refillDelayTicks: 30
   available: 1
   interactResetRate: 10
+  levelManager: {fileID: 77890083}
 --- !u!114 &1298339693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22479,6 +22482,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686605270}
   m_CullTransparentMesh: 1
+--- !u!1001 &1712824165
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.484416
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.251865
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248960090352284795, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
+      propertyPath: m_Name
+      value: Cinder (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
 --- !u!1 &1717186291
 GameObject:
   m_ObjectHideFlags: 0
@@ -23703,6 +23763,7 @@ MonoBehaviour:
   refillDelayTicks: 30
   available: 1
   interactResetRate: 10
+  levelManager: {fileID: 0}
 --- !u!1 &1838458565
 GameObject:
   m_ObjectHideFlags: 0
@@ -26858,3 +26919,4 @@ SceneRoots:
   - {fileID: 1682705991}
   - {fileID: 148323567}
   - {fileID: 674412442}
+  - {fileID: 1712824165}

@@ -80,7 +80,7 @@ public class PlayerHealth : Health
         healthBar.value = Current;
 
         if (healthBar.value <= 0f || transform.position.y <= -40f)
-        {  //PROBLEM: Doesn't respawn you when you fall off edge, but may not matter
+        {
             OnDeath();
         }
     }

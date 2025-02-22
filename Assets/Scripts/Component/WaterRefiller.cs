@@ -13,6 +13,7 @@ public class WaterRefiller : MonoBehaviour
     public delegate void OnWaterRefill(int amount);
     public static event OnWaterRefill onWaterRefill;
 
+
     private void Start()
     {
         progressBar.maxValue = refillDelayTicks;
@@ -69,6 +70,7 @@ public class WaterRefiller : MonoBehaviour
         if (onWaterRefill != null)
         {
             onWaterRefill(waterPerRefill);
+            
         }
     }
     public void StopRefill()
