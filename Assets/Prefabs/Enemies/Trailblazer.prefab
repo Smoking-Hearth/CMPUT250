@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1679093175
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 2437673009224533713, guid: 6f1b9dba14a86b045a5b991c813afe1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -449,12 +449,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
+      propertyPath: NoiseModule.frequency
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: ShapeModule.m_Scale.x
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: ShapeModule.m_Scale.y
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: ShapeModule.arc.spread
@@ -474,11 +478,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: ShapeModule.m_Position.x
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: ShapeModule.m_Position.y
-      value: -0.18
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: ShapeModule.m_Rotation.x
@@ -494,6 +498,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: VelocityModule.y.minScalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
+      propertyPath: NoiseModule.strength.scalar
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
@@ -521,6 +529,10 @@ PrefabInstance:
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
+      propertyPath: NoiseModule.scrollSpeed.scalar
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 0
       objectReference: {fileID: 0}
@@ -530,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 300
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -547,6 +559,10 @@ PrefabInstance:
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: InitialModule.startSpeed.minMaxState
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5862223314389801100, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.ctime0

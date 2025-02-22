@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRigidbody;
     [SerializeField] private float groundCheckRadius;
     [SerializeField] private Vector2 groundCheckOffset;
+    [SerializeField] private Vector2 ceilingCheckOffset;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask stairsLayer;
     [SerializeField] private LayerMask platformLayer;
@@ -72,10 +73,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
         GroundCheck();
+        CeilingCheck();
 
         if (disabledPlatforms.Count != 0)
         {
             CheckEnablePlatforms();
+        }
+    }
+
+    private void CeilingCheck()
+    {
+        if (addedVelocity.y <= 0)
+        {
+            return;
+        }
+        Player player = gameObject.MyLevelManager().Player;
+        Vector2 ceilingCheckPosition = (Vector2)transform.position + ceilingCheckOffset;
+
+        if (Physics2D.OverlapCircle(ceilingCheckPosition, groundCheckRadius, groundLayer & ~(platformLayer)))
+        {
+            addedVelocity.y = 0;
         }
     }
 
