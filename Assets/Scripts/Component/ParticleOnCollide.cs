@@ -27,7 +27,7 @@ public class ParticleOnCollide : MonoBehaviour
 
         if (enterAudio != null)
         {
-            enterAudio.Play();
+            enterAudio.PlayOneShot(enterAudio.clip);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
