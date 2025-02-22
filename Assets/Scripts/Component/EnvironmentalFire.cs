@@ -8,6 +8,7 @@ public class EnvironmentalFire : Fire, IExtinguishable
     [SerializeField] private AnimationCurve extinguishEffectiveness = AnimationCurve.Constant(0f, Combustible.MAX_TEMP, 1f);
     [SerializeField] private AnimationCurve temperatureToLifetime = AnimationCurve.Constant(0f, Combustible.MAX_TEMP, 1f);
     [SerializeField] private float peakFireHeight;
+    [SerializeField] private Collider2D fireCollider;
     private float lingerTimer;
 
     public float Temperature
@@ -60,6 +61,7 @@ public class EnvironmentalFire : Fire, IExtinguishable
             ExtinguishSound();
             SetActive(false);
             lingerTimer = particles.main.startLifetime.constant;
+            fireCollider.enabled = false;
         }
     }
 }

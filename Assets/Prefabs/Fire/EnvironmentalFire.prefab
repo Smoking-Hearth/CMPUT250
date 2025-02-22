@@ -4808,7 +4808,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1815823953
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -4854,6 +4854,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457b0cc37c9a1e8469cebe37554f51d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageInfo:
+    damageType: 0
+    radius: 0
+    damage: 0
+    knockbackPower: {x: 0, y: 0}
   particles: {fileID: 5862223314389801100}
   fireLight: {fileID: 5602350641565636131}
   sounds: {fileID: 0}
@@ -4869,6 +4874,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffaf7945281a2004393362b31b8241ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageInfo:
+    damageType: 0
+    radius: 0
+    damage: 0
+    knockbackPower: {x: 0, y: 0}
   particles: {fileID: 5862223314389801100}
   fireLight: {fileID: 5602350641565636131}
   sounds: {fileID: 2233616090471095012}
@@ -4942,6 +4952,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   peakFireHeight: 6.15
+  fireCollider: {fileID: 8117295742182690932}
 --- !u!58 &8117295742182690932
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4993,7 +5004,6 @@ MonoBehaviour:
   audioSource: {fileID: 1794171682252841318}
   hitClip: {fileID: 8300000, guid: 6f692b600274db949b79592f3887c04c, type: 3}
   extinguishClip: {fileID: 8300000, guid: 38d58901f7394e7489bcf7114f06d9eb, type: 3}
-  electrocuteClip: {fileID: 8300000, guid: 9a0c35a08723f114f8890edd6632edee, type: 3}
 --- !u!82 &1794171682252841318
 AudioSource:
   m_ObjectHideFlags: 0

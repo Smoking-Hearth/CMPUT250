@@ -30,6 +30,7 @@ public class EnemySpawner : MonoBehaviour
             completeEvent.Invoke();
             return;
         }
+
         if (spawnTimer > 0)
         {
             spawnTimer -= Time.fixedDeltaTime;

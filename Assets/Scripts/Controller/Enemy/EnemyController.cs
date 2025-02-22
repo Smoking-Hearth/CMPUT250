@@ -71,6 +71,7 @@ public class EnemyController : MonoBehaviour
         spawnParticles = Instantiate(enemyInfo.spawnParticles, Vector2.zero, Quaternion.identity, transform);
 
         healthComponent.onHurt += Hurt;
+        currentState = EnemyState.stWaiting;
     }
 
     protected virtual void OnDisable()
