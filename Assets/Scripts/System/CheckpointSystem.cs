@@ -29,7 +29,7 @@ public class CheckpointSystem: MonoBehaviour
     private List<SavedVariableAccess> savedState;
     private List<object> savedData;
 
-    void RegisterState(SavedVariableAccess savedVariableAccess)
+    public void RegisterState(SavedVariableAccess savedVariableAccess)
     {
         if (savedState == null)
         {
@@ -62,22 +62,17 @@ public class CheckpointSystem: MonoBehaviour
     void FixedUpdate()
     {
         Vector2 playerPos = gameObject.MyLevelManager().Player.Position;
+        int old = current;
         for (int i = checkpoints.Count - 1; i > current; --i)
         {
             if (Vector2.Distance(checkpoints[i].position, playerPos) <= triggerDist)
             {
                 current = i;
-                SaveState();
             }
         }
-    }
-
-    public void ReturnToCurrent(Rigidbody2D player)
-    {
-        if (current < 0)
+        if (old != current)
         {
-            return;
+            SaveState();
         }
-        player.position = checkpoints[current].position;
     }
 }

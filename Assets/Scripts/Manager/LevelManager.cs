@@ -76,6 +76,17 @@ public class LevelManager : MonoBehaviour
             if (player == null)
             {
                 player = new Player(setPlayer);
+                SavedVariableAccess playerPosAccess = new();
+                
+                playerPosAccess.Get += () => {
+                    return setPlayer.position;
+                };
+
+                playerPosAccess.Set += (pos) => { 
+                    setPlayer.position = (Vector2)pos;
+                };
+
+                CheckpointSystem.RegisterState(playerPosAccess);
             }
             return player;
         }
@@ -256,7 +267,7 @@ public class LevelManager : MonoBehaviour
         gameOverScreen.SetActive(false);
         levelState = LevelState.Playing;
 
-        CheckpointSystem.ReturnToCurrent(setPlayer);
+        CheckpointSystem.LoadState();
         Player.Health.ResetHealth();
         TimeSystem.SetTimer(TimeSystem.levelTimeLimitSeconds);
     }
