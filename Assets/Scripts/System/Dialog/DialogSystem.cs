@@ -4,20 +4,26 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameDialog : IEnumerator<string> {
-    public string Title;
+public class GameDialog : IEnumerator<DialogSystem.Command> {
+    public DialogSegment[] segments;
+    private int segmentIndex = 0;
+    private int lineIndex = 0;
 
-    public IList<string> lines;
-    private int idx = 0;
-
-    public string Current
+    public DialogSystem.Command Current
     {
         get 
         { 
-            if (lines != null && lines.Count > 0 && idx < lines.Count)
-                return lines[idx];
-            else
-                return null; 
+            // We have segments and the cursor is over one
+            if (segments != null && segments.Length > 0 && 0 <= segmentIndex && segmentIndex < segments.Length)
+            {
+                var lines = segments[segmentIndex].lines;
+                // We have lines and the cursor is over one
+                if (lines != null && lines.Length > 0 && 0 <= lineIndex && lineIndex < lines.Length)
+                {
+                    return new DialogSystem.Command(lines[lineIndex], segments[segmentIndex].title);
+                }
+            }
+            return new DialogSystem.Command(null); 
         }
     }
 
@@ -27,21 +33,27 @@ public class GameDialog : IEnumerator<string> {
     }
 
 
-    public GameDialog(IList<string> inner, string title = null)
+    public GameDialog(DialogSegment[] segments)
     {
-        Title = title;
-        lines = inner;
+        this.segments = segments;
     }
 
     public bool MoveNext() 
     {
-        idx += 1;
-        return idx < lines.Count;
+        lineIndex += 1;
+        if (lineIndex >= segments[segmentIndex].lines.Length)
+        {
+            segmentIndex += 1;
+            lineIndex = 0;
+        }
+
+        return segmentIndex < segments.Length && lineIndex < segments[segmentIndex].lines.Length;
     }
 
     public void Reset()
     {
-        idx = 0;
+        segmentIndex = 0;
+        lineIndex = 0;
     }
 
     public void Dispose() {}
@@ -50,6 +62,17 @@ public class GameDialog : IEnumerator<string> {
 
 public class DialogSystem : MonoBehaviour
 {
+    public struct Command
+    {
+        public string content;
+        public string title;
+
+        public Command(string content, string title = null)
+        {
+            this.content = content;
+            this.title = title;
+        }
+    }
 
     public enum State
     {
@@ -90,9 +113,9 @@ public class DialogSystem : MonoBehaviour
 
         if (dialogSystemState == State.DisplayingLine)
         {
-            if (currentPosition <= currentDialog.Current.Length)
+            if (currentPosition <= currentDialog.Current.content.Length)
             {
-                contentText.text = currentDialog.Current.Substring(0, currentPosition);
+                contentText.text = currentDialog.Current.content.Substring(0, currentPosition);
                 ++currentPosition;
             }
             else
@@ -119,14 +142,15 @@ public class DialogSystem : MonoBehaviour
 
     public bool Play(GameDialog gameDialog, bool auto)
     {
-        if (dialogSystemState == State.Inactive && gameDialog.lines.Count > 0)
+        if (dialogSystemState == State.Inactive && gameDialog.segments.Length > 0)
         {
             dialogSystemState = State.DisplayingLine;
 
             currentDialog = gameDialog;
 
-            titleText.text = currentDialog.Title;
-            contentText.text = "";
+            Command cmd = gameDialog.Current;
+            titleText.text = cmd.title;
+            contentText.text = cmd.content;
 
             autoContinue = auto;
             continueTimer = autoContinueDelaySeconds;
@@ -145,6 +169,7 @@ public class DialogSystem : MonoBehaviour
         if (currentDialog.MoveNext())
         {
             dialogSystemState = State.DisplayingLine;
+            titleText.text = currentDialog.Current.title;
         }
         else
         {
