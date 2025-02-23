@@ -20,7 +20,7 @@ public class GameDialog : IEnumerator<DialogSystem.Command> {
                 // We have lines and the cursor is over one
                 if (lines != null && lines.Length > 0 && 0 <= lineIndex && lineIndex < lines.Length)
                 {
-                    return new DialogSystem.Command(lines[lineIndex], segments[segmentIndex].title);
+                    return new DialogSystem.Command(lines[lineIndex], segments[segmentIndex].title, segments[segmentIndex].autoContinue);
                 }
             }
             return new DialogSystem.Command(null); 
@@ -66,11 +66,13 @@ public class DialogSystem : MonoBehaviour
     {
         public string content;
         public string title;
+        public bool autoContinue;
 
-        public Command(string content, string title = null)
+        public Command(string content, string title = null, bool autoContinue = false)
         {
             this.content = content;
             this.title = title;
+            this.autoContinue = autoContinue;
         }
     }
 
@@ -126,7 +128,7 @@ public class DialogSystem : MonoBehaviour
 
         if (dialogSystemState == State.WaitingForContinue)
         {
-            if (autoContinue)
+            if (currentDialog.Current.autoContinue)
             {
                 if (continueTimer > 0)
                 {
@@ -140,7 +142,7 @@ public class DialogSystem : MonoBehaviour
         }
     }
 
-    public bool Play(GameDialog gameDialog, bool auto)
+    public bool Play(GameDialog gameDialog)
     {
         if (dialogSystemState == State.Inactive && gameDialog.segments.Length > 0)
         {
@@ -150,9 +152,8 @@ public class DialogSystem : MonoBehaviour
 
             Command cmd = gameDialog.Current;
             titleText.text = cmd.title;
-            contentText.text = cmd.content;
+            contentText.text = "";
 
-            autoContinue = auto;
             continueTimer = autoContinueDelaySeconds;
 
             gameObject.SetActive(true);

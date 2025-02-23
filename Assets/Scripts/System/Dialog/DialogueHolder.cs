@@ -17,6 +17,6 @@ public class DialogueHolder : MonoBehaviour
 
     public void PlayDialogue()
     {
-        gameObject.MyLevelManager().DialogSystem.Play(new GameDialog(segments), auto: false);
+        gameObject.MyLevelManager().DialogSystem.Play(new GameDialog(segments));
     }
 }
