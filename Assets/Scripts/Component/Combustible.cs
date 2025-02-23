@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using LitMotion;
 
 [Flags]
 public enum CombustibleKind
@@ -32,6 +33,9 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
     [SerializeField] AnimationCurve extinguishEffectiveness = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
     [SerializeField] private UnityEvent ExtinguishEvent;
+    [SerializeField] private float secondsUntilBurnt;
+    [SerializeField] private SpriteRenderer burnRenderer;
+    private MotionHandle burnAnim = MotionHandle.None;
 
     public bool Burning
     {
@@ -115,7 +119,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
         if (Burning)
         {
-            float consumed = Mathf.Min(0.1f * Time.deltaTime, fule);
+            float consumed = Mathf.Min(Time.deltaTime, fule);
             fule -= consumed;
             Temperature += fuleToTemp * consumed;
 
@@ -134,6 +138,10 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
     private void HeatSpread(Combustible other)
     {
+        if (fule <= 0)
+        {
+            return;
+        }
         if (other != null)
         {
             float diff = other.Temperature - temperature;
@@ -163,6 +171,12 @@ public class Combustible : MonoBehaviour, IExtinguishable
         }
         fire.SetActive(true);
         gameObject.layer = LayerMask.NameToLayer("Combusted");
+
+        if (burnRenderer != null)
+        {
+            burnAnim = LMotion.Create(burnRenderer.color, Color.black, secondsUntilBurnt)
+                .Bind(burnRenderer, (color, renderer) => renderer.color = color);
+        }
     }
 
     public void Extinguish(CombustibleKind extinguishClass, float quantity_L)
@@ -191,9 +205,10 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
     public void CompleteExtinguish()
     {
+        burnAnim.TryCancel();
         fire.ExtinguishSound();
         fire.SetActive(false);
         ExtinguishEvent.Invoke();
-        gameObject.layer = LayerMask.NameToLayer("Combustible");
+        gameObject.layer = LayerMask.NameToLayer("Combustible"); //Not the best system, but it works
     }
 }

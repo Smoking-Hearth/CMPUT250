@@ -127,6 +127,10 @@ public class PlayerHealth : Health
 
     public void FireDamage(float addedTemperature)
     {
+        if (invulnerableTimer > 0)
+        {
+            return;
+        }
         if (playerTemperature == 0)
         {
             heatVignette.gameObject.SetActive(true);

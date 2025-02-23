@@ -173,6 +173,8 @@ MonoBehaviour:
   ExtinguishEvent:
     m_PersistentCalls:
       m_Calls: []
+  secondsUntilBurnt: 5
+  burnRenderer: {fileID: 6390995086412941707}
   temperature: 0
   autoIgnitionTemperature: 373.15
   fireLayer:
@@ -180,7 +182,7 @@ MonoBehaviour:
     m_Bits: 33920
   fireSpreadRadius: 2.83
   heatCopyRate: 0.2
-  fule: 100
+  fule: 20
   fuleToTemp: 10
 --- !u!58 &6604028828018548888
 CircleCollider2D:
