@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class MeleeEnemy : EnemyController
 {
-    [SerializeField] private Rigidbody2D enemyRigidBody;
-    [SerializeField] private float acceleration;
-    [SerializeField] private bool stopWhenAttacking;
+    [Header("Movement")]
+    [SerializeField] protected Rigidbody2D enemyRigidBody;
+    [SerializeField] protected float acceleration;
+    [SerializeField] protected bool stopWhenAttacking;
 
     protected override void Target()
     {
-        targetPosition = gameObject.MyLevelManager().Player.Position;
+        trackingTimer = continueTrackingSeconds;
 
         if (distance < enemyInfo.aggroRange && canMove)
         {

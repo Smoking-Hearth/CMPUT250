@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShooterEnemy : EnemyController
+public class ShooterEnemy : MeleeEnemy
 {
     [Header("Shooting")]
     [SerializeField] private float targetHeight;
@@ -16,30 +16,6 @@ public class ShooterEnemy : EnemyController
     {
         cache = new EnemyProjectile[cacheCapacity];
     }
-    protected override void MoveToTarget()
-    {
-        Vector2 direction = targetPosition - (Vector2)transform.position + Vector2.up * targetHeight;
-
-        if (enemyAnimator != null)
-        {
-            enemyAnimator.SetBool("IsMoving", true);
-        }
-
-        if (direction.magnitude < enemyInfo.standRange)
-        {
-            return;
-        }
-        transform.position = (Vector2)transform.position + direction.normalized * Time.fixedDeltaTime * enemyInfo.speed;
-        if (direction.x < 0)
-        {
-            body.localScale = new Vector2(-1, 1);
-        }
-        else
-        {
-            body.localScale = Vector2.one;
-        }
-    }
-
     protected override void Attack()
     {
         Vector2 randomDirection = new Vector2(Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy));
@@ -68,5 +44,12 @@ public class ShooterEnemy : EnemyController
         currentIndex = (currentIndex + 1) % cacheCapacity;
         commitAttackTimer = enemyInfo.commitAttackSeconds;
         currentState = EnemyState.stBackSwing;
+    }
+
+    protected override void MoveToTarget()
+    {
+        targetPosition.y += targetHeight;
+        base.MoveToTarget();
+        targetPosition.y -= targetHeight;
     }
 }

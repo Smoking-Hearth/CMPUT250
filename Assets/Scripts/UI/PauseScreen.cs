@@ -75,6 +75,16 @@ public class PauseScreen : MonoBehaviour
         else
         {
             pauseScreen.interactable = false;
+
+            //Need this or else the hidden screen will block other screens from receiving input
+            if (pauseScreen.alpha <= 0)
+            {
+                pauseScreen.gameObject.SetActive(false);
+            }
+            else
+            {
+                pauseScreen.gameObject.SetActive(true);
+            }
         }
     }
 

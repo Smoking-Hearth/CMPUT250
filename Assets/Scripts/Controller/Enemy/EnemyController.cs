@@ -32,6 +32,8 @@ public class EnemyController : MonoBehaviour
     protected float frontSwingTimer;
     protected float backSwingTimer;
     protected float defeatTimer;
+    [SerializeField] protected float continueTrackingSeconds;     //How long after committing an attack the enemy tracks the target
+    protected float trackingTimer;
 
     public EnemyState currentState = EnemyState.stWaiting;
 
@@ -124,6 +126,11 @@ public class EnemyController : MonoBehaviour
                 break;
         }
 
+        if (trackingTimer >= 0)
+        {
+            targetPosition = gameObject.MyLevelManager().Player.Position;
+            trackingTimer -= Time.fixedDeltaTime;
+        }
     }
     public virtual void Hurt()
     {
@@ -175,7 +182,7 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Target()
     {
-        targetPosition = gameObject.MyLevelManager().Player.Position;
+        trackingTimer = continueTrackingSeconds;
 
         if (distance < enemyInfo.aggroRange && canMove)
         {   
