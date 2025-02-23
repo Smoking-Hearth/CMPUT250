@@ -19,6 +19,15 @@ public class PlayerHealth : Health
     [Min(0.01f)]
     [SerializeField] private float zapDurationSeconds = 0.1f;
     private float zapTimer;
+    [SerializeField] private AnimationCurve temperatureToDamage;
+    [SerializeField] private Image heatVignette;
+    [Min(0.01f)]
+    [SerializeField] private float temperatureHurtThreshold;
+    [SerializeField] private float maxTemperature;
+    [SerializeField] private float coolDelaySeconds;
+    [SerializeField] private float coolRate;
+    private float coolTimer;
+    private float playerTemperature;
 
     public override float Current
     {
@@ -73,6 +82,24 @@ public class PlayerHealth : Health
             zapTimer -= Time.fixedDeltaTime;
             zapEffect.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, zapTimer / zapDurationSeconds * 1.2f);
         }
+
+        if (playerTemperature > 0)
+        {
+            if (coolTimer <= 0)
+            {
+                playerTemperature = Mathf.Clamp(playerTemperature - coolRate * Time.fixedDeltaTime, 0, maxTemperature);
+            }
+            else
+            {
+                coolTimer -= Time.fixedDeltaTime;
+            }
+
+            heatVignette.color = new Color(1, 1, 1, playerTemperature / temperatureHurtThreshold);
+        }
+        else
+        {
+            heatVignette.gameObject.SetActive(false);
+        }
     }
 
     void UpdateHealthBar()
@@ -95,6 +122,24 @@ public class PlayerHealth : Health
         for (int i = 0; i < blinkRenderers.Length; i++)
         {
             blinkRenderers[i].color = Color.Lerp(blinkColor, normalColor, time);
+        }
+    }
+
+    public void FireDamage(float addedTemperature)
+    {
+        if (playerTemperature == 0)
+        {
+            heatVignette.gameObject.SetActive(true);
+        }
+        coolTimer = coolDelaySeconds;
+        playerTemperature = Mathf.Clamp(playerTemperature + addedTemperature, 0, maxTemperature);
+
+        if (playerTemperature >= temperatureHurtThreshold)
+        {
+            Current -= temperatureToDamage.Evaluate(playerTemperature);
+            invulnerableTimer = invulnerableDuration;
+
+            gameObject.MyLevelManager().Player.Sounds.PlayHurt(DamageType.Fire);
         }
     }
 

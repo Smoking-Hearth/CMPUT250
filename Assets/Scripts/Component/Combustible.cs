@@ -146,11 +146,9 @@ public class Combustible : MonoBehaviour, IExtinguishable
         // We shouldn't damage the player if not on fire.
         if (!Burning) return;
         float distance = Vector2.Distance(gameObject.MyLevelManager().Player.Position, (Vector2)transform.position);
-        if (distance < fireSpreadRadius * 0.5f)
+        if (distance < fireSpreadRadius * 0.8f)
         {
-            fire.damageInfo.damage = 7f * Mathf.Pow(0.5f, distance);
-            fire.damageInfo.radius = fireSpreadRadius * 0.5f;
-            GameManager.onEnemyAttack(transform.position, transform.position, fire.damageInfo);
+            gameObject.MyLevelManager().Player.Health.FireDamage(20f * Mathf.Pow(0.5f, distance));
         }
     }
 
