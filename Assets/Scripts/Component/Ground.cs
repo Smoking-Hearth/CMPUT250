@@ -10,9 +10,24 @@ public class Ground : MonoBehaviour
     [SerializeField] private WalkableType walkableType;
     [SerializeField] private AudioClip footstepClip;
     [SerializeField] private AudioClip landClip;
+    [SerializeField] private bool usesLandClip = true;
     public WalkableType WalkableType { get { return walkableType; } }
     public AudioClip FootstepClip { get { return footstepClip; } }
-    public AudioClip LandClip { get { return landClip != null ? landClip : footstepClip; } }
+    public AudioClip LandClip
+    {
+        get
+        {
+            if (!usesLandClip)
+            {
+                return null;
+            }
+            if (landClip == null)
+            {
+                landClip = footstepClip;
+            }
+            return landClip;
+        }
+    }
 
     [SerializeField] private Effector2D effector;
 

@@ -603,6 +603,7 @@ MonoBehaviour:
   walkableType: 3
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 31228733}
 --- !u!1 &33708797
 GameObject:
@@ -725,6 +726,7 @@ GameObject:
   - component: {fileID: 41634023}
   - component: {fileID: 41634025}
   - component: {fileID: 41634026}
+  - component: {fileID: 41634028}
   - component: {fileID: 41634027}
   m_Layer: 6
   m_Name: LogTunnel_0
@@ -839,7 +841,7 @@ MonoBehaviour:
     rid: 5394859848043069851
   m_ShadowCastingSource: 2
   m_ShadowMesh:
-    m_Mesh: {fileID: 1839342819}
+    m_Mesh: {fileID: 280878594}
     m_LocalBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 13, y: 1.0999908, z: 0}
@@ -918,9 +920,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 0
-  footstepClip: {fileID: 8300000, guid: 2aaf60cc1f0c7da76be4fc92e5d757bc, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
+--- !u!61 &41634028
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41634022}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -1.46}
+  m_SpriteTilingProperty:
+    border: {x: 0.75, y: 0, z: 0.8, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.3, y: 3.2}
+    newSize: {x: 27, y: 3.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 2
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 27, y: 0.2}
+  m_EdgeRadius: 0
 --- !u!1001 &43014250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1934,8 +1983,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 3
-  footstepClip: {fileID: 8300000, guid: 3ce6a064d632f8ec9bf6728b84c2b515, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 123411145}
 --- !u!1 &131544606
 GameObject:
@@ -2835,6 +2885,7 @@ MonoBehaviour:
   walkableType: 0
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1 &182425582
 GameObject:
@@ -3905,8 +3956,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 0
-  footstepClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1 &242011381
 GameObject:
@@ -8914,6 +8966,171 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 231598319612311668, guid: 3da1124f12f5e024bb38d43ff06308be, type: 3}
   m_PrefabInstance: {fileID: 40597988}
   m_PrefabAsset: {fileID: 0}
+--- !u!43 &280878594
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 36
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 20
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 13, y: 1.0999908, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 0
+  m_KeepIndices: 0
+  m_IndexFormat: 1
+  m_IndexBuffer: 000000000400000005000000050000000100000000000000010000000800000009000000090000000200000001000000020000000c0000000d0000000d0000000300000002000000030000001000000011000000110000000000000003000000000000000600000007000000010000000a0000000b000000020000000e0000000f000000030000001200000013000000
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 20
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 560
+    _typelessdata: 0000504180cc8c3f00000000000080bf00000000000050c180cc8c3f000050c180cc8c3f00000000000080bf00000000000050c180cc8cbf000050c180cc8cbf00000000000080bf000000000000504180cc8cbf0000504180cc8cbf00000000000080bf000000000000504180cc8c3f0000504180cc8c3f000000000000000000000000000050c180cc8c3f000050c180cc8c3f0000000000000000000000000000504180cc8c3f0000504180cc8c3f000000000000803f00000000000050c180cc8c3f0000504180cc8c3f000000000000404000000000000050c180cc8c3f000050c180cc8c3f000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000000000000000000050c180cc8c3f000050c180cc8c3f000000000000803f00000000000050c180cc8cbf000050c180cc8c3f000000000000404000000000000050c180cc8cbf000050c180cc8cbf0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000803f000000000000504180cc8cbf000050c180cc8cbf0000000000004040000000000000504180cc8cbf0000504180cc8cbf0000000000000000000000000000504180cc8c3f0000504180cc8c3f0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000803f000000000000504180cc8c3f0000504180cc8cbf0000000000004040000000000000504180cc8c3f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1001 &289289050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9304,6 +9521,7 @@ MonoBehaviour:
   walkableType: 0
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1001 &308354106
 PrefabInstance:
@@ -10265,8 +10483,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 0
-  footstepClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1 &383252553
 GameObject:
@@ -10435,6 +10654,7 @@ MonoBehaviour:
   walkableType: 1
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 383252557}
 --- !u!1 &395220509
 GameObject:
@@ -11215,171 +11435,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1738979221}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &476033088
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 11
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 36
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 20
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 13, y: 1.0999908, z: 0}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 0
-  m_KeepIndices: 0
-  m_IndexFormat: 1
-  m_IndexBuffer: 000000000400000005000000050000000100000000000000010000000800000009000000090000000200000001000000020000000c0000000d0000000d0000000300000002000000030000001000000011000000110000000000000003000000000000000600000007000000010000000a0000000b000000020000000e0000000f000000030000001200000013000000
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 20
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 560
-    _typelessdata: 0000504180cc8c3f00000000000080bf00000000000050c180cc8c3f000050c180cc8c3f00000000000080bf00000000000050c180cc8cbf000050c180cc8cbf00000000000080bf000000000000504180cc8cbf0000504180cc8cbf00000000000080bf000000000000504180cc8c3f0000504180cc8c3f000000000000000000000000000050c180cc8c3f000050c180cc8c3f0000000000000000000000000000504180cc8c3f0000504180cc8c3f000000000000803f00000000000050c180cc8c3f0000504180cc8c3f000000000000404000000000000050c180cc8c3f000050c180cc8c3f000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000000000000000000050c180cc8c3f000050c180cc8c3f000000000000803f00000000000050c180cc8cbf000050c180cc8c3f000000000000404000000000000050c180cc8cbf000050c180cc8cbf0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000803f000000000000504180cc8cbf000050c180cc8cbf0000000000004040000000000000504180cc8cbf0000504180cc8cbf0000000000000000000000000000504180cc8c3f0000504180cc8c3f0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000803f000000000000504180cc8c3f0000504180cc8cbf0000000000004040000000000000504180cc8c3f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_MeshUsageFlags: 0
-  m_CookingOptions: 30
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!1 &477652934
 GameObject:
   m_ObjectHideFlags: 0
@@ -11779,8 +11834,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 0
-  footstepClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1 &523642402
 GameObject:
@@ -13057,8 +13113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 0
-  footstepClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1 &612107518
 GameObject:
@@ -19708,7 +19765,6 @@ MonoBehaviour:
   audioSource: {fileID: 744739956}
   mainShootSound: {fileID: 8300000, guid: b46cfa4f094fa7c48909e81342ba2ab8, type: 3}
   footstepInterval: 20
-  grassFootsteps: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   fireHurtClip: {fileID: 8300000, guid: 7ce529fa74a7e1549a3c3aab2c9024f8, type: 3}
   electricityHurtClip: {fileID: 8300000, guid: b25732da70ed4a04fa24f265bfb1c021, type: 3}
 --- !u!114 &744739958
@@ -20523,6 +20579,7 @@ MonoBehaviour:
   walkableType: 3
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 765124615}
 --- !u!1 &767668110
 GameObject:
@@ -20769,8 +20826,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 3
-  footstepClip: {fileID: 8300000, guid: 3ce6a064d632f8ec9bf6728b84c2b515, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 800102711}
 --- !u!1 &804099893
 GameObject:
@@ -25758,6 +25816,7 @@ MonoBehaviour:
   walkableType: 0
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1001 &808309785
 PrefabInstance:
@@ -26737,6 +26796,7 @@ MonoBehaviour:
   walkableType: 1
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 878071698}
 --- !u!1 &892728272
 GameObject:
@@ -26934,8 +26994,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 3
-  footstepClip: {fileID: 8300000, guid: 3ce6a064d632f8ec9bf6728b84c2b515, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 895241248}
 --- !u!1 &908373813
 GameObject:
@@ -27402,6 +27463,7 @@ MonoBehaviour:
   walkableType: 0
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1 &943416843
 GameObject:
@@ -28770,6 +28832,7 @@ MonoBehaviour:
   walkableType: 3
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 1050147632}
 --- !u!1 &1051018887
 GameObject:
@@ -30445,6 +30508,7 @@ MonoBehaviour:
   walkableType: 0
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1 &1160376678
 GameObject:
@@ -36016,6 +36080,7 @@ MonoBehaviour:
   walkableType: 0
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1001 &1237218264
 PrefabInstance:
@@ -37342,8 +37407,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 3
-  footstepClip: {fileID: 8300000, guid: 3ce6a064d632f8ec9bf6728b84c2b515, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 1335747485}
 --- !u!1 &1345359971
 GameObject:
@@ -37455,8 +37521,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 3
-  footstepClip: {fileID: 8300000, guid: 3ce6a064d632f8ec9bf6728b84c2b515, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 1345359973}
 --- !u!1001 &1351612538
 PrefabInstance:
@@ -38451,8 +38518,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 0
-  footstepClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1 &1465367509
 GameObject:
@@ -38602,8 +38670,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 0
-  footstepClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1 &1482005381
 GameObject:
@@ -39493,6 +39562,7 @@ MonoBehaviour:
   walkableType: 1
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 1574368558}
 --- !u!1 &1577686376
 GameObject:
@@ -39881,8 +39951,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 0
-  footstepClip: {fileID: 8300000, guid: f4bee8a479b5a0e49b5d04aee7641d5a, type: 3}
+  footstepClip: {fileID: 8300000, guid: ed6cd85f15ded5244b938c30f265a595, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1001 &1587767946
 PrefabInstance:
@@ -40544,6 +40615,7 @@ MonoBehaviour:
   walkableType: 1
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 1729201993}
 --- !u!1 &1732717999
 GameObject:
@@ -40685,6 +40757,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 744739960}
+    - target: {fileID: 8494133834782124469, guid: 977f96aa9cd336a43b46a42335cedf6a, type: 3}
+      propertyPath: footstepClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -46743,171 +46819,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!43 &1839342819
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 11
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 36
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 20
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 13, y: 1.0999908, z: 0}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 0
-  m_KeepIndices: 0
-  m_IndexFormat: 1
-  m_IndexBuffer: 000000000400000005000000050000000100000000000000010000000800000009000000090000000200000001000000020000000c0000000d0000000d0000000300000002000000030000001000000011000000110000000000000003000000000000000600000007000000010000000a0000000b000000020000000e0000000f000000030000001200000013000000
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 20
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 560
-    _typelessdata: 0000504180cc8c3f00000000000080bf00000000000050c180cc8c3f000050c180cc8c3f00000000000080bf00000000000050c180cc8cbf000050c180cc8cbf00000000000080bf000000000000504180cc8cbf0000504180cc8cbf00000000000080bf000000000000504180cc8c3f0000504180cc8c3f000000000000000000000000000050c180cc8c3f000050c180cc8c3f0000000000000000000000000000504180cc8c3f0000504180cc8c3f000000000000803f00000000000050c180cc8c3f0000504180cc8c3f000000000000404000000000000050c180cc8c3f000050c180cc8c3f000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000000000000000000050c180cc8c3f000050c180cc8c3f000000000000803f00000000000050c180cc8cbf000050c180cc8c3f000000000000404000000000000050c180cc8cbf000050c180cc8cbf0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000803f000000000000504180cc8cbf000050c180cc8cbf0000000000004040000000000000504180cc8cbf0000504180cc8cbf0000000000000000000000000000504180cc8c3f0000504180cc8c3f0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000803f000000000000504180cc8c3f0000504180cc8cbf0000000000004040000000000000504180cc8c3f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_MeshUsageFlags: 0
-  m_CookingOptions: 30
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!1 &1865090723
 GameObject:
   m_ObjectHideFlags: 0
@@ -47307,8 +47218,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 0
-  footstepClip: {fileID: 8300000, guid: 0d4785fa7207c8bee8bf60144b1689a2, type: 3}
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1 &1886195518
 GameObject:
@@ -47954,6 +47866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1927007088}
   - component: {fileID: 1927007089}
+  - component: {fileID: 1927007093}
   - component: {fileID: 1927007091}
   - component: {fileID: 1927007092}
   m_Layer: 6
@@ -48058,7 +47971,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -8.3, y: -2.91}
+  m_Offset: {x: -24.3, y: -2.91}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -48068,7 +47981,7 @@ BoxCollider2D:
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 56, y: 2.3}
+  m_Size: {x: 24, y: 2.3}
   m_EdgeRadius: 0
 --- !u!114 &1927007092
 MonoBehaviour:
@@ -48085,7 +47998,54 @@ MonoBehaviour:
   walkableType: 0
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
+--- !u!61 &1927007093
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927007087}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 16.7, y: -2.91}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.45, y: 1.05}
+    newSize: {x: 60, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 2
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 4.5, y: 2.3}
+  m_EdgeRadius: 0
 --- !u!1 &1929688240
 GameObject:
   m_ObjectHideFlags: 0
@@ -48867,6 +48827,7 @@ MonoBehaviour:
   walkableType: 0
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!114 &1979745225 stripped
 MonoBehaviour:
@@ -49871,6 +49832,7 @@ MonoBehaviour:
   walkableType: 0
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!61 &2024213446
 BoxCollider2D:
@@ -50261,6 +50223,7 @@ MonoBehaviour:
   walkableType: 0
   footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 1
   effector: {fileID: 0}
 --- !u!1 &2054722056
 GameObject:
@@ -53127,8 +53090,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableType: 0
-  footstepClip: {fileID: 8300000, guid: f4bee8a479b5a0e49b5d04aee7641d5a, type: 3}
+  footstepClip: {fileID: 8300000, guid: ed6cd85f15ded5244b938c30f265a595, type: 3}
   landClip: {fileID: 0}
+  usesLandClip: 0
   effector: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
