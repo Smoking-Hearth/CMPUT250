@@ -21,6 +21,7 @@ public class FireSpreader : MonoBehaviour
         else
         {
             spreadTimer = interval;
+            SpreadTemperature();
         }
     }
 
