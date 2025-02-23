@@ -66,7 +66,7 @@ public class EnemyController : MonoBehaviour
 
         if (spawnParticles != null)
         {
-            Destroy(spawnParticles);
+            Destroy(spawnParticles.gameObject);
         }
         spawnParticles = Instantiate(enemyInfo.spawnParticles, Vector2.zero, Quaternion.identity, transform);
 

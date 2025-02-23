@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnvironmentalFire : Fire, IExtinguishable
 {
@@ -10,6 +11,7 @@ public class EnvironmentalFire : Fire, IExtinguishable
     [SerializeField] private float peakFireHeight;
     [SerializeField] private Collider2D fireCollider;
     private float lingerTimer;
+    [SerializeField] private UnityEvent ExtinguishEvent;
 
     public float Temperature
     {
@@ -62,6 +64,7 @@ public class EnvironmentalFire : Fire, IExtinguishable
             SetActive(false);
             lingerTimer = particles.main.startLifetime.constant;
             fireCollider.enabled = false;
+            ExtinguishEvent.Invoke();
         }
     }
 }
