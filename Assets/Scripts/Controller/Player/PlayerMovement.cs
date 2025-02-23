@@ -21,12 +21,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 addedVelocity;
 
     [SerializeField] private Animator playerAnimator;
+    private Ground currentGround;
 
     private bool isJumping;
 
     private Rigidbody2D attached;
 
-    private List<Effector2D> disabledPlatforms = new List<Effector2D>();
+    private List<Ground> disabledPlatforms = new List<Ground>();
 
     public delegate void OnLand(Vector2 landPosition, float force);
     public static event OnLand onLand;
@@ -69,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            playerRigidbody.gravityScale = 1; //The player catches onto ledges, but slowly falls down
+            playerRigidbody.gravityScale = 1;
         }
 
         GroundCheck();
@@ -146,6 +147,36 @@ public class PlayerMovement : MonoBehaviour
             player.GroundState = GroundState.None;
             return false;
         }
+        if (currentGround != null)
+        {
+            if (centerHit && centerHit.collider.gameObject != currentGround.gameObject)
+            {
+                currentGround = centerHit.collider.GetComponent<Ground>();
+            }
+            else if (leftHit && leftHit.collider.gameObject != currentGround.gameObject)
+            {
+                currentGround = leftHit.collider.GetComponent<Ground>();
+            }
+            else if (rightHit && rightHit.collider.gameObject != currentGround.gameObject)
+            {
+                currentGround = rightHit.collider.GetComponent<Ground>();
+            }
+        }
+        else
+        {
+            if (centerHit)
+            {
+                currentGround = centerHit.collider.GetComponent<Ground>();
+            }
+            else if (leftHit)
+            {
+                currentGround = leftHit.collider.GetComponent<Ground>();
+            }
+            else if (rightHit)
+            {
+                currentGround = rightHit.collider.GetComponent<Ground>();
+            }
+        }
 
         if (playerRigidbody.linearVelocityY < 0.5f && player.GroundState == GroundState.None)
         {
@@ -168,11 +199,13 @@ public class PlayerMovement : MonoBehaviour
             playerRigidbody.position = new Vector2(playerRigidbody.position.x, playerRigidbody.position.y - smallestDistance + groundCheckRadius * 0.5f);
             playerAnimator.SetBool("IsGrounded", true);
             player.GroundState = GroundState.Grass;
+
             isJumping = false;
 
             if (onLand != null)
             {
                 onLand(transform.position, -addedVelocity.y);
+                player.Sounds.PlayLandClip(currentGround);
             }
         }
 
@@ -220,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if (player.GroundState != GroundState.None && Mathf.Sign(inputAxes.x) == Mathf.Sign(targetMovement.x))
             {
-                player.Sounds.PlayGrassFootsteps();
+                player.Sounds.PlayFootsteps(currentGround);
             }
             if (flipGraphics)
             {
@@ -291,7 +324,7 @@ public class PlayerMovement : MonoBehaviour
     public bool DropPlatform()
     {
         Vector2 groundCheckPosition = (Vector2)transform.position + groundCheckOffset;
-        Collider2D[] platformColliders = Physics2D.OverlapCircleAll(groundCheckPosition, groundCheckRadius, platformLayer);
+        Collider2D[] platformColliders = Physics2D.OverlapCircleAll(groundCheckPosition, groundCheckRadius * 2, platformLayer);
         RaycastHit2D ray = Physics2D.Raycast(groundCheckPosition + Vector2.down * 0.5f * groundCheckRadius, Vector2.down, groundCheckRadius * 4, ~(platformLayer) & groundLayer);
 
         if (platformColliders.Length == 0 || ray)
@@ -306,11 +339,11 @@ public class PlayerMovement : MonoBehaviour
 
         for (int i = 0; i < platformColliders.Length; i++)
         {
-            Effector2D effector = platformColliders[i].GetComponent<Effector2D>();
-            if (!disabledPlatforms.Contains(effector))
+            Ground platform = platformColliders[i].GetComponent<Ground>();
+            if (!disabledPlatforms.Contains(platform))
             {
-                effector.colliderMask &= ~(1 << gameObject.layer);
-                disabledPlatforms.Add(effector);
+                platform.IgnoreLayer(gameObject.layer);
+                disabledPlatforms.Add(platform);
             }
         }
 
@@ -325,7 +358,7 @@ public class PlayerMovement : MonoBehaviour
 
         for (int i = 0; i < platformColliders.Length; i++)
         {
-            if (!disabledPlatforms.Contains(platformColliders[i].GetComponent<Effector2D>()))
+            if (!disabledPlatforms.Contains(platformColliders[i].GetComponent<Ground>()))
             {
                 EnablePlatforms();
             }
@@ -341,10 +374,10 @@ public class PlayerMovement : MonoBehaviour
         }
         for (int i = 0; i < disabledPlatforms.Count; i++)
         {
-            disabledPlatforms[i].colliderMask |= (1 << gameObject.layer);
+            disabledPlatforms[i].AddLayer(gameObject.layer);
         }
 
-        disabledPlatforms = new List<Effector2D>();
+        disabledPlatforms = new List<Ground>();
     }
 
     public void Jump()

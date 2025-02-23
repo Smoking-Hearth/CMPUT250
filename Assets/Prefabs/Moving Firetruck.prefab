@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 446074388252634019}
   - component: {fileID: 3790421495587713985}
   - component: {fileID: 684606714348436237}
+  - component: {fileID: 8494133834782124469}
   m_Layer: 9
   m_Name: FiretruckPlatform
   m_TagString: Untagged
@@ -95,6 +96,21 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &8494133834782124469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43748520316057822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 1
+  footstepClip: {fileID: 8300000, guid: 4d47622dc11f752c293eca35047af362, type: 3}
+  effector: {fileID: 3790421495587713985}
 --- !u!1 &4950427920771028989
 GameObject:
   m_ObjectHideFlags: 0

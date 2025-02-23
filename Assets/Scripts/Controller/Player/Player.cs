@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum GroundState
 {
-    None, Grass, Hard
+    None, Grass, Concrete, Wood
 }
 
 public class Player

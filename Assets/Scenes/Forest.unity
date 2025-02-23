@@ -338,6 +338,7 @@ GameObject:
   - component: {fileID: 31228731}
   - component: {fileID: 31228730}
   - component: {fileID: 31228733}
+  - component: {fileID: 31228734}
   m_Layer: 9
   m_Name: Open Sprite Shape (1)
   m_TagString: Untagged
@@ -587,6 +588,22 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &31228734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31228728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 3
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 31228733}
 --- !u!1 &33708797
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +725,7 @@ GameObject:
   - component: {fileID: 41634023}
   - component: {fileID: 41634025}
   - component: {fileID: 41634026}
+  - component: {fileID: 41634027}
   m_Layer: 6
   m_Name: LogTunnel_0
   m_TagString: Untagged
@@ -821,7 +839,7 @@ MonoBehaviour:
     rid: 5394859848043069851
   m_ShadowCastingSource: 2
   m_ShadowMesh:
-    m_Mesh: {fileID: 1863991160}
+    m_Mesh: {fileID: 476033088}
     m_LocalBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 13, y: 1.0999908, z: 0}
@@ -887,6 +905,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 27, y: 0.2}
   m_EdgeRadius: 0
+--- !u!114 &41634027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41634022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: 2aaf60cc1f0c7da76be4fc92e5d757bc, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1001 &43014250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1801,6 +1835,7 @@ GameObject:
   - component: {fileID: 123411144}
   - component: {fileID: 123411146}
   - component: {fileID: 123411145}
+  - component: {fileID: 123411147}
   m_Layer: 11
   m_Name: Stairs
   m_TagString: Untagged
@@ -1886,6 +1921,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &123411147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123411143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 3
+  footstepClip: {fileID: 8300000, guid: 3ce6a064d632f8ec9bf6728b84c2b515, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 123411145}
 --- !u!1 &131544606
 GameObject:
   m_ObjectHideFlags: 0
@@ -2556,6 +2607,7 @@ GameObject:
   - component: {fileID: 171437143}
   - component: {fileID: 171437142}
   - component: {fileID: 171437141}
+  - component: {fileID: 171437144}
   m_Layer: 6
   m_Name: Open Sprite Shape (2)
   m_TagString: Untagged
@@ -2609,7 +2661,7 @@ EdgeCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
@@ -2768,6 +2820,22 @@ SpriteShapeRenderer:
     m_Center: {x: -5.6171494, y: -1.179673, z: 0}
     m_Extent: {x: 4.161133, y: 1.157192, z: 0}
   m_SpriteSortPoint: 0
+--- !u!114 &171437144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171437138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1 &182425582
 GameObject:
   m_ObjectHideFlags: 0
@@ -3588,6 +3656,7 @@ GameObject:
   - component: {fileID: 234303811}
   - component: {fileID: 234303810}
   - component: {fileID: 234303812}
+  - component: {fileID: 234303813}
   m_Layer: 6
   m_Name: rock2_0
   m_TagString: Untagged
@@ -3712,6 +3781,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &234303813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234303809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1 &242011381
 GameObject:
   m_ObjectHideFlags: 0
@@ -8969,6 +9054,7 @@ GameObject:
   - component: {fileID: 299461583}
   - component: {fileID: 299461585}
   - component: {fileID: 299461584}
+  - component: {fileID: 299461586}
   m_Layer: 6
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -9092,6 +9178,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &299461586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299461582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1001 &308354106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9913,6 +10015,7 @@ GameObject:
   - component: {fileID: 371539118}
   - component: {fileID: 371539117}
   - component: {fileID: 371539119}
+  - component: {fileID: 371539120}
   m_Layer: 6
   m_Name: rock2_0 (1)
   m_TagString: Untagged
@@ -10037,6 +10140,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &371539120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371539116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1 &383252553
 GameObject:
   m_ObjectHideFlags: 0
@@ -10049,6 +10168,7 @@ GameObject:
   - component: {fileID: 383252556}
   - component: {fileID: 383252558}
   - component: {fileID: 383252557}
+  - component: {fileID: 383252559}
   m_Layer: 9
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -10188,6 +10308,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &383252559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383252553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 1
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 383252557}
 --- !u!1 &395220509
 GameObject:
   m_ObjectHideFlags: 0
@@ -10967,6 +11103,171 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1738979221}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!43 &476033088
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 36
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 20
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 13, y: 1.0999908, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 0
+  m_KeepIndices: 0
+  m_IndexFormat: 1
+  m_IndexBuffer: 000000000400000005000000050000000100000000000000010000000800000009000000090000000200000001000000020000000c0000000d0000000d0000000300000002000000030000001000000011000000110000000000000003000000000000000600000007000000010000000a0000000b000000020000000e0000000f000000030000001200000013000000
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 20
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 560
+    _typelessdata: 0000504180cc8c3f00000000000080bf00000000000050c180cc8c3f000050c180cc8c3f00000000000080bf00000000000050c180cc8cbf000050c180cc8cbf00000000000080bf000000000000504180cc8cbf0000504180cc8cbf00000000000080bf000000000000504180cc8c3f0000504180cc8c3f000000000000000000000000000050c180cc8c3f000050c180cc8c3f0000000000000000000000000000504180cc8c3f0000504180cc8c3f000000000000803f00000000000050c180cc8c3f0000504180cc8c3f000000000000404000000000000050c180cc8c3f000050c180cc8c3f000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000000000000000000050c180cc8c3f000050c180cc8c3f000000000000803f00000000000050c180cc8cbf000050c180cc8c3f000000000000404000000000000050c180cc8cbf000050c180cc8cbf0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000803f000000000000504180cc8cbf000050c180cc8cbf0000000000004040000000000000504180cc8cbf0000504180cc8cbf0000000000000000000000000000504180cc8c3f0000504180cc8c3f0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000803f000000000000504180cc8c3f0000504180cc8cbf0000000000004040000000000000504180cc8c3f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &477652934
 GameObject:
   m_ObjectHideFlags: 0
@@ -11229,6 +11530,7 @@ GameObject:
   - component: {fileID: 514494595}
   - component: {fileID: 514494594}
   - component: {fileID: 514494593}
+  - component: {fileID: 514494596}
   m_Layer: 6
   m_Name: rock2_0 (2)
   m_TagString: Untagged
@@ -11352,6 +11654,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3074456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &514494596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514494592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1 &523642402
 GameObject:
   m_ObjectHideFlags: 0
@@ -12490,6 +12808,7 @@ GameObject:
   - component: {fileID: 586725480}
   - component: {fileID: 586725479}
   - component: {fileID: 586725478}
+  - component: {fileID: 586725481}
   m_Layer: 6
   m_Name: rock2_0 (4)
   m_TagString: Untagged
@@ -12613,6 +12932,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3074456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &586725481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586725477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1 &612107518
 GameObject:
   m_ObjectHideFlags: 0
@@ -19162,7 +19497,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -19805,6 +20140,7 @@ GameObject:
   - component: {fileID: 765124617}
   - component: {fileID: 765124616}
   - component: {fileID: 765124615}
+  - component: {fileID: 765124619}
   m_Layer: 9
   m_Name: Open Sprite Shape (3)
   m_TagString: Untagged
@@ -20060,6 +20396,22 @@ SpriteShapeRenderer:
     m_Center: {x: -5.751781, y: -0.13874435, z: 0}
     m_Extent: {x: 5.991734, y: 3.5503955, z: 0}
   m_SpriteSortPoint: 0
+--- !u!114 &765124619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765124613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 3
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 765124615}
 --- !u!1 &767668110
 GameObject:
   m_ObjectHideFlags: 0
@@ -20207,6 +20559,7 @@ GameObject:
   - component: {fileID: 800102710}
   - component: {fileID: 800102712}
   - component: {fileID: 800102711}
+  - component: {fileID: 800102713}
   m_Layer: 11
   m_Name: Stairs (3)
   m_TagString: Untagged
@@ -20291,6 +20644,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &800102713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800102709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 3
+  footstepClip: {fileID: 8300000, guid: 3ce6a064d632f8ec9bf6728b84c2b515, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 800102711}
 --- !u!1 &804099893
 GameObject:
   m_ObjectHideFlags: 0
@@ -25138,6 +25507,7 @@ GameObject:
   - component: {fileID: 806925864}
   - component: {fileID: 806925866}
   - component: {fileID: 806925865}
+  - component: {fileID: 806925867}
   m_Layer: 6
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -25261,6 +25631,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &806925867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806925863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1001 &808309785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26082,6 +26468,7 @@ GameObject:
   - component: {fileID: 878071697}
   - component: {fileID: 878071699}
   - component: {fileID: 878071698}
+  - component: {fileID: 878071700}
   m_Layer: 9
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -26223,6 +26610,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &878071700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878071695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 1
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 878071698}
 --- !u!1 &892728272
 GameObject:
   m_ObjectHideFlags: 0
@@ -26321,6 +26724,7 @@ GameObject:
   - component: {fileID: 895241247}
   - component: {fileID: 895241249}
   - component: {fileID: 895241248}
+  - component: {fileID: 895241250}
   m_Layer: 9
   m_Name: Stairs (4)
   m_TagString: Untagged
@@ -26405,6 +26809,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &895241250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895241246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 3
+  footstepClip: {fileID: 8300000, guid: 3ce6a064d632f8ec9bf6728b84c2b515, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 895241248}
 --- !u!1 &908373813
 GameObject:
   m_ObjectHideFlags: 0
@@ -26731,6 +27151,7 @@ GameObject:
   - component: {fileID: 936816043}
   - component: {fileID: 936816045}
   - component: {fileID: 936816044}
+  - component: {fileID: 936816046}
   m_Layer: 6
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -26854,6 +27275,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &936816046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936816042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1 &943416843
 GameObject:
   m_ObjectHideFlags: 0
@@ -27974,6 +28411,7 @@ GameObject:
   - component: {fileID: 1050147634}
   - component: {fileID: 1050147633}
   - component: {fileID: 1050147632}
+  - component: {fileID: 1050147636}
   m_Layer: 9
   m_Name: Open Sprite Shape (1)
   m_TagString: Untagged
@@ -28205,6 +28643,22 @@ SpriteShapeRenderer:
     m_Center: {x: -6.1362114, y: -1.179673, z: 0}
     m_Extent: {x: 3.6420708, y: 1.157192, z: 0}
   m_SpriteSortPoint: 0
+--- !u!114 &1050147636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050147630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 3
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 1050147632}
 --- !u!1 &1051018887
 GameObject:
   m_ObjectHideFlags: 0
@@ -29643,6 +30097,7 @@ GameObject:
   - component: {fileID: 1157510386}
   - component: {fileID: 1157510385}
   - component: {fileID: 1157510384}
+  - component: {fileID: 1157510387}
   m_Layer: 6
   m_Name: Open Sprite Shape
   m_TagString: Untagged
@@ -29863,6 +30318,22 @@ SpriteShapeRenderer:
     m_Center: {x: -5.015218, y: -1.1705501, z: 0}
     m_Extent: {x: 9.528211, y: 1.144036, z: 0}
   m_SpriteSortPoint: 0
+--- !u!114 &1157510387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157510382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1 &1160376678
 GameObject:
   m_ObjectHideFlags: 0
@@ -35291,6 +35762,7 @@ GameObject:
   - component: {fileID: 1228450481}
   - component: {fileID: 1228450484}
   - component: {fileID: 1228450483}
+  - component: {fileID: 1228450485}
   m_Layer: 6
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -35417,6 +35889,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1228450485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228450480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1001 &1237218264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36572,6 +37060,7 @@ GameObject:
   - component: {fileID: 1335747484}
   - component: {fileID: 1335747486}
   - component: {fileID: 1335747485}
+  - component: {fileID: 1335747487}
   m_Layer: 11
   m_Name: Stairs (2)
   m_TagString: Untagged
@@ -36657,6 +37146,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1335747487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335747483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 3
+  footstepClip: {fileID: 8300000, guid: 3ce6a064d632f8ec9bf6728b84c2b515, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 1335747485}
 --- !u!1 &1345359971
 GameObject:
   m_ObjectHideFlags: 0
@@ -36668,6 +37173,7 @@ GameObject:
   - component: {fileID: 1345359972}
   - component: {fileID: 1345359974}
   - component: {fileID: 1345359973}
+  - component: {fileID: 1345359975}
   m_Layer: 11
   m_Name: Stairs (1)
   m_TagString: Untagged
@@ -36753,6 +37259,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1345359975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345359971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 3
+  footstepClip: {fileID: 8300000, guid: 3ce6a064d632f8ec9bf6728b84c2b515, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 1345359973}
 --- !u!1001 &1351612538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37608,6 +38130,7 @@ GameObject:
   - component: {fileID: 1463105240}
   - component: {fileID: 1463105239}
   - component: {fileID: 1463105241}
+  - component: {fileID: 1463105242}
   m_Layer: 6
   m_Name: rock2_0 (2)
   m_TagString: Untagged
@@ -37732,6 +38255,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &1463105242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463105238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1 &1465367509
 GameObject:
   m_ObjectHideFlags: 0
@@ -37743,6 +38282,7 @@ GameObject:
   - component: {fileID: 1465367512}
   - component: {fileID: 1465367511}
   - component: {fileID: 1465367510}
+  - component: {fileID: 1465367513}
   m_Layer: 6
   m_Name: rock2_0 (3)
   m_TagString: Untagged
@@ -37866,6 +38406,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3074456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1465367513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465367509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1 &1482005381
 GameObject:
   m_ObjectHideFlags: 0
@@ -38654,6 +39210,7 @@ GameObject:
   - component: {fileID: 1574368557}
   - component: {fileID: 1574368559}
   - component: {fileID: 1574368558}
+  - component: {fileID: 1574368560}
   m_Layer: 9
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -38738,6 +39295,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1574368560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574368556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 1
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 1574368558}
 --- !u!1 &1577686376
 GameObject:
   m_ObjectHideFlags: 0
@@ -38800,6 +39373,7 @@ GameObject:
   - component: {fileID: 1587389824}
   - component: {fileID: 1587389825}
   - component: {fileID: 1587389826}
+  - component: {fileID: 1587389827}
   m_Layer: 6
   m_Name: Mask
   m_TagString: Untagged
@@ -39111,6 +39685,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1587389827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587389819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: f4bee8a479b5a0e49b5d04aee7641d5a, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1001 &1587767946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39616,6 +40206,7 @@ GameObject:
   - component: {fileID: 1729201992}
   - component: {fileID: 1729201994}
   - component: {fileID: 1729201993}
+  - component: {fileID: 1729201995}
   m_Layer: 9
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -39755,6 +40346,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1729201995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729201990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 1
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 1729201993}
 --- !u!1 &1732717999
 GameObject:
   m_ObjectHideFlags: 0
@@ -45953,171 +46560,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!43 &1863991160
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 11
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 36
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 20
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 13, y: 1.0999908, z: 0}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 0
-  m_KeepIndices: 0
-  m_IndexFormat: 1
-  m_IndexBuffer: 000000000400000005000000050000000100000000000000010000000800000009000000090000000200000001000000020000000c0000000d0000000d0000000300000002000000030000001000000011000000110000000000000003000000000000000600000007000000010000000a0000000b000000020000000e0000000f000000030000001200000013000000
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 20
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 560
-    _typelessdata: 0000504180cc8c3f00000000000080bf00000000000050c180cc8c3f000050c180cc8c3f00000000000080bf00000000000050c180cc8cbf000050c180cc8cbf00000000000080bf000000000000504180cc8cbf0000504180cc8cbf00000000000080bf000000000000504180cc8c3f0000504180cc8c3f000000000000000000000000000050c180cc8c3f000050c180cc8c3f0000000000000000000000000000504180cc8c3f0000504180cc8c3f000000000000803f00000000000050c180cc8c3f0000504180cc8c3f000000000000404000000000000050c180cc8c3f000050c180cc8c3f000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000000000000000000050c180cc8c3f000050c180cc8c3f000000000000803f00000000000050c180cc8cbf000050c180cc8c3f000000000000404000000000000050c180cc8cbf000050c180cc8cbf0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000803f000000000000504180cc8cbf000050c180cc8cbf0000000000004040000000000000504180cc8cbf0000504180cc8cbf0000000000000000000000000000504180cc8c3f0000504180cc8c3f0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000803f000000000000504180cc8c3f0000504180cc8cbf0000000000004040000000000000504180cc8c3f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_MeshUsageFlags: 0
-  m_CookingOptions: 30
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!1 &1865090723
 GameObject:
   m_ObjectHideFlags: 0
@@ -46237,40 +46679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lines:
-  - title: Player
-    lines:
-    - "Man, I was so inspired by President Boreas\u2019s speech that I slept in my
-      uniform. "
-    - "I can\u2019t wait to greet another peaceful day. \nThough\u2026 I wouldn\u2019t
-      mind a fire, after all, I can\u2019t join PRTCT-U cooped up in this tower.\n"
-    - ' *stretch* I should probably go refill my rations '
-    autoContinue: 1
-  - title: Dispatch
-    lines:
-    - This is Watchmaster to lookout seven. Over.
-    autoContinue: 1
-  - title: Player
-    lines:
-    - ' Lookout seven here. Over.'
-    autoContinue: 1
-  - title: Dispatch
-    lines:
-    - "I\u2019m seeing smoke near your area. Deploy to contain. Over."
-    autoContinue: 1
-  - title: Player
-    lines:
-    - Copy Watchmaster. Over and out.
-    autoContinue: 1
-  - title: Dispatch
-    lines:
-    - Over and out.
-    autoContinue: 1
-  - title: Player
-    lines:
-    - "A blaze near here? Finally! It shouldn\u2019t be too hard if I\u2019ve got
-      my trusty Hydropack."
-    autoContinue: 1
+  segments: []
 --- !u!1 &1875791330
 GameObject:
   m_ObjectHideFlags: 0
@@ -46402,8 +46811,9 @@ GameObject:
   - component: {fileID: 1884385142}
   - component: {fileID: 1884385144}
   - component: {fileID: 1884385143}
+  - component: {fileID: 1884385145}
   m_Layer: 6
-  m_Name: Bridge
+  m_Name: BridgeGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46527,6 +46937,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1884385145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884385141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: 0d4785fa7207c8bee8bf60144b1689a2, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1 &1886195518
 GameObject:
   m_ObjectHideFlags: 0
@@ -47172,6 +47598,7 @@ GameObject:
   - component: {fileID: 1927007088}
   - component: {fileID: 1927007089}
   - component: {fileID: 1927007091}
+  - component: {fileID: 1927007092}
   m_Layer: 6
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -47286,6 +47713,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 56, y: 2.3}
   m_EdgeRadius: 0
+--- !u!114 &1927007092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927007087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1 &1929688240
 GameObject:
   m_ObjectHideFlags: 0
@@ -47983,6 +48426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1972511388}
   - component: {fileID: 1972511389}
+  - component: {fileID: 1972511390}
   m_Layer: 6
   m_Name: GroundCollider (1)
   m_TagString: Untagged
@@ -48051,6 +48495,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 70, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1972511390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972511387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!114 &1979745225 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6946097365232236957, guid: b8287c6b5fc8d85e38e0a6165bae39c8, type: 3}
@@ -48840,36 +49300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lines:
-  - title: Player
-    lines:
-    - "Was that fire\u2026 alive? No, that\u2019s just a coincidence\u2026"
-    autoContinue: 0
-  - title: Cultist
-    lines:
-    - "In the fire we are free\u2026"
-    autoContinue: 0
-  - title: Player
-    lines:
-    - H-huh?
-    autoContinue: 0
-  - title: Dispatch
-    lines:
-    - Lookout seven, this is Watchmaster. You are entering a high level blaze zone,
-      please fall back. Over.
-    autoContinue: 0
-  - title: Player
-    lines:
-    - What!? But I can handle-
-    autoContinue: 0
-  - title: Dispatch
-    lines:
-    - "That wasn\u2019t a suggestion, rookie. I am ordering you to- *cuts off*"
-    autoContinue: 0
-  - title: Player
-    lines:
-    - Watchmaster? Hello? Whatever, protecting this land is my duty.
-    autoContinue: 0
+  segments: []
 --- !u!1 &2015969137
 GameObject:
   m_ObjectHideFlags: 0
@@ -48880,6 +49311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2015969138}
   - component: {fileID: 2015969139}
+  - component: {fileID: 2015969140}
   m_Layer: 6
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -48948,6 +49380,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 500, y: 5}
   m_EdgeRadius: 0
+--- !u!114 &2015969140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015969137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!61 &2024213446
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -49253,6 +49701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2054169272}
   - component: {fileID: 2054169273}
+  - component: {fileID: 2054169274}
   m_Layer: 6
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -49321,6 +49770,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 70, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2054169274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054169271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: db47a7f6067c7bf4aaa2e83c18353230, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1 &2054722056
 GameObject:
   m_ObjectHideFlags: 0
@@ -51280,6 +51745,7 @@ GameObject:
   - component: {fileID: 3470506447957985742}
   - component: {fileID: 2120151981621922541}
   - component: {fileID: 2024213446}
+  - component: {fileID: 9127696038735485526}
   m_Layer: 6
   m_Name: Lake
   m_TagString: Untagged
@@ -52172,6 +52638,22 @@ Transform:
   - {fileID: 641375490}
   m_Father: {fileID: 268052327}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9127696038735485526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5577071411450830237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: f4bee8a479b5a0e49b5d04aee7641d5a, type: 3}
+  landClip: {fileID: 0}
+  effector: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
