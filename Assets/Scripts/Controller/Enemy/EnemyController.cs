@@ -139,6 +139,7 @@ public class EnemyController : MonoBehaviour
             currentState = EnemyState.stDefeated;
             defeatTimer = enemyInfo.defeatDurationSeconds;
             sounds.ExtinguishSound();
+            sounds.FadeAmbientSounds(enemyInfo.defeatDurationSeconds);
         }
         else
         {

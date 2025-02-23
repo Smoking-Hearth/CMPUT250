@@ -1,13 +1,25 @@
 using UnityEngine;
+using LitMotion;
 
 public class FireSounds : MonoBehaviour
 {
     [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected AudioSource ambientAudio;    //The audio that the enemy plays just for existing;
+    [SerializeField] protected float ambientVolume;
     [SerializeField] protected AudioClip hitClip;
     [SerializeField] protected AudioClip extinguishClip;
     static protected bool playedHit;
     protected float hitTimer;
     static protected bool playedExtinguish;
+
+    private void OnEnable()
+    {
+        if (ambientAudio == null)
+        {
+            return;
+        }
+        ambientAudio.volume = ambientVolume;
+    }
     private void FixedUpdate()
     {
         playedHit = false;
@@ -34,5 +46,16 @@ public class FireSounds : MonoBehaviour
             audioSource.PlayOneShot(extinguishClip);
             playedExtinguish = true;
         }
+    }
+
+    public void FadeAmbientSounds(float fadeDuration)
+    {
+        if (ambientAudio == null)
+        {
+            return;
+        }
+        LMotion.Create(ambientAudio.volume, 0, fadeDuration)
+            .WithEase(Ease.InCubic)
+            .Bind(ambientAudio, (x, audio) => audio.volume = x);
     }
 }
