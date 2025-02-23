@@ -60,20 +60,6 @@ public class Menu : MonoBehaviour
 
     void OnEnable()
     {
-        // FIXME: impl proper transition functions to get rid of this trash.
-        // if (GameManager.SceneSystem.IsLoaded(selectedLevel))
-        // {
-            // firstLoad = false;
-        // }
-        // else 
-        // {
-            // SceneManager.UnloadSceneAsync((int)selectedLevel).completed += (_) =>
-            // {
-                // Scene scene = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
-                // GameManager.SceneSystem.SetSceneVisible(scene);
-            // };
-        // }
-
         play.onClick.AddListener(OnPlayClick);
         back.onClick.AddListener(OnBackClick);
         settings.onClick.AddListener(OnSettingsClick);
@@ -105,15 +91,11 @@ public class Menu : MonoBehaviour
 
     void OnSettingsClick()
     {
-        // Scene selected = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
-        // GameManager.SceneSystem.SetSceneVisible(selected, false);
         GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Settings, keepInHistory: true));
     }
 
     void OnCreditsClick()
     {
-        // Scene selected = SceneManager.GetSceneByBuildIndex((int)selectedLevel);
-        // GameManager.SceneSystem.SetSceneVisible(selected, false);
         GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Credits, keepInHistory: true));
     }
 }
