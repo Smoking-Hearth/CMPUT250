@@ -187,8 +187,10 @@ MonoBehaviour:
   sounds: {fileID: 8264911039532099318}
   enemyRigidBody: {fileID: 7420292930433501420}
   acceleration: 0.4
-  stopWhenAttacking: 1
-  targetHeight: 2
+  deccelerationRate: 0.97
+  stopWhenAttacking: 0
+  moveY: 1
+  targetHeight: 3
   projectilePrefab: {fileID: 2095809531407197485, guid: 045f815b191c2084891bba07d5b27b14, type: 3}
   inaccuracy: 1
   shootStartDistance: 0.5

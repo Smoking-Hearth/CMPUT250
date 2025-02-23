@@ -5,7 +5,10 @@ public class MeleeEnemy : EnemyController
     [Header("Movement")]
     [SerializeField] protected Rigidbody2D enemyRigidBody;
     [SerializeField] protected float acceleration;
+    [Range(0, 1)]
+    [SerializeField] protected float deccelerationRate;
     [SerializeField] protected bool stopWhenAttacking;
+    [SerializeField] protected bool moveY;      //Whether or not to affect the y velocity of the rigidbody
 
     protected override void Target()
     {
@@ -49,39 +52,65 @@ public class MeleeEnemy : EnemyController
             enemyAnimator.SetBool("IsMoving", true);
         }
 
-        if (Mathf.Abs(direction.x) <= enemyInfo.standRange)
+        if (Mathf.Abs(direction.magnitude) <= enemyInfo.standRange)
         {
-            enemyRigidBody.linearVelocityX *= 0.9f;
-
-            if (Mathf.Abs(enemyRigidBody.linearVelocityX) < acceleration)
+            if (moveY)
             {
-                enemyRigidBody.linearVelocityX = 0;
+                enemyRigidBody.linearVelocity *= deccelerationRate;
+
+                if (Mathf.Abs(enemyRigidBody.linearVelocity.magnitude) < acceleration)
+                {
+                    enemyRigidBody.linearVelocity = Vector2.zero;
+                }
+            }
+            else
+            {
+                enemyRigidBody.linearVelocityX *= deccelerationRate;
+
+                if (Mathf.Abs(enemyRigidBody.linearVelocityX) < acceleration)
+                {
+                    enemyRigidBody.linearVelocityX = 0;
+                }
             }
             return;
         }
-        if (direction.x > 0)
-        {
-            if (enemyRigidBody.linearVelocityX < enemyInfo.speed)
-            {
-                enemyRigidBody.linearVelocityX += acceleration;
-            }
-            else
-            {
-                enemyRigidBody.linearVelocityX = enemyInfo.speed;
-            }
-        }
-        else if (direction.x < 0)
-        {
-            if (enemyRigidBody.linearVelocityX > -enemyInfo.speed)
-            {
-                enemyRigidBody.linearVelocityX -= acceleration;
-            }
-            else
-            {
-                enemyRigidBody.linearVelocityX = -enemyInfo.speed;
-            }
-        }
 
+        if (moveY)
+        {
+            if (enemyRigidBody.linearVelocity.magnitude < enemyInfo.speed)
+            {
+                enemyRigidBody.linearVelocity += direction.normalized * acceleration;
+            }
+            else
+            {
+                enemyRigidBody.linearVelocity = direction.normalized * enemyInfo.speed;
+            }
+        }
+        else
+        {
+            if (direction.x > 0)
+            {
+                if (enemyRigidBody.linearVelocityX < enemyInfo.speed)
+                {
+                    enemyRigidBody.linearVelocityX += acceleration;
+                }
+                else
+                {
+                    enemyRigidBody.linearVelocityX = enemyInfo.speed;
+                }
+            }
+            else if (direction.x < 0)
+            {
+                if (enemyRigidBody.linearVelocityX > -enemyInfo.speed)
+                {
+                    enemyRigidBody.linearVelocityX -= acceleration;
+                }
+                else
+                {
+                    enemyRigidBody.linearVelocityX = -enemyInfo.speed;
+                }
+            }
+        }
         if (enemyRigidBody.linearVelocityX > 0)
         {
             body.localScale = Vector2.one;
@@ -90,5 +119,23 @@ public class MeleeEnemy : EnemyController
         {
             body.localScale = new Vector2(-1, 1);
         }
+    }
+
+    protected override void FrontSwing()
+    {
+        if (!stopWhenAttacking)
+        {
+            MoveToTarget();
+        }
+        base.FrontSwing();
+    }
+
+    protected override void BackSwing()
+    {
+        if (!stopWhenAttacking)
+        {
+            MoveToTarget();
+        }
+        base.BackSwing();
     }
 }

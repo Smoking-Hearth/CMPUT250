@@ -208,7 +208,9 @@ MonoBehaviour:
   sounds: {fileID: 6677225653668755011}
   enemyRigidBody: {fileID: 9168800897784946635}
   acceleration: 0.4
+  deccelerationRate: 1
   stopWhenAttacking: 0
+  moveY: 0
 --- !u!50 &9168800897784946635
 Rigidbody2D:
   serializedVersion: 5
