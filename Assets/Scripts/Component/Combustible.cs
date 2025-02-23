@@ -164,6 +164,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
             fire.transform.localPosition = Vector3.zero;
         }
         fire.SetActive(true);
+        gameObject.layer = LayerMask.NameToLayer("Combusted");
     }
 
     public void Extinguish(CombustibleKind extinguishClass, float quantity_L)
@@ -195,5 +196,6 @@ public class Combustible : MonoBehaviour, IExtinguishable
         fire.ExtinguishSound();
         fire.SetActive(false);
         ExtinguishEvent.Invoke();
+        gameObject.layer = LayerMask.NameToLayer("Combustible");
     }
 }
