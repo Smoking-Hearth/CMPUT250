@@ -25,6 +25,8 @@ public class EnemyController : MonoBehaviour
     public bool cannotDamage = false;
     public bool canMove = true;
 
+    private Animator enemyAnimator;
+
     protected Transform attackVisual; //PLACEHOLDER
     protected float commitAttackTimer;
     protected float frontSwingTimer;
@@ -51,6 +53,7 @@ public class EnemyController : MonoBehaviour
         commitAttackTimer = enemyInfo.commitAttackSeconds;
         frontSwingTimer = enemyInfo.frontSwingSeconds;
         backSwingTimer = enemyInfo.backSwingSeconds;
+        enemyAnimator = gameObject.GetComponent<Animator>();
         if (attackVisual == null)
         {
             if (enemyInfo.attackPrefab != null)
@@ -179,7 +182,9 @@ public class EnemyController : MonoBehaviour
         // Walk towards them, assuming they can do that?
         // canMove = true;
         if (distance < enemyInfo.aggroRange && canMove)
-        {
+        {   
+
+            enemyAnimator.SetBool("IsMoving", true); // MIGHT HAVE TO EDIT !!!!!!!!!!!!!!!!!
             MoveToTarget();
             if (distance <= enemyInfo.attackRange)
             {
@@ -199,6 +204,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            enemyAnimator.SetBool("IsMoving", false); // PROBABLY HAVE TO EDIT !!!!!!!!!!!!!!!!!
             currentState = EnemyState.stWaiting;
         }
     }
@@ -230,6 +236,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
         frontSwingTimer = enemyInfo.frontSwingSeconds;
+        enemyAnimator.SetTrigger(1); // PROBABLY HAVE TO EDIT !!!!!!!!
         currentState = EnemyState.stDuringAttack;
     }
 
