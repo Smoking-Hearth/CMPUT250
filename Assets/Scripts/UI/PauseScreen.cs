@@ -13,7 +13,6 @@ public class PauseScreen : MonoBehaviour
 
     private State state;
     private MotionHandle anim = MotionHandle.None;
-    private LevelState prevState = LevelState.None;
 
     void Awake()
     {
@@ -45,16 +44,9 @@ public class PauseScreen : MonoBehaviour
 
     public void TogglePause()
     {
-        if (prevState == LevelState.None)
-        {
-            prevState = gameObject.MyLevelManager().levelState;
-            gameObject.MyLevelManager().levelState = LevelState.Paused;
-        }
-        else
-        {
-            gameObject.MyLevelManager().levelState = prevState;
-            prevState = LevelState.None;
-        }
+        LevelManager levelManager = gameObject.MyLevelManager();
+        levelManager.SetPause(levelManager.levelState != LevelState.Paused);    //If the level is not paused, pause
+
     }
 
     void Update()
@@ -93,6 +85,7 @@ public class PauseScreen : MonoBehaviour
         state = State.Showing;
         anim.TryCancel();
         anim = LMotion.Create(pauseScreen.alpha, 1f, 0.3f)
+            .WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)
             .BindToAlpha(pauseScreen);
     }
 

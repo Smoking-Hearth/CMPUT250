@@ -58,6 +58,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("State")]
     [SerializeField] public LevelState levelState;
+    private LevelState prevState;
     [SerializeField] public Animator cameraAnimator;
 
     [Header("Key Objects")]
@@ -193,6 +194,22 @@ public class LevelManager : MonoBehaviour
         {
             gameOverScreen.SetActive(true);
             PlayerController.Controls.Disable();
+        }
+    }
+
+    public void SetPause(bool paused)
+    {
+        if (paused)
+        {
+            prevState = levelState;
+            levelState = LevelState.Paused;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            levelState = prevState;
+            prevState = LevelState.None;
+            Time.timeScale = 1;
         }
     }
 
