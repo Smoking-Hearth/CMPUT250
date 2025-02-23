@@ -19,6 +19,12 @@ public class ShooterEnemy : EnemyController
     protected override void MoveToTarget()
     {
         Vector2 direction = targetPosition - (Vector2)transform.position + Vector2.up * targetHeight;
+
+        if (enemyAnimator != null)
+        {
+            enemyAnimator.SetBool("IsMoving", true);
+        }
+
         if (direction.magnitude < enemyInfo.standRange)
         {
             return;

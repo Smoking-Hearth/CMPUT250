@@ -32,12 +32,21 @@ public class MeleeEnemy : EnemyController
         }
         else
         {
+            if (enemyAnimator != null)
+            {
+                enemyAnimator.SetBool("IsMoving", false);
+            }
             currentState = EnemyState.stWaiting;
         }
     }
     protected override void MoveToTarget()
     {
         Vector2 direction = targetPosition - (Vector2)transform.position;
+
+        if (enemyAnimator != null)
+        {
+            enemyAnimator.SetBool("IsMoving", true);
+        }
 
         if (Mathf.Abs(direction.x) <= enemyInfo.standRange)
         {

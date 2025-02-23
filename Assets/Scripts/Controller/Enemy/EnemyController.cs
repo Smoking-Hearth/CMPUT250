@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
     public bool cannotDamage = false;
     public bool canMove = true;
 
-    private Animator enemyAnimator;
+    [SerializeField] protected Animator enemyAnimator;
 
     protected Transform attackVisual; //PLACEHOLDER
     protected float commitAttackTimer;
@@ -53,7 +53,6 @@ public class EnemyController : MonoBehaviour
         commitAttackTimer = enemyInfo.commitAttackSeconds;
         frontSwingTimer = enemyInfo.frontSwingSeconds;
         backSwingTimer = enemyInfo.backSwingSeconds;
-        enemyAnimator = gameObject.GetComponent<Animator>();
         if (attackVisual == null)
         {
             if (enemyInfo.attackPrefab != null)
@@ -178,13 +177,8 @@ public class EnemyController : MonoBehaviour
     {
         targetPosition = gameObject.MyLevelManager().Player.Position;
 
-        // Face Target, aim at them?
-        // Walk towards them, assuming they can do that?
-        // canMove = true;
         if (distance < enemyInfo.aggroRange && canMove)
         {   
-
-            enemyAnimator.SetBool("IsMoving", true); // MIGHT HAVE TO EDIT !!!!!!!!!!!!!!!!!
             MoveToTarget();
             if (distance <= enemyInfo.attackRange)
             {
@@ -204,7 +198,10 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            enemyAnimator.SetBool("IsMoving", false); // PROBABLY HAVE TO EDIT !!!!!!!!!!!!!!!!!
+            if (enemyAnimator != null)
+            {
+                enemyAnimator.SetBool("IsMoving", false);
+            }
             currentState = EnemyState.stWaiting;
         }
     }
@@ -212,7 +209,12 @@ public class EnemyController : MonoBehaviour
     protected virtual void MoveToTarget()
     {
         Vector2 direction = targetPosition - (Vector2)transform.position;
-        
+
+        if (enemyAnimator != null)
+        {
+            enemyAnimator.SetBool("IsMoving", true);
+        }
+
         // NOTE: We need to retain z otherwise the enemy will be culled by Camera
         Vector3 position = (Vector2)transform.position + direction.normalized * Time.fixedDeltaTime * enemyInfo.speed;
         position.z = transform.position.z;
@@ -232,11 +234,17 @@ public class EnemyController : MonoBehaviour
     {
         if (frontSwingTimer > 0)
         {
+            if (frontSwingTimer == enemyInfo.frontSwingSeconds)
+            {
+                if (enemyAnimator != null)
+                {
+                    enemyAnimator.SetTrigger("Attack");
+                }
+            }
             frontSwingTimer -= Time.fixedDeltaTime;
             return;
         }
         frontSwingTimer = enemyInfo.frontSwingSeconds;
-        enemyAnimator.SetTrigger(1); // PROBABLY HAVE TO EDIT !!!!!!!!
         currentState = EnemyState.stDuringAttack;
     }
 
