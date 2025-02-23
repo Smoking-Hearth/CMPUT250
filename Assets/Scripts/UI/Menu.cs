@@ -22,6 +22,7 @@ public class Menu : MonoBehaviour
         // task to load the given scene, and it will be immediatly visible in the game world.
         buttonOverlay.alpha = 0f;
         buttonOverlay.interactable = false;
+        buttonOverlay.blocksRaycasts = false;
         
         for (int i = 0; i < containers.Length; ++i) 
         {
@@ -48,10 +49,12 @@ public class Menu : MonoBehaviour
         if (buttonOverlay.alpha >= 0.999f)
         {
             buttonOverlay.interactable = true;
+            buttonOverlay.blocksRaycasts = true;
         }
         else
         {
             buttonOverlay.interactable = false;
+            buttonOverlay.blocksRaycasts = false;
         }
     }
 
