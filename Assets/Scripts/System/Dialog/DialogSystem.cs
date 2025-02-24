@@ -107,7 +107,10 @@ public class DialogSystem : MonoBehaviour
     private void OnEnable()
     {
         PlayerController.Controls.Dialogue.Continue.performed += OnContinue;
-        continueText.gameObject.SetActive(false);
+        if (continueText != null)
+        {
+            continueText.gameObject.SetActive(false);
+        }
     }
 
     private void OnDisable()
@@ -170,7 +173,10 @@ public class DialogSystem : MonoBehaviour
             currentDialog = gameDialog;
 
             Command cmd = gameDialog.Current;
-            titleText.text = cmd.title;
+            if (titleText != null)
+            {
+                titleText.text = cmd.title;
+            }
             contentText.text = "";
 
             continueTimer = autoContinueDelaySeconds;
@@ -190,7 +196,10 @@ public class DialogSystem : MonoBehaviour
 
     private void NextLine()
     {
-        continueText.gameObject.SetActive(false);
+        if (continueText != null)
+        {
+            continueText.gameObject.SetActive(false);
+        }
         currentPosition = 0;
         continueTimer = autoContinueDelaySeconds;
         bool autoContinue = currentDialog.Current.autoContinue;
@@ -198,7 +207,11 @@ public class DialogSystem : MonoBehaviour
         if (currentDialog.MoveNext())
         {
             dialogSystemState = State.DisplayingLine;
-            titleText.text = currentDialog.Current.title;
+
+            if (titleText != null)
+            {
+                titleText.text = currentDialog.Current.title;
+            }
         }
         else
         {

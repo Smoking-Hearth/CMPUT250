@@ -14,10 +14,18 @@ public struct DialogSegment
 
 public class DialogueHolder : MonoBehaviour
 {
+    [SerializeField] protected DialogSystem dialogSystem;
     [SerializeField] protected DialogSegment[] segments;
 
     public void PlayDialogue()
     {
-        gameObject.MyLevelManager().DialogSystem.Play(new GameDialog(segments));
+        if (dialogSystem != null)
+        {
+            dialogSystem.Play(new GameDialog(segments));
+        }
+        else
+        {
+            gameObject.MyLevelManager().DialogSystem.Play(new GameDialog(segments));
+        }
     }
 }
