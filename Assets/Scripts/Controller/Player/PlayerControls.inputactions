@@ -217,6 +217,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Dialogue",
+            "id": "7ecd7fe5-487e-4974-9be2-5e070132b10d",
+            "actions": [
+                {
+                    "name": "Continue",
+                    "type": "Button",
+                    "id": "092d5888-e3b6-4b99-bab5-a87fcd479b83",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7ab77b11-b840-42d5-a54b-5ba36dc41fd3",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

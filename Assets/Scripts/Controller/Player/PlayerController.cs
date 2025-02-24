@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator playerAnimator;
 
-
+    private bool shootEnabled;
     private static PlayerControls controls;
     public static PlayerControls Controls   //Other scripts can get this to listen to player inputs
     {
@@ -112,7 +112,20 @@ public class PlayerController : MonoBehaviour
         Player player = gameObject.MyLevelManager().Player;
         if (gameObject.MyLevelManager().levelState != LevelState.Playing)
         {
+            if (controls.PlayerMovement.enabled)
+            {
+                controls.PlayerMovement.Disable();
+                controls.Hydropack.Disable();
+            }
             return;
+        }
+        else if (!controls.PlayerMovement.enabled)
+        {
+            controls.PlayerMovement.Enable();
+            if (shootEnabled)
+            {
+                controls.Hydropack.Enable();
+            }
         }
 
         player.Movement.Gravity();
@@ -160,6 +173,7 @@ public class PlayerController : MonoBehaviour
     {
         controls.Hydropack.Enable();
         shootBehavior.EnableShooting();
+        shootEnabled = true;
     }
 
     //INPUT HANDLING
@@ -231,10 +245,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext context)
     {
-        if (gameObject.MyLevelManager().DialogSystem.DialogSystemState != DialogSystem.State.Inactive)
-        {
-            return;
-        }
         isInteracting = true;
         InteractableSystem.Interact(false);
     }

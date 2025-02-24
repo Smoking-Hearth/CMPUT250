@@ -55,14 +55,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
-        {
-            addedVelocity = Vector2.zero;
-            targetMovement = Vector2.zero;
-            playerRigidbody.gravityScale = 1;
-            return;
-        }
-
         //Checks if the player is currently on stairs to make sure they don't slide down
         if (Physics2D.Raycast((Vector2)transform.position + groundCheckOffset, Vector2.down, groundCheckRadius + 0.1f, stairsLayer))
         {

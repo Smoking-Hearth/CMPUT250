@@ -102,15 +102,17 @@ public class DialogSystem : MonoBehaviour
 
     int currentPosition = 0;
 
+    private LevelState prevLevelState;
+
     private void OnEnable()
     {
-        PlayerController.Controls.PlayerMovement.Interact.performed += OnContinue;
+        PlayerController.Controls.Dialogue.Continue.performed += OnContinue;
         continueText.gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
-        PlayerController.Controls.PlayerMovement.Interact.performed -= OnContinue;
+        PlayerController.Controls.Dialogue.Continue.performed -= OnContinue;
     }
 
     void FixedUpdate()
@@ -143,7 +145,7 @@ public class DialogSystem : MonoBehaviour
                 {
                     continueText.gameObject.SetActive(true);
                 }
-                if (currentDialog.Current.autoContinue)
+                else
                 {
                     if (continueTimer > 0)
                     {
@@ -162,6 +164,7 @@ public class DialogSystem : MonoBehaviour
     {
         if (dialogSystemState == State.Inactive && gameDialog.segments.Length > 0)
         {
+            PlayerController.Controls.Dialogue.Enable();
             dialogSystemState = State.DisplayingLine;
 
             currentDialog = gameDialog;
@@ -174,6 +177,12 @@ public class DialogSystem : MonoBehaviour
 
             gameObject.SetActive(true);
 
+            if (!currentDialog.Current.autoContinue)
+            {
+                prevLevelState = gameObject.MyLevelManager().levelState;
+                gameObject.MyLevelManager().levelState = LevelState.Dialogue;
+            }
+
             return true;
         }
         return false;
@@ -184,6 +193,8 @@ public class DialogSystem : MonoBehaviour
         continueText.gameObject.SetActive(false);
         currentPosition = 0;
         continueTimer = autoContinueDelaySeconds;
+        bool autoContinue = currentDialog.Current.autoContinue;
+
         if (currentDialog.MoveNext())
         {
             dialogSystemState = State.DisplayingLine;
@@ -191,7 +202,12 @@ public class DialogSystem : MonoBehaviour
         }
         else
         {
+            if (!autoContinue)
+            {
+                gameObject.MyLevelManager().levelState = prevLevelState;
+            }
             dialogSystemState = State.Inactive;
+            PlayerController.Controls.Dialogue.Enable();
             gameObject.SetActive(false);
         }
     }
