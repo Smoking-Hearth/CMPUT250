@@ -58,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
         if (gameObject.MyLevelManager().levelState != LevelState.Playing)
         {
             targetMovement = Vector2.zero;
-            playerRigidbody.linearVelocity = Vector2.zero;
         }
 
         //Checks if the player is currently on stairs to make sure they don't slide down

@@ -117,7 +117,6 @@ public class PlayerController : MonoBehaviour
                 controls.PlayerMovement.Disable();
                 controls.Hydropack.Disable();
             }
-            return;
         }
         else if (!controls.PlayerMovement.enabled)
         {
