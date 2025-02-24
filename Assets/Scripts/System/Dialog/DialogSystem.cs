@@ -95,6 +95,7 @@ public class DialogSystem : MonoBehaviour
 
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text contentText;
+    [SerializeField] private TMP_Text continueText;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private float autoContinueDelaySeconds;
     private float continueTimer;
@@ -104,6 +105,7 @@ public class DialogSystem : MonoBehaviour
     private void OnEnable()
     {
         PlayerController.Controls.PlayerMovement.Interact.performed += OnContinue;
+        continueText.gameObject.SetActive(false);
     }
 
     private void OnDisable()
@@ -113,42 +115,46 @@ public class DialogSystem : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (dialogSystemState == State.Inactive) return;
-
-        if (dialogSystemState == State.DisplayingLine)
+        switch (dialogSystemState)
         {
-            if (currentPosition <= currentDialog.Current.content.Length)
-            {
-                contentText.text = currentDialog.Current.content.Substring(0, currentPosition);
-
-                if (currentPosition % 3 == 0 && currentDialog.Current.scrollSound != null && currentPosition < currentDialog.Current.content.Length)
+            case State.Inactive:
+                break;
+            case State.DisplayingLine:
+                if (currentPosition <= currentDialog.Current.content.Length)
                 {
-                    float pitchOffset = (currentDialog.Current.content[currentPosition] % 32) / 32f;
-                    audioSource.pitch = 0.5f + (pitchOffset);
-                    audioSource.PlayOneShot(currentDialog.Current.scrollSound);
-                }
+                    contentText.text = currentDialog.Current.content.Substring(0, currentPosition);
 
-                ++currentPosition;
-            }
-            else
-            {
-                dialogSystemState = State.WaitingForContinue;
-            }
-        }
+                    if (currentPosition % 3 == 0 && currentDialog.Current.scrollSound != null && currentPosition < currentDialog.Current.content.Length)
+                    {
+                        float pitchOffset = (currentDialog.Current.content[currentPosition] % 32) / 32f;
+                        audioSource.pitch = 0.5f + (pitchOffset);
+                        audioSource.PlayOneShot(currentDialog.Current.scrollSound);
+                    }
 
-        if (dialogSystemState == State.WaitingForContinue)
-        {
-            if (currentDialog.Current.autoContinue)
-            {
-                if (continueTimer > 0)
-                {
-                    continueTimer -= Time.fixedDeltaTime;
+                    ++currentPosition;
                 }
                 else
                 {
-                    NextLine();
+                    dialogSystemState = State.WaitingForContinue;
                 }
-            }
+                break;
+            case State.WaitingForContinue:
+                if (!currentDialog.Current.autoContinue)
+                {
+                    continueText.gameObject.SetActive(true);
+                }
+                if (currentDialog.Current.autoContinue)
+                {
+                    if (continueTimer > 0)
+                    {
+                        continueTimer -= Time.fixedDeltaTime;
+                    }
+                    else
+                    {
+                        NextLine();
+                    }
+                }
+                break;
         }
     }
 
@@ -175,6 +181,7 @@ public class DialogSystem : MonoBehaviour
 
     private void NextLine()
     {
+        continueText.gameObject.SetActive(false);
         currentPosition = 0;
         continueTimer = autoContinueDelaySeconds;
         if (currentDialog.MoveNext())
