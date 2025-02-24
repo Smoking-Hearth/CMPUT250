@@ -4,6 +4,7 @@ public class FireSpreader : MonoBehaviour
 {
     [SerializeField] private float interval;
     [SerializeField] private float temperatureSpread;
+    [SerializeField] private float maxTemperature = 500f;
     [SerializeField] private float radius;
     [SerializeField] private LayerMask fireLayer;
     private float spreadTimer;
@@ -30,7 +31,11 @@ public class FireSpreader : MonoBehaviour
         Collider2D[] fires = Physics2D.OverlapCircleAll(transform.position, radius, fireLayer);
         for (int i = 0; i < fires.Length; i++)
         {
-            fires[i].GetComponentInParent<Combustible>().Temperature += temperatureSpread;
+            Combustible combustible = fires[i].GetComponentInParent<Combustible>();
+            if (combustible.Temperature < maxTemperature)
+            {
+                combustible.Temperature += temperatureSpread;
+            }
         }
     }
 }

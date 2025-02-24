@@ -33,6 +33,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
     [SerializeField] AnimationCurve extinguishEffectiveness = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
     [SerializeField] private UnityEvent ExtinguishEvent;
+    [SerializeField] private UnityEvent FullyBurntEvent;
     [SerializeField] private float secondsUntilBurnt;
     [SerializeField] private SpriteRenderer burnRenderer;
     private MotionHandle burnAnim = MotionHandle.None;
@@ -72,7 +73,11 @@ public class Combustible : MonoBehaviour, IExtinguishable
     [SerializeField] float heatCopyRate = 1f;
 
     [Header("Fule")]
-    [SerializeField] float fule = 100f;
+    [SerializeField] float fule = 8f;
+    [Min(0.01f)]
+    [SerializeField] float fullDampness = 300f;
+    [SerializeField] float dryRate = 0.5f;
+    [SerializeField] private float dampness;
     public float Fule 
     {
         get { return fule; }
@@ -97,6 +102,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
         shouldBurn = LayerMask.NameToLayer("Player");
         gameObject.MyLevelManager().onActivate += Activate;
         gameObject.MyLevelManager().onDeactivate += Deactivate;
+        dampness = 0;
     }
 
     private void Activate()
@@ -120,10 +126,22 @@ public class Combustible : MonoBehaviour, IExtinguishable
         if (Burning)
         {
             float consumed = Mathf.Min(Time.deltaTime, fule);
-            fule -= consumed;
-            Temperature += fuleToTemp * consumed;
+            if (fule > 0)
+            {
+                fule -= consumed;
+                Temperature += fuleToTemp * consumed;
+
+                if (fule <= 0)
+                {
+                    FullyBurntEvent.Invoke();
+                }
+            }
 
             fire.SetLifetime(temperatureToLifetime.Evaluate(Temperature) * maxLifetime);
+        }
+        if (dampness > 0)
+        {
+            dampness = Math.Max(dampness - dryRate * Time.deltaTime, 0);
         }
     }
 
@@ -147,7 +165,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
             float diff = other.Temperature - temperature;
             if (diff > 0f)
             {
-                Temperature += diff * heatCopyRate;
+                Temperature += diff * heatCopyRate * (1 - dampness / fullDampness);
             }
         }
 
@@ -174,7 +192,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
 
         if (burnRenderer != null)
         {
-            burnAnim = LMotion.Create(burnRenderer.color, Color.black, secondsUntilBurnt)
+            burnAnim = LMotion.Create(burnRenderer.color, new Color(0.1f, 0.1f, 0.1f), secondsUntilBurnt)
                 .Bind(burnRenderer, (color, renderer) => renderer.color = color);
         }
     }
@@ -185,6 +203,11 @@ public class Combustible : MonoBehaviour, IExtinguishable
         if ((extinguishClass & fireKind) > 0)
         {
             Temperature -= quantity_L * extinguishEffectiveness.Evaluate(Mathf.Min(temperature - autoIgnitionTemperature, MAX_TEMP));
+
+            if (extinguishClass == CombustibleKind.A_COMMON)
+            {
+                dampness += quantity_L;
+            }
 
             if (fire != null && fire.IsActivated && (temperature < autoIgnitionTemperature))
             {

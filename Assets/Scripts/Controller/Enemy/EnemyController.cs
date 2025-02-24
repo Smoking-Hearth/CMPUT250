@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     };
 
     [SerializeField] protected EnemySO enemyInfo;
-
+    [SerializeField] protected FireSpreader fireSpreader;
     private ParticleSystem spawnParticles;
 
     [Tooltip("The part of the enemy that can actually interact with the world")]
@@ -274,9 +274,9 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Attack()
     {
+        Vector2 attackCenter = (Vector2)transform.position + (targetPosition - (Vector2)transform.position).normalized * enemyInfo.attackRange * 0.5f;
         if (GameManager.onEnemyAttack != null)
         {
-            Vector2 attackCenter = (Vector2)transform.position + (targetPosition - (Vector2)transform.position).normalized * enemyInfo.attackRange * 0.5f;
             if (attackVisual != null)
             {
                 attackVisual.position = attackCenter;
@@ -285,6 +285,13 @@ public class EnemyController : MonoBehaviour
 
             GameManager.onEnemyAttack(attackCenter, transform.position, enemyInfo.attackInfo);
         }
+
+        if (fireSpreader != null)
+        {
+            fireSpreader.transform.position = attackCenter;
+            fireSpreader.SpreadTemperature();
+        }
+
         commitAttackTimer = enemyInfo.commitAttackSeconds;
         currentState = EnemyState.stBackSwing;
     }

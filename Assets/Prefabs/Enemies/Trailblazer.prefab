@@ -86,7 +86,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!95 &1393515390214718577
 Animator:
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyInfo: {fileID: 11400000, guid: 256a3634d8bcdc84dbbe707ba7215cc4, type: 2}
+  fireSpreader: {fileID: 0}
   body: {fileID: 8731884188589396338}
   healthComponent: {fileID: 276990845430083679}
   waterLayer:
@@ -289,8 +290,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 0.5
-  temperatureSpread: 250
-  radius: 3
+  temperatureSpread: 200
+  maxTemperature: 500
+  radius: 2
   fireLayer:
     serializedVersion: 2
     m_Bits: 33792
