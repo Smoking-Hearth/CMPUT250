@@ -232,6 +232,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
         fire.ExtinguishSound();
         fire.SetActive(false);
         ExtinguishEvent.Invoke();
-        gameObject.layer = LayerMask.NameToLayer("Combustible"); //Not the best system, but it works
+        gameObject.layer = LayerMask.NameToLayer("Combustible");    //Not the best system, but it works
+        Temperature -= 100f;    //Stops immediate reignition
     }
 }

@@ -58,4 +58,14 @@ public class FireSounds : MonoBehaviour
             .WithEase(Ease.InCubic)
             .Bind(ambientAudio, (x, audio) => audio.volume = x);
     }
+    public void EnableAmbientSounds(float fadeDuration)
+    {
+        if (ambientAudio == null)
+        {
+            return;
+        }
+        LMotion.Create(ambientAudio.volume, ambientVolume, fadeDuration)
+            .WithEase(Ease.InCubic)
+            .Bind(ambientAudio, (x, audio) => audio.volume = x);
+    }
 }

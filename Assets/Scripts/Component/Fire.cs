@@ -36,10 +36,12 @@ public class Fire : MonoBehaviour
         if (set)
         {
             particles.Play();
+            sounds.EnableAmbientSounds(0.5f);
         }
         else
         {
             particles.Stop();
+            sounds.FadeAmbientSounds(0.5f);
         }
     }
 
