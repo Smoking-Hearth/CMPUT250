@@ -24,36 +24,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack",
-                    "type": "Button",
-                    "id": "c69e5845-0d9b-414c-bd64-984b3065615a",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "SpecialAttack",
-                    "type": "Button",
-                    "id": "ec4c3175-d2e9-419c-b1e4-68d1ecd923d8",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "d8abb7de-0d8b-480e-bfe7-37f97c43d3be",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SwapSpecial",
-                    "type": "Button",
-                    "id": "62e9c240-afd5-4544-99a7-ff9eb8048d5f",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -116,56 +89,12 @@
                 },
                 {
                     "name": "",
-                    "id": "d175e736-c42c-4ecc-be3c-ca7061ca0b54",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";KeyboardMouse",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "65b29267-5d59-41b5-a28e-4061156828e5",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SpecialAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a365fe3c-1f6d-4f08-99d4-981e446ad509",
-                    "path": "<Keyboard>/slash",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SpecialAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f7b32060-5ce5-4d77-842e-bee99117b78d",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",
                     "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ec00ad03-8b32-4ac6-bf68-c3798da4eea1",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";KeyboardMouse",
-                    "action": "SwapSpecial",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -205,6 +134,85 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Hydropack",
+            "id": "4e16ee89-e98a-468b-a0b6-c6a2f6ae8292",
+            "actions": [
+                {
+                    "name": "SpecialAttack",
+                    "type": "Button",
+                    "id": "ee3894b5-b987-4e19-ae52-658116520341",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "c5780679-832b-4ad1-9986-9b9633895c49",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SwapSpecial",
+                    "type": "Button",
+                    "id": "ce5fc5bb-b12b-4b97-bdc8-c4b85dc178bb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6ce8310e-0e9c-4b0d-96be-60f8feec1965",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpecialAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9c6c5fc-2644-41ac-a8be-61f8a01da63d",
+                    "path": "<Keyboard>/slash",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpecialAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c7a598e9-9ad6-4a01-85ad-927a1bbb835e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d18c9ce-82e3-4426-bb95-f0a6e916ccfb",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "SwapSpecial",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

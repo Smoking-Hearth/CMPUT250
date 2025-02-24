@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
+    [SerializeField] private GameObject hydropack;
+
     private WaterTank waterTank;
     [SerializeField] private Slider waterTankBar;
     [SerializeField] private Slider waterTankInGame;
@@ -86,7 +88,7 @@ public class PlayerShoot : MonoBehaviour
     {
         SpecialAttack.onPickupSpecial += PickUpSpecial;
         SpecialAttack.onClearSpecial += DropSpecial;
-        PlayerController.Controls.PlayerMovement.SwapSpecial.performed += inventory.Swap;
+        PlayerController.Controls.Hydropack.SwapSpecial.performed += inventory.Swap;
         WaterRefiller.onWaterRefill += waterTank.RefillWater;
         PlayerMovement.onLand += PlayerLand;
     }
@@ -95,7 +97,7 @@ public class PlayerShoot : MonoBehaviour
     {
         SpecialAttack.onPickupSpecial -= PickUpSpecial;
         SpecialAttack.onClearSpecial -= DropSpecial;
-        PlayerController.Controls.PlayerMovement.SwapSpecial.performed -= inventory.Swap;
+        PlayerController.Controls.Hydropack.SwapSpecial.performed -= inventory.Swap;
         WaterRefiller.onWaterRefill -= waterTank.RefillWater;
         PlayerMovement.onLand -= PlayerLand;
     }
@@ -122,6 +124,12 @@ public class PlayerShoot : MonoBehaviour
         }
 
         pressureBar.value = pressurizeTimer / pressurizeSeconds;
+    }
+
+    public void EnableShooting()
+    {
+        inventory.SetVisibility(true);
+        hydropack.SetActive(true);
     }
 
     public void ResetAimedSprites()
@@ -233,6 +241,11 @@ public class PlayerShoot : MonoBehaviour
             AimSprites();
             specialAttack.ResetAttack(aimAngle);
             specialCooldownTimer = specialCooldown;
+            gameObject.MyLevelManager().MusicSystem.SpecialVolume();
+        }
+        else
+        {
+            gameObject.MyLevelManager().MusicSystem.DefaultVolume();
         }
         return true;
     }

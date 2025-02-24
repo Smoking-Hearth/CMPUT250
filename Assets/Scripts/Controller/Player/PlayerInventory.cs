@@ -32,6 +32,15 @@ public class PlayerInventory
         currentIcon = icons[0];
         otherIcon = icons[1];
     }
+    public void SetVisibility(bool show)
+    {
+        currentIcon.gameObject.SetActive(show);
+
+        if (specials[1] != null)
+        {
+            otherIcon.gameObject.SetActive(show);
+        }
+    }
 
     public void PickUp(SpecialAttack newSpecial)
     {
@@ -48,6 +57,10 @@ public class PlayerInventory
             specials[currentIndex].Drop();
             ClearCurrentSpecial();
             currentIndex++;
+        }
+        else
+        {
+            otherIcon.gameObject.SetActive(true);
         }
 
         otherIcon.sprite = specials[0].DisplayIcon;

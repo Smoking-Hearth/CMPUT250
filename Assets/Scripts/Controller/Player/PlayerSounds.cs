@@ -18,7 +18,10 @@ public class PlayerSounds : MonoBehaviour
 
     public void PlayLandClip(Ground ground)
     {
-        audioSource.PlayOneShot(ground.LandClip);
+        if (ground.LandClip != null)
+        {
+            audioSource.PlayOneShot(ground.LandClip);
+        }
         footstepCounter = 0;
     }
     public void PlayFootsteps(Ground ground)

@@ -46,36 +46,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Attack"",
-                    ""type"": ""Button"",
-                    ""id"": ""c69e5845-0d9b-414c-bd64-984b3065615a"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""SpecialAttack"",
-                    ""type"": ""Button"",
-                    ""id"": ""ec4c3175-d2e9-419c-b1e4-68d1ecd923d8"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""d8abb7de-0d8b-480e-bfe7-37f97c43d3be"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SwapSpecial"",
-                    ""type"": ""Button"",
-                    ""id"": ""62e9c240-afd5-4544-99a7-ff9eb8048d5f"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -138,56 +111,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d175e736-c42c-4ecc-be3c-ca7061ca0b54"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";KeyboardMouse"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""65b29267-5d59-41b5-a28e-4061156828e5"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SpecialAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a365fe3c-1f6d-4f08-99d4-981e446ad509"",
-                    ""path"": ""<Keyboard>/slash"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SpecialAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""f7b32060-5ce5-4d77-842e-bee99117b78d"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";KeyboardMouse"",
                     ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ec00ad03-8b32-4ac6-bf68-c3798da4eea1"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";KeyboardMouse"",
-                    ""action"": ""SwapSpecial"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -231,6 +160,85 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Hydropack"",
+            ""id"": ""4e16ee89-e98a-468b-a0b6-c6a2f6ae8292"",
+            ""actions"": [
+                {
+                    ""name"": ""SpecialAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee3894b5-b987-4e19-ae52-658116520341"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5780679-832b-4ad1-9986-9b9633895c49"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SwapSpecial"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce5fc5bb-b12b-4b97-bdc8-c4b85dc178bb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6ce8310e-0e9c-4b0d-96be-60f8feec1965"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9c6c5fc-2644-41ac-a8be-61f8a01da63d"",
+                    ""path"": ""<Keyboard>/slash"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7a598e9-9ad6-4a01-85ad-927a1bbb835e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";KeyboardMouse"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d18c9ce-82e3-4426-bb95-f0a6e916ccfb"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";KeyboardMouse"",
+                    ""action"": ""SwapSpecial"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -256,20 +264,23 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
         m_PlayerMovement_InputAxes = m_PlayerMovement.FindAction("InputAxes", throwIfNotFound: true);
         m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerMovement_Attack = m_PlayerMovement.FindAction("Attack", throwIfNotFound: true);
-        m_PlayerMovement_SpecialAttack = m_PlayerMovement.FindAction("SpecialAttack", throwIfNotFound: true);
         m_PlayerMovement_Interact = m_PlayerMovement.FindAction("Interact", throwIfNotFound: true);
-        m_PlayerMovement_SwapSpecial = m_PlayerMovement.FindAction("SwapSpecial", throwIfNotFound: true);
         m_PlayerMovement_DropDown = m_PlayerMovement.FindAction("DropDown", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Pause = m_Menu.FindAction("Pause", throwIfNotFound: true);
+        // Hydropack
+        m_Hydropack = asset.FindActionMap("Hydropack", throwIfNotFound: true);
+        m_Hydropack_SpecialAttack = m_Hydropack.FindAction("SpecialAttack", throwIfNotFound: true);
+        m_Hydropack_Attack = m_Hydropack.FindAction("Attack", throwIfNotFound: true);
+        m_Hydropack_SwapSpecial = m_Hydropack.FindAction("SwapSpecial", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_PlayerMovement.enabled, "This will cause a leak and performance issues, PlayerControls.PlayerMovement.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Menu.enabled, "This will cause a leak and performance issues, PlayerControls.Menu.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Hydropack.enabled, "This will cause a leak and performance issues, PlayerControls.Hydropack.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -333,10 +344,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerMovementActions> m_PlayerMovementActionsCallbackInterfaces = new List<IPlayerMovementActions>();
     private readonly InputAction m_PlayerMovement_InputAxes;
     private readonly InputAction m_PlayerMovement_Jump;
-    private readonly InputAction m_PlayerMovement_Attack;
-    private readonly InputAction m_PlayerMovement_SpecialAttack;
     private readonly InputAction m_PlayerMovement_Interact;
-    private readonly InputAction m_PlayerMovement_SwapSpecial;
     private readonly InputAction m_PlayerMovement_DropDown;
     public struct PlayerMovementActions
     {
@@ -344,10 +352,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public PlayerMovementActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @InputAxes => m_Wrapper.m_PlayerMovement_InputAxes;
         public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
-        public InputAction @Attack => m_Wrapper.m_PlayerMovement_Attack;
-        public InputAction @SpecialAttack => m_Wrapper.m_PlayerMovement_SpecialAttack;
         public InputAction @Interact => m_Wrapper.m_PlayerMovement_Interact;
-        public InputAction @SwapSpecial => m_Wrapper.m_PlayerMovement_SwapSpecial;
         public InputAction @DropDown => m_Wrapper.m_PlayerMovement_DropDown;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
@@ -364,18 +369,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Attack.started += instance.OnAttack;
-            @Attack.performed += instance.OnAttack;
-            @Attack.canceled += instance.OnAttack;
-            @SpecialAttack.started += instance.OnSpecialAttack;
-            @SpecialAttack.performed += instance.OnSpecialAttack;
-            @SpecialAttack.canceled += instance.OnSpecialAttack;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @SwapSpecial.started += instance.OnSwapSpecial;
-            @SwapSpecial.performed += instance.OnSwapSpecial;
-            @SwapSpecial.canceled += instance.OnSwapSpecial;
             @DropDown.started += instance.OnDropDown;
             @DropDown.performed += instance.OnDropDown;
             @DropDown.canceled += instance.OnDropDown;
@@ -389,18 +385,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Attack.started -= instance.OnAttack;
-            @Attack.performed -= instance.OnAttack;
-            @Attack.canceled -= instance.OnAttack;
-            @SpecialAttack.started -= instance.OnSpecialAttack;
-            @SpecialAttack.performed -= instance.OnSpecialAttack;
-            @SpecialAttack.canceled -= instance.OnSpecialAttack;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @SwapSpecial.started -= instance.OnSwapSpecial;
-            @SwapSpecial.performed -= instance.OnSwapSpecial;
-            @SwapSpecial.canceled -= instance.OnSwapSpecial;
             @DropDown.started -= instance.OnDropDown;
             @DropDown.performed -= instance.OnDropDown;
             @DropDown.canceled -= instance.OnDropDown;
@@ -467,6 +454,68 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public MenuActions @Menu => new MenuActions(this);
+
+    // Hydropack
+    private readonly InputActionMap m_Hydropack;
+    private List<IHydropackActions> m_HydropackActionsCallbackInterfaces = new List<IHydropackActions>();
+    private readonly InputAction m_Hydropack_SpecialAttack;
+    private readonly InputAction m_Hydropack_Attack;
+    private readonly InputAction m_Hydropack_SwapSpecial;
+    public struct HydropackActions
+    {
+        private @PlayerControls m_Wrapper;
+        public HydropackActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SpecialAttack => m_Wrapper.m_Hydropack_SpecialAttack;
+        public InputAction @Attack => m_Wrapper.m_Hydropack_Attack;
+        public InputAction @SwapSpecial => m_Wrapper.m_Hydropack_SwapSpecial;
+        public InputActionMap Get() { return m_Wrapper.m_Hydropack; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(HydropackActions set) { return set.Get(); }
+        public void AddCallbacks(IHydropackActions instance)
+        {
+            if (instance == null || m_Wrapper.m_HydropackActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_HydropackActionsCallbackInterfaces.Add(instance);
+            @SpecialAttack.started += instance.OnSpecialAttack;
+            @SpecialAttack.performed += instance.OnSpecialAttack;
+            @SpecialAttack.canceled += instance.OnSpecialAttack;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @SwapSpecial.started += instance.OnSwapSpecial;
+            @SwapSpecial.performed += instance.OnSwapSpecial;
+            @SwapSpecial.canceled += instance.OnSwapSpecial;
+        }
+
+        private void UnregisterCallbacks(IHydropackActions instance)
+        {
+            @SpecialAttack.started -= instance.OnSpecialAttack;
+            @SpecialAttack.performed -= instance.OnSpecialAttack;
+            @SpecialAttack.canceled -= instance.OnSpecialAttack;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @SwapSpecial.started -= instance.OnSwapSpecial;
+            @SwapSpecial.performed -= instance.OnSwapSpecial;
+            @SwapSpecial.canceled -= instance.OnSwapSpecial;
+        }
+
+        public void RemoveCallbacks(IHydropackActions instance)
+        {
+            if (m_Wrapper.m_HydropackActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IHydropackActions instance)
+        {
+            foreach (var item in m_Wrapper.m_HydropackActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_HydropackActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public HydropackActions @Hydropack => new HydropackActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -480,14 +529,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnInputAxes(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
-        void OnSpecialAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnSwapSpecial(InputAction.CallbackContext context);
         void OnDropDown(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IHydropackActions
+    {
+        void OnSpecialAttack(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnSwapSpecial(InputAction.CallbackContext context);
     }
 }

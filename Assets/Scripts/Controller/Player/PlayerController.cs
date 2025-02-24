@@ -26,7 +26,8 @@ public class PlayerController : MonoBehaviour
             if (controls == null)
             {
                 controls = new PlayerControls();
-                controls.Enable();
+                controls.PlayerMovement.Enable();
+                controls.Menu.Enable();
             }
             return controls;
         }
@@ -53,11 +54,11 @@ public class PlayerController : MonoBehaviour
         Controls.PlayerMovement.Jump.performed += OnJumpInput;
         Controls.PlayerMovement.Jump.canceled += OnCancelJumpInput;
         Controls.PlayerMovement.DropDown.performed += OnDrop;
-        Controls.PlayerMovement.Attack.performed += OnStartAttack;
-        Controls.PlayerMovement.Attack.canceled += OnCancelAttack;
-        Controls.PlayerMovement.SpecialAttack.performed += OnStartSpecial;
-        Controls.PlayerMovement.SpecialAttack.canceled += OnCancelSpecial;
-        Controls.PlayerMovement.SwapSpecial.performed += OnCancelSpecial;
+        Controls.Hydropack.Attack.performed += OnStartAttack;
+        Controls.Hydropack.Attack.canceled += OnCancelAttack;
+        Controls.Hydropack.SpecialAttack.performed += OnStartSpecial;
+        Controls.Hydropack.SpecialAttack.canceled += OnCancelSpecial;
+        Controls.Hydropack.SwapSpecial.performed += OnCancelSpecial;
         Controls.PlayerMovement.Interact.performed += OnInteract;
         Controls.PlayerMovement.Interact.canceled += OnCancelInteract;
     }
@@ -70,11 +71,11 @@ public class PlayerController : MonoBehaviour
         Controls.PlayerMovement.Jump.performed -= OnJumpInput;
         Controls.PlayerMovement.Jump.canceled -= OnCancelJumpInput;
         Controls.PlayerMovement.DropDown.performed -= OnDrop;
-        Controls.PlayerMovement.Attack.performed -= OnStartAttack;
-        Controls.PlayerMovement.Attack.canceled -= OnCancelAttack;
-        Controls.PlayerMovement.SpecialAttack.performed -= OnStartSpecial;
-        Controls.PlayerMovement.SpecialAttack.canceled -= OnCancelSpecial;
-        Controls.PlayerMovement.SwapSpecial.performed -= OnCancelSpecial;
+        Controls.Hydropack.Attack.performed -= OnStartAttack;
+        Controls.Hydropack.Attack.canceled -= OnCancelAttack;
+        Controls.Hydropack.SpecialAttack.performed -= OnStartSpecial;
+        Controls.Hydropack.SpecialAttack.canceled -= OnCancelSpecial;
+        Controls.Hydropack.SwapSpecial.performed -= OnCancelSpecial;
         Controls.PlayerMovement.Interact.performed -= OnInteract;
         Controls.PlayerMovement.Interact.canceled -= OnCancelInteract;
     }
@@ -153,6 +154,12 @@ public class PlayerController : MonoBehaviour
         {
             InteractableSystem.Interact(true);
         }
+    }
+
+    public void EnableShooting()
+    {
+        controls.Hydropack.Enable();
+        shootBehavior.EnableShooting();
     }
 
     //INPUT HANDLING
