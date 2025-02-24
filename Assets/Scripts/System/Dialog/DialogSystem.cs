@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class GameDialog : IEnumerator<DialogSystem.Command> {
@@ -20,7 +21,8 @@ public class GameDialog : IEnumerator<DialogSystem.Command> {
                 // We have lines and the cursor is over one
                 if (lines != null && lines.Length > 0 && 0 <= lineIndex && lineIndex < lines.Length)
                 {
-                    return new DialogSystem.Command(lines[lineIndex], segments[segmentIndex].title, segments[segmentIndex].autoContinue, segments[segmentIndex].scrollSound);
+                    return new DialogSystem.Command(lines[lineIndex], segments[segmentIndex].title, segments[segmentIndex].autoContinue,
+                        segments[segmentIndex].scrollSound, segments[segmentIndex].DoEvent);
                 }
             }
             return new DialogSystem.Command(null); 
@@ -68,13 +70,15 @@ public class DialogSystem : MonoBehaviour
         public string content;
         public string title;
         public bool autoContinue;
+        public UnityEvent DoEvent;
 
-        public Command(string content, string title = null, bool autoContinue = false, AudioClip scrollSound = null)
+        public Command(string content, string title = null, bool autoContinue = false, AudioClip scrollSound = null, UnityEvent doEvent = null)
         {
             this.scrollSound = scrollSound;
             this.content = content;
             this.title = title;
             this.autoContinue = autoContinue;
+            this.DoEvent = doEvent;
         }
     }
 
@@ -203,6 +207,11 @@ public class DialogSystem : MonoBehaviour
         currentPosition = 0;
         continueTimer = autoContinueDelaySeconds;
         bool autoContinue = currentDialog.Current.autoContinue;
+
+        if (currentDialog.Current.DoEvent != null)
+        {
+            currentDialog.Current.DoEvent.Invoke();
+        }
 
         if (currentDialog.MoveNext())
         {

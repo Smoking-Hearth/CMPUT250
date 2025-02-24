@@ -26,7 +26,7 @@ public class PlayerShoot : MonoBehaviour
     {
         get
         {
-            if (pressurizeTimer > 0)
+            if (pressurizeTimer > 0 && waterTank.CanUseWater(bullet.Cost))
             {
                 pressurizeTimer -= pressureReleasePerSecond * Time.fixedDeltaTime;
 
@@ -78,6 +78,7 @@ public class PlayerShoot : MonoBehaviour
     {
         SpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<SpecialAttack>();
         attack.ResourceTank.SetTank(waterTankBar, waterTankInGame);
+        attack.ResourceTank.EmptyTank();
         waterTank = attack.ResourceTank;
         inventory = new PlayerInventory(2, attack, attachPoint, inventoryIcons);
 
@@ -130,6 +131,8 @@ public class PlayerShoot : MonoBehaviour
     {
         inventory.SetVisibility(true);
         hydropack.SetActive(true);
+        waterTankBar.gameObject.SetActive(true);
+        pressureBar.gameObject.SetActive(true);
     }
 
     public void ResetAimedSprites()

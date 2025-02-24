@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public struct DialogSegment
@@ -10,6 +11,7 @@ public struct DialogSegment
     public string[] lines;
 
     public bool autoContinue;
+    public UnityEvent DoEvent;
 }
 
 public class DialogueHolder : MonoBehaviour

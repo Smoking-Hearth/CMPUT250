@@ -14,6 +14,14 @@ public class WaterTank
         waterLevel = max;
     }
 
+    public bool Full
+    {
+        get
+        {
+            return waterLevel >= maxWater;
+        }
+    }
+
     public void SetTank(Slider tankHUD, Slider tankInGame)
     {
         waterTankBar = tankHUD;
@@ -36,23 +44,39 @@ public class WaterTank
     {
         waterLevel += amount;
 
-        if (waterLevel - maxWater > maxWater * 0.1f)    //Refills extra when the tank would almost be refilled but not quite
+        if (waterLevel - maxWater > maxWater * 0.15f)    //Refills extra when the tank would almost be refilled but not quite
         {
             waterLevel = maxWater;
         }
         UpdateWaterHUD();
     }
 
-    public bool UseWater(int amount)
+    public void EmptyTank()
+    {
+        waterLevel = 0;
+        UpdateWaterHUD();
+    }
+
+    public bool CanUseWater(int amount)
     {
         if (waterLevel < amount)
         {
             return false;
         }
 
-        waterLevel -= amount;
         UpdateWaterHUD();
         return true;
+    }
+
+    public bool UseWater(int amount)
+    {
+        if (CanUseWater(amount))
+        {
+            waterLevel -= amount;
+            UpdateWaterHUD();
+            return true;
+        }
+        return false;
     }
 
     private void UpdateWaterHUD()
