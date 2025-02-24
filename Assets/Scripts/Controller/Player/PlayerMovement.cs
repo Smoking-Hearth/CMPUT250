@@ -180,23 +180,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerRigidbody.linearVelocityY < 0.5f && player.GroundState == GroundState.None)
         {
-            float smallestDistance = centerHit.distance;
-            if (leftHit.distance + groundCheckRadius + targetMovement.x < centerHit.distance || rightHit.distance + groundCheckRadius - targetMovement.x < centerHit.distance)
-            {
-                if (targetMovement.x < 0)
-                {
-                    smallestDistance = leftHit.distance;
-                }
-                else if (targetMovement.x > 0)
-                {
-                    smallestDistance = rightHit.distance;
-                }
-                else
-                {
-                    smallestDistance = Mathf.Min(leftHit.distance, rightHit.distance);
-                }
-            }
-            playerRigidbody.position = new Vector2(playerRigidbody.position.x, playerRigidbody.position.y - smallestDistance + groundCheckRadius * 0.5f);
+            float smallestDistance = Mathf.Min(centerHit.distance, Mathf.Min(leftHit.distance, rightHit.distance));
+            playerRigidbody.position = new Vector2(playerRigidbody.position.x, playerRigidbody.position.y - smallestDistance);
             playerAnimator.SetBool("IsGrounded", true);
             player.GroundState = GroundState.Grass;
 
