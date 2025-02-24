@@ -4,6 +4,7 @@ using UnityEngine;
 public struct DialogSegment
 {
     public string title;
+    public AudioClip scrollSound;
 
     [TextArea(0, 5)]
     public string[] lines;

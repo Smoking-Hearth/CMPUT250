@@ -5014,20 +5014,20 @@ AudioSource:
   m_GameObject: {fileID: 5937826966959122054}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 640262d63a9a5954f821512762a41ae4, type: 3}
+  m_Resource: {fileID: 8300000, guid: 640262d63a9a5954f821512762a41ae4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 2
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -5062,7 +5062,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -9977,8 +9977,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: -6086393450893165504}
-  ambientAudio: {fileID: 0}
-  ambientVolume: 0
+  ambientAudio: {fileID: 7898581116687769550}
+  ambientVolume: 0.6
   hitClip: {fileID: 8300000, guid: 6f692b600274db949b79592f3887c04c, type: 3}
   extinguishClip: {fileID: 8300000, guid: 38d58901f7394e7489bcf7114f06d9eb, type: 3}
 --- !u!82 &-6086393450893165504

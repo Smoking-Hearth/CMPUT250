@@ -20,7 +20,7 @@ public class GameDialog : IEnumerator<DialogSystem.Command> {
                 // We have lines and the cursor is over one
                 if (lines != null && lines.Length > 0 && 0 <= lineIndex && lineIndex < lines.Length)
                 {
-                    return new DialogSystem.Command(lines[lineIndex], segments[segmentIndex].title, segments[segmentIndex].autoContinue);
+                    return new DialogSystem.Command(lines[lineIndex], segments[segmentIndex].title, segments[segmentIndex].autoContinue, segments[segmentIndex].scrollSound);
                 }
             }
             return new DialogSystem.Command(null); 
@@ -64,12 +64,14 @@ public class DialogSystem : MonoBehaviour
 {
     public struct Command
     {
+        public AudioClip scrollSound;
         public string content;
         public string title;
         public bool autoContinue;
 
-        public Command(string content, string title = null, bool autoContinue = false)
+        public Command(string content, string title = null, bool autoContinue = false, AudioClip scrollSound = null)
         {
+            this.scrollSound = scrollSound;
             this.content = content;
             this.title = title;
             this.autoContinue = autoContinue;
@@ -93,8 +95,8 @@ public class DialogSystem : MonoBehaviour
 
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text contentText;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private float autoContinueDelaySeconds;
-    private bool autoContinue;
     private float continueTimer;
 
     int currentPosition = 0;
@@ -118,6 +120,14 @@ public class DialogSystem : MonoBehaviour
             if (currentPosition <= currentDialog.Current.content.Length)
             {
                 contentText.text = currentDialog.Current.content.Substring(0, currentPosition);
+
+                if (currentPosition % 3 == 0 && currentDialog.Current.scrollSound != null && currentPosition < currentDialog.Current.content.Length)
+                {
+                    float pitchOffset = (currentDialog.Current.content[currentPosition] % 32) / 32f;
+                    audioSource.pitch = 0.5f + (pitchOffset);
+                    audioSource.PlayOneShot(currentDialog.Current.scrollSound);
+                }
+
                 ++currentPosition;
             }
             else
@@ -181,9 +191,21 @@ public class DialogSystem : MonoBehaviour
 
     private void OnContinue(InputAction.CallbackContext context)
     {
-        if (dialogSystemState == State.WaitingForContinue)
+        switch(dialogSystemState)
         {
-            NextLine();
-        }
+            case State.DisplayingLine:
+                if (!currentDialog.Current.autoContinue)
+                {
+                    currentPosition = currentDialog.Current.content.Length;
+                    contentText.text = currentDialog.Current.content.Substring(0, currentPosition);
+                }
+                break;
+            case State.WaitingForContinue:
+                if (!currentDialog.Current.autoContinue)
+                {
+                    NextLine();
+                }
+                break;
+        }        
     }
 }
