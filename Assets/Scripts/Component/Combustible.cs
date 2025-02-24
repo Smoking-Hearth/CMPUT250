@@ -18,7 +18,7 @@ public enum CombustibleKind
 /// Just to remind: T_Kelvin = T_Celcius + ABSOLUTE_ZERO_CELCIUS. The class has a constant to avoid
 /// needing to remember.
 /// </summary>
-public class Combustible : MonoBehaviour, IExtinguishable
+public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
 {
     public const float ABSOLUTE_ZERO_CELCIUS = 273.15f;
     public const float MAX_TEMP = 20_000f;
@@ -150,11 +150,11 @@ public class Combustible : MonoBehaviour, IExtinguishable
         Collider2D[] fires = Physics2D.OverlapCircleAll(transform.position, fireSpreadRadius, fireLayer);
         for (int i = 0; i < fires.Length; i++)
         {
-            HeatSpread(fires[i].GetComponentInParent<Combustible>());
+            HeatSpread(fires[i].GetComponentInParent<ITemperatureSource>());
         }
     }
 
-    private void HeatSpread(Combustible other)
+    private void HeatSpread(ITemperatureSource other)
     {
         if (fule <= 0)
         {
@@ -174,7 +174,7 @@ public class Combustible : MonoBehaviour, IExtinguishable
         float distance = Vector2.Distance(gameObject.MyLevelManager().Player.Position, (Vector2)transform.position);
         if (distance < fireSpreadRadius * 0.8f)
         {
-            gameObject.MyLevelManager().Player.Health.FireDamage(20f * Mathf.Pow(0.5f, distance));
+            gameObject.MyLevelManager().Player.Health.FireDamage(8f * Mathf.Pow(0.5f, distance));
         }
     }
 

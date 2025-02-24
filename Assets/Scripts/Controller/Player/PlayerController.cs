@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
 
     private bool shootEnabled;
+    private bool specialEnabled;
     private static PlayerControls controls;
     public static PlayerControls Controls   //Other scripts can get this to listen to player inputs
     {
@@ -123,7 +124,11 @@ public class PlayerController : MonoBehaviour
             controls.PlayerMovement.Enable();
             if (shootEnabled)
             {
-                controls.Hydropack.Enable();
+                controls.Hydropack.Attack.Enable();
+            }
+            if (specialEnabled)
+            {
+                controls.Hydropack.SpecialAttack.Enable();
             }
         }
 
@@ -168,11 +173,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void EnableShooting()
+    public void EnableShooting(bool enabled)
     {
-        controls.Hydropack.Enable();
-        shootBehavior.EnableShooting();
-        shootEnabled = true;
+        if (enabled)
+        {
+            controls.Hydropack.Attack.Enable();
+            shootBehavior.EnableShooting();
+            shootEnabled = true;
+        }
+        else
+        {
+            controls.Hydropack.Attack.Disable();
+            shootEnabled = false;
+        }
+    }
+    public void EnableSpecial(bool enabled)
+    {
+        if (enabled)
+        {
+            controls.Hydropack.SpecialAttack.Enable();
+            specialEnabled = true;
+        }
+        else
+        {
+            controls.Hydropack.SpecialAttack.Disable();
+            specialEnabled = false;
+        }
     }
 
     //INPUT HANDLING

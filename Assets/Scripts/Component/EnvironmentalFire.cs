@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnvironmentalFire : Fire, IExtinguishable
+public class EnvironmentalFire : Fire, IExtinguishable, ITemperatureSource
 {
     [SerializeField] private CombustibleKind fireKind = CombustibleKind.A_COMMON;
     [SerializeField] private float minTemperature = 425f;
@@ -12,6 +12,8 @@ public class EnvironmentalFire : Fire, IExtinguishable
     [SerializeField] private Collider2D fireCollider;
     private float lingerTimer;
     [SerializeField] private UnityEvent ExtinguishEvent;
+
+    [SerializeField] private float fireDamageRadius;
 
     public float Temperature
     {
@@ -26,6 +28,17 @@ public class EnvironmentalFire : Fire, IExtinguishable
     {
         Initialize(GameManager.FireSettings.GetFireInfo(fireKind));
         SetActive(true);
+        gameObject.MyLevelManager().onActivate += Activate;
+        gameObject.MyLevelManager().onDeactivate += Deactivate;
+    }
+
+    private void Activate()
+    {
+        gameObject.MyLevelManager().onFireTick += FireTick;
+    }
+    private void Deactivate()
+    {
+        gameObject.MyLevelManager().onFireTick -= FireTick;
     }
 
     protected void FixedUpdate()
@@ -65,6 +78,15 @@ public class EnvironmentalFire : Fire, IExtinguishable
             lingerTimer = particles.main.startLifetime.constant;
             fireCollider.enabled = false;
             ExtinguishEvent.Invoke();
+        }
+    }
+
+    private void FireTick()
+    {
+        float distance = Vector2.Distance(gameObject.MyLevelManager().Player.Position, (Vector2)transform.position);
+        if (distance < fireDamageRadius)
+        {
+            gameObject.MyLevelManager().Player.Health.FireDamage(8f * Mathf.Pow(0.5f, distance));
         }
     }
 }

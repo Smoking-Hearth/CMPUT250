@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private UnityEvent completeEvent;
     [SerializeField] private int enemiesToComplete;
     private int enemiesFallen;
+    [SerializeField] private ParticleSystem spawnParticles;
 
     void FixedUpdate()
     {
@@ -69,6 +70,11 @@ public class EnemySpawner : MonoBehaviour
         {
             Vector2 randomPosition = new Vector2(Random.Range(-spawnArea.x, spawnArea.x), Random.Range(-spawnArea.y, spawnArea.y));
             storedEnemies[index].transform.position = (Vector2)transform.position + randomPosition;
+        }
+
+        if (spawnParticles != null)
+        {
+            spawnParticles.Play();
         }
 
         storedEnemies[index].gameObject.SetActive(true);

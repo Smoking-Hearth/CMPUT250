@@ -6,12 +6,13 @@ public class TriggerCounter : MonoBehaviour
     private int counter;
     [SerializeField] private int requiredTicks;
     [SerializeField] private UnityEvent triggerEvent;
+    [SerializeField] private bool retrigger;
 
     public void Tick()
     {
         counter++;
 
-        if (counter >= requiredTicks)
+        if (counter == requiredTicks || (retrigger && counter >= requiredTicks))
         {
             triggerEvent.Invoke();
         }
