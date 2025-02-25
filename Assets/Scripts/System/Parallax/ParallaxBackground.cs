@@ -86,7 +86,7 @@ public class ParallaxBackground : MonoBehaviour
             if (layer.IsTiled)
             {
                 // This is just a pseudo perspective divide but weird.
-                layer.meshRenderer.material.SetTextureOffset("_MainTex", offset);
+                layer.meshRenderer.material.SetVector("_Offset", offset);
             }
             else
             {
