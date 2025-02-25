@@ -10,6 +10,7 @@ public class WaterArea : MonoBehaviour
     [SerializeField] private LayerMask extinguishLayers;
     private List<IExtinguishable> extinguishables = new List<IExtinguishable>();
     private bool staying;
+    private int tickCounter;
 
     private void FixedUpdate()
     {
@@ -22,10 +23,14 @@ public class WaterArea : MonoBehaviour
             stayAudio.Stop();
         }
 
-        for (int i = 0; i < extinguishables.Count; i++)
+        if (tickCounter == 0)
         {
-            extinguishables[i].Extinguish(CombustibleKind.A_COMMON, 10);
+            for (int i = 0; i < extinguishables.Count; i++)
+            {
+                extinguishables[i].Extinguish(CombustibleKind.A_COMMON, 20);
+            }
         }
+        tickCounter = (tickCounter + 1) % 5;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
