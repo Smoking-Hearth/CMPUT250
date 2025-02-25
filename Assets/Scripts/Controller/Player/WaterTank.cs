@@ -5,6 +5,8 @@ public class WaterTank
 {
     private Slider waterTankBar;
     private Slider waterTankInGame;
+    private AudioSource refillAudio;
+    private AudioClip fullAudio;
     private int maxWater;
     private int waterLevel;
 
@@ -39,6 +41,25 @@ public class WaterTank
             waterTankInGame.value = waterLevel;
         }
     }
+    public void SetTank(Slider tankHUD, Slider tankInGame, AudioSource audio, AudioClip full)
+    {
+        waterTankBar = tankHUD;
+        waterTankInGame = tankInGame;
+        refillAudio = audio;
+        fullAudio = full;
+
+        if (waterTankBar != null)
+        {
+            waterTankBar.maxValue = maxWater;
+            waterTankBar.value = waterLevel;
+        }
+
+        if (waterTankInGame != null)
+        {
+            waterTankInGame.maxValue = maxWater;
+            waterTankInGame.value = waterLevel;
+        }
+    }
 
     public void RefillWater(int amount)
     {
@@ -47,6 +68,19 @@ public class WaterTank
         if (waterLevel - maxWater > maxWater * 0.15f)    //Refills extra when the tank would almost be refilled but not quite
         {
             waterLevel = maxWater;
+        }
+
+        if (refillAudio != null)
+        {
+            if (waterLevel < maxWater)
+            {
+                refillAudio.pitch = 0.9f + (float)waterLevel / maxWater;
+                refillAudio.Play();
+            }
+            else
+            {
+                refillAudio.PlayOneShot(fullAudio);
+            }
         }
         UpdateWaterHUD();
     }

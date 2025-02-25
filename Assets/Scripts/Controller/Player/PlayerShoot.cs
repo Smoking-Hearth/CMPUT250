@@ -21,6 +21,8 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private SpecialAttack defaultSpecialAttack;
     [SerializeField] private float specialCooldown;
     private float specialCooldownTimer;
+    [SerializeField] private AudioSource refillAudio;
+    [SerializeField] private AudioClip fullAudio;
 
     public bool ShootAvailable
     {
@@ -77,7 +79,7 @@ public class PlayerShoot : MonoBehaviour
     private void Awake()
     {
         SpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<SpecialAttack>();
-        attack.ResourceTank.SetTank(waterTankBar, waterTankInGame);
+        attack.ResourceTank.SetTank(waterTankBar, waterTankInGame, refillAudio, fullAudio);
         attack.ResourceTank.EmptyTank();
         waterTank = attack.ResourceTank;
         inventory = new PlayerInventory(2, attack, attachPoint, inventoryIcons);

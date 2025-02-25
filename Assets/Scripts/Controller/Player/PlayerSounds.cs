@@ -22,7 +22,7 @@ public class PlayerSounds : MonoBehaviour
         {
             audioSource.PlayOneShot(ground.LandClip);
         }
-        footstepCounter = 0;
+        footstepCounter = footstepInterval;
     }
     public void PlayFootsteps(Ground ground)
     {
@@ -54,6 +54,6 @@ public class PlayerSounds : MonoBehaviour
 
     public void ResetFootsteps()
     {
-        footstepCounter = footstepInterval / 2;
+        footstepCounter = footstepInterval;
     }
 }

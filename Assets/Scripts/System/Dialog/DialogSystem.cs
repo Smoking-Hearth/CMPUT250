@@ -195,6 +195,11 @@ public class DialogSystem : MonoBehaviour
                 gameObject.MyLevelManager().levelState = LevelState.Dialogue;
             }
 
+            if (currentDialog.Current.startSound != null)
+            {
+                audioSource.PlayOneShot(currentDialog.Current.startSound);
+            }
+
             return true;
         }
         return false;

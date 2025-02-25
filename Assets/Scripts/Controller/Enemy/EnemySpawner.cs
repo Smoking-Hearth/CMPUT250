@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
     [Tooltip("Does the spawner respawn defeated enemies?")]
     [SerializeField] private bool continuous;
     [SerializeField] private bool activated;
+    [SerializeField] private bool eventCompleted;
     [SerializeField] private UnityEvent completeEvent;
     [SerializeField] private int enemiesToComplete;
     private int enemiesFallen;
@@ -23,6 +24,19 @@ public class EnemySpawner : MonoBehaviour
     {
         if (!activated)
         {
+            if (!eventCompleted)    //Completes the event if the spawner has been deactivated and all spawned enemies have been disabled
+            {
+                for (int i = 0; i < spawnedEnemies.Count; i++)
+                {
+                    if (spawnedEnemies[i].gameObject.activeSelf)
+                    {
+                        return;
+                    }
+                }
+                completeEvent.Invoke();
+                eventCompleted = true;
+                return;
+            }
             return;
         }
         if (enemiesToComplete > 0 && enemiesFallen >= enemiesToComplete)
@@ -56,7 +70,7 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
 
-            if (storedEnemies.Count > 0)
+            if (storedEnemies.Count > 0 && (enemiesToComplete <= 0 || spawnedEnemies.Count < enemiesToComplete - enemiesFallen))
             {
                 int random = Random.Range(0, storedEnemies.Count);
                 SpawnEnemy(random);

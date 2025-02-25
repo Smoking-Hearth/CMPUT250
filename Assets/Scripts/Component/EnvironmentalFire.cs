@@ -28,15 +28,14 @@ public class EnvironmentalFire : Fire, IExtinguishable, ITemperatureSource
     {
         Initialize(GameManager.FireSettings.GetFireInfo(fireKind));
         SetActive(true);
-        gameObject.MyLevelManager().onActivate += Activate;
-        gameObject.MyLevelManager().onDeactivate += Deactivate;
     }
 
-    private void Activate()
+    private void OnEnable()
     {
         gameObject.MyLevelManager().onFireTick += FireTick;
     }
-    private void Deactivate()
+
+    private void OnDisable()
     {
         gameObject.MyLevelManager().onFireTick -= FireTick;
     }
