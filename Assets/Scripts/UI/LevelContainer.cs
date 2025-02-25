@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using LitMotion;
 using LitMotion.Extensions;
+using UnityEngine.EventSystems;
 
-public class LevelContainer: MonoBehaviour
+public class LevelContainer: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     struct CompactState
     {
@@ -16,6 +17,11 @@ public class LevelContainer: MonoBehaviour
             containerSize = size;
         }
     }
+    public enum ContainerState 
+    {
+        Compact, PerformingHover, Hover, PerformingExpand, Expand, ExitExpand
+    }
+    private ContainerState containerState = ContainerState.Compact;
 
     [field: SerializeField] private RectTransform canvasRectTransform;
     [field: SerializeField] private CanvasGroup containerButtons;
@@ -61,11 +67,33 @@ public class LevelContainer: MonoBehaviour
         GameManager.SceneSystem.LevelManagers[(int)levelIndex].LevelCamera.targetTexture = null;
     }
 
+    public void OnPointerEnter(PointerEventData pointerEventData)
+    {
+        if (containerState != ContainerState.Compact) return;
+        anim = LMotion.Create(myRectTransform.sizeDelta, compactState.containerSize * 1.5f, 0.4f)
+            .WithEase(Ease.InOutSine)
+            .BindToSizeDelta(myRectTransform);
+        containerState = ContainerState.PerformingHover;
+    }
+
+    public void OnPointerExit(PointerEventData pointerEventData)
+    {
+        if (containerState != ContainerState.Hover && containerState != ContainerState.PerformingHover) return;
+        anim = LMotion.Create(myRectTransform.sizeDelta, compactState.containerSize, 0.4f)
+            .WithEase(Ease.InOutSine)
+            .WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)
+            .BindToSizeDelta(myRectTransform);
+        containerState = ContainerState.Compact;
+    }
+
     void ContainerClicked()
     {
+        if (containerState == ContainerState.Expand || containerState == ContainerState.PerformingExpand) return;
+        containerState = ContainerState.PerformingExpand;
         gameObject.transform.SetAsLastSibling();
         button.interactable = false;
 
+        anim.TryCancel();
         MotionHandle center = LMotion.Create(myRectTransform.anchoredPosition, Vector2.zero, 0.4f)
             .WithEase(Ease.OutSine)
             .BindToAnchoredPosition(myRectTransform);
@@ -92,6 +120,8 @@ public class LevelContainer: MonoBehaviour
 
     public void BackToMenu()
     {
+        if (containerState != ContainerState.Expand) return;
+        containerState = ContainerState.ExitExpand;
         button.interactable = true;
 
         MotionHandle fadeOutPlay = LMotion.Create(1f, 0f, 0.1f)
@@ -144,13 +174,33 @@ public class LevelContainer: MonoBehaviour
             previewLoaded = true;
         }
 
-        if (anim != MotionHandle.None && anim.IsPlaying())
+        if (anim == MotionHandle.None) return;
+        if (anim.IsPlaying())
         {
             preview.Release();
             Vector2 size = previewRectTransform.rect.size;
             preview.width = (int)size.x;
             preview.height = (int)size.y;
             preview.Create();
+        }
+        else
+        {
+            switch (containerState)
+            {
+                case ContainerState.PerformingHover:
+                    containerState = ContainerState.Hover;
+                    break;
+                case ContainerState.PerformingExpand:
+                    containerState = ContainerState.Expand;
+                    break;
+                case ContainerState.ExitExpand:
+                    containerState = ContainerState.Compact;
+                    break;
+                default:
+                    break;
+            }
+            anim.TryComplete();
+            anim = MotionHandle.None;
         }
     }
 }
