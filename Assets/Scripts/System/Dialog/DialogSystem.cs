@@ -22,7 +22,7 @@ public class GameDialog : IEnumerator<DialogSystem.Command> {
                 if (lines != null && lines.Length > 0 && 0 <= lineIndex && lineIndex < lines.Length)
                 {
                     return new DialogSystem.Command(lines[lineIndex], segments[segmentIndex].title, segments[segmentIndex].autoContinue,
-                        segments[segmentIndex].scrollSound, segments[segmentIndex].DoEvent);
+                        segments[segmentIndex].scrollSound, segments[segmentIndex].startSound, segments[segmentIndex].DoEvent);
                 }
             }
             return new DialogSystem.Command(null); 
@@ -67,14 +67,16 @@ public class DialogSystem : MonoBehaviour
     public struct Command
     {
         public AudioClip scrollSound;
+        public AudioClip startSound;
         public string content;
         public string title;
         public bool autoContinue;
         public UnityEvent DoEvent;
 
-        public Command(string content, string title = null, bool autoContinue = false, AudioClip scrollSound = null, UnityEvent doEvent = null)
+        public Command(string content, string title = null, bool autoContinue = false, AudioClip scrollSound = null, AudioClip startSound = null, UnityEvent doEvent = null)
         {
             this.scrollSound = scrollSound;
+            this.startSound = startSound;
             this.content = content;
             this.title = title;
             this.autoContinue = autoContinue;
@@ -220,6 +222,10 @@ public class DialogSystem : MonoBehaviour
             if (titleText != null)
             {
                 titleText.text = currentDialog.Current.title;
+            }
+            if (currentDialog.Current.startSound != null)
+            {
+                audioSource.PlayOneShot(currentDialog.Current.startSound);
             }
         }
         else

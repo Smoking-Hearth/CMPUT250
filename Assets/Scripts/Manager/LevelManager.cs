@@ -259,7 +259,6 @@ public class LevelManager : MonoBehaviour
     public void Restartlevel()
     {
         gameOverScreen.SetActive(false);
-        TimeSystem.Reset();
     }
 
     public void RespawnCheckpoint()
@@ -271,6 +270,5 @@ public class LevelManager : MonoBehaviour
 
         CheckpointSystem.LoadState();
         Player.Health.ResetHealth();
-        TimeSystem.SetTimer(TimeSystem.levelTimeLimitSeconds);
     }
 }

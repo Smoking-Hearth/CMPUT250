@@ -6,6 +6,7 @@ public struct DialogSegment
 {
     public string title;
     public AudioClip scrollSound;
+    public AudioClip startSound;
 
     [TextArea(0, 5)]
     public string[] lines;
