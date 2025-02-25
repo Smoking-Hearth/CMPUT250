@@ -135,6 +135,7 @@ public class LevelManager : MonoBehaviour
 
     public void Activate()
     {
+        Time.timeScale = 1f;
         gameObject.SetActive(true);
         LevelCamera.gameObject.SetActive(true);
         LevelCamera.enabled = true;

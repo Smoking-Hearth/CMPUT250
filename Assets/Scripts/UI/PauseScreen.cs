@@ -46,7 +46,6 @@ public class PauseScreen : MonoBehaviour
     {
         LevelManager levelManager = gameObject.MyLevelManager();
         levelManager.SetPause(levelManager.levelState != LevelState.Paused);    //If the level is not paused, pause
-
     }
 
     void Update()
