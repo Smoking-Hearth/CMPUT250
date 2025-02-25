@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         {
             if (fireSettings == null)
             {
-                fireSettings = FireSettings.GetOrCreate();
+                fireSettings = SceneSystem.LevelManagers[SceneSystem.Active].fireSettings;
             }
             return fireSettings;
         }
@@ -50,13 +50,14 @@ public class GameManager : MonoBehaviour
     public delegate void OnEnemyAttack(Vector2 attackCenter, Vector2 sourcePosition, EnemyAttackInfo attackInfo);
     public static OnEnemyAttack onEnemyAttack;
     
-    public static void Init()
+    public static void Init(FireSettings fs = null)
     {
         if (isInit) return;
         isInit = true;
 
         instance ??= new GameObject("GameManager").AddComponent<GameManager>();
         instance.sceneSystem ??= new SceneSystem();
+        fireSettings ??= fs;
     }
 
     void Awake()
