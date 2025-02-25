@@ -26,6 +26,10 @@ public class SceneSystem
     private int loaded = 0;
     private int visible = 0;
     private int active = 0;
+    public int Active
+    {
+        get => active;
+    }
     
     private LevelManager[] levelManagers = new LevelManager[7];
 

@@ -62,6 +62,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] public Animator cameraAnimator;
 
     [Header("Key Objects")]
+    [SerializeField] public FireSettings fireSettings;
     [SerializeField] public List<GameObject> UI;
     [field: SerializeField] public Camera LevelCamera; 
 
@@ -130,7 +131,7 @@ public class LevelManager : MonoBehaviour
 
     void Awake()
     {
-        GameManager.Init();
+        GameManager.Init(fireSettings);
     }
 
     public void Activate()
