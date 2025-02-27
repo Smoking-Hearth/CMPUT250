@@ -18,15 +18,18 @@ public enum CombustibleKind
 /// Just to remind: T_Kelvin = T_Celcius + ABSOLUTE_ZERO_CELCIUS. The class has a constant to avoid
 /// needing to remember.
 /// </summary>
+
 public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
 {
     public const float ABSOLUTE_ZERO_CELCIUS = 273.15f;
     public const float MAX_TEMP = 20_000f;
+    public const float SIMULATION_DISTANCE = 20;
 
     [Header("Visual")]
     [SerializeField] Fire firePrefab = null;
     Fire fire = null;
     [SerializeField] CombustibleKind fireKind = CombustibleKind.A_COMMON;
+    private Collider2D combustibleCollider;
 
     [SerializeField] AnimationCurve temperatureToLifetime = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
     [SerializeField] float maxLifetime;
@@ -103,6 +106,7 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
         gameObject.MyLevelManager().onActivate += Activate;
         gameObject.MyLevelManager().onDeactivate += Deactivate;
         dampness = 0;
+        combustibleCollider = GetComponent<Collider2D>();
     }
 
     private void Activate()
@@ -114,9 +118,15 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
         gameObject.MyLevelManager().onFireTick -= CheckFireSpread;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!gameObject.ShouldUpdate()) return;
+
+        Vector2 playerPosition = gameObject.MyLevelManager().Player.Position;
+        if (Vector2.Distance(playerPosition, transform.position) > SIMULATION_DISTANCE)
+        {
+            return;
+        }
 
         bool haveFule = fule > 0f;
         if (temperature > autoIgnitionTemperature && haveFule)
@@ -125,7 +135,7 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
         }
         if (Burning)
         {
-            float consumed = Mathf.Min(Time.deltaTime, fule);
+            float consumed = Mathf.Min(Time.fixedDeltaTime, fule);
             if (fule > 0)
             {
                 fule -= consumed;
@@ -192,7 +202,7 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
 
         if (burnRenderer != null)
         {
-            burnAnim = LMotion.Create(burnRenderer.color, new Color(0.1f, 0.1f, 0.1f), secondsUntilBurnt)
+            burnAnim = LMotion.Create(burnRenderer.color, new Color(0.15f, 0.08f, 0.06f), secondsUntilBurnt)
                 .Bind(burnRenderer, (color, renderer) => renderer.color = color);
         }
     }

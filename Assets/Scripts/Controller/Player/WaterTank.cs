@@ -65,7 +65,7 @@ public class WaterTank
     {
         waterLevel += amount;
 
-        if (waterLevel - maxWater > maxWater * 0.15f)    //Refills extra when the tank would almost be refilled but not quite
+        if (maxWater - waterLevel < maxWater * 0.1f)    //Refills extra when the tank would almost be refilled but not quite
         {
             waterLevel = maxWater;
         }
