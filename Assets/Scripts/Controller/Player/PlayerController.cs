@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator playerAnimator;
 
-    private bool shootEnabled;
-    private bool specialEnabled;
+    [SerializeField] private bool shootEnabled = false;
+    [SerializeField] private bool specialEnabled = false;
     private static PlayerControls controls;
     public static PlayerControls Controls   //Other scripts can get this to listen to player inputs
     {
@@ -44,6 +44,16 @@ public class PlayerController : MonoBehaviour
         if (shootBehavior == null)
         {
             shootBehavior = GetComponent<PlayerShoot>();
+        }
+
+        if (shootEnabled)
+        {
+            EnableShooting(true);
+        }
+
+        if (specialEnabled)
+        {
+            EnableSpecial(true);
         }
     }
 
