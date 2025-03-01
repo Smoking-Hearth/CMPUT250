@@ -35,24 +35,27 @@ public class ParallaxBackground : MonoBehaviour
         targetCamera = gameObject.MyLevelManager().LevelCamera;
         minTiledSize = Vector2.positiveInfinity;
 
+        if (tiledLayerAnchor == null && layers.Count > 0)
+        {
+            Vector3 pos = Vector3.zero;
+            pos.z = transform.position.z;
+            tiledLayerAnchor = new GameObject("ParallaxTiledLayerAnchor");
+            tiledLayerAnchor.transform.SetParent(targetCamera.transform);
+            tiledLayerAnchor.transform.localPosition = pos;
+        }
+
+        int layerIndex = 0;
         foreach (var layer in layers)
         {
             if (layer.IsTiled)
             {
-                if (tiledLayerAnchor == null)                
-                {
-                    Vector3 pos = Vector3.zero;
-                    pos.z = transform.position.z;
-                    tiledLayerAnchor = new GameObject("ParallaxTiledLayerAnchor");
-                    tiledLayerAnchor.transform.SetParent(targetCamera.transform);
-                    tiledLayerAnchor.transform.localPosition = pos;
-                }
-
-                layer.meshRenderer = Instantiate(tiledLayerPrefab, tiledLayerAnchor.transform);
+                layer.meshRenderer = Instantiate(tiledLayerPrefab, parent: tiledLayerAnchor.transform);
+                layer.meshRenderer.transform.localPosition = new Vector3(0f, 0f, 100f + 5f * layerIndex);
                 Vector2 size = layer.meshRenderer.bounds.extents;
                 minTiledSize = Vector2.Min(minTiledSize, layer.meshRenderer.bounds.extents);
                 layer.meshRenderer.material.SetTexture("_MainTex", layer.Texture);
             }
+            layerIndex += 1;
         }
 
         if (tiledLayerAnchor != null) 
