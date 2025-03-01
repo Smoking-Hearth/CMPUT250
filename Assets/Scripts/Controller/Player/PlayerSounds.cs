@@ -5,42 +5,38 @@ public class PlayerSounds : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip mainShootSound;
 
-    [SerializeField] private int footstepInterval;
-    private int footstepCounter;
-
     [SerializeField] private AudioClip fireHurtClip;
     [SerializeField] private AudioClip electricityHurtClip;
 
-    private void Start()
-    {
-        ResetFootsteps();
-    }
+    public Ground currentGround;
+
 
     public void PlayLandClip(Ground ground)
     {
         if (ground.LandClip != null)
         {
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
             audioSource.PlayOneShot(ground.LandClip);
         }
-        footstepCounter = footstepInterval / 2;
     }
-    public void PlayFootsteps(Ground ground)
+    public void PlayFootsteps()
     {
-        footstepCounter++;
-        if (footstepCounter >= footstepInterval)
+        if (currentGround != null)
         {
-            footstepCounter = 0;
-            audioSource.PlayOneShot(ground.FootstepClip);
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
+            audioSource.PlayOneShot(currentGround.FootstepClip);
         }
     }
 
     public void PlayMainShoot()
     {
+        audioSource.pitch = 1;
         audioSource.PlayOneShot(mainShootSound);
     }
     
     public void PlayHurt(DamageType damageType)
     {
+        audioSource.pitch = 1;
         switch (damageType)
         {
             case DamageType.Fire:
@@ -50,10 +46,5 @@ public class PlayerSounds : MonoBehaviour
                 audioSource.PlayOneShot(electricityHurtClip);
                 break;
         }
-    }
-
-    public void ResetFootsteps()
-    {
-        footstepCounter = footstepInterval;
     }
 }
