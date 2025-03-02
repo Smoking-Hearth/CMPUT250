@@ -202,11 +202,13 @@ public class PlayerController : MonoBehaviour
         if (enabled)
         {
             controls.Hydropack.SpecialAttack.Enable();
+            controls.Hydropack.SwapSpecial.Enable();
             specialEnabled = true;
         }
         else
         {
             controls.Hydropack.SpecialAttack.Disable();
+            controls.Hydropack.SwapSpecial.Disable();
             specialEnabled = false;
         }
     }

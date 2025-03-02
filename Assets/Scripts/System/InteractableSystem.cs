@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 public class InteractableSystem: MonoBehaviour
 {
-    [SerializeField] private PlayerController player;
-
-
     private static Interactable targetInteractable;
     public static Interactable Target
     {
@@ -42,7 +39,7 @@ public class InteractableSystem: MonoBehaviour
 
     void Update()
     {
-        Vector2 playerPosition = player.transform.position;
+        Vector2 playerPosition = gameObject.MyLevelManager().Player.Position;
 
         if (interactables == null)
         {

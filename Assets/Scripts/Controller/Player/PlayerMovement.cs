@@ -175,12 +175,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        player.Sounds.currentGround = currentGround;
+
         if (playerRigidbody.linearVelocityY < 0.5f && player.GroundState == GroundState.None)
         {
             float smallestDistance = Mathf.Min(centerHit.distance, Mathf.Min(leftHit.distance, rightHit.distance));
             playerRigidbody.position = new Vector2(playerRigidbody.position.x, playerRigidbody.position.y - smallestDistance);
             playerAnimator.SetBool("IsGrounded", true);
-            player.GroundState = GroundState.Grass;
+            player.GroundState = GroundState.Grounded;
 
             isJumping = false;
 
@@ -200,7 +202,6 @@ public class PlayerMovement : MonoBehaviour
         Player player = gameObject.MyLevelManager().Player;
         if (inputAxes.x == 0)  //Deccelerates if the player does not give a horizontal input
         {
-            player.Sounds.ResetFootsteps();
             if (targetMovement.x != 0)
             {
                 playerAnimator.SetBool("IsWalking", false);
@@ -232,10 +233,6 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 targetMovement.x = inputAxes.x * moveSpeed;
-            }
-            if (player.GroundState != GroundState.None && Mathf.Sign(inputAxes.x) == Mathf.Sign(targetMovement.x))
-            {
-                player.Sounds.PlayFootsteps(currentGround);
             }
             if (flipGraphics)
             {

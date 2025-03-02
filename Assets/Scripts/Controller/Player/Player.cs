@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum GroundState
 {
-    None, Grass, Concrete, Wood
+    None, Grounded
 }
 
 public class Player
@@ -29,7 +29,7 @@ public class Player
     public Player(Rigidbody2D playerObject)
     {
         player = playerObject;
-        Sounds = playerObject.GetComponent<PlayerSounds>();
+        Sounds = playerObject.GetComponentInChildren<PlayerSounds>();
         Health = playerObject.GetComponent<PlayerHealth>();
         Movement = playerObject.GetComponent<PlayerMovement>();
     }

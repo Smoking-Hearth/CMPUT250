@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class WaterTank
 {
-    private Slider waterTankBar;
-    private Slider waterTankInGame;
+    private AnimatedBar waterTankBar;
+    private AnimatedBar waterTankInGame;
     private AudioSource refillAudio;
     private AudioClip fullAudio;
     private int maxWater;
@@ -24,24 +25,24 @@ public class WaterTank
         }
     }
 
-    public void SetTank(Slider tankHUD, Slider tankInGame)
+    public void SetTank(AnimatedBar tankHUD, AnimatedBar tankInGame)
     {
         waterTankBar = tankHUD;
         waterTankInGame = tankInGame;
 
         if (waterTankBar != null)
         {
-            waterTankBar.maxValue = maxWater;
-            waterTankBar.value = waterLevel;
+            waterTankBar.Max = maxWater;
+            waterTankBar.Current = waterLevel;
         }
 
         if (waterTankInGame != null)
         {
-            waterTankInGame.maxValue = maxWater;
-            waterTankInGame.value = waterLevel;
+            waterTankInGame.Max = maxWater;
+            waterTankInGame.Current = waterLevel;
         }
     }
-    public void SetTank(Slider tankHUD, Slider tankInGame, AudioSource audio, AudioClip full)
+    public void SetTank(AnimatedBar tankHUD, AnimatedBar tankInGame, AudioSource audio, AudioClip full)
     {
         waterTankBar = tankHUD;
         waterTankInGame = tankInGame;
@@ -50,14 +51,14 @@ public class WaterTank
 
         if (waterTankBar != null)
         {
-            waterTankBar.maxValue = maxWater;
-            waterTankBar.value = waterLevel;
+            waterTankBar.Max = maxWater;
+            waterTankBar.Current = waterLevel;
         }
 
         if (waterTankInGame != null)
         {
-            waterTankInGame.maxValue = maxWater;
-            waterTankInGame.value = waterLevel;
+            waterTankInGame.Max = maxWater;
+            waterTankInGame.Current = waterLevel;
         }
     }
 
@@ -117,12 +118,12 @@ public class WaterTank
     {
         if (waterTankBar != null)
         {
-            waterTankBar.value = waterLevel;
+            waterTankBar.Current = waterLevel;
         }
 
         if (waterTankInGame != null)
         {
-            waterTankInGame.value = waterLevel;
+            waterTankInGame.Current = waterLevel;
         }
     }
 }

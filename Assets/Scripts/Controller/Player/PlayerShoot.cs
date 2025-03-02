@@ -7,9 +7,9 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private GameObject hydropack;
 
     private WaterTank waterTank;
-    [SerializeField] private Slider waterTankBar;
-    [SerializeField] private Slider waterTankInGame;
-    [SerializeField] private Slider extinguisherTankBar;
+    [SerializeField] private AnimatedBar waterTankBar;
+    [SerializeField] private AnimatedBar waterTankInGame;
+    [SerializeField] private AnimatedBar extinguisherTankBar;
     [SerializeField] private Slider pressureBar;
     [SerializeField] private Projectile bullet;
     [SerializeField] private float bulletInitialSpeed = 10.0f;

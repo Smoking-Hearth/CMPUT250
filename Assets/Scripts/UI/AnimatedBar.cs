@@ -2,7 +2,8 @@ using LitMotion;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+// I hate this so much. I yearn for the traits.
+public class AnimatedBar : MonoBehaviour
 {
     enum State {
         Stable, 
@@ -13,6 +14,7 @@ public class HealthBar : MonoBehaviour
     private State state = State.Stable;
 
     [SerializeField] private Image height;
+    [SerializeField] private Slider control;
 
     [Header("Slider")]
     [SerializeField] private float minValue = 0f;
