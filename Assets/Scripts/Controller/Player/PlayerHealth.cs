@@ -7,7 +7,7 @@ public enum DamageType
 }
 public class PlayerHealth : Health
 {
-    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private AnimatedBar healthBar;
     [SerializeField] private float hurtRadius;
     [SerializeField] private float invulnerableDuration;
     private float invulnerableTimer;
