@@ -32,12 +32,14 @@ public class WaterTank
 
         if (waterTankBar != null)
         {
+            waterTankBar.Min = 0;
             waterTankBar.Max = maxWater;
             waterTankBar.Current = waterLevel;
         }
 
         if (waterTankInGame != null)
         {
+            waterTankInGame.Min = 0;
             waterTankInGame.Max = maxWater;
             waterTankInGame.Current = waterLevel;
         }
@@ -51,12 +53,14 @@ public class WaterTank
 
         if (waterTankBar != null)
         {
+            waterTankBar.Min = 0;
             waterTankBar.Max = maxWater;
             waterTankBar.Current = waterLevel;
         }
 
         if (waterTankInGame != null)
         {
+            waterTankInGame.Min = 0;
             waterTankInGame.Max = maxWater;
             waterTankInGame.Current = waterLevel;
         }
