@@ -191,10 +191,10 @@ MonoBehaviour:
   stopWhenAttacking: 0
   moveY: 1
   targetHeight: 3
-  projectilePrefab: {fileID: 2095809531407197485, guid: 045f815b191c2084891bba07d5b27b14, type: 3}
+  projectilePrefab: {fileID: 2095809531407197485, guid: b7cd7c3d480773e46b7ba78b65057323, type: 3}
   inaccuracy: 1
   shootStartDistance: 0.5
-  shootSpeed: 10
+  shootSpeed: 16
   cacheCapacity: 5
 --- !u!114 &1401252599262919132
 MonoBehaviour:
@@ -641,6 +641,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1000276637531526659}
     m_Modifications:
+    - target: {fileID: 5602350641565636131, guid: 00c370fec42e4ce45ba96ab0599c4c0b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602350641565636131, guid: 00c370fec42e4ce45ba96ab0599c4c0b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9450981
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602350641565636131, guid: 00c370fec42e4ce45ba96ab0599c4c0b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5254902
+      objectReference: {fileID: 0}
     - target: {fileID: 5809417443693588684, guid: 00c370fec42e4ce45ba96ab0599c4c0b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
