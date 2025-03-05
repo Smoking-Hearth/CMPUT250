@@ -21,8 +21,9 @@ public class GameDialog : IEnumerator<DialogSystem.Command> {
                 // We have lines and the cursor is over one
                 if (lines != null && lines.Length > 0 && 0 <= lineIndex && lineIndex < lines.Length)
                 {
-                    return new DialogSystem.Command(lines[lineIndex], segments[segmentIndex].title, segments[segmentIndex].autoContinue,
-                        segments[segmentIndex].scrollSound, segments[segmentIndex].startSound, segments[segmentIndex].DoEvent);
+                    DialogSegment s = segments[segmentIndex];
+                    return new DialogSystem.Command(lines[lineIndex], s.title, s.autoContinue,
+                        s.scrollSound, s.startSound, s.DoEvent, s.textAlignment, s.font);
                 }
             }
             return new DialogSystem.Command(null); 
@@ -68,19 +69,32 @@ public class DialogSystem : MonoBehaviour
     {
         public AudioClip scrollSound;
         public AudioClip startSound;
+        public TMP_FontAsset font;
+        public HorizontalAlignmentOptions textAlignment;
         public string content;
         public string title;
         public bool autoContinue;
         public UnityEvent DoEvent;
 
-        public Command(string content, string title = null, bool autoContinue = false, AudioClip scrollSound = null, AudioClip startSound = null, UnityEvent doEvent = null)
+        public Command(
+            string content, 
+            string title = null, 
+            bool autoContinue = false, 
+            AudioClip scrollSound = null, 
+            AudioClip startSound = null, 
+            UnityEvent doEvent = null, 
+            HorizontalAlignmentOptions textAlignment = HorizontalAlignmentOptions.Left,
+            TMP_FontAsset font = null
+        )
         {
             this.scrollSound = scrollSound;
             this.startSound = startSound;
             this.content = content;
             this.title = title;
             this.autoContinue = autoContinue;
-            this.DoEvent = doEvent;
+            this.DoEvent = doEvent; 
+            this.textAlignment = textAlignment;
+            this.font = font;
         }
     }
 
@@ -108,6 +122,8 @@ public class DialogSystem : MonoBehaviour
 
     int currentPosition = 0;
 
+    private TMP_FontAsset defaultDialogFont;
+
     private LevelState prevLevelState;
 
     private void OnEnable()
@@ -117,6 +133,7 @@ public class DialogSystem : MonoBehaviour
         {
             continueText.gameObject.SetActive(false);
         }
+        defaultDialogFont = contentText.font;
     }
 
     private void OnDisable()
@@ -138,7 +155,7 @@ public class DialogSystem : MonoBehaviour
                     if (currentPosition % 3 == 0 && currentDialog.Current.scrollSound != null && currentPosition < currentDialog.Current.content.Length)
                     {
                         float pitchOffset = (currentDialog.Current.content[currentPosition] % 32) / 32f;
-                        audioSource.pitch = 0.5f + (pitchOffset);
+                        audioSource.pitch = 0.5f + pitchOffset;
                         audioSource.PlayOneShot(currentDialog.Current.scrollSound);
                     }
 
@@ -177,12 +194,6 @@ public class DialogSystem : MonoBehaviour
             dialogSystemState = State.DisplayingLine;
 
             currentDialog = gameDialog;
-
-            Command cmd = gameDialog.Current;
-            if (titleText != null)
-            {
-                titleText.text = cmd.title;
-            }
             contentText.text = "";
 
             continueTimer = autoContinueDelaySeconds;
@@ -195,10 +206,7 @@ public class DialogSystem : MonoBehaviour
                 gameObject.MyLevelManager().levelState = LevelState.Dialogue;
             }
 
-            if (currentDialog.Current.startSound != null)
-            {
-                audioSource.PlayOneShot(currentDialog.Current.startSound);
-            }
+            SetupForSegment();
 
             return true;
         }
@@ -223,15 +231,7 @@ public class DialogSystem : MonoBehaviour
         if (currentDialog.MoveNext())
         {
             dialogSystemState = State.DisplayingLine;
-
-            if (titleText != null)
-            {
-                titleText.text = currentDialog.Current.title;
-            }
-            if (currentDialog.Current.startSound != null)
-            {
-                audioSource.PlayOneShot(currentDialog.Current.startSound);
-            }
+            SetupForSegment();
         }
         else
         {
@@ -243,6 +243,28 @@ public class DialogSystem : MonoBehaviour
             PlayerController.Controls.Dialogue.Enable();
             gameObject.SetActive(false);
         }
+    }
+
+    private void SetupForSegment() 
+    {
+        if (titleText != null)
+        {
+            titleText.text = currentDialog.Current.title;
+        }
+        if (currentDialog.Current.startSound != null)
+        {
+            audioSource.PlayOneShot(currentDialog.Current.startSound);
+        }
+        if (currentDialog.Current.font != null)
+        {
+            contentText.font = currentDialog.Current.font;
+        }
+        else 
+        {
+            contentText.font = defaultDialogFont;
+        }
+        contentText.horizontalAlignment = currentDialog.Current.textAlignment;
+
     }
 
     private void OnContinue(InputAction.CallbackContext context)

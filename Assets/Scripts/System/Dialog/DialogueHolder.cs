@@ -1,3 +1,5 @@
+using TMPro;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,6 +9,8 @@ public struct DialogSegment
     public string title;
     public AudioClip scrollSound;
     public AudioClip startSound;
+    public TMP_FontAsset font; 
+    public HorizontalAlignmentOptions textAlignment;
 
     [TextArea(0, 5)]
     public string[] lines;
