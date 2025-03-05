@@ -11150,6 +11150,67 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &2111173616
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -2342258227117747220, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
+      propertyPath: enemyInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 9299d7f11ca0c594b836d7566531a818, type: 2}
+    - target: {fileID: 787954144119666710, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 117.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -17.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787954144119666710, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248960090352284795, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
+      propertyPath: m_Name
+      value: CinderElectric
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dbc2ce296256d8b42ae78b98fd5a8183, type: 3}
 --- !u!1 &2116868685
 GameObject:
   m_ObjectHideFlags: 0
@@ -11327,3 +11388,4 @@ SceneRoots:
   - {fileID: 567972824}
   - {fileID: 1395099385}
   - {fileID: 2040653136}
+  - {fileID: 2111173616}
