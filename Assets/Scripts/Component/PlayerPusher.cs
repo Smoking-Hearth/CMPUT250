@@ -15,7 +15,7 @@ public class PlayerPusher : MonoBehaviour
         Player player = gameObject.MyLevelManager().Player;
         if (bounds.Contains(player.Position))
         {
-            player.Movement.PushPlayer(force);
+            player.Movement.PushPlayer(force, (force.y > 0 ? true : false));
         }
     }
 }
