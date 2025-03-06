@@ -288,10 +288,12 @@ public class PlayerMovement : MonoBehaviour
         addedVelocity.x = Mathf.Clamp(addedVelocity.x, -terminalVelocity.x, terminalVelocity.x);
         addedVelocity.y = Mathf.Clamp(addedVelocity.y, -terminalVelocity.y, terminalVelocity.y);
 
-        if (addedVelocity.y > 0)
-        {
-            isJumping = true;
-        }
+    }    
+
+    public void PushPlayer(Vector2 acceleration, bool setJumping)
+    {
+        PushPlayer(acceleration);
+        isJumping = setJumping;
     }
 
     //Accelerates the player downward
