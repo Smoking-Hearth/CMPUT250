@@ -8,9 +8,17 @@ public class EnemyHealth : Health, IExtinguishable
     [SerializeField] private Color blinkColor;
     private ParticleSystem hurtParticles;
     [SerializeField] private Vector2 hurtParticlesOffset;
+    [SerializeField] EnemyHealthBar enemyHealthBar;
     public override float Max
+
     {
         get { return enemyInfo.maxHealth; }
+    }
+
+    void Awake(){
+
+        enemyHealthBar = GetComponentInChildren<EnemyHealthBar>();
+
     }
 
     private EnemySO enemyInfo;
@@ -75,6 +83,7 @@ public class EnemyHealth : Health, IExtinguishable
         Current -= quantity_L;
         blinkTimer = EnemyInfo.blinkDuration;
         hurtParticles.Play();
+        enemyHealthBar.UpdateHealthBar(Current, Max);
 
         if (onHurt != null)
         {
