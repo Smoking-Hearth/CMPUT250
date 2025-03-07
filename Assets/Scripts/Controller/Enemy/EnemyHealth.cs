@@ -15,12 +15,6 @@ public class EnemyHealth : Health, IExtinguishable
         get { return enemyInfo.maxHealth; }
     }
 
-    void Awake(){
-
-        enemyHealthBar = GetComponentInChildren<EnemyHealthBar>();
-
-    }
-
     private EnemySO enemyInfo;
     public EnemySO EnemyInfo {
         get
@@ -38,6 +32,22 @@ public class EnemyHealth : Health, IExtinguishable
     }
     public delegate void OnHurt();
     public event OnHurt onHurt;
+
+    private void OnEnable()
+    {
+        if (enemyHealthBar != null)
+        {
+            enemyHealthBar.ActivateBar();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (enemyHealthBar != null)
+        {
+            enemyHealthBar.DeactivateBar();
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -83,7 +93,11 @@ public class EnemyHealth : Health, IExtinguishable
         Current -= quantity_L;
         blinkTimer = EnemyInfo.blinkDuration;
         hurtParticles.Play();
-        enemyHealthBar.UpdateHealthBar(Current, Max);
+
+        if (enemyHealthBar != null)
+        {
+            enemyHealthBar.UpdateHealthBar(Current, Max);
+        }
 
         if (onHurt != null)
         {
