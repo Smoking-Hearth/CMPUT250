@@ -76,7 +76,6 @@ public class EnemyHealth : Health, IExtinguishable
 
     public virtual void Extinguish(CombustibleKind extinguishClass, float quantity_L)
     {
-        onHurt?.Invoke();
         if (HealthZero)
         {
             return;
@@ -94,6 +93,8 @@ public class EnemyHealth : Health, IExtinguishable
         Current -= quantity_L;
         blinkTimer = EnemyInfo.blinkDuration;
         hurtParticles.Play();
+
+        onHurt?.Invoke();
 
         if (enemyHealthBar != null)
         {

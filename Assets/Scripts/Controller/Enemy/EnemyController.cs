@@ -150,27 +150,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D col)
-    {
-        if (waterLayer != col.gameObject.layer) return;
-
-        var damage = col.gameObject.GetComponent<Damage>();
-        if (damage == null) return;
-
-        // Time to get hurt.
-        var health = GetComponent<Health>();
-
-        if (health == null)
-        {
-            Debug.LogWarning("There exists an invulnerable enemy");
-        }
-        else if (cannotDamage) return;
-        else
-        {
-            health.Current -= damage.damage;
-        }
-    }
-
     protected virtual void Idle()
     {
         // Debug.Log("We are idle");
