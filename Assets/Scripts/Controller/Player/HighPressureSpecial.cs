@@ -108,6 +108,7 @@ public class HighPressureSpecial : SpecialAttack
             splashParticles.Clear();
             splashParticles.Play();
             transform.parent = parent;
+            gameObject.MyLevelManager().Player.Movement.StartPush();
         }
         else
         {
