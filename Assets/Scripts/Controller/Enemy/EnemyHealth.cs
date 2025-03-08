@@ -76,6 +76,7 @@ public class EnemyHealth : Health, IExtinguishable
 
     public virtual void Extinguish(CombustibleKind extinguishClass, float quantity_L)
     {
+        onHurt?.Invoke();
         if (HealthZero)
         {
             return;
@@ -97,11 +98,6 @@ public class EnemyHealth : Health, IExtinguishable
         if (enemyHealthBar != null)
         {
             enemyHealthBar.UpdateHealthBar(Current, Max);
-        }
-
-        if (onHurt != null)
-        {
-            onHurt();
         }
     }
 }

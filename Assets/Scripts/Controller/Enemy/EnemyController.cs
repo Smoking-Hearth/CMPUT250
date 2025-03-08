@@ -32,7 +32,9 @@ public class EnemyController : MonoBehaviour
     protected float frontSwingTimer;
     protected float backSwingTimer;
     protected float defeatTimer;
-    [SerializeField] protected float continueTrackingSeconds;     //How long after committing an attack the enemy tracks the target
+
+    [Tooltip("How long after committing an attack the enemy tracks the target")]
+    [SerializeField] protected float continueTrackingSeconds;
     protected float trackingTimer;
 
     public EnemyState currentState = EnemyState.stWaiting;
@@ -132,6 +134,7 @@ public class EnemyController : MonoBehaviour
             trackingTimer -= Time.fixedDeltaTime;
         }
     }
+
     public virtual void Hurt()
     {
         if (healthComponent.HealthZero)
