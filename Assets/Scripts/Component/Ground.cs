@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum WalkableType
 {
-    Flat, Platform, Slope, SlopePlatform
+    Flat, Platform, Slope, SlopePlatform, Ladder
 }
 
 public class Ground : MonoBehaviour
