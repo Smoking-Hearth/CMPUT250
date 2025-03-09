@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6df888b4237d85a48bc749f584357ecf, type: 3}
-  m_Name: Trailblazer
+  m_Name: C Trailblazer
   m_EditorClassIdentifier: 
-  fireKind: 1
+  fireKind: 4
   attackInfo:
-    damageType: 0
+    damageType: 1
     radius: 1
     damage: 10
     knockbackPower: {x: 500, y: 200}
@@ -32,8 +32,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   blinkColor: {r: 1, g: 1, b: 1, a: 0.5882353}
   speed: 20
-  spawnParticles: {fileID: 4359698127309864546, guid: 1a70f03eea91b5e4493ec59fe3974641, type: 3}
-  hurtParticles: {fileID: 8638484002547717531, guid: 927b14fc8b5c8b54aac399d785fce7cf, type: 3}
+  spawnParticles: {fileID: 3006873478955555893, guid: adb043a0aefce574da5b14a1bb290d5d, type: 3}
+  hurtParticles: {fileID: 8638484002547717531, guid: 448d9ee9f6ff9f34380258c091c10cde, type: 3}
   backfireParticles: {fileID: 0}
   hurtClip: {fileID: 8300000, guid: 6f692b600274db949b79592f3887c04c, type: 3}
   attackClip: {fileID: 0}
