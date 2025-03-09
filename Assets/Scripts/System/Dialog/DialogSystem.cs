@@ -23,7 +23,7 @@ public class GameDialog : IEnumerator<DialogSystem.Command> {
                 {
                     DialogSegment s = segments[segmentIndex];
                     return new DialogSystem.Command(lines[lineIndex], s.title, s.autoContinue,
-                        s.scrollSound, s.startSound, s.DoEvent, s.textAlignment, s.font);
+                        s.scrollSound, s.startSound, s.DoEvent, s.font);
                 }
             }
             return new DialogSystem.Command(null); 
@@ -70,7 +70,6 @@ public class DialogSystem : MonoBehaviour
         public AudioClip scrollSound;
         public AudioClip startSound;
         public TMP_FontAsset font;
-        public HorizontalAlignmentOptions textAlignment;
         public string content;
         public string title;
         public bool autoContinue;
@@ -83,7 +82,6 @@ public class DialogSystem : MonoBehaviour
             AudioClip scrollSound = null, 
             AudioClip startSound = null, 
             UnityEvent doEvent = null, 
-            HorizontalAlignmentOptions textAlignment = HorizontalAlignmentOptions.Left,
             TMP_FontAsset font = null
         )
         {
@@ -93,7 +91,6 @@ public class DialogSystem : MonoBehaviour
             this.title = title;
             this.autoContinue = autoContinue;
             this.DoEvent = doEvent; 
-            this.textAlignment = textAlignment;
             this.font = font;
         }
     }
@@ -263,8 +260,6 @@ public class DialogSystem : MonoBehaviour
         {
             contentText.font = defaultDialogFont;
         }
-        contentText.horizontalAlignment = currentDialog.Current.textAlignment;
-
     }
 
     private void OnContinue(InputAction.CallbackContext context)
