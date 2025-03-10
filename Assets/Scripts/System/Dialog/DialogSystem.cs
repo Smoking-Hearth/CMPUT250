@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameDialog : IEnumerator<DialogSystem.Command> {
     public DialogSegment[] segments;
@@ -23,7 +24,7 @@ public class GameDialog : IEnumerator<DialogSystem.Command> {
                 {
                     DialogSegment s = segments[segmentIndex];
                     return new DialogSystem.Command(lines[lineIndex], s.title, s.autoContinue,
-                        s.scrollSound, s.startSound, s.DoEvent, s.font);
+                        s.scrollSound, s.startSound, s.DoEvent, s.font, s.image);
                 }
             }
             return new DialogSystem.Command(null); 
@@ -70,6 +71,7 @@ public class DialogSystem : MonoBehaviour
         public AudioClip scrollSound;
         public AudioClip startSound;
         public TMP_FontAsset font;
+        public Sprite image;
         public string content;
         public string title;
         public bool autoContinue;
@@ -82,7 +84,8 @@ public class DialogSystem : MonoBehaviour
             AudioClip scrollSound = null, 
             AudioClip startSound = null, 
             UnityEvent doEvent = null, 
-            TMP_FontAsset font = null
+            TMP_FontAsset font = null,
+            Sprite image = null
         )
         {
             this.scrollSound = scrollSound;
@@ -92,6 +95,7 @@ public class DialogSystem : MonoBehaviour
             this.autoContinue = autoContinue;
             this.DoEvent = doEvent; 
             this.font = font;
+            this.image = image;
         }
     }
 
@@ -115,6 +119,9 @@ public class DialogSystem : MonoBehaviour
     [SerializeField] private TMP_Text continueText;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private float autoContinueDelaySeconds;
+    [SerializeField] private Image image;
+    [SerializeField] private RectTransform imageBackdrop;
+
     private float continueTimer;
 
     int currentPosition = 0;
@@ -123,8 +130,29 @@ public class DialogSystem : MonoBehaviour
 
     private LevelState prevLevelState;
 
+    private void SetImage(Sprite sprite = null)
+    {
+        if (image == null) return;
+
+        if (sprite == null)
+        {
+            imageBackdrop.gameObject.SetActive(false);
+        }
+        else
+        {
+            image.preserveAspect = true;
+            image.sprite = sprite;
+            imageBackdrop.gameObject.SetActive(true);
+        }
+    }
+
     private void OnEnable()
     {
+        if (image != null)
+        {
+            SetImage();
+        }
+
         PlayerController.Controls.Dialogue.Continue.performed += OnContinue;
         if (continueText != null)
         {
@@ -244,22 +272,24 @@ public class DialogSystem : MonoBehaviour
 
     private void SetupForSegment() 
     {
+        Command cmd = currentDialog.Current;
         if (titleText != null)
         {
-            titleText.text = currentDialog.Current.title;
+            titleText.text = cmd.title;
         }
-        if (currentDialog.Current.startSound != null)
+        if (cmd.startSound != null)
         {
-            audioSource.PlayOneShot(currentDialog.Current.startSound);
+            audioSource.PlayOneShot(cmd.startSound);
         }
-        if (currentDialog.Current.font != null)
+        if (cmd.font != null)
         {
-            contentText.font = currentDialog.Current.font;
+            contentText.font = cmd.font;
         }
         else 
         {
             contentText.font = defaultDialogFont;
         }
+        SetImage(cmd.image);
     }
 
     private void OnContinue(InputAction.CallbackContext context)

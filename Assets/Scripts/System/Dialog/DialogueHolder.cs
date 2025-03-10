@@ -9,6 +9,7 @@ public struct DialogSegment
     public AudioClip scrollSound;
     public AudioClip startSound;
     public TMP_FontAsset font; 
+    public Sprite image;
 
     [TextArea(0, 5)]
     public string[] lines;
