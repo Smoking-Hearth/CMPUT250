@@ -242,6 +242,11 @@ public class PlayerController : MonoBehaviour
         {
             dropBufferEndTime = dropBufferSeconds;
         }
+    }    
+    
+    private void OnCancelDrop(InputAction.CallbackContext context)
+    {
+        
     }
 
     private void OnStartAttack(InputAction.CallbackContext context) 

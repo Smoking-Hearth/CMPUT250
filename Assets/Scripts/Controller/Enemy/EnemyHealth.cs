@@ -95,14 +95,11 @@ public class EnemyHealth : Health, IExtinguishable
         blinkTimer = EnemyInfo.blinkDuration;
         hurtParticles.Play();
 
+        onHurt?.Invoke();
+
         if (enemyHealthBar != null)
         {
             enemyHealthBar.UpdateHealthBar(Current, Max);
-        }
-
-        if (onHurt != null)
-        {
-            onHurt();
         }
     }
 }

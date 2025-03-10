@@ -768,7 +768,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - Now, for high pressure...
     autoContinue: 1
@@ -1520,7 +1520,7 @@ MonoBehaviour:
     rid: 5394859848043069851
   m_ShadowCastingSource: 2
   m_ShadowMesh:
-    m_Mesh: {fileID: 1476344204}
+    m_Mesh: {fileID: 311256407}
     m_LocalBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 13, y: 1.0999908, z: 0}
@@ -2572,7 +2572,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - Time for some target practice
     autoContinue: 1
@@ -2698,7 +2698,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - "Would you look at that? The rookie isn\u2019t dead yet. \r\nHold tight. We\u2019re
       headed to the city.\r\r\r"
@@ -2710,7 +2710,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - "The city!? I\u2019ve always wanted to work in the fire department within Nagi
       Hestia!\r"
@@ -2722,7 +2722,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - "Ah, you have dreams of joining PRTCT-U, eh? Well, save it. \r\r\n\r"
     - "Any more dilly dallying and Smoggy Hestia will become nothing more than an
@@ -2735,7 +2735,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - "Y-yes sir!\r\r\n\r"
     autoContinue: 0
@@ -3351,7 +3351,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - "Hey, rookie, what are you doing out here!? This fire is way out of your pay
       grade. Retreat back to your tower immediately.\r"
@@ -3363,7 +3363,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - Chief? But-
     autoContinue: 0
@@ -3374,7 +3374,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - "Hmph. If you\u2019re so eager to die, make yourself useful and make your way
       to my location."
@@ -10364,7 +10364,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - Okay, I think I'm ready. Time to put out my first real fire!
     autoContinue: 0
@@ -11454,6 +11454,171 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309488006}
   m_CullTransparentMesh: 1
+--- !u!43 &311256407
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 36
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 20
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 13, y: 1.0999908, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 0
+  m_KeepIndices: 0
+  m_IndexFormat: 1
+  m_IndexBuffer: 000000000400000005000000050000000100000000000000010000000800000009000000090000000200000001000000020000000c0000000d0000000d0000000300000002000000030000001000000011000000110000000000000003000000000000000600000007000000010000000a0000000b000000020000000e0000000f000000030000001200000013000000
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 20
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 560
+    _typelessdata: 0000504180cc8c3f00000000000080bf00000000000050c180cc8c3f000050c180cc8c3f00000000000080bf00000000000050c180cc8cbf000050c180cc8cbf00000000000080bf000000000000504180cc8cbf0000504180cc8cbf00000000000080bf000000000000504180cc8c3f0000504180cc8c3f000000000000000000000000000050c180cc8c3f000050c180cc8c3f0000000000000000000000000000504180cc8c3f0000504180cc8c3f000000000000803f00000000000050c180cc8c3f0000504180cc8c3f000000000000404000000000000050c180cc8c3f000050c180cc8c3f000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000000000000000000050c180cc8c3f000050c180cc8c3f000000000000803f00000000000050c180cc8cbf000050c180cc8c3f000000000000404000000000000050c180cc8cbf000050c180cc8cbf0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000803f000000000000504180cc8cbf000050c180cc8cbf0000000000004040000000000000504180cc8cbf0000504180cc8cbf0000000000000000000000000000504180cc8c3f0000504180cc8c3f0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000803f000000000000504180cc8c3f0000504180cc8cbf0000000000004040000000000000504180cc8c3f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &319361741
 GameObject:
   m_ObjectHideFlags: 0
@@ -13918,7 +14083,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - "Rookie! Come over here, we need to go!\r\r"
     autoContinue: 0
@@ -13929,7 +14094,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - But there's a huge fire!
     autoContinue: 0
@@ -13940,7 +14105,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - "Yes, it's too big to put out, you have to find another way. Just hurry!\r"
     autoContinue: 0
@@ -15058,11 +15223,11 @@ PrefabInstance:
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: 'storedEnemies.Array.data[0]'
       value: 
-      objectReference: {fileID: 1587767947}
+      objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: 'storedEnemies.Array.data[1]'
       value: 
-      objectReference: {fileID: 2049378556}
+      objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: 'storedEnemies.Array.data[2]'
       value: 
@@ -16379,7 +16544,7 @@ MonoBehaviour:
   ShowCameraFrustum: 1
   IgnoreTimeScale: 0
   WorldUpOverride: {fileID: 0}
-  ChannelMask: -1
+  ChannelMask: 2
   UpdateMethod: 1
   BlendUpdateMethod: 1
   LensModeOverride:
@@ -16664,7 +16829,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 2
+    image: {fileID: 0}
     lines:
     - Whoops!
     autoContinue: 1
@@ -23052,7 +23217,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
-    textAlignment: 1
+    image: {fileID: 0}
     lines:
     - In the fire we are free...
     autoContinue: 0
@@ -23063,7 +23228,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - H-huh?
     autoContinue: 0
@@ -23074,7 +23239,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - Lookout seven, this is Watchmaster. You are entering a high level blaze zone,
       please fall back. Over.
@@ -23086,7 +23251,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - What!? But I can handle-
     autoContinue: 0
@@ -23097,7 +23262,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - "That wasn\u2019t a suggestion, rookie. I am ordering you to--"
     autoContinue: 0
@@ -23108,7 +23273,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - Watchmaster? Hello?
     autoContinue: 0
@@ -23787,7 +23952,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 2
+    image: {fileID: 0}
     lines:
     - Man, they really put fire hydrants everywhere huh?
     autoContinue: 1
@@ -24855,7 +25020,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 2
+    image: {fileID: 0}
     lines:
     - What the-!
     autoContinue: 1
@@ -34691,7 +34856,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 2
+    image: {fileID: 0}
     lines:
     - Was that fire...
     - alive?
@@ -42006,7 +42171,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 0}
-    textAlignment: 1
+    image: {fileID: 0}
     lines:
     - This is Watchmaster to lookout seven. Over.
     autoContinue: 0
@@ -42029,7 +42194,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - 'Lookout seven here. Over. '
     autoContinue: 0
@@ -42040,7 +42205,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - "I\u2019m seeing smoke near your area. Deploy to contain. Over."
     autoContinue: 0
@@ -42051,7 +42216,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - Copy Watchmaster. Over and out.
     autoContinue: 0
@@ -42062,7 +42227,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - Over and out.
     autoContinue: 0
@@ -42097,7 +42262,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - "A blaze near here? Finally! It shouldn\u2019t be too hard if I\u2019ve got
       my trusty Hydropack."
@@ -44187,171 +44352,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474879978}
   m_CullTransparentMesh: 1
---- !u!43 &1476344204
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 11
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 36
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 20
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 13, y: 1.0999908, z: 0}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 0
-  m_KeepIndices: 0
-  m_IndexFormat: 1
-  m_IndexBuffer: 000000000400000005000000050000000100000000000000010000000800000009000000090000000200000001000000020000000c0000000d0000000d0000000300000002000000030000001000000011000000110000000000000003000000000000000600000007000000010000000a0000000b000000020000000e0000000f000000030000001200000013000000
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 20
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 560
-    _typelessdata: 0000504180cc8c3f00000000000080bf00000000000050c180cc8c3f000050c180cc8c3f00000000000080bf00000000000050c180cc8cbf000050c180cc8cbf00000000000080bf000000000000504180cc8cbf0000504180cc8cbf00000000000080bf000000000000504180cc8c3f0000504180cc8c3f000000000000000000000000000050c180cc8c3f000050c180cc8c3f0000000000000000000000000000504180cc8c3f0000504180cc8c3f000000000000803f00000000000050c180cc8c3f0000504180cc8c3f000000000000404000000000000050c180cc8c3f000050c180cc8c3f000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000000000000000000050c180cc8c3f000050c180cc8c3f000000000000803f00000000000050c180cc8cbf000050c180cc8c3f000000000000404000000000000050c180cc8cbf000050c180cc8cbf0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000803f000000000000504180cc8cbf000050c180cc8cbf0000000000004040000000000000504180cc8cbf0000504180cc8cbf0000000000000000000000000000504180cc8c3f0000504180cc8c3f0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000803f000000000000504180cc8c3f0000504180cc8cbf0000000000004040000000000000504180cc8c3f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_MeshUsageFlags: 0
-  m_CookingOptions: 30
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!1 &1479417276
 GameObject:
   m_ObjectHideFlags: 0
@@ -44403,7 +44403,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - "Little moth\u2026 so eager to fly towards the sun you fail to see the radiance
       of flames right in front of you.\r\r"
@@ -44415,7 +44415,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - Who are you!? This is a restricted line!
     autoContinue: 0
@@ -44426,7 +44426,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
-    textAlignment: 1
+    image: {fileID: 0}
     lines:
     - "Hush\u2026 little moth\u2026 \r\nSimply bask in the warmth of Their children\u2026\r"
     autoContinue: 0
@@ -44437,7 +44437,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - Hey, wait! Who-
     autoContinue: 0
@@ -44547,7 +44547,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 2
+    image: {fileID: 0}
     lines:
     - Wait, I still need to get ready
     autoContinue: 1
@@ -47113,17 +47113,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00825fe7b3f738442aa69c045b7f638f, type: 3}
---- !u!114 &1587767947 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1987606279594671767, guid: 00825fe7b3f738442aa69c045b7f638f, type: 3}
-  m_PrefabInstance: {fileID: 1587767946}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21afd1754ea8a24488703228b56f7986, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1587767948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3280297344336648386, guid: 00825fe7b3f738442aa69c045b7f638f, type: 3}
@@ -48115,7 +48104,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - Ugh...
     autoContinue: 0
@@ -48724,7 +48713,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - The fire should be this way!
     autoContinue: 1
@@ -48899,7 +48888,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - "My trusty Hydropack. It has a hose mode for fires and a projectile mode for\u2026
       fun?"
@@ -48913,7 +48902,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - "Eh, I\u2019m sure I\u2019ll figure it out when I get more experience. First
       I need to fill up the tank."
@@ -49715,7 +49704,7 @@ MonoBehaviour:
   Priority:
     Enabled: 0
     m_Value: 0
-  OutputChannel: 1
+  OutputChannel: 2
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
@@ -49826,7 +49815,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - Hm, maybe I should've planned my route better, but I gotta get to that fire
       ASAP!
@@ -56255,7 +56244,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - Oh no...
     autoContinue: 1
@@ -56763,7 +56752,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     lines:
     - "Man, I was so inspired by President Boreas\u2019s speech that I slept in my
       uniform. "
@@ -56777,7 +56766,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - '*stretch* I should probably go refill my rations '
     autoContinue: 0
@@ -56846,7 +56835,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 2
+    image: {fileID: 0}
     lines:
     - Ah, I see
     autoContinue: 1
@@ -56857,7 +56846,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 0
+    image: {fileID: 0}
     lines:
     - Looks like someone forgot to put out their campfire
     autoContinue: 1
@@ -59342,17 +59331,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00825fe7b3f738442aa69c045b7f638f, type: 3}
---- !u!114 &2049378556 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1987606279594671767, guid: 00825fe7b3f738442aa69c045b7f638f, type: 3}
-  m_PrefabInstance: {fileID: 2049378555}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21afd1754ea8a24488703228b56f7986, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2049378557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3280297344336648386, guid: 00825fe7b3f738442aa69c045b7f638f, type: 3}
@@ -60306,7 +60284,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    textAlignment: 4
+    image: {fileID: 0}
     lines:
     - Whatever, protecting this land is my duty.
     autoContinue: 1

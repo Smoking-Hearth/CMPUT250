@@ -276,13 +276,20 @@ public class PlayerMovement : MonoBehaviour
         attached = attach;
     }
 
+    public void StartPush()
+    {
+        if (addedVelocity.y < jumpPower * 0.8f && addedVelocity.y >= jumpPower * 0.5f)
+        {
+            addedVelocity.y = jumpPower * 0.8f;
+        }
+    }
+
     public void PushPlayer(Vector2 acceleration)
     {
-        if (addedVelocity.y > 0 && !isJumping)
+        if (!isJumping && gameObject.MyLevelManager().Player.GroundState == GroundState.Grounded)
         {
             addedVelocity.y *= 0.5f;
         }
-
         addedVelocity += acceleration;
 
         addedVelocity.x = Mathf.Clamp(addedVelocity.x, -terminalVelocity.x, terminalVelocity.x);
