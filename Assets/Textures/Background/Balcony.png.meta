@@ -75,7 +75,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 64
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -119,10 +119,10 @@ TextureImporter:
       name: Balcony_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 63
-        height: 19
+        x: 2
+        y: 19
+        width: 40
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +141,10 @@ TextureImporter:
       name: Balcony_1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 18
-        width: 42
-        height: 46
+        x: 45
+        y: 19
+        width: 39
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,11 +159,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Balcony_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 62
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb44e766c69b35540b6cb2d60a097c4f
+      internalID: -94733657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6cc8db92db29f8d4eaf70e6b98405bbc
     internalID: 0
     vertices: []
     indices: 
@@ -175,6 +197,7 @@ TextureImporter:
     nameFileIdTable:
       Balcony_0: 7966536389354789926
       Balcony_1: 6862496155846208488
+      Balcony_2: -94733657
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
