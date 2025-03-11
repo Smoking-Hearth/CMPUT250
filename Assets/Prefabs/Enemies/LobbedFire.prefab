@@ -5072,7 +5072,7 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 8
-  areaOfEffectRadius: 1.5
+  areaOfEffectRadius: 2
   effectiveness: 20
   hitAudio: {fileID: 1454488985947789667}
   attackInfo:
@@ -5142,8 +5142,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 52d6f06f65bc3bd2f8db2c064f65bb8d, type: 3}
-  m_Resource: {fileID: 8300000, guid: 52d6f06f65bc3bd2f8db2c064f65bb8d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+  m_Resource: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -5398,8 +5398,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 2
+      scalar: 6
+      minScalar: 4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5901,7 +5901,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 0.8, y: 1, z: 1}
+    m_Scale: {x: 1.2, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -6838,7 +6838,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9101,7 +9101,7 @@ ParticleSystem:
     primitives: []
   SubModule:
     serializedVersion: 2
-    enabled: 0
+    enabled: 1
     subEmitters:
     - serializedVersion: 3
       emitter: {fileID: 0}
@@ -10165,8 +10165,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 52d6f06f65bc3bd2f8db2c064f65bb8d, type: 3}
-  m_Resource: {fileID: 8300000, guid: 52d6f06f65bc3bd2f8db2c064f65bb8d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 95983ecce56acda4c90189cd966d5a5d, type: 3}
+  m_Resource: {fileID: 8300000, guid: 95983ecce56acda4c90189cd966d5a5d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 2
