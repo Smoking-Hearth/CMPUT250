@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 90f79a6a0b186c745942f2e19374c064
+guid: 55830f562c4075245ac6ce5af827eae9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7966536389354789926
-    second: Balcony_0
-  - first:
-      213: 6862496155846208488
-    second: Balcony_1
+      213: -3896752195277915214
+    second: CrosswalkCorner_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 32
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -116,67 +113,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Balcony_0
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 19
-        width: 40
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 62c17b933a2de8e60800000000000000
-      internalID: 7966536389354789926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Balcony_1
-      rect:
-        serializedVersion: 2
-        x: 45
-        y: 19
-        width: 39
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8eb62b905eb7c3f50800000000000000
-      internalID: 6862496155846208488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Balcony_2
+      name: CrosswalkCorner_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 62
-        height: 18
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 10, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bb7cb63684fbe9c0800000000000000
+      internalID: -3896752195277915214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrosswalkCorner_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 10, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb44e766c69b35540b6cb2d60a097c4f
-      internalID: -94733657
+      spriteID: 202bad895a5822040822ac6d94782991
+      internalID: -1262872354
       vertices: []
       indices: 
       edges: []
@@ -185,7 +160,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6cc8db92db29f8d4eaf70e6b98405bbc
+    spriteID: bc5631c165009da49aad0c10817ab68f
     internalID: 0
     vertices: []
     indices: 
@@ -195,9 +170,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Balcony_0: 7966536389354789926
-      Balcony_1: 6862496155846208488
-      Balcony_2: -94733657
+      CrosswalkCorner_0: -3896752195277915214
+      CrosswalkCorner_1: -1262872354
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
