@@ -12,6 +12,7 @@ public enum SceneIndex
     Settings = 4,
     TechDemo = 5,
     Credits = 6,
+    CityTest = 7
 }
 
 /// <summary>
