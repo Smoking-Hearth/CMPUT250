@@ -23,7 +23,7 @@ public class WaterRefiller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (refillDelayCounter > 0)
+        if (refillDelayCounter >= 0)
         {
             if (!interacting)
             {
