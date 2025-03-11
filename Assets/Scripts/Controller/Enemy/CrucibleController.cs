@@ -39,9 +39,9 @@ public class CrucibleController : MeleeEnemy
     protected override void Attack()
     {
         Vector2 direction = targetPosition - (Vector2)transform.position;
+        base.Attack();
         if (direction.magnitude < throwRange)
         {
-            base.Attack();
             return;
         }
 

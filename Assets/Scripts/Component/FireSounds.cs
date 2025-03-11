@@ -34,7 +34,7 @@ public class FireSounds : MonoBehaviour
     {
         if (hitTimer <= 0 && !playedHit)
         {
-            audioSource.pitch = Random.Range(0.9f, 1);
+            audioSource.pitch = 1;
             audioSource.PlayOneShot(hitClip);
             hitTimer = 0.1f;
             playedHit = true;
