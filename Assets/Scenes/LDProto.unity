@@ -2752,6 +2752,10 @@ PrefabInstance:
       propertyPath: 'inventoryIcons.Array.data[1]'
       value: 
       objectReference: {fileID: 497448666}
+    - target: {fileID: 4692314970295316158, guid: f741decc3d7558047b68438584f5b6d2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5295217620448390165, guid: f741decc3d7558047b68438584f5b6d2, type: 3}
       propertyPath: audioSource
       value: 
@@ -2794,11 +2798,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8217897059543636741, guid: f741decc3d7558047b68438584f5b6d2, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8217897059543636741, guid: f741decc3d7558047b68438584f5b6d2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8347204883692994273, guid: f741decc3d7558047b68438584f5b6d2, type: 3}
       propertyPath: m_Name
@@ -3120,7 +3124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7061179886010364287, guid: e0655401fb0b03f4382d29c374f2705b, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
