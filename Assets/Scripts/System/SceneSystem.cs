@@ -12,6 +12,7 @@ public enum SceneIndex
     Settings = 4,
     TechDemo = 5,
     Credits = 6,
+    LDProto = 7,
 }
 
 /// <summary>
@@ -31,7 +32,7 @@ public class SceneSystem
         get => active;
     }
     
-    private LevelManager[] levelManagers = new LevelManager[7];
+    private LevelManager[] levelManagers = new LevelManager[8];
 
     public LevelManager[] LevelManagers
     {
