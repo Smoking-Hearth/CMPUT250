@@ -226,6 +226,17 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void SetCutsceneState(bool cutsceneOn)
+    {
+        if (cutsceneOn)
+        {
+            levelState = LevelState.Cutscene;
+        }
+        else
+        {
+            levelState = LevelState.Playing;
+        }
+    }
     private void FixedUpdate()
     {
         switch(levelState)

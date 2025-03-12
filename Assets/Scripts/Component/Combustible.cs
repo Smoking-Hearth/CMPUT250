@@ -103,25 +103,23 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
         // NOTE: Something weird was happening here. I had set shouldBurn to Player in the
         // editor but when I logged it it was Fire. So that's why it's getting set manually
         shouldBurn = LayerMask.NameToLayer("Player");
-        gameObject.MyLevelManager().onActivate += Activate;
-        gameObject.MyLevelManager().onDeactivate += Deactivate;
+        //gameObject.MyLevelManager().onActivate += Activate;
+        //gameObject.MyLevelManager().onDeactivate += Deactivate;
         dampness = 0;
         combustibleCollider = GetComponent<Collider2D>();
     }
 
-    private void Activate()
+    private void OnEnable()
     {
         gameObject.MyLevelManager().onFireTick += CheckFireSpread;
     }
-    private void Deactivate()
+    private void OnDisable()
     {
         gameObject.MyLevelManager().onFireTick -= CheckFireSpread;
     }
 
     void FixedUpdate()
     {
-        if (!gameObject.ShouldUpdate()) return;
-
         Vector2 playerPosition = gameObject.MyLevelManager().Player.Position;
         if (Vector2.Distance(playerPosition, transform.position) > SIMULATION_DISTANCE)
         {

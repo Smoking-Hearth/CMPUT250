@@ -78,6 +78,7 @@ public class EnemyController : MonoBehaviour
 
         healthComponent.onHurt += Hurt;
         currentState = EnemyState.stWaiting;
+        enemyAnimator.ResetTrigger("IsDead");
     }
 
     protected virtual void OnDisable()
@@ -143,6 +144,7 @@ public class EnemyController : MonoBehaviour
             defeatTimer = enemyInfo.defeatDurationSeconds;
             sounds.ExtinguishSound();
             sounds.FadeAmbientSounds(enemyInfo.defeatDurationSeconds);
+            enemyAnimator.SetTrigger("IsDead");
         }
         else
         {
