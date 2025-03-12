@@ -28,7 +28,7 @@ public class MeleeEnemy : EnemyController
                     currentState = EnemyState.stFrontSwing;
                 }
             }
-            else
+            else if (distance > enemyInfo.attackRange * 1.5f)
             {
                 commitAttackTimer = enemyInfo.commitAttackSeconds / 2f;
                 currentState = EnemyState.stTargeting;

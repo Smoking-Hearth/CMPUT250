@@ -8,6 +8,7 @@ public class CrucibleController : MeleeEnemy
     [SerializeField] private float throwRange;
     [SerializeField] private float throwIntervalSeconds;
     [SerializeField] private float projectileHangTime;
+    [SerializeField] private float overshootDistance;
     private float throwTimer;
 
     protected override void OnEnable()
@@ -46,8 +47,8 @@ public class CrucibleController : MeleeEnemy
         }
 
         Projectile projectile = Instantiate(projectilePrefab, (Vector2)transform.position + startThrowPosition, Quaternion.identity, null);
-        float velocityX = direction.x / projectileHangTime;
-        float velocityY = projectileHangTime * -Physics2D.gravity.y * 0.5f;
+        float velocityX = (direction.x + overshootDistance * Mathf.Sign(direction.x)) / projectileHangTime;
+        float velocityY = (direction.y - startThrowPosition.y - 0.5f * projectileHangTime * Physics2D.gravity.y * projectileHangTime) / projectileHangTime;
         projectile.Propel(new Vector2(velocityX, velocityY));
         throwTimer = throwIntervalSeconds;
         currentState = EnemyState.stBackSwing;

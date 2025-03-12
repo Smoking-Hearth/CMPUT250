@@ -30000,14 +30000,15 @@ MonoBehaviour:
   sounds: {fileID: 3523290409924717732}
   enemyRigidBody: {fileID: 7655234321319272259}
   acceleration: 0.2
-  deccelerationRate: 0.9
+  deccelerationRate: 0
   stopWhenAttacking: 1
   moveY: 0
   projectilePrefab: {fileID: 2095809531407197485, guid: 66504dc41a531b7488aacf455a46050e, type: 3}
   startThrowPosition: {x: 0, y: 1}
-  throwRange: 4
+  throwRange: 2
   throwIntervalSeconds: 2
   projectileHangTime: 1.2
+  overshootDistance: 2
 --- !u!50 &7655234321319272259
 Rigidbody2D:
   serializedVersion: 5
