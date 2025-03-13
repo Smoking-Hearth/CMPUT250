@@ -8,13 +8,20 @@ public class TriggerCounter : MonoBehaviour
     [SerializeField] private UnityEvent triggerEvent;
     [SerializeField] private bool retrigger;
 
+    private void OnEnable()
+    {
+        counter = 0;
+    }
     public void Tick()
     {
         counter++;
-
-        if (counter == requiredTicks || (retrigger && counter >= requiredTicks))
+        if (counter == requiredTicks)
         {
             triggerEvent.Invoke();
+            if (retrigger)
+            {
+                counter = 0;
+            }
         }
     }
 }
