@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class GasStationBoss : MeleeEnemy
 {
+    public enum GasStationBossState
+    {
+        Air, Crucible, Trailblazer
+    }
     [SerializeField] private Bounds arenaBounds;
     private bool airborne;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
