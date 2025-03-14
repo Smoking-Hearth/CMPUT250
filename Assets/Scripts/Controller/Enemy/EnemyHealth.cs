@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyHealth : Health, IExtinguishable
 {
@@ -9,13 +10,16 @@ public class EnemyHealth : Health, IExtinguishable
     private ParticleSystem hurtParticles;
     [SerializeField] private Vector2 hurtParticlesOffset;
     [SerializeField] EnemyHealthBar enemyHealthBar;
+    public UnityEvent DefeatEvent;
     public override float Max
-
     {
-        get { return enemyInfo.maxHealth; }
+        get
+        {
+            return enemyInfo.maxHealth;
+        }
     }
 
-    private EnemySO enemyInfo;
+    [SerializeField] private EnemySO enemyInfo;
     public EnemySO EnemyInfo {
         get
         {
@@ -39,6 +43,14 @@ public class EnemyHealth : Health, IExtinguishable
         if (enemyHealthBar != null)
         {
             enemyHealthBar.ActivateBar();
+            enemyHealthBar.UpdateHealthBar(Current, Max);
+        }
+        if (enemyInfo != null)
+        {
+            if (hurtParticles == null)
+            {
+                hurtParticles = Instantiate(enemyInfo.hurtParticles, (Vector2)transform.position + hurtParticlesOffset, Quaternion.identity, transform);
+            }
         }
     }
 
@@ -100,6 +112,11 @@ public class EnemyHealth : Health, IExtinguishable
         if (enemyHealthBar != null)
         {
             enemyHealthBar.UpdateHealthBar(Current, Max);
+        }
+
+        if (HealthZero)
+        {
+            DefeatEvent.Invoke();
         }
     }
 }

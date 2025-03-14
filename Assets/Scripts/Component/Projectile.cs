@@ -35,6 +35,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected float areaOfEffectRadius;
     [SerializeField] protected float effectiveness;
     [SerializeField] protected AudioSource hitAudio;
+    [SerializeField] protected bool hitOnlyWhenFalling;     //When turned on, on hit will only trigger when the projectile has negative y velocity
     protected bool hasHit;
 
     protected virtual void OnEnable()
@@ -159,6 +160,10 @@ public class Projectile : MonoBehaviour
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if ((collision.isTrigger && (hitLayers & (1 << collision.gameObject.layer)) == 0) || hasHit)
+        {
+            return;
+        }
+        if (hitOnlyWhenFalling && projectileRigidbody.linearVelocityY >= 0)
         {
             return;
         }

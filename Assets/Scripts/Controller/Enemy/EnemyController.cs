@@ -39,6 +39,7 @@ public class EnemyController : MonoBehaviour
 
     public EnemyState currentState = EnemyState.stWaiting;
 
+
     [Header("Sound")]
     [SerializeField] protected FireSounds sounds;
 
