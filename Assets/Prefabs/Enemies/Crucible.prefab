@@ -777,8 +777,9 @@ MonoBehaviour:
   stopWhenAttacking: 1
   moveY: 0
   projectilePrefab: {fileID: 2095809531407197485, guid: 66504dc41a531b7488aacf455a46050e, type: 3}
+  cacheCapacity: 2
   startThrowPosition: {x: 0, y: 1}
-  throwRange: 2
+  throwRange: 3
   throwIntervalSeconds: 2
   projectileHangTime: 1.2
   overshootDistance: 2
@@ -876,6 +877,10 @@ MonoBehaviour:
   blinkColor: {r: 1, g: 1, b: 1, a: 0.5882353}
   hurtParticlesOffset: {x: 0, y: 1}
   enemyHealthBar: {fileID: 3678279514932245093}
+  DefeatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  enemyInfo: {fileID: 0}
 --- !u!114 &3678279514932245093
 MonoBehaviour:
   m_ObjectHideFlags: 0

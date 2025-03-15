@@ -29,7 +29,6 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
     [SerializeField] Fire firePrefab = null;
     Fire fire = null;
     [SerializeField] CombustibleKind fireKind = CombustibleKind.A_COMMON;
-    private Collider2D combustibleCollider;
 
     [SerializeField] AnimationCurve temperatureToLifetime = AnimationCurve.Constant(0f, MAX_TEMP, 1f);
     [SerializeField] float maxLifetime;
@@ -45,9 +44,10 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
     {
         get { return fire != null && fire.IsActivated; }
     }
-    
+
     // This is in Kelvin because it makes things nice.
     [Header("Temperature")]
+    [SerializeField] float startTemperature;
     [SerializeField] float temperature = 0f;
     public float Temperature 
     {
@@ -68,7 +68,6 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
         }
     }
 
-    LayerMask shouldBurn;
     [SerializeField] private LayerMask fireLayer;
 
     [SerializeField] private float fireSpreadRadius;
@@ -76,22 +75,15 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
     [SerializeField] float heatCopyRate = 1f;
 
     [Header("Fule")]
-    [SerializeField] float fule = 8f;
+    [SerializeField] float maxFuel = 8f;
+    [SerializeField] float currentFuel;
     [Min(0.01f)]
     [SerializeField] float fullDampness = 300f;
     [SerializeField] float dryRate = 0.5f;
     [SerializeField] private float dampness;
-    public float Fule 
-    {
-        get { return fule; }
-        set 
-        {
-            fule = Mathf.Max(value, 0f);
-        }
-    }
 
     // In Kelvin per unit of fule
-    [SerializeField] float fuleToTemp = 10f;
+    [SerializeField] float fuelToTemp = 10f;
 
     void Awake()
     {
@@ -102,16 +94,14 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
 
         // NOTE: Something weird was happening here. I had set shouldBurn to Player in the
         // editor but when I logged it it was Fire. So that's why it's getting set manually
-        shouldBurn = LayerMask.NameToLayer("Player");
-        //gameObject.MyLevelManager().onActivate += Activate;
-        //gameObject.MyLevelManager().onDeactivate += Deactivate;
         dampness = 0;
-        combustibleCollider = GetComponent<Collider2D>();
     }
 
     private void OnEnable()
     {
         gameObject.MyLevelManager().onFireTick += CheckFireSpread;
+        currentFuel = maxFuel;
+        temperature = startTemperature;
     }
     private void OnDisable()
     {
@@ -126,20 +116,20 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
             return;
         }
 
-        bool haveFule = fule > 0f;
+        bool haveFule = currentFuel > 0f;
         if (temperature > autoIgnitionTemperature && haveFule)
         {
             Ignite();
         }
         if (Burning)
         {
-            float consumed = Mathf.Min(Time.fixedDeltaTime, fule);
-            if (fule > 0)
+            float consumed = Mathf.Min(Time.fixedDeltaTime, currentFuel);
+            if (currentFuel > 0)
             {
-                fule -= consumed;
-                Temperature += fuleToTemp * consumed;
+                currentFuel -= consumed;
+                Temperature += fuelToTemp * consumed;
 
-                if (fule <= 0)
+                if (currentFuel <= 0)
                 {
                     FullyBurntEvent.Invoke();
                 }
@@ -164,7 +154,7 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
 
     private void HeatSpread(ITemperatureSource other)
     {
-        if (fule <= 0)
+        if (currentFuel <= 0)
         {
             return;
         }

@@ -43,7 +43,7 @@ public class EnemyHealth : Health, IExtinguishable
         if (enemyHealthBar != null)
         {
             enemyHealthBar.ActivateBar();
-            enemyHealthBar.UpdateHealthBar(Current, Max);
+            enemyHealthBar.UpdateHealthBar(1, 1);
         }
         if (enemyInfo != null)
         {
