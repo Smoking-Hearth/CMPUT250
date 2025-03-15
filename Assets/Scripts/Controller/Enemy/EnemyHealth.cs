@@ -39,6 +39,7 @@ public class EnemyHealth : Health, IExtinguishable
 
     private void OnEnable()
     {
+        // enemyHealthBar = GetComponentInChildren<EnemyHealthBar>();
         if (enemyHealthBar != null)
         {
             enemyHealthBar.ActivateBar();
