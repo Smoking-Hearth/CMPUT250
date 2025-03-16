@@ -77,7 +77,6 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         //Unsubscribe to all player inputs
-        // DevLog.Info($"We have unsubscribed from input within {gameObject.scene.name}");
         Controls.PlayerMovement.InputAxes.performed -= OnAxisInput;
         Controls.PlayerMovement.InputAxes.canceled -= OnAxisInput;
         Controls.PlayerMovement.Jump.performed -= OnJumpInput;

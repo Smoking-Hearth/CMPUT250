@@ -76,8 +76,13 @@ public class PlayerShoot : MonoBehaviour
         public float offsetAngle;
     }
 
+    private bool initialized = false;
+
     private void Awake()
     {
+        if (initialized) return;
+        initialized = true;
+
         SpecialAttack attack = Instantiate(defaultSpecialAttack, transform).GetComponent<SpecialAttack>();
         attack.ResourceTank.SetTank(waterTankBar, waterTankInGame, refillAudio, fullAudio);
         attack.ResourceTank.EmptyTank();
@@ -133,6 +138,10 @@ public class PlayerShoot : MonoBehaviour
 
     public void EnableShooting()
     {
+        // WARN: EnableShooting called implicitly when we set the player active upon
+        // entering scene from LevelManager.Activate. That happens before Awake, but 
+        // we need inventory created to avoid a null reference exception.
+        Awake();
         inventory.SetVisibility(true);
         hydropack.SetActive(true);
         waterTankBar.gameObject.SetActive(true);
