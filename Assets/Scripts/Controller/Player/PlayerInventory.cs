@@ -96,4 +96,12 @@ public class PlayerInventory
 
         currentIndex = 0;
     }
+
+    public void RefillSecondary(int amount)
+    {
+        if (specials[1] != null)
+        {
+            specials[1].ResourceTank.RefillWater(amount);
+        }
+    }
 }

@@ -12,6 +12,14 @@ public class DroneDropItem : MonoBehaviour
     [SerializeField] private bool activated;
     private bool dropped;
 
+    public void OnEnable()
+    {
+        if (activated)
+        {
+            Activate();
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Activate()
     {
@@ -25,7 +33,7 @@ public class DroneDropItem : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!activated || dropped)
+        if (!activated)
         {
             return;
         }
@@ -38,15 +46,25 @@ public class DroneDropItem : MonoBehaviour
         Vector2 targetPosition = (Vector2)target.position - targetDirection.normalized * dropDistance + Vector2.up * targetHeight;
         Vector2 moveDirection = targetPosition - (Vector2)transform.position;
 
-        if (moveDirection.magnitude > 0.2f)
+        if (!dropped)
         {
+            transform.position = (Vector2)transform.position + moveDirection.normalized * speed * Time.fixedDeltaTime;
+            if (moveDirection.magnitude < 1f)
+            {
+                transform.position = (Vector2)transform.position + moveDirection.normalized * speed * Time.fixedDeltaTime;
+                dropped = true;
+                droppedItem.parent = transform.parent;
+                droppedEvent.Invoke();
+            }
+        }
+        else if (moveDirection.magnitude < 15)
+        {
+            moveDirection.x *= -1;
             transform.position = (Vector2)transform.position + moveDirection.normalized * speed * Time.fixedDeltaTime;
         }
         else
         {
-            dropped = true;
-            droppedItem.parent = transform.parent;
-            droppedEvent.Invoke();
+            gameObject.SetActive(false);
         }
     }
 }

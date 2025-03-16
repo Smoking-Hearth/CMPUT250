@@ -93,6 +93,7 @@ public class PlayerShoot : MonoBehaviour
         SpecialAttack.onClearSpecial += DropSpecial;
         PlayerController.Controls.Hydropack.SwapSpecial.performed += inventory.Swap;
         WaterRefiller.onWaterRefill += waterTank.RefillWater;
+        RefillResource.onSecondaryRefill += inventory.RefillSecondary;
         PlayerMovement.onLand += PlayerLand;
     }
 
@@ -102,6 +103,7 @@ public class PlayerShoot : MonoBehaviour
         SpecialAttack.onClearSpecial -= DropSpecial;
         PlayerController.Controls.Hydropack.SwapSpecial.performed -= inventory.Swap;
         WaterRefiller.onWaterRefill -= waterTank.RefillWater;
+        RefillResource.onSecondaryRefill -= inventory.RefillSecondary;
         PlayerMovement.onLand -= PlayerLand;
     }
 

@@ -11,7 +11,7 @@ public class WaterRefiller : MonoBehaviour
     private int refillDelayCounter;
     private bool interacting;
     public delegate void OnWaterRefill(int amount);
-    public static event OnWaterRefill onWaterRefill;
+    public static OnWaterRefill onWaterRefill;
 
 
     private void Start()

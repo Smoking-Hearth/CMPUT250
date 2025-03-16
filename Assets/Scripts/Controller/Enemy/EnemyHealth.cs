@@ -9,7 +9,7 @@ public class EnemyHealth : Health, IExtinguishable
     [SerializeField] private Color blinkColor;
     private ParticleSystem hurtParticles;
     [SerializeField] private Vector2 hurtParticlesOffset;
-    [SerializeField] EnemyHealthBar enemyHealthBar;
+    [SerializeField] private EnemyHealthBar enemyHealthBar;
     public UnityEvent DefeatEvent;
     public override float Max
     {
@@ -50,6 +50,10 @@ public class EnemyHealth : Health, IExtinguishable
             if (hurtParticles == null)
             {
                 hurtParticles = Instantiate(enemyInfo.hurtParticles, (Vector2)transform.position + hurtParticlesOffset, Quaternion.identity, transform);
+            }
+            if (enemyHealthBar != null)
+            {
+                enemyHealthBar.UpdateHealthBar(Current, Max);
             }
         }
     }
