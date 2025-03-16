@@ -149,7 +149,7 @@ public class PlayerShoot : MonoBehaviour
 
     public void AimSprites()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector2 mousePosition = gameObject.MyLevelManager().LevelCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         //For every object that needs to point towards the mouse
         for (int i = 0; i < swingObjects.Length; i++)
