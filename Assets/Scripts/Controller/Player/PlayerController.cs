@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
         {
             if (controls == null)
             {
+                DevLog.Info("PlayerControls Created");
                 controls = new PlayerControls();
                 controls.PlayerMovement.Enable();
                 controls.Menu.Enable();
@@ -189,13 +190,13 @@ public class PlayerController : MonoBehaviour
     {
         if (enabled)
         {
-            controls.Hydropack.Attack.Enable();
+            Controls.Hydropack.Attack.Enable();
             shootBehavior.EnableShooting();
             shootEnabled = true;
         }
         else
         {
-            controls.Hydropack.Attack.Disable();
+            Controls.Hydropack.Attack.Disable();
             shootEnabled = false;
         }
     }
@@ -203,20 +204,19 @@ public class PlayerController : MonoBehaviour
     {
         if (enabled)
         {
-            controls.Hydropack.SpecialAttack.Enable();
-            controls.Hydropack.SwapSpecial.Enable();
+            Controls.Hydropack.SpecialAttack.Enable();
+            Controls.Hydropack.SwapSpecial.Enable();
             specialEnabled = true;
         }
         else
         {
-            controls.Hydropack.SpecialAttack.Disable();
-            controls.Hydropack.SwapSpecial.Disable();
+            Controls.Hydropack.SpecialAttack.Disable();
+            Controls.Hydropack.SwapSpecial.Disable();
             specialEnabled = false;
         }
     }
 
     //INPUT HANDLING
-
     private void OnAxisInput(InputAction.CallbackContext context)
     {
         inputAxes = context.ReadValue<Vector2>();
