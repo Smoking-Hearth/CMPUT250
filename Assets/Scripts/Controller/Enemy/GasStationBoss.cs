@@ -112,6 +112,7 @@ public class GasStationBoss : MonoBehaviour
         shootTimer = shootInterval;
         currentState = GasStationBossState.Air;
         airRigidbody.linearVelocityX = airSpeed;
+        animator.SetTrigger("Rise");
     }
 
     private void AirState()

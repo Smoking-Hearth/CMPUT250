@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: f9288feca90b1854081c9ff53a86429d
+guid: 45256fbe9cfd5934087567f753564725
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1545743478540233939
-    second: GasStationBoss_0
-  - first:
-      213: -772229798285625005
-    second: GasStationBoss_1
-  - first:
-      213: 3447335951141642433
-    second: GasStationBoss_2
+      213: 9148800814639467426
+    second: drone_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -78,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 32
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -119,89 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GasStationBoss_2
+      name: drone_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 64
-        height: 64
+        x: 4
+        y: 9
+        width: 24
+        height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1c02b3568c567df20800000000000000
-      internalID: 3447335951141642433
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GasStationBoss_0
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 34712936d5fc6654194677cd61c695ef
-      internalID: -1545743478540233939
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GasStationBoss_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be140e7f6e8b2eb40b9ca94c789dafab
-      internalID: -772229798285625005
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GasStationBoss_3
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df04c5b77c31cc9478b242cda30a55b4
-      internalID: -1020699849
+      spriteID: 2abc3655ed117fe70800000000000000
+      internalID: 9148800814639467426
       vertices: []
       indices: 
       edges: []
@@ -210,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ce57b95d05e5b5f46bfb2a4b600e2fc7
+    spriteID: 9ac5c70835dff854983c7845459c556a
     internalID: 0
     vertices: []
     indices: 
@@ -220,10 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GasStationBoss_0: -1545743478540233939
-      GasStationBoss_1: -772229798285625005
-      GasStationBoss_2: 3447335951141642433
-      GasStationBoss_3: -1020699849
+      drone_0: 9148800814639467426
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
