@@ -177,11 +177,14 @@ public class LevelContainer: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (anim == MotionHandle.None) return;
         if (anim.IsPlaying())
         {
-            preview.Release();
-            Vector2 size = previewRectTransform.rect.size;
-            preview.width = (int)size.x;
-            preview.height = (int)size.y;
-            preview.Create();
+            if (preview != null)
+            {
+                preview.Release();
+                Vector2 size = previewRectTransform.rect.size;
+                preview.width = (int)size.x;
+                preview.height = (int)size.y;
+                preview.Create();
+            }
         }
         else
         {

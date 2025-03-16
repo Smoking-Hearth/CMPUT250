@@ -118,6 +118,34 @@ public class LevelManager : MonoBehaviour
 
     private readonly Queue<LevelCommand> callbackCommands = new();
 
+    public void DispatchCommand(LevelCommand cmd)
+    {
+        switch (cmd)
+        {
+            case LevelCommand.Load:
+                onLoad?.Invoke();
+                break;
+            case LevelCommand.Activate:
+                try 
+                {
+                    onActivate?.Invoke();
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogException(ex);
+                }
+                isLevelRunning = true;
+                break;
+            case LevelCommand.Deactivate:
+                isLevelRunning = false;
+                onDeactivate?.Invoke();
+                break;
+            case LevelCommand.Unload:
+                onUnload?.Invoke();
+                break;
+        }
+    }
+
     // Why a Queue? There is a race condition here hiding with a gun.
     // - GameManager.Init() runs in Awake
     // - Objects subscribe to the lifecycle stuff in Start (hopefully)
@@ -141,6 +169,9 @@ public class LevelManager : MonoBehaviour
         LevelCamera.gameObject.SetActive(true);
         LevelCamera.enabled = true;
 
+        if (setPlayer != null)
+            setPlayer.gameObject.SetActive(true);
+
         if (EventSystem != null)
             EventSystem.enabled = true;
         if (AudioListener != null)
@@ -163,6 +194,9 @@ public class LevelManager : MonoBehaviour
         }
         LevelCamera?.gameObject.SetActive(false);
 
+        if (setPlayer != null)
+            setPlayer.gameObject.SetActive(false);
+
         if (EventSystem != null)
             EventSystem.enabled =  false;
         if (AudioListener != null)
@@ -175,30 +209,7 @@ public class LevelManager : MonoBehaviour
     {
         if (callbackCommands.TryDequeue(out LevelCommand cmd))
         {
-            switch (cmd)
-            {
-                case LevelCommand.Load:
-                    onLoad?.Invoke();
-                    break;
-                case LevelCommand.Activate:
-                    try 
-                    {
-                        onActivate?.Invoke();
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.LogException(ex);
-                    }
-                    isLevelRunning = true;
-                    break;
-                case LevelCommand.Deactivate:
-                    isLevelRunning = false;
-                    onDeactivate?.Invoke();
-                    break;
-                case LevelCommand.Unload:
-                    onUnload?.Invoke();
-                    break;
-            }
+            DispatchCommand(cmd);
         }
     }
     public void GameOver()

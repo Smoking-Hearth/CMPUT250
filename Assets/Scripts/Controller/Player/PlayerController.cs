@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         //Unsubscribe to all player inputs
+        // DevLog.Info($"We have unsubscribed from input within {gameObject.scene.name}");
         Controls.PlayerMovement.InputAxes.performed -= OnAxisInput;
         Controls.PlayerMovement.InputAxes.canceled -= OnAxisInput;
         Controls.PlayerMovement.Jump.performed -= OnJumpInput;
@@ -121,6 +122,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Player player = gameObject.MyLevelManager().Player;
+        // Debug.Log($"{gameObject.scene.name} Player FixedUpdate\nBuildIdx: {gameObject.scene.buildIndex}\nLevelState:{gameObject.MyLevelManager().levelState}");
         if (gameObject.MyLevelManager().levelState != LevelState.Playing)
         {
             if (controls.PlayerMovement.enabled)
@@ -169,7 +171,7 @@ public class PlayerController : MonoBehaviour
             shootBehavior.AimSprites();
             if (shootBehavior.ShootAvailable)   //Checks if primary shoot is off cooldown
             {
-                Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                Vector2 targetPosition = gameObject.MyLevelManager().LevelCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                 if (shootBehavior.Shoot(targetPosition))
                 {
                     player.Sounds.PlayMainShoot();
@@ -218,6 +220,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnAxisInput(InputAction.CallbackContext context)
     {
+        Debug.Log("Axis Input Recieved");
         inputAxes = context.ReadValue<Vector2>();
     }
 
