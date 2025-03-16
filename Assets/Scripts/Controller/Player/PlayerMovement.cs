@@ -46,6 +46,12 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         SpecialAttack.onPushback += PushPlayer;
+
+        Player player = gameObject.MyLevelManager().Player;
+        if (player.GroundState == GroundState.Grounded)
+        {
+            playerAnimator.SetBool("IsGrounded", true);
+        }
     }
 
     private void OnDisable()
