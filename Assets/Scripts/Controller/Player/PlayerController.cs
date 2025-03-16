@@ -219,7 +219,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnAxisInput(InputAction.CallbackContext context)
     {
-        Debug.Log("Axis Input Recieved");
         inputAxes = context.ReadValue<Vector2>();
     }
 

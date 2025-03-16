@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShooterEnemy : MeleeEnemy
+public class CinderController : MeleeEnemy
 {
     [Header("Shooting")]
     [SerializeField] private float targetHeight;
