@@ -19,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int enemiesToComplete;
     private int enemiesFallen;
     [SerializeField] private ParticleSystem spawnParticles;
+    [SerializeField] private AudioSource spawnAudio;
 
     void FixedUpdate()
     {
@@ -89,6 +90,11 @@ public class EnemySpawner : MonoBehaviour
         if (spawnParticles != null)
         {
             spawnParticles.Play();
+        }
+
+        if (spawnAudio != null)
+        {
+            spawnAudio.Play();
         }
 
         storedEnemies[index].gameObject.SetActive(true);
