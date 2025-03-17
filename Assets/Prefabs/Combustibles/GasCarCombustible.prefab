@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2571211910194081387}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -7921649188387484213, guid: 5b72665ea396b4904a13d34f2646f77f, type: 3}
+  m_Sprite: {fileID: -3062596887455641393, guid: 7f45532002595a94fb0314a33083ee1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 5475437381046565419}
   - component: {fileID: 6647878605290765396}
   m_Layer: 9
-  m_Name: ElectricCarCombustible
+  m_Name: GasCarCombustible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,9 +198,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.4733434, y: 0.07247916}
-  - {x: -0.36128807, y: 0.7648437}
-  - {x: 2.5240521, y: 0.34800735}
+  - {x: -2.3, y: 0.2}
+  - {x: -1.1, y: 0.2}
+  - {x: -0.4, y: 0.7}
+  - {x: 1, y: 0.7}
+  - {x: 2.3, y: 0.2}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -219,7 +221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6105536255316113918, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 6105536255316113918, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -277,7 +279,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: fireKind
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5095367796518042714, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: m_Name
@@ -285,7 +287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6105536255316113918, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: -1.7
       objectReference: {fileID: 0}
     - target: {fileID: 6105536255316113918, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: m_LocalPosition.y

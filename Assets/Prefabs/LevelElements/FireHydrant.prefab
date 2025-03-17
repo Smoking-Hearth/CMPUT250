@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7802263809744094429}
   - component: {fileID: 3151068326713643332}
   - component: {fileID: 7061179886010364287}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: FireHydrant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,9 +182,33 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 88678296915123532, guid: 9a2ac7165ef850046981b476bcf38841, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 388444054842676265, guid: 9a2ac7165ef850046981b476bcf38841, type: 3}
       propertyPath: m_Name
       value: RefillBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 388444054842676265, guid: 9a2ac7165ef850046981b476bcf38841, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 709619625616038276, guid: 9a2ac7165ef850046981b476bcf38841, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1123814235838512150, guid: 9a2ac7165ef850046981b476bcf38841, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627392882747065248, guid: 9a2ac7165ef850046981b476bcf38841, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933863611661178757, guid: 9a2ac7165ef850046981b476bcf38841, type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5588138705248598953, guid: 9a2ac7165ef850046981b476bcf38841, type: 3}
       propertyPath: m_Pivot.x
