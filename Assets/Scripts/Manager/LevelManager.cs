@@ -217,7 +217,7 @@ public class LevelManager : MonoBehaviour
         if (!gameOverScreen.activeSelf)
         {
             gameOverScreen.SetActive(true);
-            PlayerController.Controls.Disable();
+            levelState = LevelState.Defeat;
         }
     }
 

@@ -178,6 +178,7 @@ MonoBehaviour:
       m_Calls: []
   secondsUntilBurnt: 5
   burnRenderer: {fileID: 6390995086412941707}
+  startTemperature: 100
   temperature: 100
   autoIgnitionTemperature: 373.15
   fireLayer:
@@ -185,11 +186,12 @@ MonoBehaviour:
     m_Bits: 34176
   fireSpreadRadius: 2.83
   heatCopyRate: 0.2
-  fule: 8
+  maxFuel: 8
+  currentFuel: 0
   fullDampness: 300
   dryRate: 0.5
   dampness: 0
-  fuleToTemp: 10
+  fuelToTemp: 10
 --- !u!58 &6604028828018548888
 CircleCollider2D:
   m_ObjectHideFlags: 0
