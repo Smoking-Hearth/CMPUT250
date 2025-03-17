@@ -28,6 +28,12 @@ public class FinalBoss : MonoBehaviour
 
     [SerializeField] private UnityEvent completeEvent;
 
+    void Start()
+    {
+        Generate();
+        Activate(true);
+    }
+
     public void Generate()
     {
         floors = new FinalBossFloor[floorCount];
