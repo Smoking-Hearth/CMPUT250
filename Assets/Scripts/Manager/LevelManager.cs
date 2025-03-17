@@ -237,6 +237,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void TransitionTo(int sceneIndex)
+    {
+        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive((SceneIndex)sceneIndex));
+    }
+
     public void SetCutsceneState(bool cutsceneOn)
     {
         if (cutsceneOn)
