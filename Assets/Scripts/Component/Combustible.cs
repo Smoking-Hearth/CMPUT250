@@ -154,11 +154,7 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
 
     private void HeatSpread(ITemperatureSource other)
     {
-        if (currentFuel <= 0)
-        {
-            return;
-        }
-        if (other != null)
+        if (other != null && currentFuel > 0)
         {
             float diff = other.Temperature - temperature;
             if (diff > 0f)

@@ -253,6 +253,7 @@ public class GasStationBoss : MonoBehaviour
             //defeatTimer = enemyInfo.defeatDurationSeconds;
             sounds.ExtinguishSound();
             sounds.FadeAmbientSounds(defeatDurationSeconds);
+            currentState = GasStationBossState.Inactive;
             //enemyAnimator.SetTrigger("IsDead");
         }
         else
@@ -264,6 +265,5 @@ public class GasStationBoss : MonoBehaviour
     public void Complete()
     {
         completeEvent.Invoke();
-        currentState = GasStationBossState.Inactive;
     }
 }
