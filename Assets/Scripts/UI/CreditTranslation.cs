@@ -2,106 +2,42 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-//CREDIT/HELP: https://gamedevbeginner.com/how-to-move-an-object-with-the-mouse-in-unity-in-2d/#dynamic
+// CREDIT/HELP: https://gamedevbeginner.com/how-to-move-an-object-with-the-mouse-in-unity-in-2d/#dynamic
 // public class CreditTranslation : MonoBehaviour
 // {
-public class ClickAndDrag : MonoBehaviour
+public class CreditTranslation : MonoBehaviour
 {
     public GameObject selectedObject;
     Vector3 offset;
 
     void Update()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // Get mouse position in world
+        Vector3 mousePointer = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        // If player holds down mouse
         if (Input.GetMouseButtonDown(0))
         {
-            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-
+            // Find object that mouse is over
+            Collider2D targetObject = Physics2D.OverlapPoint(mousePointer);
+            
+            // If it exists, get object
             if (targetObject)
             {
                 selectedObject = targetObject.transform.gameObject;
-                offset = selectedObject.transform.position - mousePosition;
+                offset = selectedObject.transform.position - mousePointer;
             }
         }
-
-        if (selectedObject) // X == 11, Y == 5
+        // If the object exists, move it to where the mouse pointer is
+        if (selectedObject)
         {
-            selectedObject.transform.position = mousePosition + offset;
-              
+            selectedObject.transform.position = mousePointer + offset;
             
         }
-        // if (selectedObject.transform.position.x >= 18f || selectedObject.transform.position.x <= 1f){
-
-        //     selectedObject = null;
-        //     Debug.Log("out of bounds: x");
-
-        // }
-        // if (selectedObject.transform.position.y >= 17f || selectedObject.transform.position.y <= 6f){
-
-        //     selectedObject = null;
-        //     Debug.Log("out of bounds: y");
-
-        //}  
+        // If the player releases the mouse, deselect it
         if (Input.GetMouseButtonUp(0) && selectedObject)
         {
             selectedObject = null;
         }
     }
 }
-//     public Rigidbody2D selectedObject;
-//     Vector2 offset;
-//     Vector2 mousePointer;
-
-//     public float maxSpeed=10;
-//     Vector2 mouseForce;
-//     Vector2 lastPosition;
-    
-//     void Update()
-//     {
-//         Vector2 mousePointer = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-//         Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-
-//         if (selectedObject){
-
-//             mouseForce = (mousePosition - lastPosition) / Time.deltaTime;
-//             mouseForce = Vector2.ClampMagnitude(mouseForce, maxSpeed);
-//             lastPosition = Input.mousePosition;
-//         }
-
-//         if (Input.GetMouseButtonDown(0)){
-
-//             Collider2D targetObject = Physics2D.OverlapPoint(Input.mousePosition);
-
-//             if (targetObject){
-
-//                 selectedObject = targetObject.transform.gameObject.GetComponent<Rigidbody2D>();
-//                 offset = selectedObject.transform.position - Input.mousePosition;
-
-//             }
-//         }
-//         if (Input.GetMouseButtonDown(0)){
-
-//             selectedObject.linearVelocity = Vector2.zero;
-//             selectedObject.AddForce(mouseForce, ForceMode2D.Impulse);
-//             selectedObject = null;
-
-
-
-//         }
-
-//     }
-
-//     void FixedUpdate()
-//     {   
-
-//         Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-//         if (selectedObject){
-
-//             selectedObject.MovePosition(mousePosition + offset);
-
-//         }
-//     }
-
-
-// }
