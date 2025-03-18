@@ -4,7 +4,7 @@ public class FinalBossFloor : MonoBehaviour
 {
     private GameObject storedDoorObject;
     [SerializeField] private Transform door;
-    [SerializeField] private SpriteRenderer doorGraphics;
+    [SerializeField] private Animator doorAnimator;
 
     [SerializeField] private FinalBossArm arm;
 
@@ -25,6 +25,10 @@ public class FinalBossFloor : MonoBehaviour
 
     public bool LoadDoor(GameObject prefab)
     {
+        if (door == null)
+        {
+            return false;
+        }
         if (isOpen && storedDoorObject != null)
         {
             return false;
@@ -37,9 +41,15 @@ public class FinalBossFloor : MonoBehaviour
 
     public void OpenDoor()
     {
+        if (door == null)
+        {
+            return;
+        }
+
         storedDoorObject.SetActive(true);
         isOpen = true;
-        doorGraphics.enabled = true;
+        door.gameObject.SetActive(true);
+        doorAnimator.SetTrigger("Open");
     }
 
     public bool ActivateArm()

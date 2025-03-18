@@ -124,7 +124,7 @@ TextureImporter:
         width: 102
         height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -144,9 +144,9 @@ TextureImporter:
         x: 10
         y: 0
         width: 235
-        height: 116
+        height: 125
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -159,11 +159,77 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Tower_stairs_2
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 177
+        width: 27
+        height: 45
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f099e6e3ab640874ca7369f0a84ee0f0
+      internalID: -1176485889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tower_stairs_3
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 128
+        width: 9
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cca29c5e4176f4478efa9fef574b6b1
+      internalID: -1537819467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tower_stairs_4
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 128
+        width: 9
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06dea5639bdb37942b3a9994e6b7c0f2
+      internalID: 516385701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 06716e2b32a94d940b73e824f792242d
     internalID: 0
     vertices: []
     indices: 
@@ -175,6 +241,9 @@ TextureImporter:
     nameFileIdTable:
       Tower_stairs_0: -6531273787523596420
       Tower_stairs_1: 2715045106741849067
+      Tower_stairs_2: -1176485889
+      Tower_stairs_3: -1537819467
+      Tower_stairs_4: 516385701
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

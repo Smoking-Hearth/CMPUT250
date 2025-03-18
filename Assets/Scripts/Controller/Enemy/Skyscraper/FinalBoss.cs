@@ -137,8 +137,14 @@ public class FinalBoss : MonoBehaviour
     private void SpawnState()
     {
         int randomSpawn = Random.Range(0, spawnObjects.Length);
+        int randomFloor = currentFloor + Random.Range(-1, 1);
 
-        if (!floors[currentFloor + 1].LoadDoor(spawnObjects[randomSpawn]))
+        if (randomFloor >= floors.Length || randomFloor < 0)
+        {
+            return;
+        }
+
+        if (!floors[randomFloor].LoadDoor(spawnObjects[randomSpawn]))
         {
             standbyTimer = 0;
         }
