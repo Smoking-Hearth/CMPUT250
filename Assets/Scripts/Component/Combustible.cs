@@ -105,7 +105,15 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
     }
     private void OnDisable()
     {
-        gameObject.MyLevelManager().onFireTick -= CheckFireSpread;
+        try 
+        {
+            LevelManager lm = gameObject.MyLevelManager();
+            gameObject.MyLevelManager().onFireTick -= CheckFireSpread;
+        }
+        catch
+        {
+            DevLog.Warn("Could not unsubscribe from onFireTick");
+        }
     }
 
     void FixedUpdate()

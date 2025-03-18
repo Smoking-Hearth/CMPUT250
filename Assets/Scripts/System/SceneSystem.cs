@@ -1,6 +1,5 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public enum SceneIndex
@@ -23,13 +22,14 @@ public class SceneSystem
 {
     // These are bitflags. The nth bit belongs to the nth scene.
     // e.g. First bit is for MainMenu since (1 << 0).
-    private int loading = 0;
+    private int queued = 0;
     private int loaded = 0;
-    private int visible = 0;
-    private int active = 0;
+
+
+
     public int Active
     {
-        get => active;
+        get => SceneManager.GetActiveScene().buildIndex;
     }
     
     private LevelManager[] levelManagers = new LevelManager[8];
@@ -56,6 +56,28 @@ public class SceneSystem
         loaded |= 1 << buildIndex;
     }
 
+    public void RegisterUnload(int buildIndex)
+    {
+        DevLog.Info($"Before Unload: {loaded}");
+        loaded &= ~(1 << buildIndex);
+        DevLog.Info($"Tried unload for {(SceneIndex)buildIndex}, After: {loaded}");
+    }
+
+    public void RegisterQueue(int buildIndex)
+    {
+        queued |= 1 << buildIndex;
+    }
+
+    public void RegisterDequeue(int buildIndex)
+    {
+        queued &= ~(1 << buildIndex);
+    }
+
+    public bool IsQueued(int buildIndex)
+    {
+        return (queued & (1 << buildIndex)) != 0;
+    }
+
     public void RegisterLevelManager(SceneIndex sceneIndex)
     {
         RegisterLevelManager((int)sceneIndex);
@@ -70,10 +92,10 @@ public class SceneSystem
     {
         foreach (var go in scene.GetRootGameObjects())
         {
-            LevelManager lm = go.GetComponent<LevelManager>();
-            if (lm != null)
+            if (go.TryGetComponent<LevelManager>(out var lm))
             {
                 levelManagers[scene.buildIndex] = lm;
+                DevLog.Info($"Set LevelManager for {scene.name}");
                 break;
             }
         }
@@ -83,10 +105,9 @@ public class SceneSystem
     {
         history = new();
         Scene first = SceneManager.GetActiveScene();
-        active = first.buildIndex;
         RegisterScene(first, true);
-        levelManagers[active].NotifyLevel(LevelCommand.Load);
-        levelManagers[active].NotifyLevel(LevelCommand.Activate);
+        levelManagers[first.buildIndex].NotifyLevel(LevelCommand.Load);
+        levelManagers[first.buildIndex].NotifyLevel(LevelCommand.Activate);
     }
 
     public void SceneObjectsToContainer(Scene scene, int container)
@@ -105,17 +126,6 @@ public class SceneSystem
         camera.transform.position = cameraPos;
     }
 
-    public void LoadHook(Scene scene, LoadSceneMode _)
-    {
-        int idx = 1 << (int)scene.buildIndex;
-        loaded |= idx;
-    }
-
-    public void UnloadHook(Scene scene)
-    {
-        loaded &= ~(1 << (int)scene.buildIndex);
-    }
-    
     public bool IsLoaded(SceneIndex sceneIdx)
     {
         return IsLoaded((int)sceneIdx);
@@ -126,12 +136,33 @@ public class SceneSystem
         return (loaded & (1 << buildIndex)) != 0;
     }
 
+    public async Awaitable Unload(int buildIdx)
+    {
+        // WARN: We don't want to unload active scenes
+        if (!IsLoaded(buildIdx) || buildIdx == Active) return;
+
+        RegisterUnload(buildIdx);
+
+        await SceneManager.UnloadSceneAsync(buildIdx);
+
+        // Note that by this point we don't actually know if there is other code
+        // running that has reloaded level. Don't overwrite LevelManager.
+        if (!(IsLoaded(buildIdx) || IsQueued(buildIdx)))
+        {
+            levelManagers[buildIdx] = null;
+        }
+
+    }
+
     public void RegisterScene(Scene scene, bool isFirst = false)
     {
         if (IsLoaded(scene.buildIndex)) return;
+
         int idx = scene.buildIndex;
 
+        RegisterDequeue(idx);
         RegisterLoad(scene);
+
         RegisterLevelManager(scene);
         SceneObjectsToContainer(scene, idx);
 
@@ -151,16 +182,30 @@ public class SceneSystem
         }
     }
 
+    // If the load has not yet been started this will start it. If we are loading the Awaitable
+    // will resolve at latest by the frame after registration. If the scene is loaded this is a 
+    // no-op.
     public async Awaitable Preload(SceneIndex sceneIdx)
     {
+        int buildIdx = (int)sceneIdx;
+        
         // Don't reload loaded scenes
-        if (IsLoaded(sceneIdx)) return;
-        int idx = (int)sceneIdx;
+        if (IsLoaded(buildIdx)) return;
 
-        await SceneManager.LoadSceneAsync(idx, LoadSceneMode.Additive);
+        if (IsQueued(buildIdx))
+        {
+            while (IsQueued(buildIdx))
+            {
+                await Awaitable.NextFrameAsync();
+            }
+            return;
+        }
+
+        RegisterQueue(buildIdx);
+        await SceneManager.LoadSceneAsync(buildIdx, LoadSceneMode.Additive);
 
         DevLog.Info($"Load for {sceneIdx} finished");
-        RegisterScene(SceneManager.GetSceneByBuildIndex(idx));
+        RegisterScene(SceneManager.GetSceneByBuildIndex(buildIdx));
     }
 
     public async Awaitable GoBack()
@@ -174,8 +219,11 @@ public class SceneSystem
         Scene prev = SceneManager.GetActiveScene();
         Scene next = SceneManager.GetSceneByBuildIndex((int)sceneIdx);
 
-        if (!IsLoaded(sceneIdx))
+        // SOME BRAINDAMAGE IS HAPPENING HERE. 
+        if (!(next.IsValid() || next.isLoaded))
         {
+            RegisterUnload((int)sceneIdx);
+            DevLog.Info("Scene not loaded.");
             // We don't hide the objects on this load
             await Preload(sceneIdx);
 
@@ -183,8 +231,14 @@ public class SceneSystem
             // the object previously returned.
             next = SceneManager.GetSceneByBuildIndex((int)sceneIdx);
         }
+        else 
+        {
+            DevLog.Info("Scene is loaded, not bothering with load");
+        }
 
         LevelManager prevManager = levelManagers[prev.buildIndex];
+        DevLog.Info($"Index for next ({next.name}) is {next.buildIndex}");
+        DevLog.Info($"BITS: {queued}, {loaded}");
         LevelManager nextManager = levelManagers[next.buildIndex];
 
         prevManager.NotifyLevel(LevelCommand.Deactivate);
@@ -197,6 +251,7 @@ public class SceneSystem
 
         nextManager.Activate();
         nextManager.NotifyLevel(LevelCommand.Activate);
+        DevLog.Info($"Called Activate for {next.name}");
 
         SceneManager.SetActiveScene(next);
     }

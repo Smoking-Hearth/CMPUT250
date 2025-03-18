@@ -74,11 +74,17 @@ public class Menu : MonoBehaviour
         credits.onClick.RemoveListener(OnCreditsClick);
     }
 
+    public void ResetLevel()
+    {
+        SceneIndex sceneIdx = containers[expandedLevel].levelIndex;
+        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.Unload((int)sceneIdx));
+    }
+
     void OnPlayClick()
     {
         if (!HasSelected) return;
+
         SceneIndex selectedLevel = containers[expandedLevel].levelIndex;
-        GameManager.SceneSystem.LevelManagers[(int)selectedLevel].LevelCamera.targetTexture = null;
         GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(selectedLevel));
     }
 

@@ -4,6 +4,7 @@ using LitMotion;
 using LitMotion.Extensions;
 using UnityEngine.EventSystems;
 
+// Can do something with this but it's borken for beta.
 public class LevelContainer: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     struct CompactState
@@ -29,42 +30,17 @@ public class LevelContainer: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [field: SerializeField] private RectTransform labelRectTransform;
 
 
-    [SerializeField] public RawImage previewImage;
-    private RectTransform previewRectTransform;
     private RectTransform myRectTransform;
 
     [field: SerializeField] public SceneIndex levelIndex { get; private set; }
-    private RenderTexture preview;
-    private bool previewLoaded = false;
-
     private MotionHandle anim = MotionHandle.None;
     private CompactState compactState;
 
     void Start()
     {
-        previewRectTransform = previewImage.GetComponent<RectTransform>();
         myRectTransform = GetComponent<RectTransform>();
-        if (previewRectTransform == null)
-        {
-            DevLog.Error("LevelContainer should be attached to a UI Object");
-        }
         compactState = new CompactState(myRectTransform.anchoredPosition, myRectTransform.sizeDelta);
         button.onClick.AddListener(ContainerClicked);
-
-        gameObject.MyLevelManager().onActivate += Activate;
-        gameObject.MyLevelManager().onDeactivate += Deactivate;
-    }
-    
-    void Activate()
-    {
-        // We have entered/re-entered make sure the contained scene is loaded
-        StartCoroutine(GameManager.SceneSystem.Preload(levelIndex));
-        previewLoaded = false;
-    }
-    
-    public void Deactivate()
-    {
-        GameManager.SceneSystem.LevelManagers[(int)levelIndex].LevelCamera.targetTexture = null;
     }
 
     public void OnPointerEnter(PointerEventData pointerEventData)
@@ -154,37 +130,11 @@ public class LevelContainer: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     void Update()
     {
         if (!gameObject.ShouldUpdate()) return;
-
-        if (!previewLoaded && GameManager.SceneSystem.IsLoaded(levelIndex))
-        {
-            LevelManager levelManager = GameManager.SceneSystem.LevelManagers[(int)levelIndex];
-            
-            Vector2 size = previewRectTransform.rect.size;
-            preview = new RenderTexture(Mathf.CeilToInt(size.x), Mathf.CeilToInt(size.y), 16, RenderTextureFormat.Default);
-            preview.filterMode = FilterMode.Point;
-            preview.autoGenerateMips = false;
-
-            levelManager.LevelCamera.gameObject.SetActive(true);
-            levelManager.LevelCamera.enabled = true;
-
-            levelManager.LevelCamera.targetTexture = preview;
-            previewImage.texture = preview;
-
-            levelManager.LevelCamera.Render();
-            previewLoaded = true;
-        }
-
+        
         if (anim == MotionHandle.None) return;
         if (anim.IsPlaying())
         {
-            if (preview != null)
-            {
-                preview.Release();
-                Vector2 size = previewRectTransform.rect.size;
-                preview.width = (int)size.x;
-                preview.height = (int)size.y;
-                preview.Create();
-            }
+            // Something different.
         }
         else
         {
