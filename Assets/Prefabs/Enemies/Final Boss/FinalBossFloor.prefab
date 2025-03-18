@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 6478376638083283659}
   - component: {fileID: 7479235354741486020}
   - component: {fileID: 2686716421838326929}
+  - component: {fileID: 2998230808077064999}
   m_Layer: 11
   m_Name: StairsCollider
   m_TagString: Untagged
@@ -190,7 +191,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: eb8dd07b52230f2479557978942daf3e, type: 2}
+  m_Material: {fileID: 6200000, guid: 11347bd7c3ec547478d88228b1e84af9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -240,6 +241,21 @@ MonoBehaviour:
   landClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
   usesLandClip: 1
   effector: {fileID: 6478376638083283659}
+--- !u!114 &2998230808077064999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370852034645260509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024aaac07d4408b4d8571fcc797d24f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenAbove: 1
+  disableCollider: {fileID: 7479235354741486020}
+  disableDistance: 2
 --- !u!1 &1457979082809280764
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +267,7 @@ GameObject:
   - component: {fileID: 7226111746501110729}
   - component: {fileID: 5173048203765424131}
   - component: {fileID: 5293278984691260533}
+  - component: {fileID: 8505360826114296444}
   m_Layer: 6
   m_Name: Square (2)
   m_TagString: Untagged
@@ -374,6 +391,23 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8505360826114296444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457979082809280764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51397227a9d3a784cac255d57db9c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkableType: 0
+  footstepClip: {fileID: 8300000, guid: 9df0723c11b1fef419a238163f6d21cd, type: 3}
+  landClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
+  usesLandClip: 1
+  effector: {fileID: 0}
 --- !u!1 &1608111839255559933
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,6 +1118,7 @@ GameObject:
   - component: {fileID: 3755527323417800016}
   - component: {fileID: 2611027522088255811}
   - component: {fileID: 4352465242273602940}
+  - component: {fileID: 3997914814163881197}
   m_Layer: 11
   m_Name: StairsCollider
   m_TagString: Untagged
@@ -1135,7 +1170,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: eb8dd07b52230f2479557978942daf3e, type: 2}
+  m_Material: {fileID: 6200000, guid: 11347bd7c3ec547478d88228b1e84af9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1186,6 +1221,21 @@ MonoBehaviour:
   landClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
   usesLandClip: 1
   effector: {fileID: 3755527323417800016}
+--- !u!114 &3997914814163881197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8530618168236154382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024aaac07d4408b4d8571fcc797d24f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenAbove: 1
+  disableCollider: {fileID: 2611027522088255811}
+  disableDistance: 1.5
 --- !u!1 &8605964682463512240
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,8 +65,12 @@ public class FinalBossFloor : MonoBehaviour
         {
             arm.gameObject.SetActive(true);
             arm.SetActive(true);
-            glassBroken = true;
-            glassRenderer.sprite = glassBrokenSprite;
+
+            if (glassRenderer != null)
+            {
+                glassBroken = true;
+                glassRenderer.sprite = glassBrokenSprite;
+            }
         }
         return true;
     }
