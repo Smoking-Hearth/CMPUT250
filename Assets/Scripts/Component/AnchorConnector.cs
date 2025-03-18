@@ -35,6 +35,6 @@ public class AnchorConnector : MonoBehaviour
         myRigidbody.AddForce(direction.sqrMagnitude * tension * direction.normalized);
         connectorGraphics.transform.position = transform.position;
         connectorGraphics.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
-        connectorGraphics.size = new Vector2(direction.magnitude, 0.75f);
+        connectorGraphics.size = new Vector2(direction.magnitude, 1);
     }
 }

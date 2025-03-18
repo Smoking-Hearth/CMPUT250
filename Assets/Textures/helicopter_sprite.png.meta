@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 9e3319e9e90e46b43af703e2148295f4
+guid: 882f28d5c3eb2324d97349f175443ef2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -592347355220009660
-    second: ElectricZap_0
+      213: 5854704723471297246
+    second: helicopter_sprite_0
+  - first:
+      213: 5141404487856097710
+    second: helicopter_sprite_1
+  - first:
+      213: 8700398568100643459
+    second: helicopter_sprite_2
+  - first:
+      213: 6212639871189357638
+    second: helicopter_sprite_3
+  - first:
+      213: -8412233910068811209
+    second: helicopter_sprite_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,10 +60,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,10 +84,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 64
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,45 +125,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ElectricZap_0
+      name: helicopter_sprite_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 38
-        width: 32
-        height: 20
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        y: 74
+        width: 252
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 44d1874083f87c7f0800000000000000
-      internalID: -592347355220009660
+      spriteID: edaee4b2de6104150800000000000000
+      internalID: 5854704723471297246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ElectricZap_1
+      name: helicopter_sprite_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 38
-        width: 32
-        height: 20
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        x: 281
+        y: 73
+        width: 224
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 19d14ed53b2a98c4b9a0945dce468e1e
-      internalID: 1191706565
+      spriteID: ea903413420f95740800000000000000
+      internalID: 5141404487856097710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: helicopter_sprite_2
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 112
+        width: 6
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 382c4f7a6660eb870800000000000000
+      internalID: 8700398568100643459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: helicopter_sprite_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 1
+        width: 228
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6449baffb0bb73650800000000000000
+      internalID: 6212639871189357638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: helicopter_sprite_4
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 2
+        width: 224
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73a6ad624ddb14b80800000000000000
+      internalID: -8412233910068811209
       vertices: []
       indices: 
       edges: []
@@ -160,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d49d7bfbe3368a54d87fe3ff0daa1647
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -169,9 +247,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      ElectricZap_0: -592347355220009660
-      ElectricZap_1: 1191706565
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -182,7 +182,7 @@ public class PlayerHealth : Health
                     float attackAngle = Mathf.Atan2(-directionFromSource.y, -directionFromSource.x);
                     zapTimer = zapDurationSeconds;
                     zapEffect.color = Color.white;
-                    zapEffect.size = new Vector2(directionFromSource.magnitude, 0.75f);
+                    zapEffect.size = new Vector2(directionFromSource.magnitude, 1);
                     zapEffect.transform.position = transform.position;
                     zapEffect.transform.localRotation = Quaternion.Euler(0, 0, attackAngle * Mathf.Rad2Deg);
                     break;

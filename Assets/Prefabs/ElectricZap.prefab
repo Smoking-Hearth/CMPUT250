@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4654000784316188777}
   - component: {fileID: 3716343494639549746}
+  - component: {fileID: 5319441735845128518}
   m_Layer: 0
   m_Name: ElectricZap
   m_TagString: Untagged
@@ -74,16 +75,38 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034689029
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 15
   m_Sprite: {fileID: -592347355220009660, guid: 9e3319e9e90e46b43af703e2148295f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1.6, y: 0.75}
+  m_Size: {x: 1.6, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5319441735845128518
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748314677052177921}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cfed8486cb7d0048b0576471dbed863, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

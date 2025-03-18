@@ -239,7 +239,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &8288998039865716928
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -318,6 +318,10 @@ MonoBehaviour:
   blinkColor: {r: 1, g: 1, b: 1, a: 0.5882353}
   hurtParticlesOffset: {x: 0, y: 0}
   enemyHealthBar: {fileID: 0}
+  DefeatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  enemyInfo: {fileID: 0}
 --- !u!114 &6677225653668755011
 MonoBehaviour:
   m_ObjectHideFlags: 0
