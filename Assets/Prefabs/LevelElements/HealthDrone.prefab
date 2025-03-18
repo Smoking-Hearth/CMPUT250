@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 20
   m_Sprite: {fileID: 9148800814639467426, guid: 45256fbe9cfd5934087567f753564725, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropDistance: 2
   speed: 5
-  droppedItem: {fileID: 0}
+  droppedItem: {fileID: 3494272333711353737}
   target: {fileID: 0}
   targetHeight: 1
   droppedEvent:
@@ -201,6 +201,10 @@ PrefabInstance:
     - target: {fileID: 231598319612311668, guid: 64b1be00deb72a84f8fef12b47f166be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829711887370130106, guid: 64b1be00deb72a84f8fef12b47f166be, type: 3}
+      propertyPath: refillAmount
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 4494201268296555582, guid: 64b1be00deb72a84f8fef12b47f166be, type: 3}
       propertyPath: m_Name

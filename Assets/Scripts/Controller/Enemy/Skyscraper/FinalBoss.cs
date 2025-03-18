@@ -5,7 +5,7 @@ public class FinalBoss : MonoBehaviour
 {
     private enum FinalBossState
     {
-        INACTIVE, STANDBY, PUNCH, COLUMN, SPAWN
+        INACTIVE, STANDBY, PUNCH, RAIN, SPAWN
     }
     private FinalBossState state;
 
@@ -27,6 +27,11 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] private FinalBossFloor[] floorPrefabs;
 
     [SerializeField] private UnityEvent completeEvent;
+
+    [Header("Projectiles")]
+    private EnemyProjectile[] cache;
+    private int currentProjectileIndex;
+
 
     void Start()
     {
@@ -71,8 +76,8 @@ public class FinalBoss : MonoBehaviour
             case FinalBossState.PUNCH:
                 PunchAttack();
                 break;
-            case FinalBossState.COLUMN:
-                ColumnAttack();
+            case FinalBossState.RAIN:
+                RainAttack();
                 break;
             case FinalBossState.SPAWN:
                 SpawnState();
@@ -99,6 +104,11 @@ public class FinalBoss : MonoBehaviour
         if (standbyTimer > 0)
         {
             standbyTimer -= Time.fixedDeltaTime;
+
+            if (Random.Range(0, 100) == 0)
+            {
+                floors[currentFloor].SendDrone();
+            }
         }
         else
         {
@@ -110,7 +120,7 @@ public class FinalBoss : MonoBehaviour
                     state = FinalBossState.PUNCH;
                     break;
                 case 1:
-                    state = FinalBossState.COLUMN;
+                    state = FinalBossState.RAIN;
                     break;
                 case 2:
                     state = FinalBossState.SPAWN;
@@ -129,7 +139,7 @@ public class FinalBoss : MonoBehaviour
         }
         state = FinalBossState.STANDBY;
     }
-    private void ColumnAttack()
+    private void RainAttack()
     {
         state = FinalBossState.STANDBY;
     }
@@ -137,7 +147,7 @@ public class FinalBoss : MonoBehaviour
     private void SpawnState()
     {
         int randomSpawn = Random.Range(0, spawnObjects.Length);
-        int randomFloor = currentFloor + Random.Range(-1, 1);
+        int randomFloor = currentFloor + Random.Range(-1, 3);
 
         if (randomFloor >= floors.Length || randomFloor < 0)
         {

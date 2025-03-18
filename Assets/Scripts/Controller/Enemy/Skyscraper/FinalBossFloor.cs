@@ -6,10 +6,17 @@ public class FinalBossFloor : MonoBehaviour
     [SerializeField] private Transform door;
     [SerializeField] private Animator doorAnimator;
 
+    [SerializeField] private SpriteRenderer glassRenderer;
+    [SerializeField] private Sprite glassBrokenSprite;
     [SerializeField] private FinalBossArm arm;
+    private bool glassBroken;
 
     [SerializeField] private float activateAltitude;
     private bool isOpen;
+
+    [SerializeField] private Vector2 dronePosition;
+    [SerializeField] private DroneDropItem dronePrefab;
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -58,7 +65,20 @@ public class FinalBossFloor : MonoBehaviour
         {
             arm.gameObject.SetActive(true);
             arm.SetActive(true);
+            glassBroken = true;
+            glassRenderer.sprite = glassBrokenSprite;
         }
+        return true;
+    }
+
+    public bool SendDrone()
+    {
+        if (dronePrefab == null || !glassBroken || arm.IsActivated)
+        {
+            return false;
+        }
+
+        Instantiate(dronePrefab, (Vector2)transform.position + dronePosition, Quaternion.identity, transform);
         return true;
     }
 }
