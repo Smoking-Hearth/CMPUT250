@@ -61,6 +61,10 @@ public class FinalBossFloor : MonoBehaviour
 
     public bool ActivateArm()
     {
+        if (arm == null)
+        {
+            return false;
+        }
         if (!arm.IsActivated)
         {
             arm.gameObject.SetActive(true);

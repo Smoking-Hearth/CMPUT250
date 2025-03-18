@@ -36,7 +36,6 @@ public class FinalBoss : MonoBehaviour
     void Start()
     {
         Generate();
-        Activate(true);
     }
 
     public void Generate()
@@ -105,7 +104,7 @@ public class FinalBoss : MonoBehaviour
         {
             standbyTimer -= Time.fixedDeltaTime;
 
-            if (Random.Range(0, 100) == 0)
+            if (Random.Range(0, 1000) == 0)
             {
                 floors[currentFloor].SendDrone();
             }

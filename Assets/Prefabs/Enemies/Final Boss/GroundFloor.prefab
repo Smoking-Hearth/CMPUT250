@@ -449,7 +449,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -133107270887145440, guid: 806b7a0d9dcc5224ab6cd70ee5803b1e, type: 3}
   m_Color: {r: 0.37459952, g: 0.3873201, b: 0.4339623, a: 1}
   m_FlipX: 0
@@ -1039,7 +1039,6 @@ Transform:
   - {fileID: 8252228730200260678}
   - {fileID: 1459524309350522020}
   - {fileID: 4481468502310753329}
-  - {fileID: 1637706567614890588}
   - {fileID: 3739682224675278418}
   - {fileID: 7186033781031030686}
   - {fileID: 1996793709285556812}
@@ -1062,7 +1061,7 @@ MonoBehaviour:
   doorAnimator: {fileID: 0}
   glassRenderer: {fileID: 0}
   glassBrokenSprite: {fileID: 0}
-  arm: {fileID: 7951789560098394791}
+  arm: {fileID: 0}
   activateAltitude: -4
   dronePosition: {x: 0, y: 0}
   dronePrefab: {fileID: 0}
@@ -1489,80 +1488,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2998270735601937332, guid: 3c1a7d000a7f07040b5449ab138fe300, type: 3}
   m_PrefabInstance: {fileID: 201718806267682923}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8430861516785536739
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2466860787030460951}
-    m_Modifications:
-    - target: {fileID: 7186094173458648255, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7186094173458648255, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7186094173458648255, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7186094173458648255, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7186094173458648255, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7186094173458648255, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7186094173458648255, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7186094173458648255, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7186094173458648255, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7186094173458648255, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047813720745501756, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-      propertyPath: m_Name
-      value: FinalBossArm
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047813720745501756, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
---- !u!4 &1637706567614890588 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7186094173458648255, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-  m_PrefabInstance: {fileID: 8430861516785536739}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7951789560098394791 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1970889543449074756, guid: 3edaeaa3b1e3e2e4f945601fd5b710ab, type: 3}
-  m_PrefabInstance: {fileID: 8430861516785536739}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd7873d61f7f6c8469c79d569977b7a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

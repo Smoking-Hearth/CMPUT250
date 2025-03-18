@@ -46,7 +46,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -173,7 +173,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 1161
+    m_Bits: 17545
   m_RotationalOffset: -30
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
@@ -191,7 +191,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 11347bd7c3ec547478d88228b1e84af9, type: 2}
+  m_Material: {fileID: 6200000, guid: eb8dd07b52230f2479557978942daf3e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -628,7 +628,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -649,7 +649,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.005, y: 0.005}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1152,7 +1152,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 1161
+    m_Bits: 17545
   m_RotationalOffset: 30
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
@@ -1170,7 +1170,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 11347bd7c3ec547478d88228b1e84af9, type: 2}
+  m_Material: {fileID: 6200000, guid: eb8dd07b52230f2479557978942daf3e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1199,7 +1199,7 @@ EdgeCollider2D:
   m_Points:
   - {x: -3.8268604, y: -1.125}
   - {x: -2.58, y: -1.125}
-  - {x: 1.3280224, y: 1.4855232}
+  - {x: 1.3045251, y: 1.4744656}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0

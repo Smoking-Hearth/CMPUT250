@@ -20,6 +20,8 @@ public class FinalBossArm : Fire, IExtinguishable
     [SerializeField] private float peakFireHeight;
     private float lingerTimer;
 
+    [SerializeField] private Collider2D armCollider;
+
     public float Temperature
     {
         get { return temperature; }
@@ -75,6 +77,7 @@ public class FinalBossArm : Fire, IExtinguishable
             {
                 float ratio = Temperature / armTemperature;
                 Vector2 lerpPosition = Vector2.Lerp(startAttackPosition + (Vector2)transform.position, attackPosition + (Vector2)transform.position, ratio);
+                armCollider.offset = lerpPosition - (Vector2)transform.position;
                 GameManager.onEnemyAttack(lerpPosition, transform.position, attackInfo);
                 attackTimer = attackInterval;
             }
@@ -102,6 +105,10 @@ public class FinalBossArm : Fire, IExtinguishable
 
     public void Extinguish(CombustibleKind extinguishClass, float quantity_L)
     {
+        if (!activated)
+        {
+            return;
+        }
         if ((extinguishClass & fireKind) > 0)
         {
             Temperature -= quantity_L * extinguishEffectiveness.Evaluate(Mathf.Min(temperature - minTemperature, Combustible.MAX_TEMP));
