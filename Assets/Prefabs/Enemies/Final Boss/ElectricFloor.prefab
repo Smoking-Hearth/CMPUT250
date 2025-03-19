@@ -97,6 +97,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 8192
       objectReference: {fileID: 0}
+    - target: {fileID: 2125614613325450071, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2466860787030460951, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -142,7 +146,8 @@ PrefabInstance:
       value: ElectricFloor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1923032716275591903, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2466860787030460951, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
       insertIndex: -1
