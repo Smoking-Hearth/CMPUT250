@@ -227,6 +227,87 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2095483701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &176715439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 176715440}
+  - component: {fileID: 176715441}
+  m_Layer: 0
+  m_Name: FightEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &176715440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176715439}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 996041503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &176715441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176715439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - "I\u2019m surprised you made it through that."
+    - "I\u2019ll leave you alone for now, but mark my words,"
+    - We will reignite.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Finally\u2026 silence."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Heads up, kid. We\u2019re coming in."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &182578577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1570,6 +1651,119 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1000, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &702591164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 702591165}
+  - component: {fileID: 702591166}
+  m_Layer: 0
+  m_Name: PostBossAppear
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &702591165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702591164}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 996041503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &702591166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702591164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Prophet
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - "\u2026We reserve one of our loudest heralds."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Hey, kid, this is the chief! We see you, but we\u2019re also staring at a
+      massive Infernal!"
+    - "I hate to say this but unless you can take care of that thing, we can\u2019t
+      safely pick you up."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Prophet
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - "Tell me, little Icarus, now that you\u2019re so close to the sun, will you
+      accept their gifts?"
+    - Or will you reject them and let yourself crash into the sea?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Sorry, but my mind is already made.
+    - I will live.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Prophet
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - HA HA HA!!!
+    - So be it.
+    - "Just remember\u2026"
+    - "In the ashes\u2026"
+    - WE
+    - WE ARE
+    - WE ARE REBORN!!!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &711565351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,6 +1914,278 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2113563200}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &803441086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 803441087}
+  - component: {fileID: 803441088}
+  m_Layer: 0
+  m_Name: End
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &803441087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803441086}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 996041503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &803441088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803441086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Look at that, kid, you made it. You\u2019re in for a promotion or two if I
+      do say so myself, heh heh."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Yeah\u2026"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Oh, I know that look\u2026"
+    - "You got in touch with a pinecone, didn\u2019t you?"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - ...
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Heh, don\u2019t give me that look. I\u2019m not gonna fire or arrest you."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - You make it sound like that happens everyday.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - What? Pinecones breaching our communication lines?
+    - Yeah, despite what that stupid company, Mycelium Inc. says, it actually does
+      happen all the time.
+    - The amount of those idiots who manage to get into my personal line is actually
+      hilarious.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - And you just let them?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Of course.
+    - In these trying times, staying connected to others is very important, even
+      if they disagree with you.
+    - Plus, debate and yelling at people is my guilty pleasure.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Hey, chief?
+    - What do you think about all of this?
+    - Do you think that humanity is a lost cause?
+    - Should we just let ourselves burn to ashes?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Woah, don\u2019t tell me I\u2019ve got a pinecone with me, ha ha."
+    - Well, if you have to know.
+    - Whether we deserve to exist,
+    - 'Whether we should all just light ourselves on fire, '
+    - Or fight for a brighter future,
+    - "That\u2019s none of my business."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - What?
+    - Then why-
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Why am I the fire chief?
+    - "Well, that\u2019s because I believe that no matter what, "
+    - No matter what somebody believes, people should have the right to live.
+    - If you want to die, you do you, but if you believe everyone should die?
+    - "If you\u2019re looking to bring everyone down with you?"
+    - "Well, that\u2019s where I draw the line."
+    - What about you?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - I believe that all life should live.
+    - If somebody wants to live, they should.
+    - "If somebody wants to die well\u2026"
+    - "I\u2019ll drag them kicking and screaming back to life."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - You sound like the pinecones.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - But I believe that our existence, our continued existence, is worth it.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Quite the hero we have here.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - What can I say?
+    - My thirst to save people is
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &830132601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,17 +2237,21 @@ MonoBehaviour:
     startSound: {fileID: 0}
     font: {fileID: 0}
     image: {fileID: 0}
-    lines: []
+    lines:
+    - "Finally\u2026"
+    - "Man\u2026 the city really is lost\u2026"
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
   - title: Cultist
-    scrollSound: {fileID: 0}
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
     image: {fileID: 0}
-    lines: []
+    lines:
+    - Do you see now?
+    - Their gifts are unstoppable.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -1791,17 +2261,27 @@ MonoBehaviour:
     startSound: {fileID: 0}
     font: {fileID: 0}
     image: {fileID: 0}
-    lines: []
+    lines:
+    - You know, I have to say, pinecone, your conviction to your faith is commendable.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
   - title: Cultist
-    scrollSound: {fileID: 0}
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
     image: {fileID: 0}
-    lines: []
+    lines:
+    - Faith!?
+    - You think that I have faith!?
+    - You think that our group prays to something that may or may not exist!?
+    - No.
+    - "We have undeniable proof of our \u201Cgods\u201D."
+    - The proof lights up every shadow.
+    - Follows where you roam.
+    - Cleanses the blight.
+    - Melts the flesh right from your bones.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -1811,17 +2291,21 @@ MonoBehaviour:
     startSound: {fileID: 0}
     font: {fileID: 0}
     image: {fileID: 0}
-    lines: []
+    lines:
+    - "You\u2019re talking about the Infernals, aren\u2019t you?"
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
   - title: Cultist
-    scrollSound: {fileID: 0}
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
     image: {fileID: 0}
-    lines: []
+    lines:
+    - Indeed.
+    - "To deny the existence of our \u201Cgods\u201D is to deny the very existence
+      of the natural world."
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -1831,17 +2315,22 @@ MonoBehaviour:
     startSound: {fileID: 0}
     font: {fileID: 0}
     image: {fileID: 0}
-    lines: []
+    lines:
+    - "And who are these \u201Cgods\u201D you keep rattling off about?"
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
   - title: Cultist
-    scrollSound: {fileID: 0}
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
     image: {fileID: 0}
-    lines: []
+    lines:
+    - The close and the far.
+    - The creator and the watcher.
+    - The caring Earth and the raging Sun.
+    - Mother Nature and Father Sol.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -1851,17 +2340,24 @@ MonoBehaviour:
     startSound: {fileID: 0}
     font: {fileID: 0}
     image: {fileID: 0}
-    lines: []
+    lines:
+    - "And the Infernals are their children\u2026"
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
   - title: Cultist
-    scrollSound: {fileID: 0}
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
     image: {fileID: 0}
-    lines: []
+    lines:
+    - Yes!
+    - Throughout all of history, humanity has needed messengers from higher beings.
+    - For the Greeks, it was Hermes.
+    - For the Christians, it is the angels.
+    - For all of mankind, we have the Infernals,
+    - "And for you\u2026"
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -1934,6 +2430,11 @@ PrefabInstance:
       addedObject: {fileID: 1820054744}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+--- !u!4 &838478602 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1613979387586651009, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+  m_PrefabInstance: {fileID: 838478601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &890833131 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2106859508735444894, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
@@ -2093,6 +2594,9 @@ Transform:
   - {fileID: 1085208021}
   - {fileID: 1616302351}
   - {fileID: 830132602}
+  - {fileID: 702591165}
+  - {fileID: 176715440}
+  - {fileID: 803441087}
   m_Father: {fileID: 1930961073}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1007903289
@@ -4188,7 +4692,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 989833494}
+  m_Father: {fileID: 838478602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1846181735
 PrefabInstance:
@@ -5173,3 +5677,4 @@ SceneRoots:
   - {fileID: 1338372192}
   - {fileID: 2071746743}
   - {fileID: 2016163903}
+  - {fileID: 1585553697}
