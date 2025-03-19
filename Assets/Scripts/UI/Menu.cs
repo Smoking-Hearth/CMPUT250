@@ -97,7 +97,7 @@ public class Menu : MonoBehaviour
 
     void OnSettingsClick()
     {
-        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Settings, keepInHistory: true));
+        // GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Settings, keepInHistory: true));
     }
 
     void OnCreditsClick()

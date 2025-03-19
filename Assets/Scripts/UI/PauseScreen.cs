@@ -95,7 +95,7 @@ public class PauseScreen : MonoBehaviour
 
     void OnSettingsClick()
     {
-        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Settings, keepInHistory: true));
+        // GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Settings, keepInHistory: true));
     }
 
     public void OnMenuClick()

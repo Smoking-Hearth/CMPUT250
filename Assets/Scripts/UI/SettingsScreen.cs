@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class Settings : MonoBehaviour
+public class SettingsScreen : MonoBehaviour
 {
     [SerializeField] Slider volume;
     [SerializeField] Button back;

@@ -8,10 +8,8 @@ public enum SceneIndex
     Forest = 1,
     City = 2,
     Skyscraper = 3,
-    Settings = 4,
-    TechDemo = 5,
-    Credits = 6,
-    LDProto = 7,
+    Credits = 4,
+    LDProto = 5,
 }
 
 /// <summary>
@@ -32,7 +30,7 @@ public class SceneSystem
         get => SceneManager.GetActiveScene().buildIndex;
     }
     
-    private LevelManager[] levelManagers = new LevelManager[8];
+    private LevelManager[] levelManagers = new LevelManager[6];
 
     public LevelManager[] LevelManagers
     {
