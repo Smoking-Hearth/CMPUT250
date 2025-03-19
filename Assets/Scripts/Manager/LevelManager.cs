@@ -64,6 +64,7 @@ public class LevelManager : MonoBehaviour
     [Header("Key Objects")]
     [SerializeField] public FireSettings fireSettings;
     [SerializeField] public List<GameObject> UI;
+    [SerializeField] private float setCameraStateDelay; 
     [field: SerializeField] public Camera LevelCamera; 
 
     [SerializeField] private GameObject gameOverScreen;
@@ -177,9 +178,6 @@ public class LevelManager : MonoBehaviour
         if (AudioListener != null)
             AudioListener.enabled = true;
 
-        if (cameraAnimator != null)
-            cameraAnimator.Play("Game");
-
         foreach (var uiObject in UI)
         {
             uiObject.SetActive(true);
@@ -210,6 +208,12 @@ public class LevelManager : MonoBehaviour
         if (callbackCommands.TryDequeue(out LevelCommand cmd))
         {
             DispatchCommand(cmd);
+        }
+
+        if (Time.time > setCameraStateDelay)
+        {
+            if (cameraAnimator != null)
+                cameraAnimator.Play("Game");
         }
     }
     public void GameOver()
