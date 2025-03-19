@@ -1720,6 +1720,152 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2113563200}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &830132601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 830132602}
+  - component: {fileID: 830132603}
+  m_Layer: 0
+  m_Name: TopOfTowr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &830132602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830132601}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 996041503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &830132603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830132601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines: []
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 0}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines: []
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines: []
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 0}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines: []
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines: []
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 0}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines: []
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines: []
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 0}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines: []
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines: []
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 0}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines: []
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &838478601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1914,11 +2060,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &989833494 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1613979387586651009, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-  m_PrefabInstance: {fileID: 838478601}
+--- !u!1 &996041502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 996041503}
+  m_Layer: 0
+  m_Name: Dialog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &996041503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996041502}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1556648168}
+  - {fileID: 1085208021}
+  - {fileID: 1616302351}
+  - {fileID: 830132602}
+  m_Father: {fileID: 1930961073}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1007903289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,6 +2382,174 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42c742bc38e843226a5299a7da5a4aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1085208020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085208021}
+  - component: {fileID: 1085208022}
+  m_Layer: 0
+  m_Name: MidLvl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1085208021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085208020}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 996041503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1085208022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085208020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Finally, a break\u2026"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Pain in the butt
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - Why do you run?
+    - Why do you climb upward when the true means of ascension is right below you?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Zip it, pinecone.
+    - "I\u2019m trying to survive here!"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Pain in the butt
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - "Survival\u2026"
+    - Even if you were to survive this, can you truly say that this world is worth
+      living in?
+    - "Wouldn\u2019t it be so much more simple to let yourself be consumed by their
+      children?"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Are you stupid or something?
+    - Why would I willingly let myself die!?
+    - "Even if the world is burning, even if it\u2019s hopeless,"
+    - "Doesn't the fact that we\u2019re alive mean we still have a chance to change?"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - I was once like you.
+    - I had hope for this world.
+    - I truly believed that the world could come together and solve our problems
+      together,
+    - But that was far from the truth.
+    - In my hopeful optimism, I failed to consider the one factor that destroys all
+      sense of empathy.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "And\u2026 What was that factor?"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - Greed.
+    - You were probably too young to witness it yourself but I saw the corruption
+      fester in real time.
+    - I watched as companies blamed the people for striking matches while they themselves
+      were lit the biggest fires.
+    - I observed people vote for the poison thinking it was the cure.
+    - I witnessed nations burn to ashes, and unite together,
+    - But not under the flag of a shared goal but under the banner of corporations.
+    - So tell me, little moth, are we worthy of existence?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - ...
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &1124428150 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 458224861759424769, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
@@ -3356,6 +3700,238 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 7705770258420024749, guid: f741decc3d7558047b68438584f5b6d2, type: 3}
   m_PrefabInstance: {fileID: 1532442759}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1556648167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556648168}
+  - component: {fileID: 1556648169}
+  m_Layer: 0
+  m_Name: LvlStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1556648168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556648167}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 996041503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1556648169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556648167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Finally. Fresh air.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Pain in the butt
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - Scurrying around like a rat I see.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "You never stay quiet, do you\u2026"
+    - "Can\u2019t you just leave me alone?"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Pain in the butt
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - 'Of course not. '
+    - 'I would never run away and miss the part where their children turn your corpse
+      into a bonfire. '
+    - "I wouldn\u2019t dare miss a spectacle like that."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "You\u2019re so annoying\u2026"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Pain in the butt
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - Regardless of how you feel about me,
+    - The grand climax is drawing close.
+    - Let the show begin.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!1001 &1585553697
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1652287445245092439, guid: 53772f976a087f54bb50c830eaeab64a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.989734
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652287445245092439, guid: 53772f976a087f54bb50c830eaeab64a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.3283236
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652287445245092439, guid: 53772f976a087f54bb50c830eaeab64a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652287445245092439, guid: 53772f976a087f54bb50c830eaeab64a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652287445245092439, guid: 53772f976a087f54bb50c830eaeab64a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652287445245092439, guid: 53772f976a087f54bb50c830eaeab64a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652287445245092439, guid: 53772f976a087f54bb50c830eaeab64a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652287445245092439, guid: 53772f976a087f54bb50c830eaeab64a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652287445245092439, guid: 53772f976a087f54bb50c830eaeab64a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652287445245092439, guid: 53772f976a087f54bb50c830eaeab64a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577985618727057976, guid: 53772f976a087f54bb50c830eaeab64a, type: 3}
+      propertyPath: m_Name
+      value: Extinguisher
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 53772f976a087f54bb50c830eaeab64a, type: 3}
+--- !u!1 &1616302350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1616302351}
+  - component: {fileID: 1616302352}
+  m_Layer: 0
+  m_Name: FireFist
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1616302351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616302350}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 996041503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1616302352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616302350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - What was that!?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1645178404
 GameObject:
   m_ObjectHideFlags: 0
@@ -4072,6 +4648,7 @@ Transform:
   - {fileID: 1645178406}
   - {fileID: 1007903291}
   - {fileID: 944477958}
+  - {fileID: 996041503}
   - {fileID: 1170556410}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
