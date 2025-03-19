@@ -3401,13 +3401,13 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - Chief? But-
+    - This is lookout seven and I volunteer! Over.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -3418,8 +3418,11 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - "Hmph. If you\u2019re so eager to die, make yourself useful and make your way
-      to my location."
+    - 'Great. You can- '
+    - Wait, a rookie!?
+    - "Jeez\u2026 the youth these days\u2026"
+    - "Fine, if you\u2019re so eager to die, we\u2019ll pick you up at your tower."
+    - If you make it, of course.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -13920,11 +13923,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
   m_PrefabInstance: {fileID: 444679251}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &444679253 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1296189351281241401, guid: ad6c72de77d995d419add9540441b811, type: 3}
-  m_PrefabInstance: {fileID: 444679251}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &445626754
 GameObject:
   m_ObjectHideFlags: 0
@@ -13967,7 +13965,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -23098,7 +23096,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -23115,19 +23113,21 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - Lookout seven, this is Watchmaster. You are entering a high level blaze zone,
-      please fall back. Over.
+    - 'Lookout seven, this is Watchmaster. We are detecting a rapid surge in fire
+      activity in your area. '
+    - Retreat back to your tower immediately. Over.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - What!? But I can handle-
+    - Wait, this is my chance!
+    - Watchmaster, requesting permission to extinguish fire. Over.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -23138,23 +23138,25 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - "That wasn\u2019t a suggestion, rookie. I am ordering you to--"
+    - Absolutely not! This fire is way too intense for someone as inexperienced as
+      you.
+    - Return to your tower immediately! This is an order. Over and out.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - Watchmaster? Hello?
+    - "Over and out\u2026"
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 444679253}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -23166,7 +23168,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1604868527}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -23178,7 +23180,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1738979219}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
           m_MethodName: Play
           m_Mode: 5
@@ -23190,7 +23192,7 @@ MonoBehaviour:
             m_StringArgument: Game
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1604868527}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -23202,7 +23204,7 @@ MonoBehaviour:
             m_StringArgument: Game
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1604868527}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -23214,7 +23216,7 @@ MonoBehaviour:
             m_StringArgument: Game
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1063610994}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -23226,7 +23228,7 @@ MonoBehaviour:
             m_StringArgument: Game
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 382981906}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -23238,7 +23240,7 @@ MonoBehaviour:
             m_StringArgument: Game
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 2106627282}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: DialogueHolder, Assembly-CSharp
           m_MethodName: PlayDialogue
           m_Mode: 1
@@ -23250,12 +23252,12 @@ MonoBehaviour:
             m_StringArgument: Game
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1155746461}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: TrackerSystem, Assembly-CSharp
           m_MethodName: AddTracker
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 1769792211}
+            m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -34356,11 +34358,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
   m_PrefabInstance: {fileID: 1062425075}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1063610994 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7058108689087644631, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
-  m_PrefabInstance: {fileID: 101211425}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1073783645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42222,7 +42219,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -42244,7 +42241,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -42290,7 +42287,7 @@ MonoBehaviour:
             m_StringArgument: Hydropack
             m_BoolArgument: 1
           m_CallState: 2
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -44443,7 +44440,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -44465,7 +44462,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -47997,11 +47994,6 @@ MonoBehaviour:
   refillDelayTicks: 20
   available: 1
   interactResetRate: 10
---- !u!1 &1604868527 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7058108689087644631, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
-  m_PrefabInstance: {fileID: 1769792210}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1608500836
 GameObject:
   m_ObjectHideFlags: 0
@@ -48145,7 +48137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 0}
   segments:
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -48929,7 +48921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 0}
   segments:
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -48943,7 +48935,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -49856,7 +49848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 0}
   segments:
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -56285,7 +56277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 1816359021}
   segments:
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -56793,7 +56785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 0}
   segments:
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -56807,7 +56799,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -60325,7 +60317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 0}
   segments:
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
