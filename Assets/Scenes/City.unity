@@ -5778,6 +5778,73 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5018482959982022199, guid: 95ba98d65662b444a9ce9c44ed54b887, type: 3}
   m_PrefabInstance: {fileID: 42124109}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &47730419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 47730420}
+  - component: {fileID: 47730421}
+  m_Layer: 0
+  m_Name: PoststopDialog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &47730420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47730419}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409035425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &47730421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47730419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Word of advice, kid, this is the big city, not your cushy, open forest.
+    - Fires here are intense, halls are tight, and not everyone is your friend.
+    - "Even though we\u2019ve evacuated the city, there are still\u2026 some people
+      who stick around."
+    - "Look, don\u2019t trust anyone claiming to be a part of the Prophets of the
+      Lodgepole Pine."
+    - "Those pinecones are a bunch of idiots who worship the Infernals so you can
+      bet they don\u2019t take too kindly to us."
+    - "In any case, you know your job. Don\u2019t die\u2026"
+    - "And good luck kid. As much as I don\u2019t believe in luck, you\u2019ll need
+      it."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &51104969
 GameObject:
   m_ObjectHideFlags: 0
@@ -17698,7 +17765,17 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 218063212}
-  - {fileID: 1714440318}
+  - {fileID: 745444562}
+  - {fileID: 1733228779}
+  - {fileID: 47730420}
+  - {fileID: 1099131668}
+  - {fileID: 1643467722}
+  - {fileID: 446692744}
+  - {fileID: 1542655350}
+  - {fileID: 910344855}
+  - {fileID: 2049979426}
+  - {fileID: 958334555}
+  - {fileID: 1123411263}
   m_Father: {fileID: 2116868689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410060344 stripped
@@ -18822,6 +18899,159 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!1 &446692743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 446692744}
+  - component: {fileID: 446692745}
+  m_Layer: 0
+  m_Name: Mid-LvlDialog3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &446692744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446692743}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409035425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &446692745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446692743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Dispatch
+    scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Rookie this is Watchmaster, status check. Over.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "I\u2019m\u2026 fine\u2026 uh\u2026 over."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Dispatch
+    scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Really? You sound\u2026 disturbed."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Well...
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Pinecone
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - "They\u2019ll never believe you."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "I\u2019m just a bit overwhelmed. Over."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Dispatch
+    scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "That\u2019s why we make rookies deal with smaller fires,"
+    - "And that\u2019s why people need to go up the ranks at a proper pace!"
+    - '*Sigh* Whatever.'
+    - "There\u2019s a fire nearing a gas station."
+    - "I would ask someone else but you\u2019re the closest one."
+    - "I don\u2019t think I need to tell you why fire and gas stations are a bad
+      mix?"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 0}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - If the fire got to the gas station, the situation would get much worse. Over.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Dispatch
+    scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Yes, and our sponsors would be pissed.
+    - 'So get your tail over there and secure the area. '
+    - Watchmaster out.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &457102870
 GameObject:
   m_ObjectHideFlags: 0
@@ -33946,6 +34176,63 @@ MonoBehaviour:
   - {x: 34.207943, y: -22.107658, z: 0}
   - {x: 34.063892, y: 11.159779, z: 0}
   - {x: -184.88947, y: 15.157652, z: 0}
+--- !u!1 &745444561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 745444562}
+  - component: {fileID: 745444563}
+  m_Layer: 0
+  m_Name: Start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &745444562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745444561}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409035425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &745444563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745444561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: ???
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "In the smoke we ascend\u2026"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &746397159
 GameObject:
   m_ObjectHideFlags: 0
@@ -41904,6 +42191,165 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &910344854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910344855}
+  - component: {fileID: 910344856}
+  m_Layer: 0
+  m_Name: GasOutro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &910344855
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910344854}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409035425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &910344856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910344854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Loser
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - GAH! How!?
+    - ...
+    - "You\u2019ve become a much more interesting individual\u2026"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Hey, rookie! I hope you\u2019re not ash just yet."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - No, sir. In fact, I just extinguished a massive Infernal. Over.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Oh, that\u2019s good news."
+    - 'Well, bad news:'
+    - "This place is going up in flames so we\u2019re going to need to evacuate the
+      city."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Nagi Hestia is lost? Isn\u2019t there something we can do!?"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Dispatch
+    scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Look at the facts, rookie.
+    - There would be too many resources that would need to be spent to protect  and
+      fix the city.
+    - Even if we had the flexibility to do so, our sponsors would never sign off
+      on it,
+    - "Plus, they\u2019ve already moved their business out of the city."
+    - "It\u2019s much more reasonable to just abandon the city at this point. "
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - But-
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Sorry, kid.
+    - "I know how much this hurts but there\u2019s nothing we can do."
+    - "Look, we\u2019re sending you coordinates to the rally point."
+    - Get over here as quickly as possible. Over and out.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Yes, sir\u2026 Over and out..."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &914738942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43317,6 +43763,165 @@ MonoBehaviour:
   - {x: 34.207943, y: -22.107658, z: 0}
   - {x: 34.063892, y: 11.159779, z: 0}
   - {x: -184.88947, y: 15.157652, z: 0}
+--- !u!1 &958334554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 958334555}
+  - component: {fileID: 958334556}
+  m_Layer: 0
+  m_Name: InSewers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &958334555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958334554}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409035425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &958334556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958334554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Dispatch
+    scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Rookie, this is Watchmaster.
+    - Where are you going!?
+    - "That\u2019s not where the rally point is!"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Sorry, Watchmaster.
+    - "My way is blocked and I\u2019m trying an alternative option."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Dispatch
+    scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Hmm\u2026 most of the other routes are either on fire or going to be on fire."
+    - "We might have to\u2026"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "I sure hope you\u2019re not about to suggest we abandon our aspiring rookie,
+      Watchmaster."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Dispatch
+    scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Look, with all due respect, chief, as much as I would love to save everyone,
+      you have to look at the facts of our situation.
+    - 'The rookie is nowhere near the rally point and the fires around them are too
+      heavy to put out. '
+    - "It\u2019s just not worth it."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - What is the least on fire area near their location?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Dispatch
+    scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - The roof of the Angels Mobile Communication Tower.
+    - Wait, what are you suggesting?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Rookie, listen up! I\u2019m heading to pick you up in the helicopter."
+    - Make your way up the tower immediately.
+    - "Unless you want to end up as burnt as my sister\u2019s cooking. "
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Yes sir, I mean, no sir, I mean\u2026"
+    - Agh! You know what I mean!
+    - Over and out!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &963170136
 GameObject:
   m_ObjectHideFlags: 0
@@ -46405,6 +47010,92 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2829417405572390091}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1099131667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1099131668}
+  - component: {fileID: 1099131669}
+  m_Layer: 0
+  m_Name: Mid-LvlDialog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1099131668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099131667}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409035425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1099131669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099131667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: ???
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - Do you smell that?
+    - Even with all these blessings, this city still smells like trash.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - You're a pinecone, aren't you?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Pinecone
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - Pinecone...
+    - We resent that stupid nickname.
+    - No matter...
+    - Insult us all you want but soon you'll understand...
+    - Oh, and don't try to report this.
+    - "There\u2019s no way your stupid fire department can track this conversation,
+      so you\u2019ll just sound insane to them."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1101615118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46902,6 +47593,136 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1123411262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1123411263}
+  - component: {fileID: 1123411264}
+  m_Layer: 0
+  m_Name: MidSewerDialog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1123411263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123411262}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409035425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1123411264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123411262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Pain in the butt
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - I never understood why you young folk would support an old idiot like President
+      Boreas.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - How is there a signal down here?
+    - "Anyways, he\u2019s inspirational and he cares."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Pain in the butt
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - "He clearly doesn\u2019t care enough to do his job properly."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - And what is that supposed to mean?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Pain in the butt
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - 'It is the job of the older generation to secure a proper future for the young. '
+    - Instead, he pours gasoline into forests and dumps oil into the ocean.
+    - And when the world goes up in flames, he hands off the problem to you young
+      folk!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Okay\u2026 but at least he\u2019s more right than you."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Pain in the butt
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - "*Sigh* Everyone is so obsessed with being right, they fail to consider what
+      would happen if they\u2019re wrong."
+    - "It\u2019s that kind of thinking that has led us here."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1123701085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60320,6 +61141,90 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6968132888734497793, guid: ad6c72de77d995d419add9540441b811, type: 3}
   m_PrefabInstance: {fileID: 1540691484}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1542655349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1542655350}
+  - component: {fileID: 1542655351}
+  m_Layer: 0
+  m_Name: GasIntro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1542655350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542655349}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409035425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1542655351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542655349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - No way...
+    - What is that thing?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Annoyance
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - "That\u2019s the Witness of Sol."
+    - Living proof that even if you cover your eyes, the light of truth will always
+      shine through!
+    - So, face your despair, and witness the true extent of your hopelessness, little
+      moth!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Oh, shut up, already!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1544445608
 GameObject:
   m_ObjectHideFlags: 0
@@ -61828,6 +62733,108 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 5209676977801230736, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
   m_PrefabInstance: {fileID: 1056280323}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1643467721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1643467722}
+  - component: {fileID: 1643467723}
+  m_Layer: 0
+  m_Name: Mid-LvlDialog2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1643467722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643467721}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409035425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1643467723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643467721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "Look at all this destruction\u2026"
+    - How can you revel in this level of devastation?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Pinecone
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - I asked that same question when I looked at the state of the world.
+    - "When I first heard the voice of the Infernals, people called me insane and
+      I agreed with them\u2026"
+    - But the more I listened, the more I realized that the Infernals were right.
+    - I knew all along...
+    - Humanity is a parasite, a blight, on this beautiful planet.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - "That\u2019s\u2026 insane\u2026"
+    - "How can you agree with the very thing that\u2019s been killing all of us!"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Pinecone
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    image: {fileID: 0}
+    lines:
+    - Really!?
+    - "I mean, it\u2019s not hard to understand why."
+    - After all, ever wonder why people call this city Smoggy Hestia instead of Nagi
+      Hestia?
+    - "I\u2019ll give you a hint: most of this smoke isn\u2019t even caused by the
+      Infernals!"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1643762382
 GameObject:
   m_ObjectHideFlags: 0
@@ -63545,63 +64552,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5018482959982022199, guid: 95ba98d65662b444a9ce9c44ed54b887, type: 3}
   m_PrefabInstance: {fileID: 1714022687}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1714440317
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1714440318}
-  - component: {fileID: 1714440319}
-  m_Layer: 0
-  m_Name: Bleh
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1714440318
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714440317}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 409035425}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1714440319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714440317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogSystem: {fileID: 0}
-  segments:
-  - title: 
-    scrollSound: {fileID: 0}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    lines:
-    - 
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1001 &1717949355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63841,6 +64791,101 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bbf92a5518edf54fb6ddf702ddffd8b, type: 3}
+--- !u!1 &1733228778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1733228779}
+  - component: {fileID: 1733228780}
+  m_Layer: 0
+  m_Name: PrestopDialog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1733228779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733228778}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409035425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1733228780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733228778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Guh.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - So you're finally awake.
+    - Did you get enough sleep?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Barely.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - 'Good. Saves me the trouble of waking you up with my Hydropack. '
+    - We're almost in the city.
+    - Since we're rather understaffed, we're gonna have you go on a solo mission.
+    - "Don\u2019t make me regret this."
+    - "Well, not like I\u2019d actually mourn someone for being stupid."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1735289778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70727,6 +71772,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 481587314}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2049979425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2049979426}
+  - component: {fileID: 2049979427}
+  m_Layer: 0
+  m_Name: BeforeSewers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2049979426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049979425}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409035425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2049979427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049979425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Dang it. The way is blocked.
+    - "*Sigh* Guess we\u2019re headed through the sewers\u2026"
+    - Okay, deep breaths. Deep breaths.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &2055430719
 GameObject:
   m_ObjectHideFlags: 0
