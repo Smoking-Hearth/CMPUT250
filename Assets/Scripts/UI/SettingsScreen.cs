@@ -22,7 +22,7 @@ public class SettingsScreen : MonoBehaviour
 
     void BackClick()
     {
-        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.GoBack());
+        gameObject.SetActive(false);
     }
 
     void VolumeChanged(float value)

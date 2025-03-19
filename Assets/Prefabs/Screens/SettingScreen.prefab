@@ -322,6 +322,7 @@ GameObject:
   - component: {fileID: 1804029105219517577}
   - component: {fileID: 4270602515209188318}
   - component: {fileID: 3972205314403704489}
+  - component: {fileID: 1613235133362405101}
   m_Layer: 5
   m_Name: SettingScreen
   m_TagString: Untagged
@@ -389,6 +390,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1613235133362405101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671893209964128466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a66ce97b0a747239b87b457a0d3473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: {fileID: 3575584345611631712}
+  back: {fileID: 7146469139464761925}
+  mixer: {fileID: 24100000, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
 --- !u!1 &3353325934412570548
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,3 +986,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8382764464155410273, guid: 468c54d131876d083b0248a1b10f6763, type: 3}
   m_PrefabInstance: {fileID: 7982517337869585805}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7146469139464761925 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1002828170225500104, guid: 468c54d131876d083b0248a1b10f6763, type: 3}
+  m_PrefabInstance: {fileID: 7982517337869585805}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

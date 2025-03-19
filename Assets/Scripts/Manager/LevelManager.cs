@@ -68,6 +68,8 @@ public class LevelManager : MonoBehaviour
     [field: SerializeField] public Camera LevelCamera; 
 
     [SerializeField] private GameObject gameOverScreen;
+    [field: SerializeField] public SettingsScreen settingsScreen { get; private set; }
+
 
     [SerializeField] private Rigidbody2D setPlayer;
     private Player player;

@@ -95,7 +95,11 @@ public class PauseScreen : MonoBehaviour
 
     void OnSettingsClick()
     {
-        // GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive(SceneIndex.Settings, keepInHistory: true));
+        SettingsScreen settingsScreen = gameObject.MyLevelManager().settingsScreen;
+        if (settingsScreen != null)
+        {
+            settingsScreen.gameObject.SetActive(true);
+        }
     }
 
     public void OnMenuClick()
