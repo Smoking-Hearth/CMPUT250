@@ -120,6 +120,7 @@ public class LevelManager : MonoBehaviour
     public event DeactivateCallback onDeactivate;
 
     private readonly Queue<LevelCommand> callbackCommands = new();
+    private bool swapped = false;
 
     public void DispatchCommand(LevelCommand cmd)
     {
@@ -212,10 +213,12 @@ public class LevelManager : MonoBehaviour
             DispatchCommand(cmd);
         }
 
-        if (Time.time > setCameraStateDelay)
+        if (Time.time > setCameraStateDelay && !swapped)
         {
             if (cameraAnimator != null)
                 cameraAnimator.Play("Game");
+
+            swapped = true;
         }
     }
     public void GameOver()
