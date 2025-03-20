@@ -1520,7 +1520,7 @@ MonoBehaviour:
     rid: 5394859848043069851
   m_ShadowCastingSource: 2
   m_ShadowMesh:
-    m_Mesh: {fileID: 1685645901}
+    m_Mesh: {fileID: 779255438}
     m_LocalBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 13, y: 1.0999908, z: 0}
@@ -2461,6 +2461,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5809417443693588684, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
   m_PrefabInstance: {fileID: 101211425}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &101211427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7058108689087644631, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
+  m_PrefabInstance: {fileID: 101211425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &104437076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2706,7 +2711,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -2731,13 +2736,55 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
     - "Y-yes sir!\r\r\n\r"
+    - "Say, Chief...\n\r"
+    - "Something happened back there, and I just have to know...\n\r"
+    - "Is the fire... alive?\n\r"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Sorry, kid...
+    - "I always hope that you rookies would quit before you learned the truth.\n\r"
+    - "We call them Infernals. They're living beings made of pure fire.\n\r"
+    - "And the best part is that they're hellbent on killing us.\n\r"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - Infernals!?
+    - But President Boreas said-
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    lines:
+    - He says a lot of things.
+    - "In any case, if you don\u2019t believe me now, you will once we reach the
+      city."
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -3353,19 +3400,19 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - "Hey, rookie, what are you doing out here!? This fire is way out of your pay
-      grade. Retreat back to your tower immediately.\r"
+    - "This is Fire Chief Anderson requesting any able bodied individuals to rally
+      to me.\r"
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - Chief? But-
+    - This is lookout seven and I volunteer! Over.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -3376,8 +3423,11 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - "Hmph. If you\u2019re so eager to die, make yourself useful and make your way
-      to my location."
+    - 'Great. You can- '
+    - Wait, a rookie!?
+    - "Jeez\u2026 the youth these days\u2026"
+    - "Fine, if you\u2019re so eager to die, we\u2019ll pick you up at your tower."
+    - If you make it, of course.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -13925,7 +13975,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -14137,11 +14187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!225 &477882848 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 5209676977801230736, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
-  m_PrefabInstance: {fileID: 6957155836992110790}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &484061260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23061,7 +23106,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -23078,19 +23123,21 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - Lookout seven, this is Watchmaster. You are entering a high level blaze zone,
-      please fall back. Over.
+    - 'Lookout seven, this is Watchmaster. We are detecting a rapid surge in fire
+      activity in your area. '
+    - Retreat back to your tower immediately. Over.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - What!? But I can handle-
+    - Wait, this is my chance!
+    - Watchmaster, requesting permission to extinguish fire. Over.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -23101,18 +23148,20 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - "That wasn\u2019t a suggestion, rookie. I am ordering you to--"
+    - Absolutely not! This fire is way too intense for someone as inexperienced as
+      you.
+    - Return to your tower immediately! This is an order. Over and out.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - Watchmaster? Hello?
+    - "Over and out\u2026"
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -23129,7 +23178,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1604868527}
+        - m_Target: {fileID: 7058108690416603702}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -23153,7 +23202,7 @@ MonoBehaviour:
             m_StringArgument: Game
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1604868527}
+        - m_Target: {fileID: 1769792213}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -23165,7 +23214,7 @@ MonoBehaviour:
             m_StringArgument: Game
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1604868527}
+        - m_Target: {fileID: 101211427}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -23177,7 +23226,7 @@ MonoBehaviour:
             m_StringArgument: Game
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1063610994}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -24251,17 +24300,6 @@ Transform:
   - {fileID: 1930641408}
   m_Father: {fileID: 800736673}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &774823626 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1787846957912176995, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
-  m_PrefabInstance: {fileID: 6957155836992110790}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &775708295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24353,6 +24391,171 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8931849865836428251, guid: 14836a7d4ca562643bb7361f80d0a557, type: 3}
   m_PrefabInstance: {fileID: 775708295}
   m_PrefabAsset: {fileID: 0}
+--- !u!43 &779255438
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 36
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 20
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 13, y: 1.0999908, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 0
+  m_KeepIndices: 0
+  m_IndexFormat: 1
+  m_IndexBuffer: 000000000400000005000000050000000100000000000000010000000800000009000000090000000200000001000000020000000c0000000d0000000d0000000300000002000000030000001000000011000000110000000000000003000000000000000600000007000000010000000a0000000b000000020000000e0000000f000000030000001200000013000000
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 20
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 560
+    _typelessdata: 0000504180cc8c3f00000000000080bf00000000000050c180cc8c3f000050c180cc8c3f00000000000080bf00000000000050c180cc8cbf000050c180cc8cbf00000000000080bf000000000000504180cc8cbf0000504180cc8cbf00000000000080bf000000000000504180cc8c3f0000504180cc8c3f000000000000000000000000000050c180cc8c3f000050c180cc8c3f0000000000000000000000000000504180cc8c3f0000504180cc8c3f000000000000803f00000000000050c180cc8c3f0000504180cc8c3f000000000000404000000000000050c180cc8c3f000050c180cc8c3f000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000000000000000000050c180cc8c3f000050c180cc8c3f000000000000803f00000000000050c180cc8cbf000050c180cc8c3f000000000000404000000000000050c180cc8cbf000050c180cc8cbf0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000803f000000000000504180cc8cbf000050c180cc8cbf0000000000004040000000000000504180cc8cbf0000504180cc8cbf0000000000000000000000000000504180cc8c3f0000504180cc8c3f0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000803f000000000000504180cc8c3f0000504180cc8cbf0000000000004040000000000000504180cc8c3f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1001 &781677994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24865,7 +25068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 1816359021}
   segments:
-  - title: 
+  - title: Player
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -32700,17 +32903,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &946719312 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1630126210894650764, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
-  m_PrefabInstance: {fileID: 6957155836992110790}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &963110354
 GameObject:
   m_ObjectHideFlags: 0
@@ -34176,11 +34368,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 787954144119666710, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
   m_PrefabInstance: {fileID: 1062425075}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1063610994 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7058108689087644631, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
-  m_PrefabInstance: {fileID: 101211425}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1073783645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34699,9 +34886,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogSystem: {fileID: 1816359021}
+  dialogSystem: {fileID: 0}
   segments:
-  - title: 
+  - title: Player
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -34709,11 +34896,12 @@ MonoBehaviour:
     lines:
     - Was that fire...
     - alive?
+    - I think I need to lay down.
     autoContinue: 1
     DoEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 382981906}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -35304,6 +35492,7 @@ MonoBehaviour:
   setCameraStateDelay: 5
   LevelCamera: {fileID: 586130181}
   gameOverScreen: {fileID: 1041189409}
+  <settingsScreen>k__BackingField: {fileID: 6957155836992110792}
   setPlayer: {fileID: 744739953}
   defaultEnabledRootObjects: []
   isLevelRunning: 0
@@ -35367,10 +35556,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce577cf3278fcd02a0a8cfee20f3552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseScreen: {fileID: 477882848}
-  resume: {fileID: 774823626}
-  settings: {fileID: 946719312}
-  menu: {fileID: 1979745225}
+  pauseScreen: {fileID: 6957155836992110796}
+  resume: {fileID: 6957155836992110795}
+  settings: {fileID: 6957155836992110794}
+  menu: {fileID: 6957155836992110793}
 --- !u!114 &1155746461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42040,7 +42229,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -42062,7 +42251,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -42108,7 +42297,7 @@ MonoBehaviour:
             m_StringArgument: Hydropack
             m_BoolArgument: 1
           m_CallState: 2
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -44261,7 +44450,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -44283,7 +44472,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -47815,11 +48004,6 @@ MonoBehaviour:
   refillDelayTicks: 20
   available: 1
   interactResetRate: 10
---- !u!1 &1604868527 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7058108689087644631, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
-  m_PrefabInstance: {fileID: 1769792210}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1608500836
 GameObject:
   m_ObjectHideFlags: 0
@@ -47963,7 +48147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 0}
   segments:
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -48598,171 +48782,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1723357645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1685645901
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 11
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 36
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 20
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 13, y: 1.0999908, z: 0}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 0
-  m_KeepIndices: 0
-  m_IndexFormat: 1
-  m_IndexBuffer: 000000000400000005000000050000000100000000000000010000000800000009000000090000000200000001000000020000000c0000000d0000000d0000000300000002000000030000001000000011000000110000000000000003000000000000000600000007000000010000000a0000000b000000020000000e0000000f000000030000001200000013000000
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 20
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 560
-    _typelessdata: 0000504180cc8c3f00000000000080bf00000000000050c180cc8c3f000050c180cc8c3f00000000000080bf00000000000050c180cc8cbf000050c180cc8cbf00000000000080bf000000000000504180cc8cbf0000504180cc8cbf00000000000080bf000000000000504180cc8c3f0000504180cc8c3f000000000000000000000000000050c180cc8c3f000050c180cc8c3f0000000000000000000000000000504180cc8c3f0000504180cc8c3f000000000000803f00000000000050c180cc8c3f0000504180cc8c3f000000000000404000000000000050c180cc8c3f000050c180cc8c3f000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000000000000000000050c180cc8c3f000050c180cc8c3f000000000000803f00000000000050c180cc8cbf000050c180cc8c3f000000000000404000000000000050c180cc8cbf000050c180cc8cbf0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000000000000000000050c180cc8cbf000050c180cc8cbf000000000000803f000000000000504180cc8cbf000050c180cc8cbf0000000000004040000000000000504180cc8cbf0000504180cc8cbf0000000000000000000000000000504180cc8c3f0000504180cc8c3f0000000000000000000000000000504180cc8cbf0000504180cc8cbf000000000000803f000000000000504180cc8c3f0000504180cc8cbf0000000000004040000000000000504180cc8c3f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_MeshUsageFlags: 0
-  m_CookingOptions: 30
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!212 &1693305059 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3716343494639549746, guid: 8b8e5eb39d02a8c408df3c1f8b997520, type: 3}
@@ -48912,7 +48931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 0}
   segments:
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -48926,7 +48945,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -49839,7 +49858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 0}
   segments:
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -55327,6 +55346,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aacc09408daf21542acb93c0220d1231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1769792213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7058108689087644631, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
+  m_PrefabInstance: {fileID: 1769792210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1780499028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56268,7 +56292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 1816359021}
   segments:
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -56776,7 +56800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 0}
   segments:
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -56790,7 +56814,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -58388,17 +58412,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5163516732209342275, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
   m_PrefabInstance: {fileID: 784644083}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1979745225 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5981888490660826353, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
-  m_PrefabInstance: {fileID: 6957155836992110790}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1980367315
 GameObject:
   m_ObjectHideFlags: 0
@@ -60319,7 +60332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogSystem: {fileID: 0}
   segments:
-  - title: Player
+  - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
@@ -62300,6 +62313,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 927923468006474747, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1524127256049765712, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -62416,6 +62433,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5065114336354051815, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065114336354051815, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065114336354051815, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065114336354051815, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065114336354051815, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100.000015
+      objectReference: {fileID: 0}
     - target: {fileID: 7021384912013212106, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -62452,6 +62489,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 586130181}
+    - target: {fileID: 8317858314293531273, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 280
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -62468,6 +62509,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42c742bc38e843226a5299a7da5a4aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6957155836992110792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1634542000452862205, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+  m_PrefabInstance: {fileID: 6957155836992110790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a66ce97b0a747239b87b457a0d3473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6957155836992110793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5981888490660826353, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+  m_PrefabInstance: {fileID: 6957155836992110790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6957155836992110794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1630126210894650764, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+  m_PrefabInstance: {fileID: 6957155836992110790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6957155836992110795 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1787846957912176995, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+  m_PrefabInstance: {fileID: 6957155836992110790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!225 &6957155836992110796 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 5209676977801230736, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+  m_PrefabInstance: {fileID: 6957155836992110790}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7013537761227235876
 GameObject:
   m_ObjectHideFlags: 0

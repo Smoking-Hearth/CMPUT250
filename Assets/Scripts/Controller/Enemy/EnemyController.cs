@@ -135,6 +135,15 @@ public class EnemyController : MonoBehaviour
             targetPosition = gameObject.MyLevelManager().Player.Position;
             trackingTimer -= Time.fixedDeltaTime;
         }
+
+        if (healthComponent.HealthZero && currentState != EnemyState.stDefeated)
+        {
+            currentState = EnemyState.stDefeated;
+            defeatTimer = enemyInfo.defeatDurationSeconds;
+            sounds.ExtinguishSound();
+            sounds.FadeAmbientSounds(enemyInfo.defeatDurationSeconds);
+            enemyAnimator.SetTrigger("IsDead");
+        }
     }
 
     public virtual void Hurt()

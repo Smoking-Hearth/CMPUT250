@@ -116,7 +116,7 @@ Transform:
   m_GameObject: {fileID: 1134686396182718163}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: -6, z: 0}
+  m_LocalPosition: {x: -1, y: -5.5, z: 0}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -434,8 +434,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   door: {fileID: 0}
   doorAnimator: {fileID: 0}
+  glassRenderer: {fileID: 0}
+  glassBrokenSprite: {fileID: 0}
   arm: {fileID: 7951789560098394791}
   activateAltitude: -4
+  dronePosition: {x: 0, y: 0}
+  dronePrefab: {fileID: 0}
 --- !u!1 &6061777989790611386
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +466,7 @@ Transform:
   m_GameObject: {fileID: 6061777989790611386}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.6, y: -3.4, z: 0}
+  m_LocalPosition: {x: 6.66, y: -2.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

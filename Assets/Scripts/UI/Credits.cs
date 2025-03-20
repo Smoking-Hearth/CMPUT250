@@ -18,5 +18,6 @@ public class Credits : MonoBehaviour
     void OnBackClick()
     {
         GameManager.Instance.StartCoroutine(GameManager.SceneSystem.GoBack());
+        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.Unload((int)SceneIndex.Credits));
     }
 }
