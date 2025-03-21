@@ -19022,9 +19022,9 @@ MonoBehaviour:
   segments:
   - title: Dispatch
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
-    startSound: {fileID: 0}
+    startSound: {fileID: 8300000, guid: 58d65cf23684feb44acaa77188cb442f, type: 3}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -736452173, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     lines:
     - Rookie this is Watchmaster, status check. Over.
     autoContinue: 0
@@ -19035,7 +19035,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     lines:
     - "I\u2019m\u2026 fine\u2026 uh\u2026 over."
     autoContinue: 0
@@ -19044,9 +19044,9 @@ MonoBehaviour:
         m_Calls: []
   - title: Dispatch
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
-    startSound: {fileID: 0}
+    startSound: {fileID: 8300000, guid: 58d65cf23684feb44acaa77188cb442f, type: 3}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -736452173, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     lines:
     - "Really? You sound\u2026 disturbed."
     autoContinue: 0
@@ -19057,7 +19057,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     lines:
     - Well...
     autoContinue: 0
@@ -19066,7 +19066,7 @@ MonoBehaviour:
         m_Calls: []
   - title: Pinecone
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
-    startSound: {fileID: 0}
+    startSound: {fileID: 8300000, guid: 58d65cf23684feb44acaa77188cb442f, type: 3}
     font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
     image: {fileID: 0}
     lines:
@@ -19079,7 +19079,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     lines:
     - "I\u2019m just a bit overwhelmed. Over."
     autoContinue: 0
@@ -19088,9 +19088,9 @@ MonoBehaviour:
         m_Calls: []
   - title: Dispatch
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
-    startSound: {fileID: 0}
+    startSound: {fileID: 8300000, guid: 58d65cf23684feb44acaa77188cb442f, type: 3}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -736452173, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     lines:
     - "That\u2019s why we make rookies deal with smaller fires,"
     - "And that\u2019s why people need to go up the ranks at a proper pace!"
@@ -19107,7 +19107,7 @@ MonoBehaviour:
     scrollSound: {fileID: 0}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     lines:
     - If the fire got to the gas station, the situation would get much worse. Over.
     autoContinue: 0
@@ -19116,9 +19116,9 @@ MonoBehaviour:
         m_Calls: []
   - title: Dispatch
     scrollSound: {fileID: 8300000, guid: 8855ce7c549ce9ad087fbcec8382c107, type: 3}
-    startSound: {fileID: 0}
+    startSound: {fileID: 8300000, guid: 58d65cf23684feb44acaa77188cb442f, type: 3}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -736452173, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     lines:
     - Yes, and our sponsors would be pissed.
     - 'So get your tail over there and secure the area. '
@@ -42448,7 +42448,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 276990845430083679, guid: aaafa651c00cb5a4ea24be611573e5d6, type: 3}
       propertyPath: DefeatEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 276990845430083679, guid: aaafa651c00cb5a4ea24be611573e5d6, type: 3}
       propertyPath: DefeatEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
@@ -64458,24 +64458,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
+      propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1772015266}
+      objectReference: {fileID: 1039578197}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2104357044}
+      objectReference: {fileID: 1371920152}
+    - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
+      propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1099131669}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -64485,20 +64493,32 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
-      propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Tick
+      propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
-      propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
+      propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
+      propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PlayDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TriggerCounter, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
+      propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: DialogueHolder, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -64506,11 +64526,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
+      propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
+      propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
+      value: Game
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -64518,6 +64546,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
       propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022839257529278463, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
+      propertyPath: completeEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7058108689087644631, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}

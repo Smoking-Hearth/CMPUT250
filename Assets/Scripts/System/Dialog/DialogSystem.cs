@@ -126,7 +126,7 @@ public class DialogSystem : MonoBehaviour
 
     int currentPosition = 0;
 
-    private TMP_FontAsset defaultDialogFont;
+    [SerializeField] private TMP_FontAsset defaultDialogFont;
 
     private LevelState prevLevelState;
 
@@ -158,7 +158,6 @@ public class DialogSystem : MonoBehaviour
         {
             continueText.gameObject.SetActive(false);
         }
-        defaultDialogFont = contentText.font;
     }
 
     private void OnDisable()
