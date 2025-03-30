@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private LevelState activeLevelState;
+    public bool freeze;
+
     [Header("Movement")]
     [SerializeField] private float jumpPower;
     [SerializeField] private float moveSpeed;
@@ -47,11 +50,7 @@ public class PlayerMovement : MonoBehaviour
     {
         SpecialAttack.onPushback += PushPlayer;
 
-        Player player = gameObject.MyLevelManager().Player;
-        if (player.GroundState == GroundState.Grounded)
-        {
-            playerAnimator.SetBool("IsGrounded", true);
-        }
+        ResetMovement();
     }
 
     private void OnDisable()
@@ -61,9 +60,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        if (freeze)
         {
             targetMovement = Vector2.zero;
+            playerRigidbody.simulated = false;
+            return;
+        }
+        else if (gameObject.MyLevelManager().levelState != activeLevelState)
+        {
+            targetMovement = Vector2.zero;
+            Gravity();
+            Move(Vector2.zero, false);
+            playerRigidbody.simulated = true;
+            playerAnimator.SetBool("IsWalking", false);
+        }
+        else if (playerRigidbody.simulated == false)
+        {
+            playerRigidbody.simulated = true;
         }
 
         //Checks if the player is currently on stairs to make sure they don't slide down
@@ -144,7 +157,6 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D centerHit = Physics2D.Raycast(rayPosition, Vector2.down, groundCheckRadius, groundLayer);
         RaycastHit2D rightHit = Physics2D.Raycast(rayPosition + Vector2.right * groundCheckRadius, Vector2.down, groundCheckRadius, groundLayer);
         Physics2D.queriesHitTriggers = true;
-
         if (!leftHit && !centerHit && !rightHit)
         {
             player.GroundState = GroundState.None;
@@ -284,6 +296,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void StartPush()
     {
+        if (gameObject.MyLevelManager().levelState != activeLevelState)
+        {
+            return;
+        }
         if (addedVelocity.y < jumpPower * 0.8f && addedVelocity.y >= jumpPower * 0.5f)
         {
             addedVelocity.y = jumpPower * 0.8f;
@@ -292,6 +308,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void PushPlayer(Vector2 acceleration)
     {
+        if (gameObject.MyLevelManager().levelState != activeLevelState)
+        {
+            return;
+        }
         if (!isJumping && gameObject.MyLevelManager().Player.GroundState == GroundState.Grounded)
         {
             addedVelocity.y *= 0.5f;
@@ -305,6 +325,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void PushPlayer(Vector2 acceleration, bool setJumping)
     {
+        if (gameObject.MyLevelManager().levelState != activeLevelState)
+        {
+            return;
+        }
         PushPlayer(acceleration);
         isJumping = setJumping;
     }
@@ -401,5 +425,18 @@ public class PlayerMovement : MonoBehaviour
         {
             addedVelocity.y *= 0.5f;
         }
+    }
+
+    public void ResetMovement()
+    {
+        Player player = gameObject.MyLevelManager().Player;
+        if (player.GroundState == GroundState.Grounded)
+        {
+            playerAnimator.SetBool("IsGrounded", true);
+        }
+        playerAnimator.SetFloat("MoveSpeed", 0);
+        playerRigidbody.linearVelocity = Vector2.zero;
+        targetMovement = Vector2.zero;
+        isJumping = false;
     }
 }

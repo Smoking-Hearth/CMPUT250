@@ -112,6 +112,10 @@ public class WaterTank
         if (CanUseWater(amount))
         {
             waterLevel -= amount;
+            if (waterLevel < 0)
+            {
+                waterLevel = 0;
+            }
             UpdateWaterHUD();
             return true;
         }
