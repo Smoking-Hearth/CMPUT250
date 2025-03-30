@@ -10,6 +10,7 @@ public class SettingsScreen : MonoBehaviour
 
     void OnEnable()
     {
+        VolumeChanged(volume.value);
         volume.onValueChanged.AddListener(VolumeChanged);
         back.onClick.AddListener(BackClick);
     }
@@ -27,6 +28,13 @@ public class SettingsScreen : MonoBehaviour
 
     void VolumeChanged(float value)
     {
-        mixer.SetFloat("MasterVolume", value);
+        if (value == 0)
+        {
+            mixer.SetFloat("MasterVolume", -80);
+            return;
+        }
+
+        float volume = Mathf.Lerp(-20, 10, Mathf.Log10(value + 1));
+        mixer.SetFloat("MasterVolume", volume);
     }
 }
