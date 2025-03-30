@@ -288,6 +288,12 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    public void PlacePlayer(Vector2 placePosition)
+    {
+        freeze = true;
+        ResetMovement();
+        transform.position = placePosition;
+    }
 
     public void SetAttached(Rigidbody2D attach)
     {

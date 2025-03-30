@@ -29,13 +29,17 @@ public class TriggerArea : MonoBehaviour
 
         if ((triggerLayers & (1 << collision.gameObject.layer)) != 0)
         {
-            triggerEvent.Invoke();
-            retriggerTimer = retriggerCooldownSeconds;
-
+            Trigger();
             if (!retrigger)
             {
                 Destroy(gameObject);
             }
         }
+    }
+
+    protected virtual void Trigger()
+    {
+        triggerEvent.Invoke();
+        retriggerTimer = retriggerCooldownSeconds;
     }
 }

@@ -261,6 +261,7 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+
     public void GameOver()
     {
         if (!gameOverScreen.activeSelf)
