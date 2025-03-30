@@ -333,6 +333,7 @@ public class LevelManager : MonoBehaviour
             case LevelState.Paused:
                 break;
             case LevelState.Playing:
+                FireSounds.UpdateGlobalHitTimer();
                 if (fireTickTimer > 0)
                 {
                     fireTickTimer -= Time.fixedDeltaTime;
