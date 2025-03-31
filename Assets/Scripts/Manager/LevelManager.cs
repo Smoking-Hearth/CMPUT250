@@ -312,7 +312,10 @@ public class LevelManager : MonoBehaviour
 
     public void TransitionTo(int sceneIndex)
     {
-        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive((SceneIndex)sceneIndex));
+        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.NextLevel(
+                (SceneIndex)gameObject.scene.buildIndex, 
+                (SceneIndex)sceneIndex
+            ));
     }
 
     public void SetCutsceneState(bool cutsceneOn)
