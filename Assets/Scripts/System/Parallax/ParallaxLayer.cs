@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ParallaxLayer : MonoBehaviour
@@ -29,12 +30,27 @@ public class ParallaxLayer : MonoBehaviour
     void Awake()
     {
         initPosition = transform.localPosition;
+
+        Rows = Math.Max(Rows, 1);
+        Columns = Math.Max(Columns, 1);
+        Frames = Math.Max(Frames, 1);
+
         if (Frames > Rows * Columns)
         {
             DevLog.Warn("An animated parallax background is configured incorrectly, not enough frames provided. Truncating");
             Frames = Rows * Columns;
         }
-        FramesPerSecond = 1 / FramesPerSecond;
+
+        if (FramesPerSecond > 0.1)
+        {
+            FramesPerSecond = 1 / FramesPerSecond;
+        }
+        else 
+        {
+            DevLog.Warn("Config asks to display too few frames, cancelling animation.");
+            Frames = 1;
+        }
+
         width = 1f / Columns;
         height = 1f / Rows;
     }
