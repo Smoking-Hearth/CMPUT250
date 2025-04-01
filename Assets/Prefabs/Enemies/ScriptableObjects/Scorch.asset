@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6df888b4237d85a48bc749f584357ecf, type: 3}
-  m_Name: Cinder
+  m_Name: Scorch
   m_EditorClassIdentifier: 
   fireKind: 1
   attackInfo:
     damageType: 0
-    radius: 0
-    damage: 0
-    knockbackPower: {x: 0, y: 0}
-  attackPrefab: {fileID: 0}
-  aggroRange: 20
-  attackRange: 7
-  standRange: 6
-  commitAttackSeconds: 0.4
-  frontSwingSeconds: 0.5
-  backSwingSeconds: 0.5
-  maxHealth: 200
-  defeatDurationSeconds: 0.45
+    radius: 1
+    damage: 4
+    knockbackPower: {x: 300, y: 200}
+  attackPrefab: {fileID: 1537683578869023098, guid: eb65437737dda5949a8951c36d4b4f9e, type: 3}
+  aggroRange: 30
+  attackRange: 2
+  standRange: 2
+  commitAttackSeconds: 0.8
+  frontSwingSeconds: 0.4
+  backSwingSeconds: 0.34
+  maxHealth: 300
+  defeatDurationSeconds: 0.51
   blinkDuration: 0.3
   blinkFrequency: 2
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   blinkColor: {r: 1, g: 1, b: 1, a: 0.5882353}
-  speed: 10
+  speed: 2
   spawnParticles: {fileID: 4359698127309864546, guid: 1a70f03eea91b5e4493ec59fe3974641, type: 3}
   hurtParticles: {fileID: 8638484002547717531, guid: 927b14fc8b5c8b54aac399d785fce7cf, type: 3}
   backfireParticles: {fileID: 0}

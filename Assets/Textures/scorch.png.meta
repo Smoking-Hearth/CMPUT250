@@ -1,43 +1,31 @@
 fileFormatVersion: 2
-guid: 70835af2e2d2e4dea99636b45000b411
+guid: 372eb3866fb5c084d8f204eefbd11a04
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1616771240987994394
-    second: burning_citySprite_0
+      213: -5559207984809642927
+    second: scorch_0
   - first:
-      213: 2572874377621684310
-    second: burning_citySprite_1
+      213: -5898070941393691195
+    second: scorch_1
   - first:
-      213: 4315950586774212395
-    second: burning_citySprite_2
+      213: -4443893793014951849
+    second: scorch_2
   - first:
-      213: 540525692499386657
-    second: burning_citySprite_3
+      213: 7323384497719188006
+    second: scorch_3
   - first:
-      213: 6401261998685840608
-    second: burning_citySprite_4
+      213: -2941288028990410674
+    second: scorch_4
   - first:
-      213: -1930975387809225719
-    second: burning_citySprite_5
+      213: -6376955514814580316
+    second: scorch_5
   - first:
-      213: -3785778409275834510
-    second: burning_citySprite_6
+      213: -6327660334686936984
+    second: scorch_6
   - first:
-      213: 1797039589029710270
-    second: burning_citySprite_7
-  - first:
-      213: -2230469841809011447
-    second: burning_citySprite_8
-  - first:
-      213: -5165441242514503354
-    second: burning_citySprite_9
-  - first:
-      213: 4510770183708596706
-    second: burning_citySprite_10
-  - first:
-      213: -4790774298490632177
-    second: burning_citySprite_11
+      213: 28374289628981042
+    second: scorch_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -70,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -84,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,10 +93,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -146,13 +134,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: burning_citySprite_0
+      name: scorch_0
       rect:
         serializedVersion: 2
-        x: 87
-        y: 1844
-        width: 1538
-        height: 282
+        x: 2
+        y: 17
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +149,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6e6d7d15f131099e0800000000000000
-      internalID: -1616771240987994394
+      spriteID: 154f7e0bac9b9d2b0800000000000000
+      internalID: -5559207984809642927
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: burning_citySprite_1
+      name: scorch_1
       rect:
         serializedVersion: 2
-        x: 1820
-        y: 1833
-        width: 1538
-        height: 282
+        x: 18
+        y: 17
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 65048d16d9fa4b320800000000000000
-      internalID: 2572874377621684310
+      spriteID: 5cddc266ab7d52ea0800000000000000
+      internalID: -5898070941393691195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: burning_citySprite_2
+      name: scorch_2
       rect:
         serializedVersion: 2
-        x: 100
-        y: 1505
-        width: 1538
-        height: 282
+        x: 34
+        y: 17
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +193,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b2fc0d8113655eb30800000000000000
-      internalID: 4315950586774212395
+      spriteID: 750d7c7d32e1452c0800000000000000
+      internalID: -4443893793014951849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: burning_citySprite_3
+      name: scorch_3
       rect:
         serializedVersion: 2
-        x: 1835
-        y: 1506
-        width: 1538
-        height: 282
+        x: 50
+        y: 17
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 121e565e045508700800000000000000
-      internalID: 540525692499386657
+      spriteID: 62a97245663e1a560800000000000000
+      internalID: 7323384497719188006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: burning_citySprite_4
+      name: scorch_4
       rect:
         serializedVersion: 2
-        x: 95
-        y: 1126
-        width: 1538
-        height: 282
+        x: 1
+        y: 2
+        width: 13
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0e460e95fd9d5d850800000000000000
-      internalID: 6401261998685840608
+      spriteID: e40fae90f127e27d0800000000000000
+      internalID: -2941288028990410674
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: burning_citySprite_5
+      name: scorch_5
       rect:
         serializedVersion: 2
-        x: 1821
-        y: 1118
-        width: 1538
-        height: 282
+        x: 17
+        y: 2
+        width: 13
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,20 +259,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 904eb939d1cc335e0800000000000000
-      internalID: -1930975387809225719
+      spriteID: 4a9320feeb08087a0800000000000000
+      internalID: -6376955514814580316
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: burning_citySprite_6
+      name: scorch_6
       rect:
         serializedVersion: 2
-        x: 101
-        y: 726
-        width: 1538
-        height: 282
+        x: 33
+        y: 2
+        width: 14
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,20 +281,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 27f35cc3896367bc0800000000000000
-      internalID: -3785778409275834510
+      spriteID: 860e7a37372af28a0800000000000000
+      internalID: -6327660334686936984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: burning_citySprite_7
+      name: scorch_7
       rect:
         serializedVersion: 2
-        x: 1833
-        y: 725
-        width: 1538
-        height: 282
+        x: 49
+        y: 2
+        width: 14
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,96 +303,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eb90e6f2cfd50f810800000000000000
-      internalID: 1797039589029710270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: burning_citySprite_8
-      rect:
-        serializedVersion: 2
-        x: 103
-        y: 370
-        width: 1538
-        height: 282
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 90d80c41f77cb01e0800000000000000
-      internalID: -2230469841809011447
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: burning_citySprite_9
-      rect:
-        serializedVersion: 2
-        x: 1837
-        y: 376
-        width: 1538
-        height: 282
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 64945cfbe8aa058b0800000000000000
-      internalID: -5165441242514503354
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: burning_citySprite_10
-      rect:
-        serializedVersion: 2
-        x: 104
-        y: 38
-        width: 1538
-        height: 282
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2e9df5f3599799e30800000000000000
-      internalID: 4510770183708596706
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: burning_citySprite_11
-      rect:
-        serializedVersion: 2
-        x: 1838
-        y: 41
-        width: 1538
-        height: 282
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f08056b7820c38db0800000000000000
-      internalID: -4790774298490632177
+      spriteID: 237e61e144ec46000800000000000000
+      internalID: 28374289628981042
       vertices: []
       indices: 
       edges: []
@@ -423,18 +323,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      burning_citySprite_0: -1616771240987994394
-      burning_citySprite_1: 2572874377621684310
-      burning_citySprite_10: 4510770183708596706
-      burning_citySprite_11: -4790774298490632177
-      burning_citySprite_2: 4315950586774212395
-      burning_citySprite_3: 540525692499386657
-      burning_citySprite_4: 6401261998685840608
-      burning_citySprite_5: -1930975387809225719
-      burning_citySprite_6: -3785778409275834510
-      burning_citySprite_7: 1797039589029710270
-      burning_citySprite_8: -2230469841809011447
-      burning_citySprite_9: -5165441242514503354
+      scorch_0: -5559207984809642927
+      scorch_1: -5898070941393691195
+      scorch_2: -4443893793014951849
+      scorch_3: 7323384497719188006
+      scorch_4: -2941288028990410674
+      scorch_5: -6376955514814580316
+      scorch_6: -6327660334686936984
+      scorch_7: 28374289628981042
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

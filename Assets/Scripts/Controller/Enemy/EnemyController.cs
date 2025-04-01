@@ -188,6 +188,14 @@ public class EnemyController : MonoBehaviour
 
                 if (commitAttackTimer <= 0)
                 {
+                    if (targetPosition.x - transform.position.x > 0)
+                    {
+                        body.localScale = Vector2.one;
+                    }
+                    else
+                    {
+                        body.localScale = new Vector2(-1, 1);
+                    }
                     currentState = EnemyState.stFrontSwing;
                 }
             }
