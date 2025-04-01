@@ -29,15 +29,21 @@ public class PlayerHealth : Health
     private float coolTimer;
     private float playerTemperature;
 
+    public delegate void OnDeath();
+    public static event OnDeath onDeath;
+
     public override float Current
     {
         get { return current; }
         set
         {
-            current = Mathf.Clamp(value, 0f, max);
-            if (shouldTriggerCallback && onChanged != null)
+            if (value != current)
             {
-                onChanged();
+                current = Mathf.Clamp(value, 0f, max);
+                if (shouldTriggerCallback && onChanged != null)
+                {
+                    onChanged();
+                }
             }
         }
     }
@@ -53,12 +59,14 @@ public class PlayerHealth : Health
     {
         onChanged += UpdateHealthBar;
         GameManager.onEnemyAttack += CheckEnemyAttack;
+        LevelManager.onPlayerRespawn += RespawnInvulnerability;
     }
 
     private void OnDisable()
     {
         onChanged -= UpdateHealthBar;
         GameManager.onEnemyAttack -= CheckEnemyAttack;
+        LevelManager.onPlayerRespawn -= RespawnInvulnerability;
     }
 
     private void FixedUpdate()
@@ -102,19 +110,27 @@ public class PlayerHealth : Health
         }
     }
 
-    void UpdateHealthBar()
+    private void RespawnInvulnerability()
+    {
+        invulnerableTimer = invulnerableDuration * 10;
+    }
+
+    private void UpdateHealthBar()
     {
         healthBar.Current = Current;
 
+        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        {
+            return;
+        }
+
         if (healthBar.Current <= 0f || transform.position.y <= -40f)
         {
-            OnDeath();
+            if (onDeath != null)
+            {
+                onDeath();
+            }
         }
-    }
-
-    void OnDeath()
-    {
-        gameObject.MyLevelManager().levelState = LevelState.Defeat;
     }
 
     private void InvulnerabilityBlink(float time)

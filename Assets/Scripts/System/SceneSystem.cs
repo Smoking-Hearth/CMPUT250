@@ -253,4 +253,11 @@ public class SceneSystem
 
         SceneManager.SetActiveScene(next);
     }
+
+    // Will transition to a scene and unload all other levels
+    public async Awaitable NextLevel(SceneIndex current, SceneIndex next)
+    {
+        await SetSceneActive(next);
+        await Unload((int)current);
+    }
 }

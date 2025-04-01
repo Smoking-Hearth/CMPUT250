@@ -38,6 +38,12 @@ public class FiretruckController : MonoBehaviour
     void FixedUpdate()
     {
         if (!gameObject.ShouldUpdate()) return;
+
+        if (gameObject.MyLevelManager().levelState == LevelState.Defeat)
+        {
+            return;
+        }
+
         switch(firetruckState)
         {
             case State.Inactive:

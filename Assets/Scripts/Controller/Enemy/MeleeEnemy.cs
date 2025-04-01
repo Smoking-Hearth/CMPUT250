@@ -10,6 +10,19 @@ public class MeleeEnemy : EnemyController
     [SerializeField] protected bool stopWhenAttacking;
     [SerializeField] protected bool moveY;      //Whether or not to affect the y velocity of the rigidbody
 
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        {
+            enemyRigidBody.simulated = false;
+        }
+        else
+        {
+            enemyRigidBody.simulated = true;
+        }
+    }
+
     protected override void Target()
     {
         trackingTimer = continueTrackingSeconds;

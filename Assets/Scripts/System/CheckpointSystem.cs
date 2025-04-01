@@ -59,6 +59,11 @@ public class CheckpointSystem: MonoBehaviour
         }
     }
 
+    public void ReturnToCheckpoint(Transform send)
+    {
+        send.position = checkpoints[current].position;
+    }
+
     void FixedUpdate()
     {
         Vector2 playerPos = gameObject.MyLevelManager().Player.Position;

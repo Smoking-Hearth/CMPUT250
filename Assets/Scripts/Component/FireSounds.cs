@@ -8,7 +8,7 @@ public class FireSounds : MonoBehaviour
     [SerializeField] protected float ambientVolume;
     [SerializeField] protected AudioClip hitClip;
     [SerializeField] protected AudioClip extinguishClip;
-    static protected bool playedHit;
+    static protected float globalHitTimer;
     protected float hitTimer;
     static protected bool playedExtinguish;
 
@@ -22,7 +22,6 @@ public class FireSounds : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        playedHit = false;
         playedExtinguish = false;
         if (hitTimer > 0)
         {
@@ -30,14 +29,22 @@ public class FireSounds : MonoBehaviour
         }
     }
 
+    public static void UpdateGlobalHitTimer()
+    {
+        if (globalHitTimer > 0)
+        {
+            globalHitTimer -= Time.fixedDeltaTime;
+        }
+    }
+
     public void HitSound()
     {
-        if (hitTimer <= 0 && !playedHit)
+        if (hitTimer <= 0 && globalHitTimer <= 0)
         {
             audioSource.pitch = 1;
             audioSource.PlayOneShot(hitClip);
-            hitTimer = 0.1f;
-            playedHit = true;
+            globalHitTimer = 0.1f;
+            hitTimer = 0.12f;
         }
     }
     public void ExtinguishSound()

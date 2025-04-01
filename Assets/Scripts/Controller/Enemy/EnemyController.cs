@@ -94,7 +94,7 @@ public class EnemyController : MonoBehaviour
         LevelManager lm = gameObject.MyLevelManager();
         distance = Vector2.Distance(transform.position, lm.Player.Position);
 
-        if (lm.levelState != LevelState.Playing)
+        if (lm.levelState != LevelState.Playing && currentState != EnemyState.stDefeated)
         {
             currentState = EnemyState.stWaiting;
             if (attackVisual != null)
@@ -152,9 +152,9 @@ public class EnemyController : MonoBehaviour
         {
             currentState = EnemyState.stDefeated;
             defeatTimer = enemyInfo.defeatDurationSeconds;
-            sounds.ExtinguishSound();
             sounds.FadeAmbientSounds(enemyInfo.defeatDurationSeconds);
             enemyAnimator.SetTrigger("IsDead");
+            sounds.ExtinguishSound();
         }
         else
         {

@@ -18,6 +18,10 @@ public class TriggerArea : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        {
+            return;
+        }
         if (retriggerTimer > 0)
         {
             return;
@@ -25,13 +29,17 @@ public class TriggerArea : MonoBehaviour
 
         if ((triggerLayers & (1 << collision.gameObject.layer)) != 0)
         {
-            triggerEvent.Invoke();
-            retriggerTimer = retriggerCooldownSeconds;
-
+            Trigger();
             if (!retrigger)
             {
                 Destroy(gameObject);
             }
         }
+    }
+
+    protected virtual void Trigger()
+    {
+        triggerEvent.Invoke();
+        retriggerTimer = retriggerCooldownSeconds;
     }
 }

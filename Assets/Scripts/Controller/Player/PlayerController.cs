@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerShoot))]
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private LevelState activeLevelState;
+
     [SerializeField] private float jumpBufferSeconds;   //The amount of time after an input that a jump will still be registered
     [SerializeField] private float coyoteTimeSeconds;   //The amount of time after walking off a ledge that the player can still jump
     [SerializeField] private float dropBufferSeconds;   //Buffer time for "drop from platform" input
@@ -73,6 +75,9 @@ public class PlayerController : MonoBehaviour
         Controls.Hydropack.SwapSpecial.performed += OnCancelSpecial;
         Controls.PlayerMovement.Interact.performed += OnInteract;
         Controls.PlayerMovement.Interact.canceled += OnCancelInteract;
+
+        inputAxes = Vector2.zero;
+        jumpBufferEndTime = 0;
     }
 
     private void OnDisable()
@@ -121,16 +126,23 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Player player = gameObject.MyLevelManager().Player;
         // Debug.Log($"{gameObject.scene.name} Player FixedUpdate\nBuildIdx: {gameObject.scene.buildIndex}\nLevelState:{gameObject.MyLevelManager().levelState}");
-        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        if (gameObject.MyLevelManager().levelState != activeLevelState)
         {
-            if (controls.PlayerMovement.enabled)
+            isShooting = false;
+            if (isSpecialShooting)
+            {
+                isSpecialShooting = false;
+                shootBehavior.SpecialShoot(false);
+                shootBehavior.ResetAimedSprites();
+            }
+            return;
+            /*if (controls.PlayerMovement.enabled)
             {
                 controls.PlayerMovement.Disable();
                 controls.Hydropack.Disable();
-            }
-        }
+            }*/
+        }/*
         else if (!controls.PlayerMovement.enabled)
         {
             controls.PlayerMovement.Enable();
@@ -143,7 +155,8 @@ public class PlayerController : MonoBehaviour
                 controls.Hydropack.SpecialAttack.Enable();
                 controls.Hydropack.SwapSpecial.Enable();
             }
-        }
+        }*/
+        Player player = gameObject.MyLevelManager().Player;
 
         player.Movement.Gravity();
         player.Movement.Move(inputAxes, !(isShooting || isSpecialShooting));
@@ -224,11 +237,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnJumpInput(InputAction.CallbackContext context)
     {
+        if (gameObject.MyLevelManager().levelState != activeLevelState)
+        {
+            return;
+        }
         jumpBufferEndTime = jumpBufferSeconds;
     }
 
     private void OnCancelJumpInput(InputAction.CallbackContext context)
     {
+        if (gameObject.MyLevelManager().levelState != activeLevelState)
+        {
+            return;
+        }
         Player player = gameObject.MyLevelManager().Player;
         if (!isSpecialShooting)
         {
@@ -238,6 +259,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrop(InputAction.CallbackContext context)
     {
+        if (gameObject.MyLevelManager().levelState != activeLevelState)
+        {
+            return;
+        }
         Player player = gameObject.MyLevelManager().Player;
         
         if (!player.Movement.DropPlatform())
@@ -253,18 +278,30 @@ public class PlayerController : MonoBehaviour
 
     private void OnStartAttack(InputAction.CallbackContext context) 
     {
+        if (gameObject.MyLevelManager().levelState != activeLevelState)
+        {
+            return;
+        }
         isShooting = true;
         InteractableSystem.StopInteract();
     }
 
     private void OnCancelAttack(InputAction.CallbackContext context)
     {
+        if (gameObject.MyLevelManager().levelState != activeLevelState)
+        {
+            return;
+        }
         isShooting = false;
         shootBehavior.ResetAimedSprites();
     }
 
     private void OnStartSpecial(InputAction.CallbackContext context)
     {
+        if (gameObject.MyLevelManager().levelState != activeLevelState)
+        {
+            return;
+        }
         if (!isSpecialShooting && shootBehavior.SpecialAvailable)
         {
             if (shootBehavior.SpecialShoot(true))
@@ -278,6 +315,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCancelSpecial(InputAction.CallbackContext context)
     {
+        if (gameObject.MyLevelManager().levelState != activeLevelState)
+        {
+            return;
+        }
         if (isSpecialShooting)
         {
             isSpecialShooting = false;
@@ -289,11 +330,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext context)
     {
+        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        {
+            return;
+        }
         isInteracting = true;
         InteractableSystem.Interact(false);
     }
     private void OnCancelInteract(InputAction.CallbackContext context)
     {
+        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        {
+            return;
+        }
         isInteracting = false;
         InteractableSystem.StopInteract();
     }

@@ -133,7 +133,10 @@ public class PlayerShoot : MonoBehaviour
             }
         }
 
-        pressureBar.value = pressurizeTimer / pressurizeSeconds;
+        if (pressureBar != null)
+        {
+            pressureBar.value = pressurizeTimer / pressurizeSeconds;
+        }
     }
 
     public void EnableShooting()
@@ -144,8 +147,15 @@ public class PlayerShoot : MonoBehaviour
         Awake();
         inventory.SetVisibility(true);
         hydropack.SetActive(true);
-        waterTankBar.gameObject.SetActive(true);
-        pressureBar.gameObject.SetActive(true);
+
+        if (waterTankBar != null)
+        {
+            waterTankBar.gameObject.SetActive(true);
+        }
+        if (pressureBar != null)
+        {
+            pressureBar.gameObject.SetActive(true);
+        }
     }
 
     public void ResetAimedSprites()

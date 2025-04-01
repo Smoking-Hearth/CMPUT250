@@ -212,6 +212,10 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   <Texture>k__BackingField: {fileID: 2800000, guid: 1f9bd4ed717dd8244b405aa9bac69206, type: 3}
   <IsTiled>k__BackingField: 1
+  <Rows>k__BackingField: 1
+  <Columns>k__BackingField: 1
+  <Frames>k__BackingField: 1
+  <FramesPerSecond>k__BackingField: 10
 --- !u!4 &84076004
 Transform:
   m_ObjectHideFlags: 0
@@ -276,7 +280,7 @@ MonoBehaviour:
   - title: Cultist
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - "I\u2019m surprised you made it through that."
@@ -503,7 +507,8 @@ PrefabInstance:
       value: 280
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7922969780617685987, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2106859508735444894, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
       insertIndex: 10
@@ -764,6 +769,10 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   <Texture>k__BackingField: {fileID: 2800000, guid: 2b968ab4043c71257b10749b46ab6dc3, type: 3}
   <IsTiled>k__BackingField: 1
+  <Rows>k__BackingField: 1
+  <Columns>k__BackingField: 1
+  <Frames>k__BackingField: 1
+  <FramesPerSecond>k__BackingField: 10
 --- !u!4 &304055150
 Transform:
   m_ObjectHideFlags: 0
@@ -1709,6 +1718,229 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad6c72de77d995d419add9540441b811, type: 3}
+--- !u!1001 &642324587
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 75182791171916653, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 249970317334638901, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 888532942614174896, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843597705717813145, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: pressureBar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843597705717813145, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: waterTankBar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843597705717813145, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: waterTankInGame
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843597705717813145, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: extinguisherTankBar
+      value: 
+      objectReference: {fileID: 1124428150}
+    - target: {fileID: 1843597705717813145, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: defaultSpecialAttack
+      value: 
+      objectReference: {fileID: 7939722130492425773, guid: dcf6785bc8533c247a5bef0acfd5230e, type: 3}
+    - target: {fileID: 1843597705717813145, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: 'inventoryIcons.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1213823260}
+    - target: {fileID: 1843597705717813145, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: 'inventoryIcons.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2048128260}
+    - target: {fileID: 1902244439361754466, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934113226985493139, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016031678315984376, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226314977341750610, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: activeLevelState
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244871432050409933, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Name
+      value: PlayerSoul
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244871432050409933, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244871432050409933, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593244159720115066, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2752404615562447424, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3602280219054514687, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784460980696447893, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3874610427337158895, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278590736640342362, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: activeLevelState
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392914951097475837, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507127284835319081, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4567395648012685287, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621751947535713218, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896632051679075689, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1083656663}
+    - target: {fileID: 4896632051679075689, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: zapEffect
+      value: 
+      objectReference: {fileID: 1169156831}
+    - target: {fileID: 4896632051679075689, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: heatVignette
+      value: 
+      objectReference: {fileID: 1764752712}
+    - target: {fileID: 4922621461603563338, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4963752468559897787, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967751745665128726, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967751745665128726, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967751745665128726, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967751745665128726, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967751745665128726, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967751745665128726, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967751745665128726, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967751745665128726, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967751745665128726, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967751745665128726, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072658982699501202, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531201799051153395, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276671255344124002, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7319027313380809311, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7738253435559157580, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050077196607055261, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884004060426512120, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198770477526330043, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+--- !u!50 &642324588 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3319890211412773043, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+  m_PrefabInstance: {fileID: 642324587}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &642324589 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4967751745665128726, guid: d9113a2d0b0738b4aa8bbaffe47651bc, type: 3}
+  m_PrefabInstance: {fileID: 642324587}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &648293889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,7 +2103,7 @@ MonoBehaviour:
   - title: Prophet
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - "\u2026We reserve one of our loudest heralds."
@@ -1896,7 +2128,7 @@ MonoBehaviour:
   - title: Prophet
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - "Tell me, little Icarus, now that you\u2019re so close to the sun, will you
@@ -1921,7 +2153,7 @@ MonoBehaviour:
   - title: Prophet
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - HA HA HA!!!
@@ -2418,11 +2650,11 @@ MonoBehaviour:
   - title: Cultist
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - Do you see now?
-    - Their gifts are unstoppable.
+    - Their children are unstoppable.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -2433,7 +2665,7 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: 0}
     lines:
-    - You know, I have to say, pinecone, your conviction to your faith is commendable.
+    - You know, I have to say, "Pinecone", your conviction to your faith is commendable.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -2441,7 +2673,7 @@ MonoBehaviour:
   - title: Cultist
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - Faith!?
@@ -2471,7 +2703,7 @@ MonoBehaviour:
   - title: Cultist
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - Indeed.
@@ -2495,7 +2727,7 @@ MonoBehaviour:
   - title: Cultist
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - The close and the far.
@@ -2520,7 +2752,7 @@ MonoBehaviour:
   - title: Cultist
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - Yes!
@@ -2605,6 +2837,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1613979387586651009, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
   m_PrefabInstance: {fileID: 838478601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &876449481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6039353278059043914, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+  m_PrefabInstance: {fileID: 182578577}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &890833131 stripped
 RectTransform:
@@ -3047,6 +3284,113 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020718916}
   m_CullTransparentMesh: 1
+--- !u!1 &1035188802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1035188805}
+  - component: {fileID: 1035188803}
+  - component: {fileID: 1035188804}
+  m_Layer: 0
+  m_Name: DeadCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1035188803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035188802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Priority:
+    Enabled: 1
+    m_Value: 0
+  OutputChannel: 1
+  StandbyUpdate: 2
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
+  Target:
+    TrackingTarget: {fileID: 642324589}
+    LookAtTarget: {fileID: 0}
+    CustomLookAtTarget: 0
+  Lens:
+    FieldOfView: 60
+    OrthographicSize: 5
+    NearClipPlane: 0.3
+    FarClipPlane: 1000
+    Dutch: 0
+    ModeOverride: 0
+    PhysicalProperties:
+      GateFit: 2
+      SensorSize: {x: 21.946, y: 16.002}
+      LensShift: {x: 0, y: 0}
+      FocusDistance: 10
+      Iso: 200
+      ShutterSpeed: 0.005
+      Aperture: 16
+      BladeCount: 5
+      Curvature: {x: 2, y: 11}
+      BarrelClipping: 0.25
+      Anamorphism: 0
+  BlendHint: 0
+--- !u!114 &1035188804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035188802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraDistance: 10
+  DeadZoneDepth: 0
+  Composition:
+    ScreenPosition: {x: 0, y: 0}
+    DeadZone:
+      Enabled: 0
+      Size: {x: 0.1, y: 0.1}
+    HardLimits:
+      Enabled: 1
+      Size: {x: 0.43, y: 0.26}
+      Offset: {x: 0, y: 0}
+  CenterOnActivate: 1
+  TargetOffset: {x: 0, y: 1, z: 0}
+  Damping: {x: 0.7, y: 1, z: 1}
+  Lookahead:
+    Enabled: 1
+    Time: 0.35
+    Smoothing: 4
+    IgnoreY: 1
+--- !u!4 &1035188805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035188802}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.54, y: -3.2, z: -8.071977}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1222114888}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1083656663 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7314903455698134788, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
@@ -3115,10 +3459,10 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Pain in the butt
+  - title: '"Pain in my butt"'
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - Why do you run?
@@ -3139,10 +3483,10 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Pain in the butt
+  - title: '"Pain in my butt"'
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - "Survival\u2026"
@@ -3171,7 +3515,7 @@ MonoBehaviour:
   - title: Cultist
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - I was once like you.
@@ -3199,7 +3543,7 @@ MonoBehaviour:
   - title: Cultist
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - Greed.
@@ -3753,7 +4097,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  CustomBlends: {fileID: 0}
+  CustomBlends: {fileID: 11400000, guid: 6ae1999c5fdc8ff48b1730f319b59d28, type: 2}
   AnimatedTarget: {fileID: 1222114886}
   LayerIndex: 0
   Instructions:
@@ -3769,6 +4113,10 @@ MonoBehaviour:
     Camera: {fileID: 1213124744}
     ActivateAfter: 0
     MinDuration: 0
+  - FullHash: 1684585544
+    Camera: {fileID: 1035188803}
+    ActivateAfter: 0
+    MinDuration: 0
   HashOfParent:
   - Hash: -439680239
     HashOfParent: 756556552
@@ -3777,6 +4125,8 @@ MonoBehaviour:
   - Hash: -1371584187
     HashOfParent: 756556552
   - Hash: -1342249421
+    HashOfParent: 756556552
+  - Hash: 1684585544
     HashOfParent: 756556552
   m_LegacyLookAt: {fileID: 0}
   m_LegacyFollow: {fileID: 0}
@@ -3794,6 +4144,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 648293891}
+  - {fileID: 1035188805}
   - {fileID: 1213124746}
   - {fileID: 612275864}
   m_Father: {fileID: 0}
@@ -4307,6 +4658,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
+--- !u!223 &1469821247 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 8204064876490863264, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+  m_PrefabInstance: {fileID: 182578577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1525165327
 GameObject:
   m_ObjectHideFlags: 0
@@ -4512,10 +4868,10 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Pain in the butt
+  - title: '"Pain in my butt"'
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - Scurrying around like a rat I see.
@@ -4535,10 +4891,10 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Pain in the butt
+  - title: '"Pain in my butt"'
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 8300000, guid: 58d65cf23684feb44acaa77188cb442f, type: 3}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - 'Of course not. '
@@ -4560,10 +4916,10 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Pain in the butt
+  - title: '"Pain in my butt"'
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 8300000, guid: 58d65cf23684feb44acaa77188cb442f, type: 3}
-    font: {fileID: 11400000, guid: 887805bb4d76345779dbe7c2cdd377b4, type: 2}
+    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
     lines:
     - Regardless of how you feel about me,
@@ -5151,6 +5507,10 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   <Texture>k__BackingField: {fileID: 2800000, guid: 7629ccaba8a8b8a46a803a6b1f0e7ee8, type: 3}
   <IsTiled>k__BackingField: 1
+  <Rows>k__BackingField: 1
+  <Columns>k__BackingField: 1
+  <Frames>k__BackingField: 1
+  <FramesPerSecond>k__BackingField: 10
 --- !u!4 &1886260968
 Transform:
   m_ObjectHideFlags: 0
@@ -5349,6 +5709,7 @@ GameObject:
   - component: {fileID: 1930961074}
   - component: {fileID: 1930961076}
   - component: {fileID: 1930961077}
+  - component: {fileID: 1930961078}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -5375,6 +5736,7 @@ MonoBehaviour:
   MusicSystem: {fileID: 1930961076}
   TimeSystem: {fileID: 0}
   AudioListener: {fileID: 1894297778}
+  TrackerSystem: {fileID: 1930961078}
   levelState: 2
   cameraAnimator: {fileID: 1222114886}
   fireSettings: {fileID: 11400000, guid: 64b8c708d2d4f5e199f6a0214efca5a4, type: 2}
@@ -5383,8 +5745,10 @@ MonoBehaviour:
   setCameraStateDelay: 3
   LevelCamera: {fileID: 1894297779}
   gameOverScreen: {fileID: 182578579}
+  deathOverlay: {fileID: 876449481}
   <settingsScreen>k__BackingField: {fileID: 222839695}
   setPlayer: {fileID: 1532442760}
+  setSoul: {fileID: 642324588}
   defaultEnabledRootObjects: []
   isLevelRunning: 0
 --- !u!4 &1930961073
@@ -5459,6 +5823,20 @@ MonoBehaviour:
   resume: {fileID: 182578583}
   settings: {fileID: 182578582}
   menu: {fileID: 182578581}
+--- !u!114 &1930961078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930961071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0127f3a3b1aa7004496310374044c6e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 1469821247}
+  arrowPrefab: {fileID: 2682382785129858568, guid: 3768c96092ff3ce4aba0a26aa1ee3cf4, type: 3}
 --- !u!1001 &2016163903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5912,6 +6290,7 @@ SceneRoots:
   - {fileID: 1894297780}
   - {fileID: 1222114888}
   - {fileID: 1532442759}
+  - {fileID: 642324587}
   - {fileID: 1169156830}
   - {fileID: 1525165328}
   - {fileID: 2095483701}

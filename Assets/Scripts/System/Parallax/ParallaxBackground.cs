@@ -49,11 +49,7 @@ public class ParallaxBackground : MonoBehaviour
         {
             if (layer.IsTiled)
             {
-                layer.meshRenderer = Instantiate(tiledLayerPrefab, parent: tiledLayerAnchor.transform);
-                layer.meshRenderer.transform.localPosition = new Vector3(0f, 0f, 100f + 5f * layerIndex);
-                Vector2 size = layer.meshRenderer.bounds.extents;
-                minTiledSize = Vector2.Min(minTiledSize, layer.meshRenderer.bounds.extents);
-                layer.meshRenderer.material.SetTexture("_MainTex", layer.Texture);
+                minTiledSize = Vector2.Min(minTiledSize, layer.Attach(tiledLayerAnchor, tiledLayerPrefab, layerIndex));
             }
             layerIndex += 1;
         }
@@ -69,7 +65,8 @@ public class ParallaxBackground : MonoBehaviour
     void Update()
     {
         // Detect resizes. This is VERY inefficient.
-        Vector2 currentScreenSize = new Vector2(targetCamera.orthographicSize * targetCamera.aspect, targetCamera.orthographicSize);
+        Vector2 currentScreenSize = new(targetCamera.aspect, 1f);
+        currentScreenSize *= targetCamera.orthographicSize;
 
         if (currentScreenSize != previousScreenSize)
         {
@@ -85,10 +82,10 @@ public class ParallaxBackground : MonoBehaviour
 
         foreach (var layer in layers)
         {
+            // This is just a pseudo perspective divide but weird.
             Vector2 offset = cameraTransform / layer.transform.position.z;
             if (layer.IsTiled)
             {
-                // This is just a pseudo perspective divide but weird.
                 layer.meshRenderer.material.SetVector("_Offset", offset);
             }
             else

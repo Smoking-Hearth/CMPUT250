@@ -55,6 +55,7 @@ public class LevelManager : MonoBehaviour
     [field: SerializeField] public MusicSystem MusicSystem;
     [field: SerializeField] public TimeSystem TimeSystem;
     [field: SerializeField] public AudioListener AudioListener;
+    [field: SerializeField] public TrackerSystem TrackerSystem;
 
     [Header("State")]
     [SerializeField] public LevelState levelState;
@@ -68,31 +69,48 @@ public class LevelManager : MonoBehaviour
     [field: SerializeField] public Camera LevelCamera; 
 
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject deathOverlay;
     [field: SerializeField] public SettingsScreen settingsScreen { get; private set; }
 
 
     [SerializeField] private Rigidbody2D setPlayer;
+    [SerializeField] private Rigidbody2D setSoul;
     private Player player;
+    private Player soul;
     public Player Player
     {
         get
         {
-            if (player == null)
+            if (levelState != LevelState.Defeat)
             {
-                player = new Player(setPlayer);
-                SavedVariableAccess playerPosAccess = new();
-                
-                playerPosAccess.Get += () => {
-                    return setPlayer.position;
-                };
+                if (player == null)
+                {
+                    player = new Player(setPlayer);
+                    SavedVariableAccess playerPosAccess = new();
 
-                playerPosAccess.Set += (pos) => { 
-                    setPlayer.position = (Vector2)pos;
-                };
+                    playerPosAccess.Get += () => {
+                        return setPlayer.position;
+                    };
 
-                CheckpointSystem.RegisterState(playerPosAccess);
+                    playerPosAccess.Set += (pos) => {
+                        setPlayer.position = (Vector2)pos;
+                    };
+
+                    CheckpointSystem.RegisterState(playerPosAccess);
+                }
+                if (soul != null)
+                {
+                    soul.Movement.freeze = true;
+                }
+                player.Movement.freeze = false;
+                return player;
             }
-            return player;
+
+            if (soul == null)
+            {
+                soul = new Player(setSoul);
+            }
+            return soul;
         }
     }
     public GameObject[] defaultEnabledRootObjects;
@@ -121,6 +139,9 @@ public class LevelManager : MonoBehaviour
 
     private readonly Queue<LevelCommand> callbackCommands = new();
     private bool swapped = false;
+
+    public delegate void OnPlayerRespawn();
+    public static event OnPlayerRespawn onPlayerRespawn;    //event called when the player has finished their respawn animation
 
     public void DispatchCommand(LevelCommand cmd)
     {
@@ -185,6 +206,13 @@ public class LevelManager : MonoBehaviour
         {
             uiObject.SetActive(true);
         }
+
+        if (soul == null)
+        {
+            soul = new Player(setSoul);
+        }
+
+        PlayerHealth.onDeath += GameOver;
     }
 
     public void Deactivate()
@@ -202,7 +230,8 @@ public class LevelManager : MonoBehaviour
             EventSystem.enabled =  false;
         if (AudioListener != null)
             AudioListener.enabled = false;
-        
+
+        PlayerHealth.onDeath -= GameOver;
         gameObject.SetActive(false);
     }
 
@@ -220,13 +249,48 @@ public class LevelManager : MonoBehaviour
 
             swapped = true;
         }
+
+        if (levelState == LevelState.Defeat && Vector2.Distance(setPlayer.transform.position, setSoul.transform.position) < 0.8f)
+        {
+            levelState = LevelState.Respawning;
+            if (onPlayerRespawn != null)
+            {
+                cameraAnimator.Play("Game");
+                TrackerSystem.RemoveTracker(player.Movement.transform);
+                onPlayerRespawn();
+            }
+        }
     }
+
     public void GameOver()
     {
         if (!gameOverScreen.activeSelf)
         {
             gameOverScreen.SetActive(true);
-            levelState = LevelState.Defeat;
+        }
+        levelState = LevelState.Defeat;
+        if (player != null)
+        {
+            player.Movement.freeze = true;
+            player.Movement.ResetMovement();
+        }
+        if (soul != null)
+        {
+            CheckpointSystem.ReturnToCheckpoint(soul.Movement.transform);
+        }
+        deathOverlay.SetActive(true);
+    }
+    public void GiveSoulControl()
+    {
+        gameOverScreen.SetActive(false);
+        TrackerSystem.AddTracker(player.Movement.transform);
+        if (soul != null)
+        {
+            soul.Movement.freeze = false;
+            soul.Movement.ResetMovement();
+            setSoul.gameObject.SetActive(true);
+            if (cameraAnimator != null)
+                cameraAnimator.Play("Dead");
         }
     }
 
@@ -248,7 +312,10 @@ public class LevelManager : MonoBehaviour
 
     public void TransitionTo(int sceneIndex)
     {
-        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.SetSceneActive((SceneIndex)sceneIndex));
+        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.NextLevel(
+                (SceneIndex)gameObject.scene.buildIndex, 
+                (SceneIndex)sceneIndex
+            ));
     }
 
     public void SetCutsceneState(bool cutsceneOn)
@@ -269,6 +336,7 @@ public class LevelManager : MonoBehaviour
             case LevelState.Paused:
                 break;
             case LevelState.Playing:
+                FireSounds.UpdateGlobalHitTimer();
                 if (fireTickTimer > 0)
                 {
                     fireTickTimer -= Time.fixedDeltaTime;
@@ -283,7 +351,6 @@ public class LevelManager : MonoBehaviour
                 }
                 break;
             case LevelState.Defeat:
-                GameOver();
                 break;
             case LevelState.Win:
                 break;
@@ -306,5 +373,24 @@ public class LevelManager : MonoBehaviour
 
         CheckpointSystem.LoadState();
         Player.Health.ResetHealth();
+    }
+
+    public void RespawnControl()
+    {
+        if (player != null)
+        {
+            player.Movement.freeze = false;
+            player.Movement.ResetMovement();
+        }
+        if (soul != null)
+        {
+            soul.Movement.freeze = true;
+            soul.Movement.ResetMovement();
+            setSoul.gameObject.SetActive(false);
+        }
+        levelState = LevelState.Playing;
+        Player.Health.Current = 40;
+        Player.Movement.ResetMovement();
+        deathOverlay.SetActive(false);
     }
 }
