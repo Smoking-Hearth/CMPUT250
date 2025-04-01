@@ -91,7 +91,11 @@ public class PlayerInventory
         }
 
         currentIcon.sprite = specials[0].DisplayIcon;
-        otherIcon.sprite = null;
+
+        if (otherIcon != null)
+        {
+            otherIcon.sprite = null;
+        }
         specials[currentIndex] = null;
 
         currentIndex = 0;

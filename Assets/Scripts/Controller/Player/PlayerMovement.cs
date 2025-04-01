@@ -213,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
                 playerAnimator.SetBool("IsWalking", false);
                 if (Mathf.Abs(targetMovement.x) > 0.02f)
                 {
-                    targetMovement.x *= 0.9f;
+                    targetMovement.x *= 0.82f;
                 }
                 else
                 {
@@ -263,7 +263,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (player.GroundState != GroundState.None)
                 {
-                    addedVelocity.x *= 0.9f;
+                    addedVelocity.x *= 0.82f;
                 }
                 else
                 {
