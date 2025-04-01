@@ -32,12 +32,10 @@ public class EnvironmentalFire : Fire, IExtinguishable, ITemperatureSource
 
     private void OnEnable()
     {
-        gameObject.MyLevelManager().onFireTick += FireTick;
     }
 
     private void OnDisable()
     {
-        gameObject.MyLevelManager().onFireTick -= FireTick;
     }
 
     protected void FixedUpdate()
@@ -52,6 +50,12 @@ public class EnvironmentalFire : Fire, IExtinguishable, ITemperatureSource
             {
                 Destroy(gameObject);
             }
+        }
+        // Checking if the fire should damage the player
+        float distance = Vector2.Distance(gameObject.MyLevelManager().Player.Position, (Vector2)transform.position);
+        if (distance < fireDamageRadius * 0.8f)
+        {
+            gameObject.MyLevelManager().Player.Health.FireDamage(2f * Mathf.Pow(0.5f, distance));
         }
     }
 
@@ -77,15 +81,6 @@ public class EnvironmentalFire : Fire, IExtinguishable, ITemperatureSource
             lingerTimer = particles.main.startLifetime.constant;
             fireCollider.enabled = false;
             ExtinguishEvent.Invoke();
-        }
-    }
-
-    private void FireTick()
-    {
-        float distance = Vector2.Distance(gameObject.MyLevelManager().Player.Position, (Vector2)transform.position);
-        if (distance < fireDamageRadius)
-        {
-            gameObject.MyLevelManager().Player.Health.FireDamage(8f * Mathf.Pow(0.5f, distance));
         }
     }
 }

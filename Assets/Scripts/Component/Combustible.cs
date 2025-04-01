@@ -119,7 +119,8 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
     void FixedUpdate()
     {
         Vector2 playerPosition = gameObject.MyLevelManager().Player.Position;
-        if (Vector2.Distance(playerPosition, transform.position) > SIMULATION_DISTANCE)
+        float playerDistance = Vector2.Distance(playerPosition, transform.position);
+        if (playerDistance > SIMULATION_DISTANCE)
         {
             return;
         }
@@ -144,6 +145,12 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
             }
 
             fire.SetLifetime(temperatureToLifetime.Evaluate(Temperature) * maxLifetime);
+
+            // Checking if the fire should damage the player
+            if (playerDistance < fireSpreadRadius * 0.8f)
+            {
+                gameObject.MyLevelManager().Player.Health.FireDamage(2f * Mathf.Pow(0.5f, playerDistance));
+            }
         }
         if (dampness > 0)
         {
@@ -169,14 +176,6 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
             {
                 Temperature += diff * heatCopyRate * (1 - dampness / fullDampness);
             }
-        }
-
-        // We shouldn't damage the player if not on fire.
-        if (!Burning) return;
-        float distance = Vector2.Distance(gameObject.MyLevelManager().Player.Position, (Vector2)transform.position);
-        if (distance < fireSpreadRadius * 0.8f)
-        {
-            gameObject.MyLevelManager().Player.Health.FireDamage(8f * Mathf.Pow(0.5f, distance));
         }
     }
 
