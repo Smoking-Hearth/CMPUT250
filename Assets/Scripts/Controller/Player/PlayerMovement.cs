@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if (freeze)
         {
             targetMovement = Vector2.zero;
+            playerRigidbody.linearVelocity = Vector2.zero;
             playerRigidbody.simulated = false;
             return;
         }
