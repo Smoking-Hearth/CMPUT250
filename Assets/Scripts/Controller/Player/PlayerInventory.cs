@@ -90,7 +90,10 @@ public class PlayerInventory
             currentIndex++;
         }
 
-        currentIcon.sprite = specials[0].DisplayIcon;
+        if (currentIcon != null)
+        {
+            currentIcon.sprite = specials[0].DisplayIcon;
+        }
 
         if (otherIcon != null)
         {
