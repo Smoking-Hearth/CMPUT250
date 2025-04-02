@@ -19,7 +19,6 @@ class OutlineRenderPass : ScriptableRenderPass
     private static readonly int outlineColorID = Shader.PropertyToID("_OutlineColor");
     private static readonly int outlineWidthID = Shader.PropertyToID("_OutlineThickness");
     private static readonly int stepWidthID = Shader.PropertyToID("_StepWidth");
-    private static readonly int axisWidthID = Shader.PropertyToID("_AxisWidth"); 
 
     // pass names
     private const int SHADER_PASS_INTERIOR_STENCIL = 0;
@@ -57,7 +56,6 @@ class OutlineRenderPass : ScriptableRenderPass
             passData.thickness = defaultSettings.thickness;
             passData.color = defaultSettings.color;
 
-            // passData.silhouetteTexture = builder.CreateTransientTexture(resourceData.cameraColor);
             builder.SetRenderFunc<PassData>(ExecutePass);
         }
     }
@@ -117,8 +115,10 @@ class OutlineRenderPass : ScriptableRenderPass
         // Here we do the traditional JFA
         for (int i = jfaIters; i >= 0; --i)
         {
+            // Yeah it feels a bit dangerous to sit on the edge or pixels so to the 
+            // center we go (+0.5)
             // stepWidth = 2^i
-            ctx.cmd.SetGlobalFloat(stepWidthID, 1 << i);
+            ctx.cmd.SetGlobalFloat(stepWidthID, (1 << i) + 0.5f);
 
             if ((i & 1) == 0)
                 ctx.cmd.Blit(nearestPointID, nearestPointPingPongID, data.material, SHADER_PASS_JFA_FLOOD);

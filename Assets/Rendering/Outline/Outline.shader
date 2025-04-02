@@ -39,7 +39,6 @@ Shader "Effect/Outline"
 
             HLSLPROGRAM
             #pragma vertex Vert
-            #pragma fragment Frag
             
             // I Hope this is correct.
             float4 Vert(float4 vertex : POSITION) : SV_POSITION
@@ -48,7 +47,6 @@ Shader "Effect/Outline"
             }
 
             // Why is this empty?
-            float4 Frag () {}
             ENDHLSL
         }
 
@@ -88,15 +86,12 @@ Shader "Effect/Outline"
             #pragma fragment Frag
 
             Texture2D _MainTex;
-            float4 _MainTex_TexelSize;
 
             float2 Frag(Varyings input) : SV_Target
             {
                 int2 uvInt = input.positionCS.xy;
 
-
-                // How to I to this if based on the result of the stencil buffer test?
-                if()
+                if(_MainTex.Load(uvInt.x, uvInt.y) > 0.5)
                 {
                     return input.positionCS.xy * abs(_MainTex_TexelSize.xy) * FLOOD_ENCODE_SCALE - FLOOD_ENCODE_OFFSET;
                 }
@@ -119,10 +114,42 @@ Shader "Effect/Outline"
             #pragma vertex Vert
             #pragma fragment JumpFlood
 
-            int _OutlineThickness;
+            float _OutlineThickness;
+            float4 _OutlineColor;
+            int _StepWidth;
             
+            Texture2D _MainTex;
+            
+            float4 Vert(Varyings input) : SV_POSITION
+            {
+                int2 uvInt = input.positionCS.xy;
 
+                float shortestDist = 1.#INF;
+                float2 theCoord;
 
+                UNITY_UNROLL
+                for (int i = -1; i <= 1; ++i)
+                {
+                    UNITY_UNROLL
+                    for (int j = -1; j <= 1; ++j)
+                    {
+                        int2 offset = uvInt + int2(i,j) * _StepWidth;
+                        offset = clamp(offset, int2(0,0), (int2)_MainTex_TexelSize.zw - 1);
+
+                        float2 offsetPos = (_MainTex.Load(int3(offset, 0)).rg + FLOOD_ENCODE_OFFSET) * _MainTex_TexelSize.zw / FLOOD_ENCODE_SCALE;
+                        float2 disp = input.positionCS.xy - offsetPos;
+
+                        float dist = dot(disp, disp);
+
+                        if (offsetPos.y != FLOOD_NULL_POS && dist < bestDist)
+                        {
+                            bestDist = dist;
+                            bestCoord = offsetPos;
+                        }
+                    }
+                }
+                return isinf(bestDist) ? FLOOD_NULL_POS_FLOAT2 : bestCoord * _MainTex_TexelSize.xy * FLOOD_ENCODE_SCALE - FLOOD_ENCODE_OFFSET;
+            }
             ENDHLSL
         }
 
@@ -131,9 +158,52 @@ Shader "Effect/Outline"
         {
             Name "ColorOutline"
 
+            Stencil {
+                Ref 1
+                ReadMask 1
+                WriteMask 1
+                Comp NotEqual
+                Pass Zero
+                Fail Zero
+            }
+
+            Blend SrcAlpha OneMinusSrcAlpha
+
             HLSLPROGRAM
             #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
 
+            #pragma vertex Vert
+            #pragma fragment Frag
+
+            float4 Vert(Varyings input) : SV_POSITION
+            {
+                int2 uvInt = int2(input.positionCS.xy);
+
+                // load encoded position
+                float2 encodedPos = _MainTex.Load(int3(uvInt, 0)).rg;
+
+                // early out if null position
+                if (encodedPos.y == -1)
+                    return half4(0,0,0,0);
+
+                // decode closest position
+                float2 nearestPos = (encodedPos + FLOOD_ENCODE_OFFSET) * abs(_ScreenParams.xy) / FLOOD_ENCODE_SCALE;
+
+                // current pixel position
+                float2 currentPos = i.pos.xy;
+
+                // distance in pixels to closest position
+                half dist = length(nearestPos - currentPos);
+
+                half outline = saturate(_OutlineWidth - dist + 0.5);
+
+                // apply outline to alpha
+                half4 col = _OutlineColor;
+                col.a *= outline;
+
+                return col;
+
+            }
             ENDHLSL
         }
 
