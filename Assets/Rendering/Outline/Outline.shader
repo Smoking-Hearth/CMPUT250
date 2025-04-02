@@ -40,14 +40,15 @@ Shader "Effect/Outline"
 
             HLSLPROGRAM
             #pragma vertex Vert
+            #pragma fragment Frag
             
-            // I Hope this is correct.
             float4 Vert(float4 vertex : POSITION) : SV_POSITION
             {
                 return TransformObjectToHClip(vertex.xyz);
             }
 
-            // Why is this empty?
+            // The blend mode should ensure none of these are actually output.
+            void Frag() { }
             ENDHLSL
         }
 
@@ -69,8 +70,7 @@ Shader "Effect/Outline"
                 return clipSpacePosition;
             }
 
-            half Frag() { return 1.0; }
-
+            half Frag() : SV_Target { return 1.0; }
             ENDHLSL
         }
         
@@ -93,7 +93,8 @@ Shader "Effect/Outline"
             {
                 int2 uvInt = input.positionCS.xy;
 
-                if(_BlitTexture.Load(uvInt.x, uvInt.y) > 0.5)
+                // This is a work of evil.
+                if (_BlitTexture.Load(int3(uvInt,0)).r > 0.5)
                 {
                     return input.positionCS.xy * abs(_BlitTexture_TexelSize.xy) * FLOOD_ENCODE_SCALE - FLOOD_ENCODE_OFFSET;
                 }
@@ -114,16 +115,16 @@ Shader "Effect/Outline"
             HLSLPROGRAM
             #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
             #pragma vertex Vert
-            #pragma fragment JumpFlood
+            #pragma fragment Frag
 
             int _StepWidth;
             
-            float4 Vert(Varyings input) : SV_POSITION
+            half2 Frag(Varyings input) : SV_Target
             {
                 int2 uvInt = input.positionCS.xy;
 
                 float nearestDist = 1.#INF;
-                float2 nearestPixel;
+                float2 nearestCoord;
 
                 UNITY_UNROLL
                 for (int i = -1; i <= 1; ++i)
@@ -139,14 +140,14 @@ Shader "Effect/Outline"
 
                         float dist = dot(disp, disp);
 
-                        if (offsetPos.y != FLOOD_NULL_POS && dist < bestDist)
+                        if (offsetPos.y != FLOOD_NULL_POS && dist < nearestDist)
                         {
                             nearestDist = dist;
                             nearestCoord = offsetPos;
                         }
                     }
                 }
-                return isinf(bestDist) ? FLOOD_NULL_POS_FLOAT2 : bestCoord * _BlitTexture_TexelSize.xy * FLOOD_ENCODE_SCALE - FLOOD_ENCODE_OFFSET;
+                return isinf(nearestDist) ? FLOOD_NULL_POS_FLOAT2 : nearestCoord * _BlitTexture_TexelSize.xy * FLOOD_ENCODE_SCALE - FLOOD_ENCODE_OFFSET;
             }
             ENDHLSL
         }
@@ -176,7 +177,7 @@ Shader "Effect/Outline"
             float _OutlineThickness;
             float4 _OutlineColor;
 
-            float4 Vert(Varyings input) : SV_POSITION
+            half2 Frag(Varyings input) : SV_Target
             {
                 int2 uvInt = int2(input.positionCS.xy);
 
@@ -193,7 +194,7 @@ Shader "Effect/Outline"
                 float2 nearestPos = (encodedPos + FLOOD_ENCODE_OFFSET) * abs(_ScreenParams.xy) / FLOOD_ENCODE_SCALE;
 
                 // current pixel position
-                float2 currentPos = i.pos.xy;
+                float2 currentPos = input.positionCS.xy;
 
                 // distance in pixels to closest position
                 half dist = length(nearestPos - currentPos);

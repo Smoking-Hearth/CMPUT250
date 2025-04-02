@@ -10,24 +10,17 @@ using UnityEngine.Rendering.Universal;
 
 class OutlineRenderPass : ScriptableRenderPass 
 {
-    // render texture IDs
-    private static readonly int silhouetteBufferID = Shader.PropertyToID("_SilhouetteBuffer");
-    private static readonly int nearestPointID = Shader.PropertyToID("_NearestPoint");
-    private static readonly int nearestPointPingPongID = Shader.PropertyToID("_NearestPointPingPong");
-
     // shader properties
     private static readonly int outlineColorID = Shader.PropertyToID("_OutlineColor");
     private static readonly int outlineWidthID = Shader.PropertyToID("_OutlineThickness");
     private static readonly int stepWidthID = Shader.PropertyToID("_StepWidth");
-    private static readonly int mainTexture = Shader.PropertyToID("_MainTex");
-    private static readonly int textureSize = Shader.PropertyToID("_TextureSize");
 
     // pass names
     private const int SHADER_PASS_INTERIOR_STENCIL = 0;
     private const int SHADER_PASS_SILHOUETTE_BUFFER_FILL = 1;
-    const int SHADER_PASS_JFA_INIT = 2;
-    const int SHADER_PASS_JFA_FLOOD = 3;
-    const int SHADER_PASS_JFA_OUTLINE = 4;
+    private const int SHADER_PASS_JFA_INIT = 2;
+    private const int SHADER_PASS_JFA_FLOOD = 3;
+    private const int SHADER_PASS_JFA_OUTLINE = 4;
 
     private readonly OutlineSettings defaultSettings;
 
@@ -44,104 +37,136 @@ class OutlineRenderPass : ScriptableRenderPass
 
     public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameCtx)
     {
-        using (var builder = renderGraph.AddUnsafePass<PassData>("OutlinePass", out var passData)) 
-        {
-            var resourceData = frameCtx.Get<UniversalResourceData>();
-            var cameraData = frameCtx.Get<UniversalCameraData>();
+        if (defaultSettings.thickness <= 0 || spriteRenderers == null || spriteRenderers.Count == 0)
+            return;
 
-            passData.renderers = spriteRenderers;
-
-            passData.width = cameraData.scaledWidth;
-            passData.height = cameraData.scaledHeight;
-            passData.material = material;
-
-            passData.thickness = defaultSettings.thickness;
-            passData.color = defaultSettings.color;
-
-            builder.SetRenderFunc<PassData>(ExecutePass);
-        }
-    }
-
-    // This draws a single group of SpriteRenderers with an outline, one "Object"
-    static void ExecutePass(PassData data, UnsafeGraphContext ctx)
-    {
+        // Get resources from context
+        var cameraData = frameCtx.Get<UniversalCameraData>();
+        var resourceData = frameCtx.Get<UniversalResourceData>();
         
-        // We may want to draw a single outline on a group of multiple sprites
-        // Also we need the return somewhere so we don't try to render outlines with zero
-        // thickness.
+        var width = cameraData.scaledWidth;
+        var height = cameraData.scaledHeight;
 
-        // Here we start building a sillouette of the shape by masking bits in
-        // the stencil buffer. (Is this also where the renderers actually get drawn to the screen?)
-        ctx.cmd.SetRenderTarget(BuiltinRenderTextureType.CameraTarget);
-        foreach (var renderer in data.renderers)
-        {
-            // Apparently meshes can have multiple sub-meshes for Skinned meshes and Mesh
-            // Renderers. I'm pretty sure the only Mesh-Renderers in the project are the 
-            // parallax layers. So we should mostly be seeing SpriteRenderers, meaning we
-            // don't need to worry about sub-meshes here (we should have 1 so render submesh idx 0)
-            ctx.cmd.DrawRenderer(renderer, data.material, 0, SHADER_PASS_INTERIOR_STENCIL);
-        }
+        TextureHandle cameraColorTarget = resourceData.activeColorTexture;
 
-        // Now we actually need to make a texture using the bits from the stencil buffer,
-        // we basically want to set the pixels that sample a texture value that is not transparent
-        // as white
-        RenderTextureDescriptor silhouetteRTD = new(data.width, data.height, GraphicsFormat.R8_UNorm, 0)
+        // Create required textures
+        var silhouetteBuffer = renderGraph.CreateTexture(new TextureDesc(width, height)
         {
-            msaaSamples = 1,
-            // PERF by reducing memory usage 
-            depthBufferBits = 0,
-            sRGB = false,
+            colorFormat = GraphicsFormat.R8_UNorm,
+            clearBuffer = true,
+            clearColor = Color.clear,
             useMipMap = false,
-            autoGenerateMips = false
-        };
+            autoGenerateMips = false,
+            depthBufferBits = DepthBits.None,
+            msaaSamples = MSAASamples.None,
+            name = "SilhouetteBuffer"
+        });
 
-        //ctx.cmd.GetTemporaryRT(silhouetteBufferID, silhouetteRTD, FilterMode.Point);
-        ctx.cmd.SetRenderTarget(silhouetteBufferID);
-        ctx.cmd.ClearRenderTarget(false, true, Color.clear);
-
-        foreach (var renderer in data.renderers)
+        var nearestPointBuffer = renderGraph.CreateTexture(new TextureDesc(width, height)
         {
-            ctx.cmd.DrawRenderer(renderer, data.material, 0, SHADER_PASS_SILHOUETTE_BUFFER_FILL);
+            colorFormat = GraphicsFormat.R16G16_SNorm,
+            useMipMap = false,
+            autoGenerateMips = false,
+            depthBufferBits = DepthBits.None,
+            msaaSamples = MSAASamples.None,
+            name = "NearestPointBuffer"
+        });
+
+        var pingPongBuffer = renderGraph.CreateTexture(new TextureDesc(width, height)
+        {
+            colorFormat = GraphicsFormat.R16G16_SNorm,
+            useMipMap = false,
+            autoGenerateMips = false,
+            depthBufferBits = DepthBits.None,
+            msaaSamples = MSAASamples.None,
+            name = "PingPongBuffer"
+        });
+
+        // Step 1: Stencil Pass
+        using (var builder = renderGraph.AddRasterRenderPass<PassData>("Outline Stencil", out var passData))
+        {
+            builder.SetRenderAttachment(cameraColorTarget, 0);
+            builder.AllowPassCulling(false);
+
+            builder.SetRenderFunc((PassData data, RasterGraphContext ctx) =>
+            {
+                foreach (var renderer in spriteRenderers)
+                {
+                    if (renderer != null)
+                        ctx.cmd.DrawRenderer(renderer, material, 0, SHADER_PASS_INTERIOR_STENCIL);
+                }
+            });
         }
 
-        // Now we want to encode position data into our silhouette for the coloring pass after 
-        // our jump floods
-        // ctx.cmd.Blit(silhouetteBufferID, nearestPointID, data.material, SHADER_PASS_JFA_INIT);
-
-        var jfaRTD = silhouetteRTD;
-        jfaRTD.graphicsFormat = GraphicsFormat.R16G16_SNorm;
-        
-        int numMips = Mathf.CeilToInt(Mathf.Log(data.thickness + 1, 2f));
-        int jfaIters = numMips - 1;
-
-        // Here we do the traditional JFA
-        for (int i = jfaIters; i >= 0; --i)
+        // Step 2: Silhouette Fill Pass
+        using (var builder = renderGraph.AddRasterRenderPass<PassData>("Outline Silhouette Fill", out var passData))
         {
-            // Yeah it feels a bit dangerous to sit on the edge or pixels so to the 
-            // center we go (+0.5)
-            // stepWidth = 2^i
-            ctx.cmd.SetGlobalFloat(stepWidthID, (1 << i) + 0.5f);
+            builder.SetRenderAttachment(silhouetteBuffer, 0);
+            builder.AllowPassCulling(false);
 
-            if ((i & 1) == 0)
+            builder.SetRenderFunc((PassData data, RasterGraphContext ctx) =>
             {
-                // Blit does alot of what I want but is sets _BlitTexture which is a Texture<float4>
-                // ctx.cmd.Blit(nearestPointID, nearestPointPingPongID, data.material, SHADER_PASS_JFA_FLOOD);
-            }
-            else
-            {
-                // ctx.cmd.Blit(nearestPointPingPongID, nearestPointID, data.material, SHADER_PASS_JFA_FLOOD);
-            }
+                foreach (var renderer in spriteRenderers)
+                {
+                    if (renderer != null)
+                        ctx.cmd.DrawRenderer(renderer, material, 0, SHADER_PASS_SILHOUETTE_BUFFER_FILL);
+                }
+            });
         }
 
-        // Now we color
-        ctx.cmd.SetGlobalColor(outlineColorID, data.color);
-        ctx.cmd.SetGlobalFloat(outlineWidthID, data.thickness);
+        // Step 3: JFA Init Pass
+        // Ohh this is getting culled cause the other passes are failing to be added.
+        renderGraph.AddBlitPass(
+            new RenderGraphUtils.BlitMaterialParameters(
+                silhouetteBuffer,
+                nearestPointBuffer, 
+                material,
+                SHADER_PASS_JFA_INIT
+            ),
+            passName: "Outline JFA Init"
+        );
 
-        // This is weird to me. Since when is there a guarantee that we finished in nearestPointID?
-        // ctx.cmd.Blit(nearestPointID, BuiltinRenderTextureType.CameraTarget, data.material, SHADER_PASS_JFA_OUTLINE);
+        int numMips = Mathf.CeilToInt(Mathf.Log(defaultSettings.thickness + 1, 2f));
+        int jfaIterations = numMips - 1;
 
-        // ctx.cmd.ReleaseTemporaryRT(silhouetteBufferID);
-        // ctx.cmd.ReleaseTemporaryRT(nearestPointID);
-        // ctx.cmd.ReleaseTemporaryRT(nearestPointPingPongID);
+        TextureHandle currentSrc = nearestPointBuffer;
+        TextureHandle currentDst = pingPongBuffer;
+
+        // Step 4: JFA Flood Passes
+        // K for some reason we can't run passes 4 and 5, I suspect either that there is an error in the
+        // shader that I have somehow missed and so it fails to compile, or there is a problem binding 
+        // the created textures to _BlitTexture cause _BlitTexture is Texture2D<float4> and the textures should
+        // be Texture2D<float2>. Aside from that the fragment shader also c
+        for (int i = jfaIterations; i >= 0; --i)
+        {
+            int stepWidth = 1 << i;
+            
+            material.SetFloat(stepWidthID, stepWidth + 0.5f);
+            renderGraph.AddBlitPass(
+                new RenderGraphUtils.BlitMaterialParameters(
+                    currentSrc,
+                    currentDst, 
+                    material,
+                    SHADER_PASS_JFA_FLOOD
+                ),
+                passName: $"Outline JFA Flood {i}"
+            );
+
+            // Swap textures for next iteration
+            (currentDst, currentSrc) = (currentSrc, currentDst);
+        }
+
+        // Step 5: Final Outline Pass
+        material.SetColor(outlineColorID, defaultSettings.color);
+        material.SetFloat(outlineWidthID, defaultSettings.thickness);
+        renderGraph.AddBlitPass(
+            new RenderGraphUtils.BlitMaterialParameters(
+                currentSrc,
+                cameraColorTarget, 
+                material,
+                SHADER_PASS_JFA_OUTLINE
+            ),
+            passName: "Color Outline"
+        );
     }
 }
