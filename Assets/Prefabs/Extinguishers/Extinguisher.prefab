@@ -137,15 +137,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0c1374e7f105647ad6cfe5379edd43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extinguishClass: 6
+  extinguishClass: 7
   effectiveness: 10
   maintainCost: 20
   initialCost: 20
   inventoryIcon: {fileID: 21300000, guid: 73c091c726717f3488466f1077abaa7c, type: 3}
   tankCapacity: 2000
   pushbackMultiplier: {x: 0.5, y: 2}
-  pushbackInitial: 300
-  pushbackAcceleration: 450
+  pushbackInitial: 1000
+  pushbackAcceleration: 400
   initialPushDuration: 0.08
   audioSource: {fileID: -252026861301856817}
   deploySound: {fileID: 8300000, guid: 459e1ab175767f34dbe6dca649aa7588, type: 3}

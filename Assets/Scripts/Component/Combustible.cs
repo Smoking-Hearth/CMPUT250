@@ -118,8 +118,13 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
 
     void FixedUpdate()
     {
+        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        {
+            return;
+        }
         Vector2 playerPosition = gameObject.MyLevelManager().Player.Position;
-        if (Vector2.Distance(playerPosition, transform.position) > SIMULATION_DISTANCE)
+        float playerDistance = Vector2.Distance(playerPosition, transform.position);
+        if (playerDistance > SIMULATION_DISTANCE)
         {
             return;
         }
@@ -144,6 +149,12 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
             }
 
             fire.SetLifetime(temperatureToLifetime.Evaluate(Temperature) * maxLifetime);
+
+            // Checking if the fire should damage the player
+            if (playerDistance < fireSpreadRadius * 0.8f)
+            {
+                gameObject.MyLevelManager().Player.Health.FireDamage(2f * Mathf.Pow(0.5f, playerDistance));
+            }
         }
         if (dampness > 0)
         {
@@ -169,14 +180,6 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
             {
                 Temperature += diff * heatCopyRate * (1 - dampness / fullDampness);
             }
-        }
-
-        // We shouldn't damage the player if not on fire.
-        if (!Burning) return;
-        float distance = Vector2.Distance(gameObject.MyLevelManager().Player.Position, (Vector2)transform.position);
-        if (distance < fireSpreadRadius * 0.8f)
-        {
-            gameObject.MyLevelManager().Player.Health.FireDamage(8f * Mathf.Pow(0.5f, distance));
         }
     }
 
@@ -224,6 +227,11 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
         {
             Vector2 playerPosition = gameObject.MyLevelManager().Player.Position;
             Vector2 direction = (Vector2)transform.position - playerPosition;
+
+            if (direction.magnitude > 5)
+            {
+                return;
+            }
             GameManager.onEnemyAttack(playerPosition + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
         }
     }

@@ -38,6 +38,14 @@ public class MeleeEnemy : EnemyController
                 }
                 else if (enemyRigidBody.linearVelocityX == 0 || !stopWhenAttacking)
                 {
+                    if (targetPosition.x - transform.position.x > 0)
+                    {
+                        body.localScale = Vector2.one;
+                    }
+                    else
+                    {
+                        body.localScale = new Vector2(-1, 1);
+                    }
                     currentState = EnemyState.stFrontSwing;
                 }
             }
@@ -67,6 +75,7 @@ public class MeleeEnemy : EnemyController
 
         if (Mathf.Abs(direction.magnitude) <= enemyInfo.standRange)
         {
+            enemyAnimator.SetBool("IsMoving", false);
             if (moveY)
             {
                 enemyRigidBody.linearVelocity *= deccelerationRate;
