@@ -6793,6 +6793,8 @@ GameObject:
   - component: {fileID: 101197496}
   - component: {fileID: 101197499}
   - component: {fileID: 101197498}
+  - component: {fileID: 101197500}
+  - component: {fileID: 101197501}
   m_Layer: 5
   m_Name: BlackScreen
   m_TagString: Untagged
@@ -6857,6 +6859,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101197495}
   m_CullTransparentMesh: 1
+--- !u!114 &101197500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101197495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032a5c90fa54dc54ab058b35078cf27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screen: {fileID: 101197501}
+--- !u!225 &101197501
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101197495}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &101734767
 GameObject:
   m_ObjectHideFlags: 0
@@ -34971,10 +34998,10 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 101197495}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 101197500}
+          m_TargetAssemblyTypeName: FadeScreen, Assembly-CSharp
+          m_MethodName: FadeOut
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

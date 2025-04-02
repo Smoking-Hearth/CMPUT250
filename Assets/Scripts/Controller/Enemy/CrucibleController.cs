@@ -56,8 +56,20 @@ public class CrucibleController : MeleeEnemy
         }
 
         //Throws a projectile when the player is too far
-        Projectile projectile = null;
 
+        int projectilesThrown = Random.Range(1, 4);
+        for (int i = 0; i < projectilesThrown; i++)
+        {
+            ThrowProjectile(direction);
+        }
+
+        throwTimer = throwIntervalSeconds;
+        currentState = EnemyState.stBackSwing;
+    }
+
+    protected void ThrowProjectile(Vector2 direction)
+    {
+        Projectile projectile = null;
         if (projectileCache[cacheIndex] == null)
         {
             projectile = Instantiate(projectilePrefab, (Vector2)transform.position + startThrowPosition, Quaternion.identity, null);
@@ -71,12 +83,12 @@ public class CrucibleController : MeleeEnemy
 
         cacheIndex = (cacheIndex + 1) % cacheCapacity;
 
-        float velocityX = (direction.x + overshootDistance * Mathf.Sign(direction.x)) / projectileHangTime;
-        float velocityY = (direction.y - startThrowPosition.y - 0.5f * projectileHangTime * Physics2D.gravity.y * projectileHangTime) / projectileHangTime;
+        float inacurracy = Random.Range(-overshootDistance, overshootDistance);
+        float randomHangTime = Random.Range(projectileHangTime * 0.9f, projectileHangTime * 1.1f);
+        float velocityX = (direction.x + inacurracy) / randomHangTime;
+        float velocityY = (direction.y - startThrowPosition.y - 0.5f * randomHangTime * Physics2D.gravity.y * randomHangTime) / randomHangTime;
 
         projectile.ResetProjectile();
         projectile.Propel(new Vector2(velocityX, velocityY));
-        throwTimer = throwIntervalSeconds;
-        currentState = EnemyState.stBackSwing;
     }
 }
