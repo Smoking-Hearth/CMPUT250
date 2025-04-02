@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 addedVelocity;
 
     [SerializeField] private Animator playerAnimator;
+
+    [SerializeField] private ParticleSystem RunningDust;
     private Ground currentGround;
 
     private bool isJumping;
@@ -247,10 +249,13 @@ public class PlayerMovement : MonoBehaviour
 
                 targetMovement.x += inputAxes.x * acceleration;
                 playerAnimator.SetBool("IsWalking", true);
+                
             }
             else
             {
                 targetMovement.x = inputAxes.x * moveSpeed;
+                CreateRunDust(player);
+            
             }
             if (flipGraphics)
             {
@@ -269,13 +274,16 @@ public class PlayerMovement : MonoBehaviour
             playerRigidbody.linearVelocity += attached.linearVelocity;
         }
 
+        // Sliding around
         if (addedVelocity.x != 0)
-        {
+        {   
+            
             if (Mathf.Abs(addedVelocity.x) > 0.1f)
             {
                 if (player.GroundState != GroundState.None)
                 {
                     addedVelocity.x *= 0.82f;
+                    
                 }
                 else
                 {
@@ -444,5 +452,21 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.linearVelocity = Vector2.zero;
         targetMovement = Vector2.zero;
         isJumping = false;
+    }
+
+    public void CreateRunDust(Player player){
+
+        if (player.GroundState == GroundState.Grounded){
+
+            RunningDust.Play();
+
+        }
+        else
+        {
+            RunningDust.Stop();
+        }
+
+        
+
     }
 }
