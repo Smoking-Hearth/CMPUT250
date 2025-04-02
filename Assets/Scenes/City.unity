@@ -74358,6 +74358,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1371920154}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2083226706
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 231598319612311668, guid: 0274ba21919ffed48ab4df2a5b15146f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 75.78645
+      objectReference: {fileID: 0}
+    - target: {fileID: 231598319612311668, guid: 0274ba21919ffed48ab4df2a5b15146f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.316434
+      objectReference: {fileID: 0}
+    - target: {fileID: 231598319612311668, guid: 0274ba21919ffed48ab4df2a5b15146f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231598319612311668, guid: 0274ba21919ffed48ab4df2a5b15146f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 231598319612311668, guid: 0274ba21919ffed48ab4df2a5b15146f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231598319612311668, guid: 0274ba21919ffed48ab4df2a5b15146f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231598319612311668, guid: 0274ba21919ffed48ab4df2a5b15146f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231598319612311668, guid: 0274ba21919ffed48ab4df2a5b15146f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231598319612311668, guid: 0274ba21919ffed48ab4df2a5b15146f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231598319612311668, guid: 0274ba21919ffed48ab4df2a5b15146f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494201268296555582, guid: 0274ba21919ffed48ab4df2a5b15146f, type: 3}
+      propertyPath: m_Name
+      value: Damage Upgrade
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0274ba21919ffed48ab4df2a5b15146f, type: 3}
 --- !u!1 &2083416814
 GameObject:
   m_ObjectHideFlags: 0
@@ -93561,3 +93618,4 @@ SceneRoots:
   - {fileID: 1824464973}
   - {fileID: 1502072770}
   - {fileID: 677344171}
+  - {fileID: 2083226706}
