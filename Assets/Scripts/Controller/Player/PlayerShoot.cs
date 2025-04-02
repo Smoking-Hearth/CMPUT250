@@ -139,7 +139,7 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
-    public void EnableShooting()
+    public void EnableShootVisibility()
     {
         // WARN: EnableShooting called implicitly when we set the player active upon
         // entering scene from LevelManager.Activate. That happens before Awake, but 

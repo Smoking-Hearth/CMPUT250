@@ -253,10 +253,10 @@ public class LevelManager : MonoBehaviour
         if (levelState == LevelState.Defeat && Vector2.Distance(setPlayer.transform.position, setSoul.transform.position) < 0.8f)
         {
             levelState = LevelState.Respawning;
+            cameraAnimator.SetBool("IsDead", false);
+            TrackerSystem.RemoveTracker(player.Movement.transform);
             if (onPlayerRespawn != null)
             {
-                cameraAnimator.Play("Game");
-                TrackerSystem.RemoveTracker(player.Movement.transform);
                 onPlayerRespawn();
             }
         }
@@ -290,7 +290,7 @@ public class LevelManager : MonoBehaviour
             soul.Movement.ResetMovement();
             setSoul.gameObject.SetActive(true);
             if (cameraAnimator != null)
-                cameraAnimator.Play("Dead");
+                cameraAnimator.SetBool("IsDead", true);
         }
     }
 

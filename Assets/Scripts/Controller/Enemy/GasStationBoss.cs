@@ -25,6 +25,8 @@ public class GasStationBoss : MonoBehaviour
     [SerializeField] private EnemyProjectile projectilePrefab;
     [SerializeField] private int cacheCapacity;
     [SerializeField] private float shootInterval;
+    [SerializeField] private EnemySpawner leftSpawner;
+    [SerializeField] private EnemySpawner rightSpawner;
     private EnemyProjectile[] cache;
     private int currentProjectileIndex;
     private float shootTimer;
@@ -45,9 +47,10 @@ public class GasStationBoss : MonoBehaviour
     private float tbTimer;
     private float tbCounter;
 
-    [Header("Extinguisher")]
+    [Header("Drones")]
     [SerializeField] private DroneDropItem extinguisherDronePrefab;
     [SerializeField] private float extinguisherDropInterval;
+    [SerializeField] private DroneDropItem healthDronePrefab;
     private float extinguisherDropTimer;
 
     [SerializeField] private UnityEvent completeEvent;
@@ -75,6 +78,11 @@ public class GasStationBoss : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        {
+            airRigidbody.linearVelocityX = 0;
+            return;
+        }
         switch(currentState)
         {
             case GasStationBossState.Inactive:
@@ -99,7 +107,7 @@ public class GasStationBoss : MonoBehaviour
 
             if (extinguisherDropTimer <= 0)
             {
-                SpawnExtinguisherDrop();
+                SpawnDrone(extinguisherDronePrefab);
                 extinguisherDropTimer = extinguisherDropInterval;
             }
         }
@@ -108,10 +116,16 @@ public class GasStationBoss : MonoBehaviour
     public void ReturnToAir()
     {
         airRigidbody.gameObject.SetActive(true);
+        SpawnDrone(healthDronePrefab);
         airTimer = airDuration;
         shootTimer = shootInterval;
         currentState = GasStationBossState.Air;
         airRigidbody.linearVelocityX = airSpeed;
+        if (healthComponent.Current < healthComponent.Max / 2)
+        {
+            leftSpawner.Activate(true);
+            rightSpawner.Activate(true);
+        }
         animator.SetTrigger("Rise");
     }
 
@@ -168,6 +182,8 @@ public class GasStationBoss : MonoBehaviour
 
     private void ChooseState()
     {
+        leftSpawner.Activate(false);
+        rightSpawner.Activate(false);
         airRigidbody.linearVelocityX = 0;
         airRigidbody.gameObject.SetActive(false);
         int randomState = Random.Range(0, 2);
@@ -201,11 +217,11 @@ public class GasStationBoss : MonoBehaviour
         }
     }
 
-    public void SpawnExtinguisherDrop()
+    public void SpawnDrone(DroneDropItem dronePrefab)
     {
         int sideDecision = -1 + 2 * Random.Range(0, 2);
         Vector2 spawnPosition = new Vector2(transform.position.x + arenaExtents * 1.5f * sideDecision, transform.position.y);
-        Instantiate(extinguisherDronePrefab, spawnPosition, Quaternion.identity, transform);
+        Instantiate(dronePrefab, spawnPosition, Quaternion.identity, transform);
     }
 
     private void TrailblazerState()

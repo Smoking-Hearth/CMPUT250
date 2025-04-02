@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour
         if (enabled)
         {
             Controls.Hydropack.Attack.Enable();
-            shootBehavior.EnableShooting();
+            shootBehavior.EnableShootVisibility();
             shootEnabled = true;
         }
         else
