@@ -227,6 +227,11 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
         {
             Vector2 playerPosition = gameObject.MyLevelManager().Player.Position;
             Vector2 direction = (Vector2)transform.position - playerPosition;
+
+            if (direction.magnitude > 5)
+            {
+                return;
+            }
             GameManager.onEnemyAttack(playerPosition + direction.normalized * 0.5f, transform.position, GameManager.FireSettings.electricBackfire);
         }
     }
