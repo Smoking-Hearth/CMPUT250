@@ -7623,9 +7623,9 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   <Texture>k__BackingField: {fileID: 2800000, guid: 9ef22cf41ba9c994fb77f44ed0c49b56, type: 3}
   <IsTiled>k__BackingField: 1
-  <Rows>k__BackingField: 0
-  <Columns>k__BackingField: 0
-  <Frames>k__BackingField: 0
+  <Rows>k__BackingField: 1
+  <Columns>k__BackingField: 1
+  <Frames>k__BackingField: 1
   <FramesPerSecond>k__BackingField: 0
 --- !u!4 &121443626
 Transform:
@@ -26860,7 +26860,6 @@ Transform:
   m_Children:
   - {fileID: 836129805}
   - {fileID: 481587314}
-  - {fileID: 1938563160}
   - {fileID: 1287770957}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52113,57 +52112,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5809417443693588684, guid: 8e71fa5535ac3d644923e85243fc6af2, type: 3}
   m_PrefabInstance: {fileID: 1274572984}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1275389534
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1275389535}
-  - component: {fileID: 1275389536}
-  m_Layer: 0
-  m_Name: MiddleMountains
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1275389535
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275389534}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1938563160}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1275389536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275389534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adcabf62c7ab3a4b4b7b352d11a85e4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  <Texture>k__BackingField: {fileID: 2800000, guid: 9ef22cf41ba9c994fb77f44ed0c49b56, type: 3}
-  <IsTiled>k__BackingField: 1
-  <Rows>k__BackingField: 1
-  <Columns>k__BackingField: 1
-  <Frames>k__BackingField: 1
-  <FramesPerSecond>k__BackingField: 0
 --- !u!1 &1275427341
 GameObject:
   m_ObjectHideFlags: 0
@@ -71114,12 +71062,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 0}
-  <Texture>k__BackingField: {fileID: 2800000, guid: 2b968ab4043c71257b10749b46ab6dc3, type: 3}
+  <Texture>k__BackingField: {fileID: 2800000, guid: 70835af2e2d2e4dea99636b45000b411, type: 3}
   <IsTiled>k__BackingField: 1
-  <Rows>k__BackingField: 1
-  <Columns>k__BackingField: 1
-  <Frames>k__BackingField: 1
-  <FramesPerSecond>k__BackingField: 10
+  <Rows>k__BackingField: 6
+  <Columns>k__BackingField: 2
+  <Frames>k__BackingField: 12
+  <FramesPerSecond>k__BackingField: 3
 --- !u!4 &1934602908
 Transform:
   m_ObjectHideFlags: 0
@@ -71222,38 +71170,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1938563159
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1938563160}
-  m_Layer: 0
-  m_Name: MiddleMountainsSortingGroup
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1938563160
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938563159}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1275389535}
-  m_Father: {fileID: 591971627}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1939411522
 GameObject:
   m_ObjectHideFlags: 0
