@@ -586,7 +586,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5602350641565636131, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: m_LightOrder
-      value: 1
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602350641565636131, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5809417443693588684, guid: 75ab6fcebc23db44c980f5a93c303274, type: 3}
       propertyPath: m_LocalScale.x
