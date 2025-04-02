@@ -17,10 +17,11 @@ Shader "Effect/Outline"
 
         #define FLOOD_NULL_POS -1.0
         #define FLOOD_NULL_POS_FLOAT2 float2(FLOOD_NULL_POS, FLOOD_NULL_POS)
+
         ENDHLSL
 
-        // How can I do a stencil pass adapted for sprites which sets the stencil bit
-        // based on the alpha value of the sprites texture? 
+        // The purpose of this pass is likely to do some setup for the stencil to deal with 
+        // outline occlusion.
         // 0
         Pass 
         {
@@ -78,22 +79,23 @@ Shader "Effect/Outline"
         {
             Name "JumpFloodInit"
             HLSLPROGRAM
+
             // The Blit.hlsl file provides the vertex shader (Vert),
             // the input structure (Attributes), and the output structure (Varyings)
+            // But the Blit texture loaded (_BlitTexture) is a Texture2D<float4> seemingly 
+            // always and my graphics format is 2 channel
             #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
 
             #pragma vertex Vert
             #pragma fragment Frag
 
-            Texture2D _MainTex;
-
             float2 Frag(Varyings input) : SV_Target
             {
                 int2 uvInt = input.positionCS.xy;
 
-                if(_MainTex.Load(uvInt.x, uvInt.y) > 0.5)
+                if(_BlitTexture.Load(uvInt.x, uvInt.y) > 0.5)
                 {
-                    return input.positionCS.xy * abs(_MainTex_TexelSize.xy) * FLOOD_ENCODE_SCALE - FLOOD_ENCODE_OFFSET;
+                    return input.positionCS.xy * abs(_BlitTexture_TexelSize.xy) * FLOOD_ENCODE_SCALE - FLOOD_ENCODE_OFFSET;
                 }
                 else 
                 {
@@ -114,18 +116,14 @@ Shader "Effect/Outline"
             #pragma vertex Vert
             #pragma fragment JumpFlood
 
-            float _OutlineThickness;
-            float4 _OutlineColor;
             int _StepWidth;
-            
-            Texture2D _MainTex;
             
             float4 Vert(Varyings input) : SV_POSITION
             {
                 int2 uvInt = input.positionCS.xy;
 
-                float shortestDist = 1.#INF;
-                float2 theCoord;
+                float nearestDist = 1.#INF;
+                float2 nearestPixel;
 
                 UNITY_UNROLL
                 for (int i = -1; i <= 1; ++i)
@@ -134,21 +132,21 @@ Shader "Effect/Outline"
                     for (int j = -1; j <= 1; ++j)
                     {
                         int2 offset = uvInt + int2(i,j) * _StepWidth;
-                        offset = clamp(offset, int2(0,0), (int2)_MainTex_TexelSize.zw - 1);
+                        offset = clamp(offset, int2(0,0), (int2)_BlitTexture_TexelSize.zw - 1);
 
-                        float2 offsetPos = (_MainTex.Load(int3(offset, 0)).rg + FLOOD_ENCODE_OFFSET) * _MainTex_TexelSize.zw / FLOOD_ENCODE_SCALE;
+                        float2 offsetPos = (_BlitTexture.Load(int3(offset, 0)).rg + FLOOD_ENCODE_OFFSET) * _BlitTexture_TexelSize.zw / FLOOD_ENCODE_SCALE;
                         float2 disp = input.positionCS.xy - offsetPos;
 
                         float dist = dot(disp, disp);
 
                         if (offsetPos.y != FLOOD_NULL_POS && dist < bestDist)
                         {
-                            bestDist = dist;
-                            bestCoord = offsetPos;
+                            nearestDist = dist;
+                            nearestCoord = offsetPos;
                         }
                     }
                 }
-                return isinf(bestDist) ? FLOOD_NULL_POS_FLOAT2 : bestCoord * _MainTex_TexelSize.xy * FLOOD_ENCODE_SCALE - FLOOD_ENCODE_OFFSET;
+                return isinf(bestDist) ? FLOOD_NULL_POS_FLOAT2 : bestCoord * _BlitTexture_TexelSize.xy * FLOOD_ENCODE_SCALE - FLOOD_ENCODE_OFFSET;
             }
             ENDHLSL
         }
@@ -175,18 +173,23 @@ Shader "Effect/Outline"
             #pragma vertex Vert
             #pragma fragment Frag
 
+            float _OutlineThickness;
+            float4 _OutlineColor;
+
             float4 Vert(Varyings input) : SV_POSITION
             {
                 int2 uvInt = int2(input.positionCS.xy);
 
                 // load encoded position
-                float2 encodedPos = _MainTex.Load(int3(uvInt, 0)).rg;
+                float2 encodedPos = _BlitTexture.Load(int3(uvInt, 0)).rg;
 
                 // early out if null position
-                if (encodedPos.y == -1)
+                if (encodedPos.y == FLOOD_NULL_POS)
                     return half4(0,0,0,0);
 
                 // decode closest position
+                // NOTE: _ScreenParams is of form (width, height, 1/width, 1/height) and it comes from
+                // Core.hlsl in the global import (specifically Core.hlsl < Input.hlsl < UnityInput.hlsl)
                 float2 nearestPos = (encodedPos + FLOOD_ENCODE_OFFSET) * abs(_ScreenParams.xy) / FLOOD_ENCODE_SCALE;
 
                 // current pixel position
@@ -195,14 +198,13 @@ Shader "Effect/Outline"
                 // distance in pixels to closest position
                 half dist = length(nearestPos - currentPos);
 
-                half outline = saturate(_OutlineWidth - dist + 0.5);
+                half outline = saturate(_OutlineThickness - dist + 0.5);
 
                 // apply outline to alpha
                 half4 col = _OutlineColor;
                 col.a *= outline;
 
                 return col;
-
             }
             ENDHLSL
         }

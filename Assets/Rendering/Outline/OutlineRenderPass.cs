@@ -19,6 +19,8 @@ class OutlineRenderPass : ScriptableRenderPass
     private static readonly int outlineColorID = Shader.PropertyToID("_OutlineColor");
     private static readonly int outlineWidthID = Shader.PropertyToID("_OutlineThickness");
     private static readonly int stepWidthID = Shader.PropertyToID("_StepWidth");
+    private static readonly int mainTexture = Shader.PropertyToID("_MainTex");
+    private static readonly int textureSize = Shader.PropertyToID("_TextureSize");
 
     // pass names
     private const int SHADER_PASS_INTERIOR_STENCIL = 0;
@@ -42,7 +44,7 @@ class OutlineRenderPass : ScriptableRenderPass
 
     public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameCtx)
     {
-        using (RenderGraphBuilder builder = renderGraph.AddRenderPass<PassData>("Pass", out var passData)) 
+        using (var builder = renderGraph.AddUnsafePass<PassData>("OutlinePass", out var passData)) 
         {
             var resourceData = frameCtx.Get<UniversalResourceData>();
             var cameraData = frameCtx.Get<UniversalCameraData>();
@@ -61,7 +63,7 @@ class OutlineRenderPass : ScriptableRenderPass
     }
 
     // This draws a single group of SpriteRenderers with an outline, one "Object"
-    static void ExecutePass(PassData data, RenderGraphContext ctx)
+    static void ExecutePass(PassData data, UnsafeGraphContext ctx)
     {
         
         // We may want to draw a single outline on a group of multiple sprites
@@ -93,7 +95,7 @@ class OutlineRenderPass : ScriptableRenderPass
             autoGenerateMips = false
         };
 
-        ctx.cmd.GetTemporaryRT(silhouetteBufferID, silhouetteRTD, FilterMode.Point);
+        //ctx.cmd.GetTemporaryRT(silhouetteBufferID, silhouetteRTD, FilterMode.Point);
         ctx.cmd.SetRenderTarget(silhouetteBufferID);
         ctx.cmd.ClearRenderTarget(false, true, Color.clear);
 
@@ -104,7 +106,7 @@ class OutlineRenderPass : ScriptableRenderPass
 
         // Now we want to encode position data into our silhouette for the coloring pass after 
         // our jump floods
-        ctx.cmd.Blit(silhouetteBufferID, nearestPointID, data.material, SHADER_PASS_JFA_INIT);
+        // ctx.cmd.Blit(silhouetteBufferID, nearestPointID, data.material, SHADER_PASS_JFA_INIT);
 
         var jfaRTD = silhouetteRTD;
         jfaRTD.graphicsFormat = GraphicsFormat.R16G16_SNorm;
@@ -121,9 +123,14 @@ class OutlineRenderPass : ScriptableRenderPass
             ctx.cmd.SetGlobalFloat(stepWidthID, (1 << i) + 0.5f);
 
             if ((i & 1) == 0)
-                ctx.cmd.Blit(nearestPointID, nearestPointPingPongID, data.material, SHADER_PASS_JFA_FLOOD);
+            {
+                // Blit does alot of what I want but is sets _BlitTexture which is a Texture<float4>
+                // ctx.cmd.Blit(nearestPointID, nearestPointPingPongID, data.material, SHADER_PASS_JFA_FLOOD);
+            }
             else
-                ctx.cmd.Blit(nearestPointPingPongID, nearestPointID, data.material, SHADER_PASS_JFA_FLOOD);
+            {
+                // ctx.cmd.Blit(nearestPointPingPongID, nearestPointID, data.material, SHADER_PASS_JFA_FLOOD);
+            }
         }
 
         // Now we color
@@ -131,10 +138,10 @@ class OutlineRenderPass : ScriptableRenderPass
         ctx.cmd.SetGlobalFloat(outlineWidthID, data.thickness);
 
         // This is weird to me. Since when is there a guarantee that we finished in nearestPointID?
-        ctx.cmd.Blit(nearestPointID, BuiltinRenderTextureType.CameraTarget, data.material, SHADER_PASS_JFA_OUTLINE);
+        // ctx.cmd.Blit(nearestPointID, BuiltinRenderTextureType.CameraTarget, data.material, SHADER_PASS_JFA_OUTLINE);
 
-        ctx.cmd.ReleaseTemporaryRT(silhouetteBufferID);
-        ctx.cmd.ReleaseTemporaryRT(nearestPointID);
-        ctx.cmd.ReleaseTemporaryRT(nearestPointPingPongID);
+        // ctx.cmd.ReleaseTemporaryRT(silhouetteBufferID);
+        // ctx.cmd.ReleaseTemporaryRT(nearestPointID);
+        // ctx.cmd.ReleaseTemporaryRT(nearestPointPingPongID);
     }
 }
