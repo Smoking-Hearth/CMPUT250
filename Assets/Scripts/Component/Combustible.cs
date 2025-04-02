@@ -118,6 +118,10 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
 
     void FixedUpdate()
     {
+        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        {
+            return;
+        }
         Vector2 playerPosition = gameObject.MyLevelManager().Player.Position;
         float playerDistance = Vector2.Distance(playerPosition, transform.position);
         if (playerDistance > SIMULATION_DISTANCE)

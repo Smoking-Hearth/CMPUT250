@@ -51,6 +51,11 @@ public class EnvironmentalFire : Fire, IExtinguishable, ITemperatureSource
                 Destroy(gameObject);
             }
         }
+
+        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        {
+            return;
+        }
         // Checking if the fire should damage the player
         float distance = Vector2.Distance(gameObject.MyLevelManager().Player.Position, (Vector2)transform.position);
         if (distance < fireDamageRadius * 0.8f)
