@@ -137,25 +137,7 @@ public class PlayerController : MonoBehaviour
                 shootBehavior.ResetAimedSprites();
             }
             return;
-            /*if (controls.PlayerMovement.enabled)
-            {
-                controls.PlayerMovement.Disable();
-                controls.Hydropack.Disable();
-            }*/
-        }/*
-        else if (!controls.PlayerMovement.enabled)
-        {
-            controls.PlayerMovement.Enable();
-            if (shootEnabled)
-            {
-                controls.Hydropack.Attack.Enable();
-            }
-            if (specialEnabled)
-            {
-                controls.Hydropack.SpecialAttack.Enable();
-                controls.Hydropack.SwapSpecial.Enable();
-            }
-        }*/
+        }
         Player player = gameObject.MyLevelManager().Player;
 
         player.Movement.Gravity();

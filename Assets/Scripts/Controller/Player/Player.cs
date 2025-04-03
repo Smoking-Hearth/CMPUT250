@@ -28,6 +28,10 @@ public class Player
     public PlayerMovement Movement { get; private set; }
     public Player(Rigidbody2D playerObject)
     {
+        if (playerObject == null)
+        {
+            return;
+        }
         player = playerObject;
         Sounds = playerObject.GetComponentInChildren<PlayerSounds>();
         Health = playerObject.GetComponent<PlayerHealth>();
