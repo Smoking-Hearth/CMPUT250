@@ -106,11 +106,15 @@ public class LevelManager : MonoBehaviour
                 return player;
             }
 
-            if (soul == null)
+            if (soul == null && setSoul != null)
             {
                 soul = new Player(setSoul);
+                return soul;
             }
-            return soul;
+            else
+            {
+                return null;
+            }
         }
     }
     public GameObject[] defaultEnabledRootObjects;
@@ -207,7 +211,7 @@ public class LevelManager : MonoBehaviour
             uiObject.SetActive(true);
         }
 
-        if (soul == null)
+        if (soul == null && setSoul != null)
         {
             soul = new Player(setSoul);
         }
