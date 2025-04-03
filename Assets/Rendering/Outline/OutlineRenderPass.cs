@@ -19,13 +19,15 @@ class OutlineRenderPass : ScriptableRenderPass
     private static readonly int outlineColorID = Shader.PropertyToID("_OutlineColor");
     private static readonly int outlineWidthID = Shader.PropertyToID("_OutlineThickness");
     private static readonly int stepWidthID = Shader.PropertyToID("_StepWidth");
-    private static readonly int silhouetteTexID = Shader.PropertyToID("_SilhouetteTex");
+    private static readonly int mainTexture = Shader.PropertyToID("_MainTex");
+    private static readonly int textureSize = Shader.PropertyToID("_TextureSize");
 
     // pass names
-    private const int SHADER_PASS_SILHOUETTE_BUFFER_FILL = 0;
-    private const int SHADER_PASS_JFA_INIT = 1; 
-    private const int SHADER_PASS_JFA_FLOOD = 2;
-    private const int SHADER_PASS_JFA_OUTLINE = 3;
+    private const int SHADER_PASS_INTERIOR_STENCIL = 0;
+    private const int SHADER_PASS_SILHOUETTE_BUFFER_FILL = 1;
+    const int SHADER_PASS_JFA_INIT = 2;
+    const int SHADER_PASS_JFA_FLOOD = 3;
+    const int SHADER_PASS_JFA_OUTLINE = 4;
 
     private readonly OutlineSettings defaultSettings;
 
@@ -120,73 +122,27 @@ class OutlineRenderPass : ScriptableRenderPass
             // stepWidth = 2^i
             ctx.cmd.SetGlobalFloat(stepWidthID, (1 << i) + 0.5f);
 
-        // Step 1: Silhouette Fill Pass
-        using (var builder = renderGraph.AddRasterRenderPass<PassData>("Outline Silhouette Fill", out var passData))
-        {
-            builder.SetRenderAttachment(silhouetteBuffer, 0);
-            builder.AllowPassCulling(false);
-
-            builder.SetRenderFunc((PassData data, RasterGraphContext ctx) =>
+            if ((i & 1) == 0)
+            {
+                // Blit does alot of what I want but is sets _BlitTexture which is a Texture<float4>
+                // ctx.cmd.Blit(nearestPointID, nearestPointPingPongID, data.material, SHADER_PASS_JFA_FLOOD);
+            }
+            else
             {
                 // ctx.cmd.Blit(nearestPointPingPongID, nearestPointID, data.material, SHADER_PASS_JFA_FLOOD);
             });
         }
 
-        // Step 2: JFA Init Pass
-        renderGraph.AddBlitPass(
-            new RenderGraphUtils.BlitMaterialParameters(
-                silhouetteBuffer,
-                nearestPointBuffer, 
-                material,
-                SHADER_PASS_JFA_INIT
-            ),
-            passName: "Outline JFA Init"
-        );
+        // Now we color
+        ctx.cmd.SetGlobalColor(outlineColorID, data.color);
+        ctx.cmd.SetGlobalFloat(outlineWidthID, data.thickness);
 
         // This is weird to me. Since when is there a guarantee that we finished in nearestPointID?
         // ctx.cmd.Blit(nearestPointID, BuiltinRenderTextureType.CameraTarget, data.material, SHADER_PASS_JFA_OUTLINE);
 
-        TextureHandle currentSrc = nearestPointBuffer;
-        TextureHandle currentDst = pingPongBuffer;
-
-        // Step 3: JFA Flood Passes
-        for (int i = jfaIterations; i >= 0; --i)
-        {
-            int stepWidth = 1 << i;
-            
-            material.SetFloat(stepWidthID, stepWidth + 0.5f);
-            renderGraph.AddBlitPass(
-                new RenderGraphUtils.BlitMaterialParameters(
-                    currentSrc,
-                    currentDst, 
-                    material,
-                    SHADER_PASS_JFA_FLOOD
-                ),
-                passName: $"Outline JFA Flood {i}"
-            );
-
-            // Swap textures for next iteration
-            (currentDst, currentSrc) = (currentSrc, currentDst);
-        }
-
-        // Step 4: Final Outline Pass
-        material.SetColor(outlineColorID, defaultSettings.color);
-        material.SetFloat(outlineWidthID, defaultSettings.thickness);
-
-        using (var builder = renderGraph.AddUnsafePass<PassData>("Color Outline", out var passData))
-        {
-            // builder.SetRenderAttachment(cameraColorTarget, 0);
-            builder.UseTexture(silhouetteBuffer);
-            builder.UseTexture(currentSrc);
-            builder.UseTexture(cameraColorTarget, AccessFlags.Write);
-
-            builder.SetRenderFunc((PassData passData, UnsafeGraphContext ctx) => {
-                ctx.cmd.SetGlobalTexture(silhouetteTexID, silhouetteBuffer);
-
-                CommandBuffer nativeCommandBuffer = CommandBufferHelpers.GetNativeCommandBuffer(ctx.cmd);
-                Blitter.BlitCameraTexture(nativeCommandBuffer, currentSrc, cameraColorTarget, material, SHADER_PASS_JFA_OUTLINE);
-            });
-        }
+        // ctx.cmd.ReleaseTemporaryRT(silhouetteBufferID);
+        // ctx.cmd.ReleaseTemporaryRT(nearestPointID);
+        // ctx.cmd.ReleaseTemporaryRT(nearestPointPingPongID);
     }
 }
 }

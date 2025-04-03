@@ -26,8 +26,6 @@ public class MusicSystem : MonoBehaviour
     [SerializeField] private float specialAmplifyDuration;
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private float fadeDurationSeconds;
-    [SerializeField] private bool playOnAwake = false;
-
     private float fadeTimer;
     private float blendTimer;
     private float blendRatio;
@@ -39,10 +37,6 @@ public class MusicSystem : MonoBehaviour
     private void OnEnable()
     {
         currentVolume = defaultAudioVolume;
-        if (playOnAwake)
-        {
-            PlayLevelTheme(0);
-        }
     }
 
     private void Update()
