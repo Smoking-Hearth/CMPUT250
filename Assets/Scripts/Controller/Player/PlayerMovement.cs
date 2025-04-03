@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
 
     [SerializeField] private ParticleSystem RunningDust;
+    [SerializeField] private ParticleSystem JumpingDust;
     private Ground currentGround;
 
     private bool isJumping;
@@ -254,13 +255,13 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 targetMovement.x = inputAxes.x * moveSpeed;
-                CreateRunDust(player);
             
             }
             if (flipGraphics)
             {
                 playerAnimator.transform.localScale = new Vector2(Mathf.Sign(inputAxes.x), 1);
             }
+            CreateRunDust(player);
         }
 
         playerAnimator.SetFloat("MoveSpeed", targetMovement.x / moveSpeed);
@@ -423,7 +424,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-
+        CreateJumpDust();
         isJumping = true;
         addedVelocity.y = jumpPower;
 
@@ -456,17 +457,29 @@ public class PlayerMovement : MonoBehaviour
 
     public void CreateRunDust(Player player){
 
-        if (player.GroundState == GroundState.Grounded){
+        if (player.GroundState == GroundState.Grounded && targetMovement.x > 0.1f || targetMovement.x < -0.1f){
 
             RunningDust.Play();
 
         }
-        else
-        {
+        else{
+
             RunningDust.Stop();
+
         }
 
         
 
     }
+    public void CreateJumpDust(){
+
+        JumpingDust.Play();
+
+    }
+
+    public void CancleJumpDust(){
+
+        JumpingDust.Stop();
+    }
 }
+
