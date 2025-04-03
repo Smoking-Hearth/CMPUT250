@@ -82,6 +82,7 @@ public class BCExtinguisherSpecial : SpecialAttack
             firedBullet.transform.position = startPosition;
             firedBullet.transform.rotation = Quaternion.identity;
         }
+        firedBullet.SetDamageMultiplier(PlayerShoot.DamageMultiplier);
         firedBullet.Propel(shootDirection * initialSpeed);
         shootDelayTimer = shootDelay;
         cacheIndex = (cacheIndex + 1) % cacheCapacity;

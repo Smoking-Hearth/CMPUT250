@@ -37,6 +37,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected AudioSource hitAudio;
     [SerializeField] protected bool hitOnlyWhenFalling;     //When turned on, on hit will only trigger when the projectile has negative y velocity
     protected bool hasHit;
+    protected float damageMultiplier;
 
     protected virtual void OnEnable()
     {
@@ -75,6 +76,11 @@ public class Projectile : MonoBehaviour
             circleCollider.radius = baseRadius;
             OnHit();
         }
+    }
+
+    public virtual void SetDamageMultiplier(float damage)
+    {
+        damageMultiplier = damage;
     }
 
     //Resets the projectile to a state where it can be deployed again. Use this for when you are caching projectiles.
@@ -154,7 +160,7 @@ public class Projectile : MonoBehaviour
 
         if (extinguishable != null)
         {
-            extinguishable.Extinguish(damageClass, effectiveness);
+            extinguishable.Extinguish(damageClass, effectiveness * damageMultiplier);
         }
     }
     public virtual void OnTriggerEnter2D(Collider2D collision)

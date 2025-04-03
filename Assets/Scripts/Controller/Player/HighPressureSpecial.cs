@@ -270,7 +270,7 @@ public class HighPressureSpecial : SpecialAttack
         Collider2D[] hitTargets = Physics2D.OverlapCircleAll(splashPosition, splashRadius, fireLayers);
         for (int i = 0; i < hitTargets.Length; i++)
         {
-            hitTargets[i].GetComponent<IExtinguishable>().Extinguish(extinguishClass, effectiveness);
+            hitTargets[i].GetComponent<IExtinguishable>().Extinguish(extinguishClass, effectiveness * PlayerShoot.DamageMultiplier);
         }
     }
 }

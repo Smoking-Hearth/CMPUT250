@@ -1,5 +1,10 @@
 Shader "Effect/Outline"
 {
+    Properties
+    {
+        _MainTex("Main Texture", 2D) = "white" {}
+    }
+
     SubShader
     {
         Tags { "RenderType"="Opaque" "RenderPipeline"="UniversalPipeline"}
@@ -40,14 +45,15 @@ Shader "Effect/Outline"
 
             HLSLPROGRAM
             #pragma vertex Vert
+            #pragma fragment Frag
             
-            // I Hope this is correct.
             float4 Vert(float4 vertex : POSITION) : SV_POSITION
             {
                 return TransformObjectToHClip(vertex.xyz);
             }
 
-            // Why is this empty?
+            // The blend mode should ensure none of these are actually output.
+            void Frag() { }
             ENDHLSL
         }
 
@@ -57,20 +63,35 @@ Shader "Effect/Outline"
             Name "Silhouette"
 
             HLSLPROGRAM
+            
             #pragma vertex Vert
             #pragma fragment Frag
 
-            float4 Vert(float4 vertex : POSITION) : SV_POSITION
+            TEXTURE2D(_MainTex);
+            SAMPLER(sampler_MainTex);
+
+            // NOTE: Could also just use Varyings from Blit.hlsl
+            struct VertexOutput {
+                float4 positionCS : SV_POSITION;
+                float2 uv  : TEXCOORD0;
+            };
+
+            VertexOutput Vert(float4 vertex : POSITION, float2 uv : TEXCOORD0)
             {
-                float4 clipSpacePosition = TransformObjectToHClip(vertex.xyz);
+                VertexOutput vertexOutput;
+                vertexOutput.positionCS = TransformObjectToHClip(vertex.xyz);
+                vertexOutput.uv = uv;
                 #ifdef UNITY_UV_STARTS_AT_TOP
-                clipSpacePosition.y = -clipSpacePosition.y;
+                vertexOutput.positionCS.y = -vertexOutput.positionCS.y;
                 #endif
-                return clipSpacePosition;
+                return vertexOutput;
             }
 
-            half Frag() { return 1.0; }
-
+            half Frag(VertexOutput input) : SV_Target { 
+                // Sample the sprite's texture (or generated texture from the material)
+                half4 texColor = _MainTex.Sample(sampler_MainTex, input.uv);
+                return step(0.5, texColor.a);
+            }
             ENDHLSL
         }
         
@@ -89,11 +110,15 @@ Shader "Effect/Outline"
             #pragma vertex Vert
             #pragma fragment Frag
 
-            float2 Frag(Varyings input) : SV_Target
+            half2 Frag(Varyings input) : SV_Target
             {
                 int2 uvInt = input.positionCS.xy;
 
-                if(_BlitTexture.Load(uvInt.x, uvInt.y) > 0.5)
+                // Should be black and white 
+                half silhouette = _BlitTexture.Load(int3(uvInt,0)).r;
+                
+                // This is a work of evil.
+                if (silhouette > 0.5)
                 {
                     return input.positionCS.xy * abs(_BlitTexture_TexelSize.xy) * FLOOD_ENCODE_SCALE - FLOOD_ENCODE_OFFSET;
                 }
@@ -114,16 +139,16 @@ Shader "Effect/Outline"
             HLSLPROGRAM
             #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
             #pragma vertex Vert
-            #pragma fragment JumpFlood
+            #pragma fragment Frag
 
             int _StepWidth;
             
-            float4 Vert(Varyings input) : SV_POSITION
+            half2 Frag(Varyings input) : SV_Target
             {
                 int2 uvInt = input.positionCS.xy;
 
                 float nearestDist = 1.#INF;
-                float2 nearestPixel;
+                float2 nearestCoord;
 
                 UNITY_UNROLL
                 for (int i = -1; i <= 1; ++i)
@@ -139,14 +164,14 @@ Shader "Effect/Outline"
 
                         float dist = dot(disp, disp);
 
-                        if (offsetPos.y != FLOOD_NULL_POS && dist < bestDist)
+                        if (offsetPos.y != FLOOD_NULL_POS && dist < nearestDist)
                         {
                             nearestDist = dist;
                             nearestCoord = offsetPos;
                         }
                     }
                 }
-                return isinf(bestDist) ? FLOOD_NULL_POS_FLOAT2 : bestCoord * _BlitTexture_TexelSize.xy * FLOOD_ENCODE_SCALE - FLOOD_ENCODE_OFFSET;
+                return isinf(nearestDist) ? FLOOD_NULL_POS_FLOAT2 : nearestCoord * _BlitTexture_TexelSize.xy * FLOOD_ENCODE_SCALE - FLOOD_ENCODE_OFFSET;
             }
             ENDHLSL
         }
@@ -176,7 +201,7 @@ Shader "Effect/Outline"
             float _OutlineThickness;
             float4 _OutlineColor;
 
-            float4 Vert(Varyings input) : SV_POSITION
+            half2 Frag(Varyings input) : SV_Target
             {
                 int2 uvInt = int2(input.positionCS.xy);
 
@@ -193,7 +218,7 @@ Shader "Effect/Outline"
                 float2 nearestPos = (encodedPos + FLOOD_ENCODE_OFFSET) * abs(_ScreenParams.xy) / FLOOD_ENCODE_SCALE;
 
                 // current pixel position
-                float2 currentPos = i.pos.xy;
+                float2 currentPos = input.positionCS.xy;
 
                 // distance in pixels to closest position
                 half dist = length(nearestPos - currentPos);

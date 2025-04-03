@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         if (freeze)
         {
             targetMovement = Vector2.zero;
+            playerRigidbody.linearVelocity = Vector2.zero;
             playerRigidbody.simulated = false;
             return;
         }
@@ -315,7 +316,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        if (addedVelocity.y < jumpPower * 0.8f && addedVelocity.y >= jumpPower * 0.5f)
+        if (addedVelocity.y < jumpPower * 0.8f && addedVelocity.y >= jumpPower * 0.4f)
         {
             addedVelocity.y = jumpPower * 0.8f;
         }

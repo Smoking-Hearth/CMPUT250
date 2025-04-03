@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
+    private static float damageMultiplier = 1;
+    public static float DamageMultiplier { get { return damageMultiplier; } set { damageMultiplier = value; } }
     [SerializeField] private GameObject hydropack;
 
     private WaterTank waterTank;
@@ -245,6 +247,7 @@ public class PlayerShoot : MonoBehaviour
             firedBullet.transform.rotation = Quaternion.identity;
         }
 
+        firedBullet.SetDamageMultiplier(DamageMultiplier);
         firedBullet.Propel(shootDirection * bulletInitialSpeed);
         shootCooldownTimer = Mathf.Lerp(shootCooldown, 0.05f, pressurizeTimer / pressurizeSeconds);
 
