@@ -14,13 +14,13 @@ class OutlineRenderPass : ScriptableRenderPass
     private static readonly int outlineColorID = Shader.PropertyToID("_OutlineColor");
     private static readonly int outlineWidthID = Shader.PropertyToID("_OutlineThickness");
     private static readonly int stepWidthID = Shader.PropertyToID("_StepWidth");
+    private static readonly int silhouetteTexID = Shader.PropertyToID("_SilhouetteTex");
 
     // pass names
-    private const int SHADER_PASS_INTERIOR_STENCIL = 0;
-    private const int SHADER_PASS_SILHOUETTE_BUFFER_FILL = 1;
-    private const int SHADER_PASS_JFA_INIT = 2;
-    private const int SHADER_PASS_JFA_FLOOD = 3;
-    private const int SHADER_PASS_JFA_OUTLINE = 4;
+    private const int SHADER_PASS_SILHOUETTE_BUFFER_FILL = 0;
+    private const int SHADER_PASS_JFA_INIT = 1; 
+    private const int SHADER_PASS_JFA_FLOOD = 2;
+    private const int SHADER_PASS_JFA_OUTLINE = 3;
 
     private readonly OutlineSettings defaultSettings;
 
@@ -82,23 +82,7 @@ class OutlineRenderPass : ScriptableRenderPass
             name = "PingPongBuffer"
         });
 
-        // Step 1: Stencil Pass
-        using (var builder = renderGraph.AddRasterRenderPass<PassData>("Outline Stencil", out var passData))
-        {
-            builder.SetRenderAttachment(cameraColorTarget, 0);
-            builder.AllowPassCulling(false);
-
-            builder.SetRenderFunc((PassData data, RasterGraphContext ctx) =>
-            {
-                foreach (var renderer in spriteRenderers)
-                {
-                    if (renderer != null)
-                        ctx.cmd.DrawRenderer(renderer, material, 0, SHADER_PASS_INTERIOR_STENCIL);
-                }
-            });
-        }
-
-        // Step 2: Silhouette Fill Pass
+        // Step 1: Silhouette Fill Pass
         using (var builder = renderGraph.AddRasterRenderPass<PassData>("Outline Silhouette Fill", out var passData))
         {
             builder.SetRenderAttachment(silhouetteBuffer, 0);
@@ -115,8 +99,7 @@ class OutlineRenderPass : ScriptableRenderPass
             });
         }
 
-        // Step 3: JFA Init Pass
-        // Ohh this is getting culled cause the other passes are failing to be added.
+        // Step 2: JFA Init Pass
         renderGraph.AddBlitPass(
             new RenderGraphUtils.BlitMaterialParameters(
                 silhouetteBuffer,
@@ -133,11 +116,7 @@ class OutlineRenderPass : ScriptableRenderPass
         TextureHandle currentSrc = nearestPointBuffer;
         TextureHandle currentDst = pingPongBuffer;
 
-        // Step 4: JFA Flood Passes
-        // K for some reason we can't run passes 4 and 5, I suspect either that there is an error in the
-        // shader that I have somehow missed and so it fails to compile, or there is a problem binding 
-        // the created textures to _BlitTexture cause _BlitTexture is Texture2D<float4> and the textures should
-        // be Texture2D<float2>. Aside from that the fragment shader also c
+        // Step 3: JFA Flood Passes
         for (int i = jfaIterations; i >= 0; --i)
         {
             int stepWidth = 1 << i;
@@ -157,17 +136,23 @@ class OutlineRenderPass : ScriptableRenderPass
             (currentDst, currentSrc) = (currentSrc, currentDst);
         }
 
-        // Step 5: Final Outline Pass
+        // Step 4: Final Outline Pass
         material.SetColor(outlineColorID, defaultSettings.color);
         material.SetFloat(outlineWidthID, defaultSettings.thickness);
-        renderGraph.AddBlitPass(
-            new RenderGraphUtils.BlitMaterialParameters(
-                currentSrc,
-                cameraColorTarget, 
-                material,
-                SHADER_PASS_JFA_OUTLINE
-            ),
-            passName: "Color Outline"
-        );
+
+        using (var builder = renderGraph.AddUnsafePass<PassData>("Color Outline", out var passData))
+        {
+            // builder.SetRenderAttachment(cameraColorTarget, 0);
+            builder.UseTexture(silhouetteBuffer);
+            builder.UseTexture(currentSrc);
+            builder.UseTexture(cameraColorTarget, AccessFlags.Write);
+
+            builder.SetRenderFunc((PassData passData, UnsafeGraphContext ctx) => {
+                ctx.cmd.SetGlobalTexture(silhouetteTexID, silhouetteBuffer);
+
+                CommandBuffer nativeCommandBuffer = CommandBufferHelpers.GetNativeCommandBuffer(ctx.cmd);
+                Blitter.BlitCameraTexture(nativeCommandBuffer, currentSrc, cameraColorTarget, material, SHADER_PASS_JFA_OUTLINE);
+            });
+        }
     }
 }
