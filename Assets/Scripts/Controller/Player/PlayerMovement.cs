@@ -315,7 +315,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        if (addedVelocity.y < jumpPower * 0.8f && addedVelocity.y >= jumpPower * 0.5f)
+        if (addedVelocity.y < jumpPower * 0.8f && addedVelocity.y >= jumpPower * 0.4f)
         {
             addedVelocity.y = jumpPower * 0.8f;
         }
