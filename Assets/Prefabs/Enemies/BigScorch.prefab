@@ -212,6 +212,11 @@ MonoBehaviour:
   deccelerationRate: 0.8
   stopWhenAttacking: 0
   moveY: 0
+  wander: 1
+  maxYtarget: 2
+  wallLayers:
+    serializedVersion: 2
+    m_Bits: 4160
 --- !u!50 &9168800897784946635
 Rigidbody2D:
   serializedVersion: 5

@@ -11,6 +11,8 @@ Shader "Effect/Outline"
 
         // Basically we're reducing the space we use to store our position so we can have
         // our NULL POS of -1.
+
+        // Shoutout to GOAT: Ben Golus
         #define SNORM16_MAX_FLOAT_MINUS_EPSILON ((float)(32768-2) / (float)(32768-1))
         #define FLOOD_ENCODE_OFFSET float2(1.0, SNORM16_MAX_FLOAT_MINUS_EPSILON)
         #define FLOOD_ENCODE_SCALE float2(2.0, 1.0 + SNORM16_MAX_FLOAT_MINUS_EPSILON)
@@ -20,38 +22,7 @@ Shader "Effect/Outline"
 
         ENDHLSL
 
-        // The purpose of this pass is likely to do some setup for the stencil to deal with 
-        // outline occlusion.
         // 0
-        Pass 
-        {
-            Name "InnerStencil"
-            Stencil
-            {
-                Ref 1
-                ReadMask 1
-                WriteMask 1
-                Comp NotEqual
-                Pass Replace
-            }
-
-            ColorMask 0
-            Blend Zero One
-
-            HLSLPROGRAM
-            #pragma vertex Vert
-            
-            // I Hope this is correct.
-            float4 Vert(float4 vertex : POSITION) : SV_POSITION
-            {
-                return TransformObjectToHClip(vertex.xyz);
-            }
-
-            // Why is this empty?
-            ENDHLSL
-        }
-
-        // 1
         Pass 
         {
             Name "Silhouette"
@@ -64,7 +35,7 @@ Shader "Effect/Outline"
             {
                 float4 clipSpacePosition = TransformObjectToHClip(vertex.xyz);
                 #ifdef UNITY_UV_STARTS_AT_TOP
-                clipSpacePosition.y = -clipSpacePosition.y;
+                // vertexOutput.positionCS.y = -vertexOutput.positionCS.y;
                 #endif
                 return clipSpacePosition;
             }
@@ -74,7 +45,7 @@ Shader "Effect/Outline"
             ENDHLSL
         }
         
-        // 2 
+        // 1
         Pass
         {
             Name "JumpFloodInit"
@@ -106,7 +77,7 @@ Shader "Effect/Outline"
             ENDHLSL
         }
 
-        // 3
+        // 2
         Pass 
         {
             Name "JumpFloodPass"
@@ -151,19 +122,10 @@ Shader "Effect/Outline"
             ENDHLSL
         }
 
-        // 4
+        // 3
         Pass
         {
             Name "ColorOutline"
-
-            Stencil {
-                Ref 1
-                ReadMask 1
-                WriteMask 1
-                Comp NotEqual
-                Pass Zero
-                Fail Zero
-            }
 
             Blend SrcAlpha OneMinusSrcAlpha
 
@@ -176,7 +138,9 @@ Shader "Effect/Outline"
             float _OutlineThickness;
             float4 _OutlineColor;
 
-            float4 Vert(Varyings input) : SV_POSITION
+            TEXTURE2D(_SilhouetteTex);
+
+            half4 Frag(Varyings input) : SV_Target
             {
                 int2 uvInt = int2(input.positionCS.xy);
 
@@ -198,11 +162,15 @@ Shader "Effect/Outline"
                 // distance in pixels to closest position
                 half dist = length(nearestPos - currentPos);
 
+                // Outline should only be drawn on pixels within _OutlineThickness
                 half outline = saturate(_OutlineThickness - dist + 0.5);
+
+                // We don't have stencil, don't drawn outline on sprite pixels.
+                half spriteMask = (1.0 - _SilhouetteTex.Load(int3(uvInt, 0)).r);
 
                 // apply outline to alpha
                 half4 col = _OutlineColor;
-                col.a *= outline;
+                col.a *= outline * spriteMask;
 
                 return col;
             }

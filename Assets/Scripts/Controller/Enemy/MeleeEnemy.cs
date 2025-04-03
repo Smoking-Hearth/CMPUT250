@@ -23,6 +23,61 @@ public class MeleeEnemy : EnemyController
         }
     }
 
+    protected override void Idle()
+    {
+        float distY = gameObject.MyLevelManager().Player.Position.y - transform.position.y;
+        if (distance < enemyInfo.aggroRange && canMove && (Mathf.Abs(distY) < maxYtarget || !wander))
+        {
+            currentState = EnemyState.stTargeting;
+        }
+
+        if (!wander)
+        {
+            return;
+        }
+        if (enemyAnimator != null)
+        {
+            enemyAnimator.SetBool("IsMoving", true);
+        }
+
+        if (wanderDirection > 0)
+        {
+            if (enemyRigidBody.linearVelocityX < enemyInfo.speed)
+            {
+                enemyRigidBody.linearVelocityX += acceleration;
+            }
+            else
+            {
+                enemyRigidBody.linearVelocityX = enemyInfo.speed;
+            }
+        }
+        else if (wanderDirection < 0)
+        {
+            if (enemyRigidBody.linearVelocityX > -enemyInfo.speed)
+            {
+                enemyRigidBody.linearVelocityX -= acceleration;
+            }
+            else
+            {
+                enemyRigidBody.linearVelocityX = -enemyInfo.speed;
+            }
+        }
+        if (enemyRigidBody.linearVelocityX > 0)
+        {
+            body.localScale = Vector2.one;
+        }
+        else if (enemyRigidBody.linearVelocityX < 0)
+        {
+            body.localScale = new Vector2(-1, 1);
+        }
+
+        RaycastHit2D wallCheck = Physics2D.Raycast(transform.position, Vector2.right * wanderDirection, 1, wallLayers);
+        if (wallCheck)
+        {
+            wanderDirection *= -1;
+        }
+    }
+
     protected override void Target()
     {
         trackingTimer = continueTrackingSeconds;
