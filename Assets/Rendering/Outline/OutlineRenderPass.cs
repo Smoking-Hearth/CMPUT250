@@ -108,6 +108,7 @@ class OutlineRenderPass : ScriptableRenderPass
             {
                 foreach (var renderer in spriteRenderers)
                 {
+                    // WARN: This expects Sprites to have Textures so we can't outline sprites generated from Materials
                     if (renderer != null)
                         ctx.cmd.DrawRenderer(renderer, material, 0, SHADER_PASS_SILHOUETTE_BUFFER_FILL);
                 }
