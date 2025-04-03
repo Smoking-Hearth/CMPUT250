@@ -7,6 +7,7 @@ public class PlayerSounds : MonoBehaviour
 
     [SerializeField] private AudioClip fireHurtClip;
     [SerializeField] private AudioClip electricityHurtClip;
+    [SerializeField] private AudioClip jumpClip;
 
     public Ground currentGround;
 
@@ -46,5 +47,11 @@ public class PlayerSounds : MonoBehaviour
                 audioSource.PlayOneShot(electricityHurtClip);
                 break;
         }
+    }
+
+    public void PlayJump()
+    {
+        audioSource.pitch = 1;
+        audioSource.PlayOneShot(jumpClip);
     }
 }

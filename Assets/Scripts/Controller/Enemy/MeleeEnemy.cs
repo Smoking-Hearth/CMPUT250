@@ -46,7 +46,11 @@ public class MeleeEnemy : EnemyController
 
     protected override void Idle()
     {
-        base.Idle();
+        float distY = gameObject.MyLevelManager().Player.Position.y - transform.position.y;
+        if (distance < enemyInfo.aggroRange && canMove && (Mathf.Abs(distY) < maxYtarget || !wander))
+        {
+            currentState = EnemyState.stTargeting;
+        }
 
         if (!wander)
         {

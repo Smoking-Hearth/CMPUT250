@@ -465,9 +465,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             RunningDust.Stop();
-        }
-
-        
-
+        }  
     }
 }

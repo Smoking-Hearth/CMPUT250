@@ -293,7 +293,12 @@ public class DialogSystem : MonoBehaviour
 
     private void OnContinue(InputAction.CallbackContext context)
     {
-        switch(dialogSystemState)
+        if (gameObject.MyLevelManager().levelState != LevelState.Dialogue)
+        {
+            return;
+        }
+
+        switch (dialogSystemState)
         {
             case State.DisplayingLine:
                 if (!currentDialog.Current.autoContinue)
