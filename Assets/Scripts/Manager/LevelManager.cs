@@ -279,13 +279,6 @@ public class LevelManager : MonoBehaviour
             CheckpointSystem.ReturnToCheckpoint(soul.Movement.transform);
         }
         deathOverlay.SetActive(true);
-        if (soul != null)
-        {
-            soul.Movement.ResetMovement();
-            setSoul.gameObject.SetActive(true);
-        }
-        if (cameraAnimator != null)
-            cameraAnimator.SetBool("IsDead", true);
     }
     public void GiveSoulControl()
     {
@@ -294,10 +287,14 @@ public class LevelManager : MonoBehaviour
         if (soul != null)
         {
             soul.Movement.freeze = false;
+            soul.Movement.ResetMovement();
+            setSoul.gameObject.SetActive(true);
+            if (cameraAnimator != null)
+                cameraAnimator.SetBool("IsDead", true);
         }
     }
 
-        public void SetPause(bool paused)
+    public void SetPause(bool paused)
     {
         if (paused)
         {

@@ -212,11 +212,6 @@ MonoBehaviour:
   deccelerationRate: 0.8
   stopWhenAttacking: 0
   moveY: 0
-  wander: 1
-  maxYtarget: 2
-  wallLayers:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!50 &9168800897784946635
 Rigidbody2D:
   serializedVersion: 5
@@ -446,7 +441,7 @@ Transform:
   m_GameObject: {fileID: 2101268841155240356}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.2399998, y: -2.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

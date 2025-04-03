@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: BossCameraBlends
   m_EditorClassIdentifier: 
   CustomBlends:
-  - From: '**ANY CAMERA**'
+  - From: PlayerCamera
     To: DeadCamera
     Blend:
       Style: 1
-      Time: 3.5
+      Time: 2
       CustomCurve:
         serializedVersion: 2
         m_Curve: []

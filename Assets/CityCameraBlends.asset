@@ -13,25 +13,25 @@ MonoBehaviour:
   m_Name: CityCameraBlends
   m_EditorClassIdentifier: 
   CustomBlends:
+  - From: PlayerCamera
+    To: DeadCamera
+    Blend:
+      Style: 1
+      Time: 2
+      CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
   - From: DeadCamera
     To: PlayerCamera
     Blend:
-      Style: 2
+      Style: 3
       Time: 1
       CustomCurve:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
-  - From: '**ANY CAMERA**'
-    To: DeadCamera
-    Blend:
-      Style: 1
-      Time: 3.5
-      CustomCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0

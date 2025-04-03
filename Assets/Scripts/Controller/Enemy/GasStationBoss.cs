@@ -131,7 +131,7 @@ public class GasStationBoss : MonoBehaviour
 
     private void AirState()
     {
-        if (airRigidbody.position.x < transform.position.x - arenaExtents || airRigidbody.linearVelocityX == 0)
+        if (airRigidbody.position.x < transform.position.x - arenaExtents)
         {
             airRigidbody.linearVelocityX = airSpeed;
         }

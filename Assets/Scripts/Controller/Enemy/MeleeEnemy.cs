@@ -9,27 +9,6 @@ public class MeleeEnemy : EnemyController
     [SerializeField] protected float deccelerationRate;
     [SerializeField] protected bool stopWhenAttacking;
     [SerializeField] protected bool moveY;      //Whether or not to affect the y velocity of the rigidbody
-    [SerializeField] protected bool wander;
-    protected float wanderDirection;
-    [SerializeField] protected float maxYtarget;
-    [SerializeField] protected LayerMask wallLayers;
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        if (wander)
-        {
-            float distX = gameObject.MyLevelManager().Player.Position.x - transform.position.x;
-            if (Mathf.Abs(distX) <= enemyInfo.standRange)
-            {
-                wanderDirection = (Random.Range(-1f, 1f) < 0 ? -1 : 1);
-            }
-            else
-            {
-                wanderDirection = Mathf.Sign(distX);
-            }
-        }
-    }
 
     protected override void FixedUpdate()
     {
@@ -44,63 +23,11 @@ public class MeleeEnemy : EnemyController
         }
     }
 
-    protected override void Idle()
-    {
-        base.Idle();
-
-        if (!wander)
-        {
-            return;
-        }
-        if (enemyAnimator != null)
-        {
-            enemyAnimator.SetBool("IsMoving", true);
-        }
-
-        if (wanderDirection > 0)
-        {
-            if (enemyRigidBody.linearVelocityX < enemyInfo.speed)
-            {
-                enemyRigidBody.linearVelocityX += acceleration;
-            }
-            else
-            {
-                enemyRigidBody.linearVelocityX = enemyInfo.speed;
-            }
-        }
-        else if (wanderDirection < 0)
-        {
-            if (enemyRigidBody.linearVelocityX > -enemyInfo.speed)
-            {
-                enemyRigidBody.linearVelocityX -= acceleration;
-            }
-            else
-            {
-                enemyRigidBody.linearVelocityX = -enemyInfo.speed;
-            }
-        }
-        if (enemyRigidBody.linearVelocityX > 0)
-        {
-            body.localScale = Vector2.one;
-        }
-        else if (enemyRigidBody.linearVelocityX < 0)
-        {
-            body.localScale = new Vector2(-1, 1);
-        }
-
-        RaycastHit2D wallCheck = Physics2D.Raycast(transform.position, Vector2.right * wanderDirection, 1, wallLayers);
-        if (wallCheck)
-        {
-            wanderDirection *= -1;
-        }
-    }
-
     protected override void Target()
     {
         trackingTimer = continueTrackingSeconds;
 
-        float distY = gameObject.MyLevelManager().Player.Position.y - transform.position.y;
-        if (distance < enemyInfo.aggroRange && canMove && (Mathf.Abs(distY) < maxYtarget || !wander))
+        if (distance < enemyInfo.aggroRange && canMove)
         {
             MoveToTarget();
             if (distance <= enemyInfo.attackRange)
@@ -134,20 +61,6 @@ public class MeleeEnemy : EnemyController
             {
                 enemyAnimator.SetBool("IsMoving", false);
             }
-
-            if (wander)
-            {
-                float distX = gameObject.MyLevelManager().Player.Position.x - transform.position.x;
-                if (Mathf.Abs(distX) <= enemyInfo.standRange)
-                {
-                    wanderDirection = (Random.Range(-1f, 1f) < 0 ? -1 : 1);
-                }
-                else
-                {
-                    wanderDirection = Mathf.Sign(distX);
-                }
-            }
-
             currentState = EnemyState.stWaiting;
         }
     }
