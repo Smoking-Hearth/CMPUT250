@@ -129,7 +129,7 @@ class OutlineRenderPass : ScriptableRenderPass
             builder.SetRenderFunc((PassData data, RasterGraphContext ctx) =>
             {
                 // ctx.cmd.Blit(nearestPointPingPongID, nearestPointID, data.material, SHADER_PASS_JFA_FLOOD);
-            }
+            });
         }
 
         // Step 2: JFA Init Pass
@@ -188,4 +188,5 @@ class OutlineRenderPass : ScriptableRenderPass
             });
         }
     }
+}
 }
