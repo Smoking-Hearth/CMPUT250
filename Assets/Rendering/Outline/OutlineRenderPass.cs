@@ -130,7 +130,7 @@ class OutlineRenderPass : ScriptableRenderPass
             else
             {
                 // ctx.cmd.Blit(nearestPointPingPongID, nearestPointID, data.material, SHADER_PASS_JFA_FLOOD);
-            });
+            }
         }
 
         // Now we color
@@ -144,5 +144,4 @@ class OutlineRenderPass : ScriptableRenderPass
         // ctx.cmd.ReleaseTemporaryRT(nearestPointID);
         // ctx.cmd.ReleaseTemporaryRT(nearestPointPingPongID);
     }
-}
 }
