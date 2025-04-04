@@ -261,7 +261,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerAnimator.transform.localScale = new Vector2(Mathf.Sign(inputAxes.x), 1);
             }
-            CreateRunDust(player);
+
         }
 
         playerAnimator.SetFloat("MoveSpeed", targetMovement.x / moveSpeed);
@@ -269,6 +269,9 @@ public class PlayerMovement : MonoBehaviour
         Vector2 finalVelocity = targetMovement + addedVelocity;
 
         playerRigidbody.linearVelocity = Time.fixedDeltaTime * finalVelocity;
+
+        CreateRunDust(player);
+
 
         if (attached != null)
         {
@@ -278,7 +281,7 @@ public class PlayerMovement : MonoBehaviour
         // Sliding around
         if (addedVelocity.x != 0)
         {   
-            
+
             if (Mathf.Abs(addedVelocity.x) > 0.1f)
             {
                 if (player.GroundState != GroundState.None)
@@ -457,7 +460,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void CreateRunDust(Player player){
 
-        if (player.GroundState == GroundState.Grounded && targetMovement.x > 0.1f || targetMovement.x < -0.1f){
+        if (player.GroundState == GroundState.Grounded && playerRigidbody.linearVelocityX > 1f || playerRigidbody.linearVelocityX < -1f){
 
             RunningDust.Play();
 
@@ -477,9 +480,5 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public void CancleJumpDust(){
-
-        JumpingDust.Stop();
-    }
 }
 
