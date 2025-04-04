@@ -12,10 +12,6 @@ public class PlayerSounds : MonoBehaviour
 
     public Ground currentGround;
 
-    private void OnEnable()
-    {
-        PlayerMovement.onJump += PlayJump;
-    }
 
     public void PlayLandClip(Ground ground)
     {
@@ -52,11 +48,5 @@ public class PlayerSounds : MonoBehaviour
                 audioSource.PlayOneShot(electricityHurtClip);
                 break;
         }
-    }
-
-    public void PlayJump(Vector2 jumpPosition)
-    {
-        audioSource.pitch = 1;
-        audioSource.PlayOneShot(jumpClip);
     }
 }
