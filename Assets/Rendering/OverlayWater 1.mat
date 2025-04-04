@@ -20,9 +20,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UIWater
-  m_Shader: {fileID: -6465566751694194690, guid: 5f0936a750ed8494e87b1041a9e39162, type: 3}
-  m_Parent: {fileID: -876546973899608171, guid: 5f0936a750ed8494e87b1041a9e39162, type: 3}
+  m_Name: OverlayWater 1
+  m_Shader: {fileID: -6465566751694194690, guid: f4e089ae37f858a43b757d2fccbc39da, type: 3}
+  m_Parent: {fileID: -876546973899608171, guid: f4e089ae37f858a43b757d2fccbc39da, type: 3}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -38,9 +38,10 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _BarPosition: 0.8625
-    - _Intensity: 0.19999999
-    - _barPosition: 1
-    m_Colors: []
+    - _Alpha: 0.01
+    - _UseScreenUV: 0
+    - _WaterSpeed: 0.01
+    m_Colors:
+    - _Size: {r: 0.05, g: 0.05, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
