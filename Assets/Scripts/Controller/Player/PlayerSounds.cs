@@ -8,6 +8,8 @@ public class PlayerSounds : MonoBehaviour
     [SerializeField] private AudioClip fireHurtClip;
     [SerializeField] private AudioClip electricityHurtClip;
 
+    [SerializeField] private AudioClip jumpClip;
+
     public Ground currentGround;
 
     private void OnEnable()
