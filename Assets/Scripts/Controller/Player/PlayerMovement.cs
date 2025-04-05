@@ -261,7 +261,6 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 targetMovement.x = inputAxes.x * moveSpeed;
-                CreateRunDust(player);
             
             }
             if (flipGraphics)
