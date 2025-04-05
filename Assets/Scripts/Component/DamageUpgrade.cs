@@ -3,14 +3,15 @@ using System.Collections.Generic;
 
 public class DamageUpgrade : MonoBehaviour
 {
-    private static List<DamageUpgrade> obtainedUpgrades = new List<DamageUpgrade>();
+    private static List<int> obtainedUpgrades = new List<int>();
+    [SerializeField] private int id;
     [SerializeField] private float addedMultiplier;
     [SerializeField] private GameObject obtainableObject;
     [SerializeField] private GameObject greyObject;
 
     private void OnEnable()
     {
-        if (obtainedUpgrades.Contains(this))
+        if (obtainedUpgrades.Contains(id))
         {
             greyObject.SetActive(true);
             obtainableObject.SetActive(false);
@@ -19,7 +20,8 @@ public class DamageUpgrade : MonoBehaviour
     public void Obtain()
     {
         PlayerShoot.DamageMultiplier += addedMultiplier;
-        obtainedUpgrades.Add(this);
-        Destroy(gameObject);
+        obtainedUpgrades.Add(id);
+        greyObject.SetActive(true);
+        obtainableObject.SetActive(false);
     }
 }
