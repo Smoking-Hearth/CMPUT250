@@ -51572,6 +51572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactText: {fileID: 1578116839}
   interactDistance: 1
+  outline: {fileID: 0}
   startInteractEvent:
     m_PersistentCalls:
       m_Calls:
@@ -51927,7 +51928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1371268062167898584, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1896121864162710127, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
       propertyPath: m_AnchorMax.y
@@ -52104,10 +52105,6 @@ PrefabInstance:
     - target: {fileID: 5065114336354051815, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -100.000015
-      objectReference: {fileID: 0}
-    - target: {fileID: 5083709297353891466, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5209676977801230736, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
       propertyPath: m_Alpha
@@ -56283,6 +56280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactText: {fileID: 1119888568}
   interactDistance: 1
+  outline: {fileID: 0}
   startInteractEvent:
     m_PersistentCalls:
       m_Calls:
@@ -74691,6 +74689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactText: {fileID: 0}
   interactDistance: 0
+  outline: {fileID: 0}
   startInteractEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -79119,7 +79118,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 6
+    OrthographicSize: 5.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -80405,7 +80404,7 @@ Transform:
   m_GameObject: {fileID: 2008706413}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 206, y: -2, z: 0}
+  m_LocalPosition: {x: 206, y: -2, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

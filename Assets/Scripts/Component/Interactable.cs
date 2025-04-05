@@ -5,6 +5,7 @@ public class Interactable : MonoBehaviour
 {
     [SerializeField] protected GameObject interactText;   //Text that pops up to prompt the user to interact
     [SerializeField] protected float interactDistance;    //Max distance the player can be to interact
+    [SerializeField] protected OutlineComponent outline;
     protected bool isInteracting;     //If the player is currently holding the interact button
     public float InteractDistance
     {
@@ -58,9 +59,17 @@ public class Interactable : MonoBehaviour
     public virtual void Target()
     {
         interactText.SetActive(true);
+        if (outline != null)
+        {
+            outline.enabled = true;
+        }
     }
     public virtual void Untarget()
     {
         interactText.SetActive(false);
+        if (outline != null)
+        {
+            outline.enabled = false;
+        }
     }
 }

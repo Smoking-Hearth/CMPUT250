@@ -45,6 +45,11 @@ public class CheckpointSystem: MonoBehaviour
 
     public void SaveState()
     {
+        if (savedState == null)
+        {
+            return;
+        }
+
         for (int i = 0; i < savedState.Count; ++i)
         {
             savedData[i] = savedState[i].Get();

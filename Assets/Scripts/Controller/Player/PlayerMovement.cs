@@ -51,8 +51,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         SpecialAttack.onPushback += PushPlayer;
-
         ResetMovement();
+
+        if (gameObject.MyLevelManager().Player.Health.Current == 0)
+        {
+            gameObject.MyLevelManager().GameOver();
+            playerAnimator.SetTrigger("IsDead");
+        }
     }
 
     private void OnDisable()

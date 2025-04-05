@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7802263809744094429}
   - component: {fileID: 3151068326713643332}
   - component: {fileID: 7061179886010364287}
+  - component: {fileID: 5090373815387289970}
   m_Layer: 4
   m_Name: FireHydrant
   m_TagString: Untagged
@@ -121,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactText: {fileID: 4849733560152441674}
   interactDistance: 2
+  outline: {fileID: 5090373815387289970}
   startInteractEvent:
     m_PersistentCalls:
       m_Calls:
@@ -166,6 +168,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5090373815387289970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6535134704053860067}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c6be9f628e94de48f124bd19e82ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <outlineSettings>k__BackingField:
+    thickness: 2
+    color: {r: 1, g: 1, b: 1, a: 1}
+  <renderers>k__BackingField:
+  - {fileID: 7802263809744094429}
 --- !u!1001 &5374102432610523854
 PrefabInstance:
   m_ObjectHideFlags: 0
