@@ -8198,6 +8198,8 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   <Texture>k__BackingField: {fileID: 2800000, guid: 9ef22cf41ba9c994fb77f44ed0c49b56, type: 3}
   <IsTiled>k__BackingField: 1
+  <VerticalOffset>k__BackingField: 0
+  <PixelScale>k__BackingField: 1
   <Rows>k__BackingField: 1
   <Columns>k__BackingField: 1
   <Frames>k__BackingField: 1
@@ -52105,6 +52107,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8406581672092596897, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5386352710865520460, guid: 494197a923e34fe418b9810913d7e33c, type: 2}
+    - target: {fileID: 8406581672092596897, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8672954265568263801, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -78851,6 +78861,8 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   <Texture>k__BackingField: {fileID: 2800000, guid: 70835af2e2d2e4dea99636b45000b411, type: 3}
   <IsTiled>k__BackingField: 1
+  <VerticalOffset>k__BackingField: 0
+  <PixelScale>k__BackingField: 1
   <Rows>k__BackingField: 6
   <Columns>k__BackingField: 2
   <Frames>k__BackingField: 12
@@ -81310,6 +81322,8 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   <Texture>k__BackingField: {fileID: 2800000, guid: f49817dfbbe71954fb04e5a41a15a919, type: 3}
   <IsTiled>k__BackingField: 1
+  <VerticalOffset>k__BackingField: 0
+  <PixelScale>k__BackingField: 1
   <Rows>k__BackingField: 1
   <Columns>k__BackingField: 1
   <Frames>k__BackingField: 1
@@ -98625,10 +98639,6 @@ PrefabInstance:
     - target: {fileID: 1358308235219167936, guid: 3c1a7d000a7f07040b5449ab138fe300, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1358308235219167936, guid: 3c1a7d000a7f07040b5449ab138fe300, type: 3}
-      propertyPath: spawnInterval
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2998270735601937332, guid: 3c1a7d000a7f07040b5449ab138fe300, type: 3}
       propertyPath: m_LocalPosition.x
