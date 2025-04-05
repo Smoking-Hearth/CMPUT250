@@ -8201,7 +8201,7 @@ MonoBehaviour:
   <Rows>k__BackingField: 1
   <Columns>k__BackingField: 1
   <Frames>k__BackingField: 1
-  <FramesPerSecond>k__BackingField: 0
+  <FramesPerSecond>k__BackingField: 1
 --- !u!4 &121443626
 Transform:
   m_ObjectHideFlags: 0
@@ -8211,11 +8211,11 @@ Transform:
   m_GameObject: {fileID: 121443624}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 100}
+  m_LocalPosition: {x: 0, y: 0, z: 98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1287770957}
+  m_Father: {fileID: 591971627}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &124673978
 PrefabInstance:
@@ -22311,51 +22311,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &481587313
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 481587314}
-  - component: {fileID: 481587315}
-  m_Layer: 0
-  m_Name: MountainSortingGroup
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &481587314
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481587313}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2041615333}
-  m_Father: {fileID: 591971627}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!210 &481587315
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481587313}
-  m_Enabled: 1
-  m_SortingLayerID: -439238639
-  m_SortingLayer: 1
-  m_SortingOrder: 1
-  m_SortAtRoot: 0
 --- !u!1 &484795957
 GameObject:
   m_ObjectHideFlags: 0
@@ -29459,9 +29414,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 836129805}
-  - {fileID: 481587314}
-  - {fileID: 1287770957}
+  - {fileID: 1934602908}
+  - {fileID: 2041615333}
+  - {fileID: 121443626}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &594123596
@@ -40377,51 +40332,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &836129804
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 836129805}
-  - component: {fileID: 836129806}
-  m_Layer: 0
-  m_Name: TreesSortingGroup
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &836129805
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836129804}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1934602908}
-  m_Father: {fileID: 591971627}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!210 &836129806
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836129804}
-  m_Enabled: 1
-  m_SortingLayerID: -439238639
-  m_SortingLayer: 1
-  m_SortingOrder: 2
-  m_SortAtRoot: 0
 --- !u!1 &839987313
 GameObject:
   m_ObjectHideFlags: 0
@@ -57807,51 +57717,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1287770956
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1287770957}
-  - component: {fileID: 1287770958}
-  m_Layer: 0
-  m_Name: FarMountainsSortingGroup
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1287770957
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287770956}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 121443626}
-  m_Father: {fileID: 591971627}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!210 &1287770958
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287770956}
-  m_Enabled: 1
-  m_SortingLayerID: -439238639
-  m_SortingLayer: 1
-  m_SortingOrder: 0
-  m_SortAtRoot: 0
 --- !u!114 &1290447861 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1634542000452862205, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
@@ -78965,7 +78830,7 @@ GameObject:
   - component: {fileID: 1934602908}
   - component: {fileID: 1934602907}
   m_Layer: 0
-  m_Name: Trees
+  m_Name: CityForeground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78989,7 +78854,7 @@ MonoBehaviour:
   <Rows>k__BackingField: 6
   <Columns>k__BackingField: 2
   <Frames>k__BackingField: 12
-  <FramesPerSecond>k__BackingField: 3
+  <FramesPerSecond>k__BackingField: 6
 --- !u!4 &1934602908
 Transform:
   m_ObjectHideFlags: 0
@@ -79003,7 +78868,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 836129805}
+  m_Father: {fileID: 591971627}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1937626032
 GameObject:
@@ -81448,7 +81313,7 @@ MonoBehaviour:
   <Rows>k__BackingField: 1
   <Columns>k__BackingField: 1
   <Frames>k__BackingField: 1
-  <FramesPerSecond>k__BackingField: 10
+  <FramesPerSecond>k__BackingField: 1
 --- !u!4 &2041615333
 Transform:
   m_ObjectHideFlags: 0
@@ -81458,11 +81323,11 @@ Transform:
   m_GameObject: {fileID: 2041615331}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 50}
+  m_LocalPosition: {x: 0, y: 0, z: 49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 481587314}
+  m_Father: {fileID: 591971627}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2049979425
 GameObject:

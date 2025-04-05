@@ -6,7 +6,9 @@ public class ParallaxLayer : MonoBehaviour
     [HideInInspector] public MeshRenderer meshRenderer = null;
 
     [field: SerializeField] public Texture Texture { get; private set;}
-    [field: SerializeField] public bool IsTiled {get; private set; }
+    [field: SerializeField] public bool IsTiled {get; private set; } = true;
+    [field: SerializeField] public float VerticalOffset { get; private set;} = 0f;
+    [field: SerializeField] public float PixelScale { get; private set; } = 1f;
 
     [Header("Animation")]
     [field: SerializeField, Range(1, 8)] public int Rows { get; private set; } = 1;
@@ -72,6 +74,8 @@ public class ParallaxLayer : MonoBehaviour
         // (left, width, top, height)
         Vector4 uvRect = new(left, width, top, height);
         meshRenderer.material.SetVector("_UVRect", uvRect);
+        meshRenderer.material.SetFloat("_LayerVerticalOffset", VerticalOffset);
+        meshRenderer.material.SetFloat("_LayerPixelScale", PixelScale);
     }
 
     void Update()
