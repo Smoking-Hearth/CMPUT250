@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
 
     [SerializeField] private ParticleSystem RunningDust;
+    [SerializeField] private ParticleSystem JumpingDust;
     private Ground currentGround;
 
     private bool isJumping;
@@ -275,6 +276,8 @@ public class PlayerMovement : MonoBehaviour
 
         playerRigidbody.linearVelocity = Time.fixedDeltaTime * finalVelocity;
 
+        CreateRunDust(player);
+
         if (attached != null)
         {
             playerRigidbody.linearVelocity += attached.linearVelocity;
@@ -429,7 +432,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-
+        CreateJumpDust();
         isJumping = true;
         addedVelocity.y = jumpPower;
 
@@ -471,5 +474,11 @@ public class PlayerMovement : MonoBehaviour
         {
             RunningDust.Stop();
         }  
+    }
+    public void CreateJumpDust()
+    {
+
+        JumpingDust.Play();
+
     }
 }
