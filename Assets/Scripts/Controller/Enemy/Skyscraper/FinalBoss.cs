@@ -4,14 +4,9 @@ using System.Collections.Generic;
 
 public class FinalBoss : MonoBehaviour
 {
-    private enum FinalBossState
-    {
-        INACTIVE, STANDBY, PUNCH, RAIN, SPAWN
-    }
-    private FinalBossState state;
 
     [System.Serializable]
-    private struct BossFloor
+    public struct BossFloor
     {
         public StaircaseSection rightStaircase;
         public ConnectorFloor connector;
@@ -36,12 +31,20 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] private int floorCount;
     private BossFloor[] floors;
     private int currentFloor;
-
+    private int highestClimbedFloor;
     public float CurrentFloorLevel
     {
         get
         {
             return transform.position.y + baseAltitude + currentFloor * floorHeight;
+        }
+    }
+
+    public BossFloor CurrentFloor
+    {
+        get
+        {
+            return floors[currentFloor];
         }
     }
 
@@ -64,13 +67,24 @@ public class FinalBoss : MonoBehaviour
 
     [SerializeField] private UnityEvent completeEvent;
 
-    [Header("Projectiles")]
-    private EnemyProjectile[] cache;
-    private int currentProjectileIndex;
-
     void Start()
     {
         Generate();
+    }
+
+    private void FixedUpdate()
+    {
+        CheckCurrentFloor();
+        if (gameObject.MyLevelManager().levelState == LevelState.Playing)
+        {
+            highestClimbedFloor = currentFloor;
+        }
+        else if (gameObject.MyLevelManager().levelState == LevelState.Defeat && currentFloor <= highestClimbedFloor)
+        {
+            floors[currentFloor].connector.OpenDoors();
+            floors[currentFloor].rightStaircase.OpenDoor();
+            floors[currentFloor].leftStaircase.OpenDoor();
+        }
     }
 
     public void Generate()
@@ -150,113 +164,9 @@ public class FinalBoss : MonoBehaviour
         buildingHeight = floorHeight * floors.Length;
     }
 
-    public void Activate(bool active)
-    {
-        if (active)
-        {
-            state = FinalBossState.STANDBY;
-        }
-        else
-        {
-            state = FinalBossState.INACTIVE;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        switch (state)
-        {
-            case FinalBossState.INACTIVE:
-                break;
-            case FinalBossState.STANDBY:
-                StandbyState();
-                break;
-            case FinalBossState.PUNCH:
-                PunchAttack();
-                break;
-            case FinalBossState.RAIN:
-                RainAttack();
-                break;
-            case FinalBossState.SPAWN:
-                SpawnState();
-                break;
-        }
-    }
-
     private void CheckCurrentFloor()
     {
         float playerY = gameObject.MyLevelManager().Player.Position.y - baseAltitude;
         currentFloor = Mathf.Clamp(Mathf.CeilToInt(playerY / buildingHeight * floorCount), 0, floorCount);
-    }
-
-    private void StandbyState()
-    {
-        CheckCurrentFloor();
-
-        if (currentFloor >= floorCount - 1)
-        {
-            completeEvent.Invoke();
-            return;
-        }
-
-        if (standbyTimer > 0)
-        {
-            standbyTimer -= Time.fixedDeltaTime;
-
-            if (Random.Range(0, 1000) == 0)
-            {
-                floors[currentFloor].rightStaircase.SendDrone();
-            }
-        }
-        else
-        {
-            int randomState = Random.Range(0, 3);
-
-            switch (randomState)
-            {
-                case 0:
-                    state = FinalBossState.PUNCH;
-                    break;
-                case 1:
-                    state = FinalBossState.RAIN;
-                    break;
-                case 2:
-                    state = FinalBossState.SPAWN;
-                    break;
-            }
-
-            standbyTimer = standByDuration;
-        }
-    }
-    private void PunchAttack()
-    {
-        int random = Random.Range(0, 2);
-        if (currentFloor + random < floorCount)
-        {
-            floors[currentFloor + random].rightStaircase.ActivateArm();
-        }
-        state = FinalBossState.STANDBY;
-    }
-    private void RainAttack()
-    {
-        state = FinalBossState.STANDBY;
-    }
-
-    private void SpawnState()
-    {
-        int randomSpawn = Random.Range(0, spawnObjects.Length);
-        int randomFloor = currentFloor + Random.Range(-1, 3);
-
-        if (randomFloor >= floors.Length || randomFloor < 0)
-        {
-            return;
-        }
-
-        /*if (!floors[randomFloor].rightStaircase.LoadDoor(spawnObjects[randomSpawn]))
-        {
-            standbyTimer = 0;
-        }*/
-
-        state = FinalBossState.STANDBY;
     }
 }

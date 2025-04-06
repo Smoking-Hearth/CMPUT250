@@ -783,11 +783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a66ce97b0a747239b87b457a0d3473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!198 &303272316 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1342345524628512987, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
-  m_PrefabInstance: {fileID: 1126347699}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &322892286
 GameObject:
   m_ObjectHideFlags: 0
@@ -2831,9 +2826,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8458995015516381762, guid: 2f228bfb48d0d00489dfd2673c0537c0, type: 3}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: connectorPrefabs.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
       propertyPath: fullPassageFloor.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: 'connectorPrefabs.Array.data[6]'
+      value: 
+      objectReference: {fileID: 347357919889333152, guid: b15c6a17749feb94fba1ecebb13a19ec, type: 3}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
       propertyPath: 'fullPassageFloor.Array.data[0]'
       value: 3
@@ -3778,16 +3781,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 606540974}
     - target: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
-      propertyPath: flameRing
-      value: 
-      objectReference: {fileID: 303272316}
-    - target: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
-      propertyPath: heatRadius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
-      propertyPath: decideDuration
-      value: 5
+      propertyPath: spawnDuration
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7614163084806432427, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: m_SortingLayer

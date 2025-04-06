@@ -4,6 +4,7 @@ public class StaircaseSection : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer glassRenderer;
     [SerializeField] private Sprite glassBrokenSprite;
+    [SerializeField] private Collider2D glassCollider;
     [SerializeField] private FinalBossArm arm;
     private bool glassBroken;
 
@@ -11,6 +12,15 @@ public class StaircaseSection : MonoBehaviour
 
     [SerializeField] private Vector2 dronePosition;
     [SerializeField] private DroneDropItem dronePrefab;
+    public bool GlassBroken
+    {
+        get
+        {
+            return glassBroken;
+        }
+    }
+
+    [SerializeField] private Door door;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -32,6 +42,7 @@ public class StaircaseSection : MonoBehaviour
             {
                 glassBroken = true;
                 glassRenderer.sprite = glassBrokenSprite;
+                glassCollider.enabled = false;
             }
         }
         return true;
@@ -46,5 +57,10 @@ public class StaircaseSection : MonoBehaviour
 
         Instantiate(dronePrefab, (Vector2)transform.position + dronePosition, Quaternion.identity, transform);
         return true;
+    }
+
+    public void OpenDoor()
+    {
+        door.Open();
     }
 }

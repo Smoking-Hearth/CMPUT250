@@ -785,6 +785,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpawns: []
   floorConnections: 8
+  doors:
+  - {fileID: 2229077267808859307}
+  - {fileID: 9160636943296434418}
 --- !u!1 &6026755391854484381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,6 +1102,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 440165e0f8a56d540ac01ba18fb7733b, type: 3}
+--- !u!114 &2229077267808859307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 425526830719562812, guid: 440165e0f8a56d540ac01ba18fb7733b, type: 3}
+  m_PrefabInstance: {fileID: 1947951505815027863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 720f11d30b109a546b46f36704e98dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3531431358941608272 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3029420129758312903, guid: 440165e0f8a56d540ac01ba18fb7733b, type: 3}
@@ -1703,3 +1717,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3029420129758312903, guid: 440165e0f8a56d540ac01ba18fb7733b, type: 3}
   m_PrefabInstance: {fileID: 8846996726212388046}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9160636943296434418 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 425526830719562812, guid: 440165e0f8a56d540ac01ba18fb7733b, type: 3}
+  m_PrefabInstance: {fileID: 8846996726212388046}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 720f11d30b109a546b46f36704e98dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

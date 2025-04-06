@@ -31329,17 +31329,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488f09a0501dfed4bbb89c36590854ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatRadius: 2
   healthComponent: {fileID: 3496495119214777167}
   stunDuration: 5
   stunParticles: {fileID: 8143578937838793435}
   disableOnStun: {fileID: 346148279586995656}
+  flameRing: {fileID: 1342345524628512987}
   currentState: 2
   moveState: 0
   flipObject: {fileID: 3675077333151279148}
   cultistRigidbody: {fileID: 7705770258420024749}
   cultistInfo: {fileID: 11400000, guid: cfc9fe2ec98d1fc409a163b7dc146bbe, type: 2}
   acceleration: 0.4
-  midRange: {x: -52, y: -7}
+  midRange: {x: -48, y: -12}
   swingRadius: 1
   swingPivotPosition: {x: 0, y: 0}
   swingObjects:
@@ -31356,13 +31358,14 @@ MonoBehaviour:
     maxAngle: 175
     offsetAngle: 2
   nozzle: {fileID: 2701002615786386027}
-  decideDuration: 3
+  decideDuration: 5
   sweepStateDuration: 1
   sweepArc: 25
   burstStateDuration: 0
   burstDuration: 0
   bursts: 0
   sprayComponent: {fileID: 5417180985490529651}
+  spawnDuration: 0
   building: {fileID: 0}
   cultistAnimator: {fileID: 7232863385536466245}
 --- !u!114 &3496495119214777167
