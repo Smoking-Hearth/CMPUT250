@@ -11,6 +11,13 @@ public class CultistBossController : MonoBehaviour
         Left, Middle, Right
     }
 
+    [Header("Stun")]
+    [SerializeField] private EnemyHealth healthComponent;
+    [SerializeField] private float stunDuration;
+    [SerializeField] private ParticleSystem stunParticles;
+    [SerializeField] private GameObject disableOnStun;
+    private float stunTimer;
+
     [Header("Movement")]
     [SerializeField] private CultistAttackState currentState;
     [SerializeField] private CultistMoveState moveState;
@@ -46,10 +53,31 @@ public class CultistBossController : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator cultistAnimator;
 
+    private void OnEnable()
+    {
+    }
+    private void OnDisable()
+    {
+        
+    }
+
     void FixedUpdate()
     {
         cultistAnimator.SetBool("IsGrounded", true);
 
+        if (stunTimer > 0)
+        {
+            cultistRigidbody.linearVelocity = Vector2.zero;
+            stunTimer -= Time.fixedDeltaTime;
+
+            if (stunTimer <= 0)
+            {
+                healthComponent.ResetHealth();
+                cultistAnimator.SetTrigger("Respawn");
+                disableOnStun.SetActive(true);
+            }
+            return;
+        }
         Vector2 playerPos = gameObject.MyLevelManager().Player.Position;
         if (playerPos.x < building.transform.position.x + midRange.y && playerPos.x > building.transform.position.x + midRange.x)
         {
@@ -65,6 +93,11 @@ public class CultistBossController : MonoBehaviour
             {
                 moveState = CultistMoveState.Right;
             }
+        }
+
+        if (healthComponent.HealthZero)
+        {
+            Stun();
         }
 
         if (gameObject.MyLevelManager().levelState != LevelState.Playing)
@@ -192,17 +225,17 @@ public class CultistBossController : MonoBehaviour
     {
         Vector2 targetPos = new Vector2(xPosition, gameObject.MyLevelManager().Player.Position.y);
         Vector2 targetDirection = targetPos - cultistRigidbody.position;
+        AimSprites(gameObject.MyLevelManager().Player.Position);
 
         if (targetDirection.magnitude > 1f)
         {
-            if (cultistRigidbody.linearVelocity.magnitude < cultistInfo.speed)
-            {
-                cultistRigidbody.linearVelocity += acceleration * targetDirection.normalized;
-            }
+            cultistRigidbody.linearVelocity += acceleration * targetDirection.normalized;
+            cultistRigidbody.linearVelocityX = Mathf.Clamp(cultistRigidbody.linearVelocityX, -cultistInfo.speed, cultistInfo.speed);
+            cultistRigidbody.linearVelocityY = Mathf.Clamp(cultistRigidbody.linearVelocityY, -cultistInfo.speed, cultistInfo.speed);
         }
         else
         {
-            cultistRigidbody.linearVelocity *= 0.8f;
+            cultistRigidbody.linearVelocity *= 0.92f;
         }
     }
 
@@ -210,18 +243,27 @@ public class CultistBossController : MonoBehaviour
     {
         Vector2 targetPos = new Vector2(gameObject.MyLevelManager().Player.Position.x, yPosition);
         Vector2 targetDirection = targetPos - cultistRigidbody.position;
+        AimSprites(gameObject.MyLevelManager().Player.Position);
 
-        if (targetDirection.magnitude > 4f)
+        if (targetDirection.magnitude > cultistInfo.standRange)
         {
-            if (cultistRigidbody.linearVelocity.magnitude < cultistInfo.speed)
-            {
-                cultistRigidbody.linearVelocity += acceleration * targetDirection.normalized;
-            }
+            cultistRigidbody.linearVelocity += acceleration * targetDirection.normalized;
+            cultistRigidbody.linearVelocityX = Mathf.Clamp(cultistRigidbody.linearVelocityX, -cultistInfo.speed, cultistInfo.speed);
+            cultistRigidbody.linearVelocityY = Mathf.Clamp(cultistRigidbody.linearVelocityY, -cultistInfo.speed, cultistInfo.speed);
+
         }
         else
         {
-            cultistRigidbody.linearVelocity *= 0.8f;
+            cultistRigidbody.linearVelocity *= 0.92f;
         }
+    }
+
+    private void Stun()
+    {
+        stunParticles.Play();
+        stunTimer = stunDuration;
+        cultistAnimator.SetTrigger("IsDead");
+        disableOnStun.SetActive(false);
     }
 
     public void AimSprites(Vector2 targetPosition)

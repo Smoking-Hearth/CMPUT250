@@ -2818,6 +2818,14 @@ PrefabInstance:
       value: Final Boss Building
       objectReference: {fileID: 0}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: topFloor.connector
+      value: 
+      objectReference: {fileID: 347357919889333152, guid: bc1f36067eaceea41a21654e366bba15, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: topFloor.leftStaircase
+      value: 
+      objectReference: {fileID: 8458995015516381762, guid: 2f228bfb48d0d00489dfd2673c0537c0, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
       propertyPath: fullPassageFloor.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -3764,14 +3772,6 @@ PrefabInstance:
       propertyPath: building
       value: 
       objectReference: {fileID: 606540974}
-    - target: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
-      propertyPath: midRange.x
-      value: -55
-      objectReference: {fileID: 0}
-    - target: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
-      propertyPath: midRange.y
-      value: -3
-      objectReference: {fileID: 0}
     - target: {fileID: 8347204883692994273, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: m_Name
       value: Cultist

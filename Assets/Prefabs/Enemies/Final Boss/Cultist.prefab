@@ -87,6 +87,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!1 &346148279586995656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3779043309225155101}
+  m_Layer: 7
+  m_Name: Disable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3779043309225155101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346148279586995656}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1009214619544033538}
+  - {fileID: 8117066550557871300}
+  m_Father: {fileID: 5579713602951587030}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1294738100865953310
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +305,6 @@ GameObject:
   - component: {fileID: 1009214619544033538}
   - component: {fileID: 985976056100331932}
   - component: {fileID: 4717689809263775046}
-  - component: {fileID: 2553115023836037926}
   m_Layer: 7
   m_Name: EyeFire
   m_TagString: Untagged
@@ -289,11 +321,11 @@ Transform:
   m_GameObject: {fileID: 1741836228666417684}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.015000915, y: 0.35000005, z: 0}
+  m_LocalPosition: {x: -0.015000915, y: 0.34999982, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5579713602951587030}
+  m_Father: {fileID: 3779043309225155101}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &985976056100331932
 ParticleSystem:
@@ -5098,42 +5130,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!58 &2553115023836037926
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741836228666417684}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 1.8
 --- !u!1 &1974685260331360217
 GameObject:
   m_ObjectHideFlags: 0
@@ -5570,7 +5566,6 @@ GameObject:
   - component: {fileID: 1355402728956312785}
   - component: {fileID: 1342345524628512987}
   - component: {fileID: 7614163084806432427}
-  - component: {fileID: 9093614475431305866}
   m_Layer: 7
   m_Name: FireRing
   m_TagString: Untagged
@@ -10397,42 +10392,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!58 &9093614475431305866
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3953568631444762819}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 1.8
 --- !u!1 &3975366179203159262
 GameObject:
   m_ObjectHideFlags: 0
@@ -11064,8 +11023,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1009214619544033538}
-  - {fileID: 8117066550557871300}
+  - {fileID: 3779043309225155101}
   m_Father: {fileID: 3675077333151279148}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1542526915620343654
@@ -11134,7 +11092,6 @@ GameObject:
   - component: {fileID: 8117066550557871300}
   - component: {fileID: 7215485334601718693}
   - component: {fileID: 7415234282162968447}
-  - component: {fileID: 3612165624235568237}
   m_Layer: 7
   m_Name: EyeFire (1)
   m_TagString: Untagged
@@ -11151,11 +11108,11 @@ Transform:
   m_GameObject: {fileID: 6325295796623232832}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.29500046, y: 0.35000005, z: 0}
+  m_LocalPosition: {x: 0.29500046, y: 0.34999982, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5579713602951587030}
+  m_Father: {fileID: 3779043309225155101}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &7215485334601718693
 ParticleSystem:
@@ -15960,42 +15917,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!58 &3612165624235568237
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6325295796623232832}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 1.8
 --- !u!1 &6522263007927245318
 GameObject:
   m_ObjectHideFlags: 0
@@ -25911,7 +25832,7 @@ GameObject:
   - component: {fileID: 8143578937838793435}
   - component: {fileID: 5560595150913372518}
   m_Layer: 7
-  m_Name: Death Particles
+  m_Name: StunParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26015,7 +25936,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 1.3
       maxCurve:
         serializedVersion: 2
@@ -26879,7 +26800,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 30
+        scalar: 50
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -27381,17 +27302,17 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0.8962264, g: 0.8845857, b: 0.26633143, a: 1}
-        key2: {r: 0.9056604, g: 0.4396915, b: 0.07262372, a: 0}
+        key0: {r: 0.90588236, g: 0.743739, b: 0.07450979, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0.8962264, g: 0.12259703, b: 0.12259703, a: 0}
         key3: {r: 0.8962264, g: 0.12259703, b: 0.12259703, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
-        ctime0: 0
-        ctime1: 21627
-        ctime2: 43686
+        ctime0: 193
+        ctime1: 65535
+        ctime2: 65535
         ctime3: 65535
         ctime4: 0
         ctime5: 0
@@ -27407,7 +27328,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 2
         m_ColorSpace: 0
-        m_NumColorKeys: 4
+        m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
@@ -28116,22 +28037,22 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.21740016
-          value: -0.8918991
-          inSlope: -11.182772
-          outSlope: -11.182772
+          time: 0.48652166
+          value: 0.05404663
+          inSlope: -4.7856884
+          outSlope: -4.7856884
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.47803548
-          outWeight: 0.33333334
+          inWeight: 0.15811759
+          outWeight: 0.21996608
         - serializedVersion: 3
           time: 1
           value: -1
-          inSlope: 6.495694
-          outSlope: 6.495694
+          inSlope: 1.5844007
+          outSlope: 1.5844007
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.20653497
+          inWeight: 0.2989879
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -30885,7 +30806,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1034689029
   m_SortingLayer: 5
-  m_SortingOrder: -2
+  m_SortingOrder: 15
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -31205,6 +31126,8 @@ GameObject:
   - component: {fileID: 7705770258420024749}
   - component: {fileID: 7902055416642925764}
   - component: {fileID: 4429186099595162638}
+  - component: {fileID: 3496495119214777167}
+  - component: {fileID: 1901839925305538807}
   m_Layer: 7
   m_Name: Cultist
   m_TagString: Untagged
@@ -31406,13 +31329,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488f09a0501dfed4bbb89c36590854ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthComponent: {fileID: 3496495119214777167}
+  stunDuration: 5
+  stunParticles: {fileID: 8143578937838793435}
+  disableOnStun: {fileID: 346148279586995656}
   currentState: 2
   moveState: 0
   flipObject: {fileID: 3675077333151279148}
   cultistRigidbody: {fileID: 7705770258420024749}
   cultistInfo: {fileID: 11400000, guid: cfc9fe2ec98d1fc409a163b7dc146bbe, type: 2}
   acceleration: 0.4
-  midRange: {x: 0, y: 0}
+  midRange: {x: -55, y: -4}
   swingRadius: 1
   swingPivotPosition: {x: 0, y: 0}
   swingObjects:
@@ -31438,6 +31365,73 @@ MonoBehaviour:
   sprayComponent: {fileID: 5417180985490529651}
   building: {fileID: 0}
   cultistAnimator: {fileID: 7232863385536466245}
+--- !u!114 &3496495119214777167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8347204883692994273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18dcbc5729f3284990586f6ec79eb38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max: 4000
+  current: 4000
+  regenerationRate: 0
+  shouldTriggerCallback: 1
+  blinkRenderers:
+  - {fileID: 4564045347944553321}
+  - {fileID: 1542526915620343654}
+  - {fileID: 3956582319031285747}
+  - {fileID: 8740235328012967106}
+  - {fileID: 8823319325128330467}
+  - {fileID: 1211084094080839184}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  blinkColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+  hurtParticlesOffset: {x: 0, y: 0}
+  enemyHealthBar: {fileID: 0}
+  DefeatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  enemyInfo: {fileID: 11400000, guid: cfc9fe2ec98d1fc409a163b7dc146bbe, type: 2}
+--- !u!58 &1901839925305538807
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8347204883692994273}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1.8
 --- !u!1 &8373683107212324636
 GameObject:
   m_ObjectHideFlags: 0
