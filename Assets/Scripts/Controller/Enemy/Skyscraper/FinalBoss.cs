@@ -37,6 +37,14 @@ public class FinalBoss : MonoBehaviour
     private BossFloor[] floors;
     private int currentFloor;
 
+    public int CurrentFloor
+    {
+        get
+        {
+            return currentFloor;
+        }
+    }
+
     [SerializeField] private FloorConnectorSorter sorter;
     [SerializeField] private GameObject[] spawnObjects;
     [SerializeField] private BossFloor groundFloor;
@@ -45,8 +53,8 @@ public class FinalBoss : MonoBehaviour
     [Header("Stairs")]
     [SerializeField] private StaircaseSection[] rightStaircasePrefabs;
     [SerializeField] private StaircaseSection[] leftStaircasePrefabs;
-    [SerializeField] private StaircaseSection rightUnclimbable;
-    [SerializeField] private StaircaseSection leftUnclimbable;
+    [SerializeField] private StaircaseSection[] rightUnclimbable;
+    [SerializeField] private StaircaseSection[] leftUnclimbable;
 
     [Header("Connectors")]
     [SerializeField] private ConnectorFloor[] connectorPrefabs;
@@ -106,20 +114,33 @@ public class FinalBoss : MonoBehaviour
             {
                 exclude |= ConnectorFloor.Connections.UP;
             }
-            else if (fullPassageFloor.Contains(i))
+            if (fullPassageFloor.Contains(i))
             {
                 connections |= ConnectorFloor.Connections.LEFT | ConnectorFloor.Connections.RIGHT;
                 exclude |= ConnectorFloor.Connections.DOWN;
                 if (rightSide)
                 {
-                    right = rightUnclimbable;
+                    right = rightUnclimbable[0];
                 }
                 else
                 {
-                    left = leftUnclimbable;
+                    left = leftUnclimbable[0];
+                }
+            }
+            if (fullPassageFloor.Contains(i - 1))
+            {
+                exclude |= ConnectorFloor.Connections.UP;
+                if (rightSide)
+                {
+                    right = rightUnclimbable[1];
+                }
+                else
+                {
+                    left = leftUnclimbable[1];
                 }
                 rightSide = !rightSide;
             }
+
 
             right = Instantiate(right, transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
             left = Instantiate(left, transform.position + new Vector3(-60, baseAltitude + i * floorHeight), Quaternion.identity, transform);

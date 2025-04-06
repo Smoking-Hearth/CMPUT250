@@ -136,8 +136,8 @@ MonoBehaviour:
   standByDuration: 3
   baseAltitude: 0
   floorHeight: 5.8
-  floorCount: 20
-  sorter: {fileID: 0}
+  floorCount: 30
+  sorter: {fileID: 5112919663014326182}
   spawnObjects:
   - {fileID: 7248960090352284795, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
   - {fileID: 970680637584237919, guid: 2d7f1b250b0cb0a45a5296facc869fab, type: 3}
@@ -146,16 +146,34 @@ MonoBehaviour:
   - {fileID: 970680637584237919, guid: c50e8f7e2df84654591a8bc5cca66c27, type: 3}
   groundFloor:
     rightStaircase: {fileID: 2125614613325450071, guid: 3e8f4cbc40f5aba47ba5038b1b524036, type: 3}
-    connector: {fileID: 2466860787030460951, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
+    connector: {fileID: 347357919889333152, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
+    leftStaircase: {fileID: 2125614613325450071, guid: 5a4193902125bb64bb9d299ac8921d22, type: 3}
   topFloor:
-    rightStaircase: {fileID: 2125614613325450071, guid: 0cfe62a0133a34d45a5baaafb2be14ed, type: 3}
-    connector: {fileID: 2466860787030460951, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
-  staircasePrefabs:
+    rightStaircase: {fileID: 8458995015516381762, guid: 9fd4b36de512e774488d767223e44233, type: 3}
+    connector: {fileID: 347357919889333152, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
+    leftStaircase: {fileID: 2125614613325450071, guid: 5a4193902125bb64bb9d299ac8921d22, type: 3}
+  rightStaircasePrefabs:
   - {fileID: 2125614613325450071, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
-  - {fileID: 3265585558292772749, guid: 4d2bfdd595571cd4f8f402c2e0929552, type: 3}
+  - {fileID: 7603397318319429042, guid: 4e25761ea9cf0d44e960c1131ca3cc73, type: 3}
   - {fileID: 4768785471667669902, guid: b21ca77803dad6f4997361256bb59e60, type: 3}
+  leftStaircasePrefabs:
+  - {fileID: 2125614613325450071, guid: 5a4193902125bb64bb9d299ac8921d22, type: 3}
+  rightUnclimbable:
+  - {fileID: 7603397318319429042, guid: 0f467a10e347f404290f2df73d4bc777, type: 3}
+  - {fileID: 7603397318319429042, guid: dce1c56ad892b2c4fbf74056750ca773, type: 3}
+  leftUnclimbable:
+  - {fileID: 2125614613325450071, guid: 56e76f06948dfbc4b9858d43a3889016, type: 3}
+  - {fileID: 2125614613325450071, guid: bb29d82c360795141a4358d133c26848, type: 3}
   connectorPrefabs:
-  - {fileID: 2466860787030460951, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
+  - {fileID: 347357919889333152, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
+  - {fileID: 4672531221645384234, guid: ec2ea0da15b8a444ba8427a651598fbc, type: 3}
+  - {fileID: 4672531221645384234, guid: 0555cfad355bc504fa829b2b427c107b, type: 3}
+  - {fileID: 347357919889333152, guid: ba9d05249694f0946a2c8f850f4c64a1, type: 3}
+  - {fileID: 347357919889333152, guid: 0a58d513d3630ea449dcb5733b7b89b0, type: 3}
+  - {fileID: 347357919889333152, guid: df77a513f128211468d501edf15abf80, type: 3}
+  activateBossConnector: {fileID: 0}
+  fullPassageFloor: 05000000
+  activateBossFloor: 0
   completeEvent:
     m_PersistentCalls:
       m_Calls: []

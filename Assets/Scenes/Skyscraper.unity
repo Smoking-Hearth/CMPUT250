@@ -896,7 +896,7 @@ Transform:
   m_GameObject: {fileID: 372857501}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 50.8, y: 0, z: 0}
+  m_LocalPosition: {x: 67.6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2818,133 +2818,26 @@ PrefabInstance:
       value: Final Boss Building
       objectReference: {fileID: 0}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: sorter
-      value: 
-      objectReference: {fileID: 838478602}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: floorCount
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: leftUnclimbable
-      value: 
-      objectReference: {fileID: 2125614613325450071, guid: 56e76f06948dfbc4b9858d43a3889016, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: rightUnclimbable
-      value: 
-      objectReference: {fileID: 7603397318319429042, guid: 0f467a10e347f404290f2df73d4bc777, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: topFloor.connector
-      value: 
-      objectReference: {fileID: 347357919889333152, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: groundFloor.connector
-      value: 
-      objectReference: {fileID: 347357919889333152, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: topFloor.leftStaircase
-      value: 
-      objectReference: {fileID: 2125614613325450071, guid: 5a4193902125bb64bb9d299ac8921d22, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: topFloor.rightStaircase
-      value: 
-      objectReference: {fileID: 8458995015516381762, guid: 9fd4b36de512e774488d767223e44233, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: groundFloor.leftStaircase
-      value: 
-      objectReference: {fileID: 2125614613325450071, guid: 5a4193902125bb64bb9d299ac8921d22, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: connectorPrefabs.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
       propertyPath: fullPassageFloor.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: staircasePrefabs.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'connectorPrefabs.Array.data[0]'
-      value: 
-      objectReference: {fileID: 347357919889333152, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'connectorPrefabs.Array.data[1]'
-      value: 
-      objectReference: {fileID: 4672531221645384234, guid: ec2ea0da15b8a444ba8427a651598fbc, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'connectorPrefabs.Array.data[2]'
-      value: 
-      objectReference: {fileID: 4672531221645384234, guid: 0555cfad355bc504fa829b2b427c107b, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'connectorPrefabs.Array.data[3]'
-      value: 
-      objectReference: {fileID: 347357919889333152, guid: ba9d05249694f0946a2c8f850f4c64a1, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'connectorPrefabs.Array.data[4]'
-      value: 
-      objectReference: {fileID: 347357919889333152, guid: 0a58d513d3630ea449dcb5733b7b89b0, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'connectorPrefabs.Array.data[5]'
-      value: 
-      objectReference: {fileID: 347357919889333152, guid: df77a513f128211468d501edf15abf80, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'fullPassageFloor.Array.data[0]'
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'staircasePrefabs.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2125614613325450071, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'staircasePrefabs.Array.data[2]'
-      value: 
-      objectReference: {fileID: 4768785471667669902, guid: b21ca77803dad6f4997361256bb59e60, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'staircasePrefabs.Array.data[3]'
-      value: 
-      objectReference: {fileID: 7603397318319429042, guid: 4e25761ea9cf0d44e960c1131ca3cc73, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: leftStaircasePrefabs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: rightStaircasePrefabs.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'leftStaircasePrefabs.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2125614613325450071, guid: 5a4193902125bb64bb9d299ac8921d22, type: 3}
+      propertyPath: 'fullPassageFloor.Array.data[0]'
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'rightStaircasePrefabs.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2125614613325450071, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
+      propertyPath: 'fullPassageFloor.Array.data[1]'
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'rightStaircasePrefabs.Array.data[1]'
-      value: 
-      objectReference: {fileID: 7603397318319429042, guid: 4e25761ea9cf0d44e960c1131ca3cc73, type: 3}
-    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-      propertyPath: 'rightStaircasePrefabs.Array.data[2]'
-      value: 
-      objectReference: {fileID: 4768785471667669902, guid: b21ca77803dad6f4997361256bb59e60, type: 3}
+      propertyPath: 'fullPassageFloor.Array.data[2]'
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
---- !u!114 &838478602 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5112919663014326182, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
-  m_PrefabInstance: {fileID: 838478601}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69db020df3c61534e814deb5ad1a2fcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &876449481 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6039353278059043914, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
@@ -3871,6 +3764,14 @@ PrefabInstance:
       propertyPath: building
       value: 
       objectReference: {fileID: 606540974}
+    - target: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
+      propertyPath: midRange.x
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
+      propertyPath: midRange.y
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 8347204883692994273, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: m_Name
       value: Cultist

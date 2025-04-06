@@ -31263,7 +31263,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -31412,6 +31412,7 @@ MonoBehaviour:
   cultistRigidbody: {fileID: 7705770258420024749}
   cultistInfo: {fileID: 11400000, guid: cfc9fe2ec98d1fc409a163b7dc146bbe, type: 2}
   acceleration: 0.4
+  midRange: {x: 0, y: 0}
   swingRadius: 1
   swingPivotPosition: {x: 0, y: 0}
   swingObjects:
