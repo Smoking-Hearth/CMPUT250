@@ -247,6 +247,15 @@ public class PlayerMovement : MonoBehaviour
             //Accelerates according to horizontal input
             if ((inputAxes.x > 0 && targetMovement.x < moveSpeed) || (inputAxes.x < 0 && targetMovement.x > -moveSpeed))
             {
+                if (inputAxes.x > 0 && targetMovement.x < 0 && playerRigidbody.linearVelocityX == 0)
+                {
+                    targetMovement.x = 0;
+                }
+                else if (inputAxes.x < 0 && targetMovement.x > 0 && playerRigidbody.linearVelocityX == 0)
+                {
+                    targetMovement.x = 0;
+                }
+
                 float acceleration = groundAcceleration;
 
                 if (player.GroundState == GroundState.None)
