@@ -12,10 +12,10 @@ public class FinalBoss : MonoBehaviour
     [System.Serializable]
     private struct BossFloor
     {
-        public FinalBossFloor rightStaircase;
+        public StaircaseSection rightStaircase;
         public ConnectorFloor connector;
 
-        public BossFloor(FinalBossFloor right, ConnectorFloor connect)
+        public BossFloor(StaircaseSection right, ConnectorFloor connect)
         {
             rightStaircase = right;
             connector = connect;
@@ -38,7 +38,7 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] private GameObject[] spawnObjects;
     [SerializeField] private BossFloor groundFloor;
     [SerializeField] private BossFloor topFloor;
-    [SerializeField] private FinalBossFloor[] staircasePrefabs;
+    [SerializeField] private StaircaseSection[] staircasePrefabs;
     [SerializeField] private ConnectorFloor[] connectorPrefabs;
 
     [SerializeField] private UnityEvent completeEvent;
@@ -56,10 +56,15 @@ public class FinalBoss : MonoBehaviour
     {
         sorter.Sort(connectorPrefabs);
         floors = new BossFloor[floorCount];
-        FinalBossFloor rightInitial = Instantiate(groundFloor.rightStaircase, transform.position + new Vector3(0, baseAltitude), Quaternion.identity, transform);
+
+        //Create first floor
+        StaircaseSection rightInitial = Instantiate(groundFloor.rightStaircase, transform.position + new Vector3(0, baseAltitude), Quaternion.identity, transform);
         ConnectorFloor connectInitial = Instantiate(groundFloor.connector, transform.position + new Vector3(0, baseAltitude), Quaternion.identity, transform);
-        FinalBossFloor rightEnd = Instantiate(topFloor.rightStaircase, transform.position + new Vector3(0, baseAltitude + floorCount * floorHeight), Quaternion.identity, transform);
-        ConnectorFloor connectEnd = Instantiate(topFloor.connector, transform.position + new Vector3(0, baseAltitude + floorCount * floorHeight), Quaternion.identity, transform);
+        
+        //Create top floor
+        StaircaseSection rightEnd = Instantiate(topFloor.rightStaircase, transform.position + new Vector3(0, baseAltitude + (floorCount - 1) * floorHeight), Quaternion.identity, transform);
+        ConnectorFloor connectEnd = Instantiate(topFloor.connector, transform.position + new Vector3(0, baseAltitude + (floorCount - 1) * floorHeight), Quaternion.identity, transform);
+
         floors[0] = new BossFloor(rightInitial, connectInitial);
         floors[floorCount - 1] = new BossFloor(rightEnd, connectEnd);
         for (int i = 1; i < floorCount - 1; i++)
@@ -72,7 +77,7 @@ public class FinalBoss : MonoBehaviour
             {
                 connections |= ConnectorFloor.Connections.DOWN;
             }
-            FinalBossFloor right = Instantiate(staircasePrefabs[rightIndex], transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
+            StaircaseSection right = Instantiate(staircasePrefabs[rightIndex], transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
             ConnectorFloor connector = Instantiate(sorter.GetFittingConnector(connections), transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
             floors[i] = new BossFloor(right, connector);
         }
@@ -181,10 +186,10 @@ public class FinalBoss : MonoBehaviour
             return;
         }
 
-        if (!floors[randomFloor].rightStaircase.LoadDoor(spawnObjects[randomSpawn]))
+        /*if (!floors[randomFloor].rightStaircase.LoadDoor(spawnObjects[randomSpawn]))
         {
             standbyTimer = 0;
-        }
+        }*/
 
         state = FinalBossState.STANDBY;
     }

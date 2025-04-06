@@ -326,6 +326,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1197804798050005518, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.200012
+      objectReference: {fileID: 0}
     - target: {fileID: 1371268062167898584, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2843,8 +2847,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 347357919889333152, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: topFloor.rightStaircase
+      value: 
+      objectReference: {fileID: 8458995015516381762, guid: 9fd4b36de512e774488d767223e44233, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
       propertyPath: connectorPrefabs.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
       propertyPath: 'connectorPrefabs.Array.data[0]'
@@ -2858,6 +2866,10 @@ PrefabInstance:
       propertyPath: 'connectorPrefabs.Array.data[2]'
       value: 
       objectReference: {fileID: 4672531221645384234, guid: 0555cfad355bc504fa829b2b427c107b, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: 'connectorPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 347357919889333152, guid: ba9d05249694f0946a2c8f850f4c64a1, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
