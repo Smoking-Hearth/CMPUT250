@@ -41,7 +41,7 @@ public class InteractableSystem: MonoBehaviour
     {
         Vector2 playerPosition = gameObject.MyLevelManager().Player.Position;
 
-        if (interactables == null)
+        if (interactables == null || gameObject.MyLevelManager().levelState == LevelState.Defeat)
         {
             return;
         }

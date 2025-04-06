@@ -279,7 +279,7 @@ public class CultistBossController : MonoBehaviour
     {
         if (!building.CurrentFloor.connector.Spawned)
         {
-            building.CurrentFloor.connector.SpawnEnemies();
+            building.CurrentFloor.connector.InitiateSpawn();
         }
         if (spawnTimer > 0)
         {
