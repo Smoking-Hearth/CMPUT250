@@ -114,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -122,16 +122,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8345357430761902304}
+      objectReference: {fileID: 1175759659908881428}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 8345357430761902304}
+      objectReference: {fileID: 6848599972791285162}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -142,19 +142,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: set_enabled
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
+      value: DisableCombustible
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: UnityEngine.Renderer, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: Combustible, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -226,3 +226,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6105536255316113918, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
   m_PrefabInstance: {fileID: 6634719166260891120}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6848599972791285162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
+  m_PrefabInstance: {fileID: 6634719166260891120}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e7e3b7f7e3b3276a699a28fc41bd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

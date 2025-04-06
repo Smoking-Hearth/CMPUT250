@@ -122,6 +122,7 @@ public class DialogSystem : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private RectTransform imageBackdrop;
 
+    private float nextCharTimer;
     private float continueTimer;
 
     int currentPosition = 0;
@@ -174,6 +175,11 @@ public class DialogSystem : MonoBehaviour
             case State.DisplayingLine:
                 if (currentPosition <= currentDialog.Current.content.Length)
                 {
+                    if (nextCharTimer > 0)
+                    {
+                        nextCharTimer -= Time.fixedDeltaTime;
+                        break;
+                    }
                     contentText.text = currentDialog.Current.content.Substring(0, currentPosition);
 
                     if (currentPosition % 3 == 0 && currentDialog.Current.scrollSound != null && currentPosition < currentDialog.Current.content.Length)
@@ -181,6 +187,19 @@ public class DialogSystem : MonoBehaviour
                         float pitchOffset = (currentDialog.Current.content[currentPosition] % 32) / 32f;
                         audioSource.pitch = 0.5f + pitchOffset;
                         audioSource.PlayOneShot(currentDialog.Current.scrollSound);
+                    }
+
+                    if (currentPosition >= 1)
+                    {
+                        char currentCharacter = currentDialog.Current.content[currentPosition - 1];
+                        if (currentCharacter == '.' || currentCharacter == '?' || currentCharacter == '!')
+                        {
+                            nextCharTimer = 0.2f;
+                        }
+                        else if (currentCharacter == ',')
+                        {
+                            nextCharTimer = 0.1f;
+                        }
                     }
 
                     ++currentPosition;
@@ -298,6 +317,7 @@ public class DialogSystem : MonoBehaviour
             return;
         }
 
+        nextCharTimer = 0;
         switch (dialogSystemState)
         {
             case State.DisplayingLine:
