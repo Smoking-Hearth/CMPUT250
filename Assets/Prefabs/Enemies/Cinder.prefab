@@ -192,6 +192,11 @@ MonoBehaviour:
   deccelerationRate: 0.97
   stopWhenAttacking: 0
   moveY: 1
+  wander: 1
+  maxYtarget: 5
+  wallLayers:
+    serializedVersion: 2
+    m_Bits: 4160
   targetHeight: 3
   projectilePrefab: {fileID: 2095809531407197485, guid: 045f815b191c2084891bba07d5b27b14, type: 3}
   inaccuracy: 1

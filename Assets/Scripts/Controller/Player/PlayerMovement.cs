@@ -52,8 +52,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         SpecialAttack.onPushback += PushPlayer;
-
         ResetMovement();
+
+        if (gameObject.MyLevelManager().Player.Health.Current == 0)
+        {
+            gameObject.MyLevelManager().GameOver();
+            playerAnimator.SetTrigger("IsDead");
+        }
     }
 
     private void OnDisable()
@@ -66,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         if (freeze)
         {
             targetMovement = Vector2.zero;
+            playerRigidbody.linearVelocity = Vector2.zero;
             playerRigidbody.simulated = false;
             return;
         }
@@ -241,6 +247,15 @@ public class PlayerMovement : MonoBehaviour
             //Accelerates according to horizontal input
             if ((inputAxes.x > 0 && targetMovement.x < moveSpeed) || (inputAxes.x < 0 && targetMovement.x > -moveSpeed))
             {
+                if (inputAxes.x > 0 && targetMovement.x < 0 && playerRigidbody.linearVelocityX == 0)
+                {
+                    targetMovement.x = 0;
+                }
+                else if (inputAxes.x < 0 && targetMovement.x > 0 && playerRigidbody.linearVelocityX == 0)
+                {
+                    targetMovement.x = 0;
+                }
+
                 float acceleration = groundAcceleration;
 
                 if (player.GroundState == GroundState.None)
@@ -261,7 +276,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerAnimator.transform.localScale = new Vector2(Mathf.Sign(inputAxes.x), 1);
             }
-
         }
 
         playerAnimator.SetFloat("MoveSpeed", targetMovement.x / moveSpeed);
@@ -272,7 +286,6 @@ public class PlayerMovement : MonoBehaviour
 
         CreateRunDust(player);
 
-
         if (attached != null)
         {
             playerRigidbody.linearVelocity += attached.linearVelocity;
@@ -281,7 +294,7 @@ public class PlayerMovement : MonoBehaviour
         // Sliding around
         if (addedVelocity.x != 0)
         {   
-
+            
             if (Mathf.Abs(addedVelocity.x) > 0.1f)
             {
                 if (player.GroundState != GroundState.None)
@@ -318,7 +331,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        if (addedVelocity.y < jumpPower * 0.8f && addedVelocity.y >= jumpPower * 0.5f)
+        if (addedVelocity.y < jumpPower * 0.8f && addedVelocity.y >= jumpPower * 0.4f)
         {
             addedVelocity.y = jumpPower * 0.8f;
         }
@@ -460,25 +473,20 @@ public class PlayerMovement : MonoBehaviour
 
     public void CreateRunDust(Player player){
 
-        if (player.GroundState == GroundState.Grounded && playerRigidbody.linearVelocityX > 1f || playerRigidbody.linearVelocityX < -1f){
+        if (player.GroundState == GroundState.Grounded){
 
             RunningDust.Play();
 
         }
-        else{
-
+        else
+        {
             RunningDust.Stop();
-
-        }
-
-        
-
+        }  
     }
-    public void CreateJumpDust(){
+    public void CreateJumpDust()
+    {
 
         JumpingDust.Play();
 
     }
-
 }
-

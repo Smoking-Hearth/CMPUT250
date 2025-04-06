@@ -68,7 +68,7 @@ public class PlayerShoot : MonoBehaviour
     private PlayerInventory inventory;
 
     [System.Serializable]
-    private struct SwingObject
+    public struct SwingObject
     {
         public Transform objectTransform;
         public float minAngle;

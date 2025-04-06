@@ -1,18 +1,13 @@
 using UnityEngine;
 
-public class FinalBossFloor : MonoBehaviour
+public class StaircaseSection : MonoBehaviour
 {
-    private GameObject storedDoorObject;
-    [SerializeField] private Transform door;
-    [SerializeField] private Animator doorAnimator;
-
     [SerializeField] private SpriteRenderer glassRenderer;
     [SerializeField] private Sprite glassBrokenSprite;
     [SerializeField] private FinalBossArm arm;
     private bool glassBroken;
 
     [SerializeField] private float activateAltitude;
-    private bool isOpen;
 
     [SerializeField] private Vector2 dronePosition;
     [SerializeField] private DroneDropItem dronePrefab;
@@ -21,42 +16,6 @@ public class FinalBossFloor : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (storedDoorObject != null && !isOpen)
-        {
-            if (gameObject.MyLevelManager().Player.Position.y >= door.position.y + activateAltitude)
-            {
-                OpenDoor();
-            }
-        }
-    }
-
-    public bool LoadDoor(GameObject prefab)
-    {
-        if (door == null)
-        {
-            return false;
-        }
-        if (isOpen && storedDoorObject != null)
-        {
-            return false;
-        }
-
-        storedDoorObject = Instantiate(prefab, door.position, Quaternion.identity, null).gameObject;
-        storedDoorObject.SetActive(false);
-        return true;
-    }
-
-    public void OpenDoor()
-    {
-        if (door == null)
-        {
-            return;
-        }
-
-        storedDoorObject.SetActive(true);
-        isOpen = true;
-        door.gameObject.SetActive(true);
-        doorAnimator.SetTrigger("Open");
     }
 
     public bool ActivateArm()

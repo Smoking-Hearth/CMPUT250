@@ -9,6 +9,19 @@ public class FinalBoss : MonoBehaviour
     }
     private FinalBossState state;
 
+    [System.Serializable]
+    private struct BossFloor
+    {
+        public StaircaseSection rightStaircase;
+        public ConnectorFloor connector;
+
+        public BossFloor(StaircaseSection right, ConnectorFloor connect)
+        {
+            rightStaircase = right;
+            connector = connect;
+        }
+    }
+
     [Min(1)]
     [SerializeField] private float standByDuration = 1;
     private float standbyTimer;
@@ -18,20 +31,21 @@ public class FinalBoss : MonoBehaviour
     private float buildingHeight;
     [Min(1)]
     [SerializeField] private int floorCount;
-    private FinalBossFloor[] floors;
+    private BossFloor[] floors;
     private int currentFloor;
 
+    [SerializeField] private FloorConnectorSorter sorter;
     [SerializeField] private GameObject[] spawnObjects;
-    [SerializeField] private FinalBossFloor groundFloor;
-    [SerializeField] private FinalBossFloor topFloor;
-    [SerializeField] private FinalBossFloor[] floorPrefabs;
+    [SerializeField] private BossFloor groundFloor;
+    [SerializeField] private BossFloor topFloor;
+    [SerializeField] private StaircaseSection[] staircasePrefabs;
+    [SerializeField] private ConnectorFloor[] connectorPrefabs;
 
     [SerializeField] private UnityEvent completeEvent;
 
     [Header("Projectiles")]
     private EnemyProjectile[] cache;
     private int currentProjectileIndex;
-
 
     void Start()
     {
@@ -40,13 +54,32 @@ public class FinalBoss : MonoBehaviour
 
     public void Generate()
     {
-        floors = new FinalBossFloor[floorCount];
-        floors[0] = Instantiate(groundFloor, transform.position + new Vector3(0, baseAltitude), Quaternion.identity, transform);
-        floors[floorCount - 1] = Instantiate(topFloor, transform.position + new Vector3(0, baseAltitude + floorCount * floorHeight), Quaternion.identity, transform);
+        sorter.Sort(connectorPrefabs);
+        floors = new BossFloor[floorCount];
+
+        //Create first floor
+        StaircaseSection rightInitial = Instantiate(groundFloor.rightStaircase, transform.position + new Vector3(0, baseAltitude), Quaternion.identity, transform);
+        ConnectorFloor connectInitial = Instantiate(groundFloor.connector, transform.position + new Vector3(0, baseAltitude), Quaternion.identity, transform);
+        
+        //Create top floor
+        StaircaseSection rightEnd = Instantiate(topFloor.rightStaircase, transform.position + new Vector3(0, baseAltitude + (floorCount - 1) * floorHeight), Quaternion.identity, transform);
+        ConnectorFloor connectEnd = Instantiate(topFloor.connector, transform.position + new Vector3(0, baseAltitude + (floorCount - 1) * floorHeight), Quaternion.identity, transform);
+
+        floors[0] = new BossFloor(rightInitial, connectInitial);
+        floors[floorCount - 1] = new BossFloor(rightEnd, connectEnd);
         for (int i = 1; i < floorCount - 1; i++)
         {
-            int randomFloor = Random.Range(0, floorPrefabs.Length);
-            floors[i] = Instantiate(floorPrefabs[randomFloor], transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
+            int rightIndex = Random.Range(0, staircasePrefabs.Length);
+            ConnectorFloor.Connections connections = ConnectorFloor.Connections.RIGHT;
+
+            //Checking if the previous floor connects to this one
+            if ((floors[i - 1].connector.floorConnections & ConnectorFloor.Connections.UP) > 0)
+            {
+                connections |= ConnectorFloor.Connections.DOWN;
+            }
+            StaircaseSection right = Instantiate(staircasePrefabs[rightIndex], transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
+            ConnectorFloor connector = Instantiate(sorter.GetFittingConnector(connections), transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
+            floors[i] = new BossFloor(right, connector);
         }
         buildingHeight = floorHeight * floors.Length;
     }
@@ -106,7 +139,7 @@ public class FinalBoss : MonoBehaviour
 
             if (Random.Range(0, 1000) == 0)
             {
-                floors[currentFloor].SendDrone();
+                floors[currentFloor].rightStaircase.SendDrone();
             }
         }
         else
@@ -134,7 +167,7 @@ public class FinalBoss : MonoBehaviour
         int random = Random.Range(0, 2);
         if (currentFloor + random < floorCount)
         {
-            floors[currentFloor + random].ActivateArm();
+            floors[currentFloor + random].rightStaircase.ActivateArm();
         }
         state = FinalBossState.STANDBY;
     }
@@ -153,10 +186,10 @@ public class FinalBoss : MonoBehaviour
             return;
         }
 
-        if (!floors[randomFloor].LoadDoor(spawnObjects[randomSpawn]))
+        /*if (!floors[randomFloor].rightStaircase.LoadDoor(spawnObjects[randomSpawn]))
         {
             standbyTimer = 0;
-        }
+        }*/
 
         state = FinalBossState.STANDBY;
     }

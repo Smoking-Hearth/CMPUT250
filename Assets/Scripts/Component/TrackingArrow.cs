@@ -10,6 +10,33 @@ public class TrackingArrow : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (target != null)
+        {
+            TrackTarget();
+        }
+    }
+
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+
+        if (target != null)
+        {
+            TrackTarget();
+        }
+    }
+    public void SetTarget(Transform newTarget, Sprite iconSprite)
+    {
+        target = newTarget;
+        icon.sprite = iconSprite;
+        if (target != null)
+        {
+            TrackTarget();
+        }
+    }
+
+    private void TrackTarget()
+    {
         Vector2 targetScreenPoint = Camera.main.WorldToScreenPoint(target.transform.position);
         Bounds screenBounds = new Bounds(Camera.main.WorldToScreenPoint(Camera.main.transform.position), new Vector2(Screen.width, Screen.height));
 
@@ -38,15 +65,5 @@ public class TrackingArrow : MonoBehaviour
         icon.rectTransform.position = targetScreenPoint + direction.normalized * (intersectDistance + 170);
         arrowImage.rectTransform.position = targetScreenPoint + direction.normalized * (intersectDistance + 100);
         arrowImage.rectTransform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg + 90);
-    }
-
-    public void SetTarget(Transform newTarget)
-    {
-        target = newTarget;
-    }
-    public void SetTarget(Transform newTarget, Sprite iconSprite)
-    {
-        target = newTarget;
-        icon.sprite = iconSprite;
     }
 }

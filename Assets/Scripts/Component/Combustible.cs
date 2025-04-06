@@ -105,6 +105,7 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
     }
     private void OnDisable()
     {
+        temperature = 0;
         try 
         {
             LevelManager lm = gameObject.MyLevelManager();
@@ -113,6 +114,11 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
         catch
         {
             DevLog.Warn("Could not unsubscribe from onFireTick");
+        }
+
+        if (fire != null)
+        {
+            fire.SetActive(false);
         }
     }
 
@@ -160,6 +166,11 @@ public class Combustible : MonoBehaviour, IExtinguishable, ITemperatureSource
         {
             dampness = Math.Max(dampness - dryRate * Time.deltaTime, 0);
         }
+    }
+
+    public void DisableCombustible()
+    {
+        OnDisable();
     }
 
     private void CheckFireSpread()

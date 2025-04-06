@@ -1,5 +1,92 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2276184348428806081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 619906342559493666}
+  - component: {fileID: 1510344152972179057}
+  m_Layer: 0
+  m_Name: GlassWall_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &619906342559493666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276184348428806081}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -25, y: 54.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1613979387586651009}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1510344152972179057
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276184348428806081}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1034689029
+  m_SortingLayer: 5
+  m_SortingOrder: 50
+  m_Sprite: {fileID: 2145771898548060954, guid: ba2b87ce7d7ea034a80925e3500f2b6a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 2
+  m_Size: {x: 20, y: 110}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &9008483984111685029
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1613979387586651009}
   - component: {fileID: 9131329964508070574}
+  - component: {fileID: 5112919663014326182}
   m_Layer: 0
   m_Name: Final Boss Building
   m_TagString: Untagged
@@ -29,7 +117,8 @@ Transform:
   m_LocalPosition: {x: -30, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 619906342559493666}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9131329964508070574
@@ -48,52 +137,37 @@ MonoBehaviour:
   baseAltitude: 0
   floorHeight: 5.8
   floorCount: 20
+  sorter: {fileID: 0}
   spawnObjects:
   - {fileID: 7248960090352284795, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
-  - {fileID: 7248960090352284795, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
-  - {fileID: 7248960090352284795, guid: 3e3bc04e428866f4c8e39dfb48f7eddb, type: 3}
-  - {fileID: 5659753226440418793, guid: 00825fe7b3f738442aa69c045b7f638f, type: 3}
+  - {fileID: 970680637584237919, guid: 2d7f1b250b0cb0a45a5296facc869fab, type: 3}
+  - {fileID: 970680637584237919, guid: d8294a9a8294e344fa4c60f2f89fbe67, type: 3}
   - {fileID: 970680637584237919, guid: 25d00445e34fa6d4194e6b0b0a026659, type: 3}
-  - {fileID: 5659753226440418793, guid: 89d81005ec753ce49ac9a3463f5017df, type: 3}
   - {fileID: 970680637584237919, guid: c50e8f7e2df84654591a8bc5cca66c27, type: 3}
-  groundFloor: {fileID: 2125614613325450071, guid: 3e8f4cbc40f5aba47ba5038b1b524036, type: 3}
-  topFloor: {fileID: 2125614613325450071, guid: 0cfe62a0133a34d45a5baaafb2be14ed, type: 3}
-  floorPrefabs:
+  groundFloor:
+    rightStaircase: {fileID: 2125614613325450071, guid: 3e8f4cbc40f5aba47ba5038b1b524036, type: 3}
+    connector: {fileID: 2466860787030460951, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
+  topFloor:
+    rightStaircase: {fileID: 2125614613325450071, guid: 0cfe62a0133a34d45a5baaafb2be14ed, type: 3}
+    connector: {fileID: 2466860787030460951, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
+  staircasePrefabs:
   - {fileID: 2125614613325450071, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
-  - {fileID: 2125614613325450071, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
-  - {fileID: 7603397318319429042, guid: 4e25761ea9cf0d44e960c1131ca3cc73, type: 3}
-  - {fileID: 7603397318319429042, guid: 4e25761ea9cf0d44e960c1131ca3cc73, type: 3}
-  - {fileID: 3425298899959769855, guid: 402207a1b490cf840a48bd27e7fc1149, type: 3}
-  - {fileID: 6719244419058695473, guid: d9d898631b6183b46b1ff052e64f52f9, type: 3}
-  - {fileID: 1504488910358091018, guid: 770ae366ea58e9446b5fa7fbdd8ccdcb, type: 3}
-  - {fileID: 4768785471667669902, guid: b21ca77803dad6f4997361256bb59e60, type: 3}
-  - {fileID: 4768785471667669902, guid: b21ca77803dad6f4997361256bb59e60, type: 3}
   - {fileID: 3265585558292772749, guid: 4d2bfdd595571cd4f8f402c2e0929552, type: 3}
-  - {fileID: 3265585558292772749, guid: 4d2bfdd595571cd4f8f402c2e0929552, type: 3}
+  - {fileID: 4768785471667669902, guid: b21ca77803dad6f4997361256bb59e60, type: 3}
+  connectorPrefabs:
+  - {fileID: 2466860787030460951, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
   completeEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
-        m_MethodName: StopMusic
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &5112919663014326182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9008483984111685029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69db020df3c61534e814deb5ad1a2fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

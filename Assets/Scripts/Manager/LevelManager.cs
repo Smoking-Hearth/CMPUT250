@@ -98,11 +98,6 @@ public class LevelManager : MonoBehaviour
 
                     CheckpointSystem.RegisterState(playerPosAccess);
                 }
-                if (soul != null)
-                {
-                    soul.Movement.freeze = true;
-                }
-                player.Movement.freeze = false;
                 return player;
             }
 
@@ -194,8 +189,6 @@ public class LevelManager : MonoBehaviour
         LevelCamera.gameObject.SetActive(true);
         LevelCamera.enabled = true;
 
-        if (setPlayer != null)
-            setPlayer.gameObject.SetActive(true);
 
         if (EventSystem != null)
             EventSystem.enabled = true;
@@ -207,12 +200,21 @@ public class LevelManager : MonoBehaviour
             uiObject.SetActive(true);
         }
 
+        PlayerHealth.onDeath += GameOver;
+
+        if (setPlayer != null)
+        {
+            setPlayer.gameObject.SetActive(true);
+        }
+        else
+        {
+            return;
+        }
+
         if (soul == null)
         {
             soul = new Player(setSoul);
         }
-
-        PlayerHealth.onDeath += GameOver;
     }
 
     public void Deactivate()
@@ -255,6 +257,8 @@ public class LevelManager : MonoBehaviour
             levelState = LevelState.Respawning;
             cameraAnimator.SetBool("IsDead", false);
             TrackerSystem.RemoveTracker(player.Movement.transform);
+            soul.Movement.freeze = true;
+            soul.Movement.ResetMovement();
             if (onPlayerRespawn != null)
             {
                 onPlayerRespawn();
@@ -276,6 +280,7 @@ public class LevelManager : MonoBehaviour
         }
         if (soul != null)
         {
+            soul.Movement.freeze = true;
             CheckpointSystem.ReturnToCheckpoint(soul.Movement.transform);
         }
         deathOverlay.SetActive(true);
@@ -372,7 +377,6 @@ public class LevelManager : MonoBehaviour
         levelState = LevelState.Playing;
 
         CheckpointSystem.LoadState();
-        Player.Health.ResetHealth();
     }
 
     public void RespawnControl()
@@ -384,8 +388,6 @@ public class LevelManager : MonoBehaviour
         }
         if (soul != null)
         {
-            soul.Movement.freeze = true;
-            soul.Movement.ResetMovement();
             setSoul.gameObject.SetActive(false);
         }
         levelState = LevelState.Playing;
