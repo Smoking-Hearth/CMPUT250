@@ -37,11 +37,11 @@ public class FinalBoss : MonoBehaviour
     private BossFloor[] floors;
     private int currentFloor;
 
-    public int CurrentFloor
+    public float CurrentFloorLevel
     {
         get
         {
-            return currentFloor;
+            return transform.position.y + baseAltitude + currentFloor * floorHeight;
         }
     }
 

@@ -11,11 +11,14 @@ public class CultistBossController : MonoBehaviour
         Left, Middle, Right
     }
 
+    [SerializeField] private float heatRadius;
+
     [Header("Stun")]
     [SerializeField] private EnemyHealth healthComponent;
     [SerializeField] private float stunDuration;
     [SerializeField] private ParticleSystem stunParticles;
     [SerializeField] private GameObject disableOnStun;
+    [SerializeField] private ParticleSystem flameRing;
     private float stunTimer;
 
     [Header("Movement")]
@@ -65,6 +68,12 @@ public class CultistBossController : MonoBehaviour
     {
         cultistAnimator.SetBool("IsGrounded", true);
 
+        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
+        {
+            cultistRigidbody.linearVelocity = Vector2.zero;
+            return;
+        }
+
         if (stunTimer > 0)
         {
             cultistRigidbody.linearVelocity = Vector2.zero;
@@ -74,11 +83,16 @@ public class CultistBossController : MonoBehaviour
             {
                 healthComponent.ResetHealth();
                 cultistAnimator.SetTrigger("Respawn");
+                flameRing.transform.localScale = Vector2.one;
                 disableOnStun.SetActive(true);
             }
             return;
         }
+
+        ProximityDamage();
+
         Vector2 playerPos = gameObject.MyLevelManager().Player.Position;
+
         if (playerPos.x < building.transform.position.x + midRange.y && playerPos.x > building.transform.position.x + midRange.x)
         {
             moveState = CultistMoveState.Middle;
@@ -100,10 +114,6 @@ public class CultistBossController : MonoBehaviour
             Stun();
         }
 
-        if (gameObject.MyLevelManager().levelState != LevelState.Playing)
-        {
-            return;
-        }
         switch (moveState)
         {
             case CultistMoveState.Right:
@@ -153,7 +163,7 @@ public class CultistBossController : MonoBehaviour
         {
             case CultistAttackState.Choosing:
                 ChoosingState();
-                FollowPlayerVertical(building.transform.position.x + midRange.y + 15);
+                FollowPlayerVertical(building.transform.position.x + midRange.y + 18);
                 break;
             case CultistAttackState.SweepSpray:
                 SweepSprayState();
@@ -169,7 +179,7 @@ public class CultistBossController : MonoBehaviour
         {
             case CultistAttackState.Choosing:
                 ChoosingState();
-                FollowPlayerHorizontal(gameObject.MyLevelManager().Player.Position.y + 0.5f);
+                FollowPlayerHorizontal(building.CurrentFloorLevel + 2);
                 break;
             case CultistAttackState.SweepSpray:
                 SweepSprayState();
@@ -185,7 +195,7 @@ public class CultistBossController : MonoBehaviour
         {
             case CultistAttackState.Choosing:
                 ChoosingState();
-                FollowPlayerVertical(building.transform.position.x + midRange.x - 15);
+                FollowPlayerVertical(building.transform.position.x + midRange.x - 18);
                 break;
             case CultistAttackState.SweepSpray:
                 SweepSprayState();
@@ -214,6 +224,9 @@ public class CultistBossController : MonoBehaviour
 
         AimSprites(commitPosition);
         sprayComponent.AimAttack(nozzle.position, aimAngle + addAngle);
+
+        Vector2 pushDirection = Quaternion.Euler(0, 0, aimAngle + addAngle) * Vector2.left;
+        cultistRigidbody.linearVelocity += pushDirection * 2;
     }
     private void BurstSprayState()
     {
@@ -223,20 +236,11 @@ public class CultistBossController : MonoBehaviour
 
     private void FollowPlayerVertical(float xPosition)
     {
-        Vector2 targetPos = new Vector2(xPosition, gameObject.MyLevelManager().Player.Position.y);
+        Vector2 targetPos = new Vector2(xPosition, gameObject.MyLevelManager().Player.Position.y + 0.5f);
         Vector2 targetDirection = targetPos - cultistRigidbody.position;
         AimSprites(gameObject.MyLevelManager().Player.Position);
 
-        if (targetDirection.magnitude > 1f)
-        {
-            cultistRigidbody.linearVelocity += acceleration * targetDirection.normalized;
-            cultistRigidbody.linearVelocityX = Mathf.Clamp(cultistRigidbody.linearVelocityX, -cultistInfo.speed, cultistInfo.speed);
-            cultistRigidbody.linearVelocityY = Mathf.Clamp(cultistRigidbody.linearVelocityY, -cultistInfo.speed, cultistInfo.speed);
-        }
-        else
-        {
-            cultistRigidbody.linearVelocity *= 0.92f;
-        }
+        MoveToPosition(targetPos, targetDirection);
     }
 
     private void FollowPlayerHorizontal(float yPosition)
@@ -245,16 +249,55 @@ public class CultistBossController : MonoBehaviour
         Vector2 targetDirection = targetPos - cultistRigidbody.position;
         AimSprites(gameObject.MyLevelManager().Player.Position);
 
-        if (targetDirection.magnitude > cultistInfo.standRange)
-        {
-            cultistRigidbody.linearVelocity += acceleration * targetDirection.normalized;
-            cultistRigidbody.linearVelocityX = Mathf.Clamp(cultistRigidbody.linearVelocityX, -cultistInfo.speed, cultistInfo.speed);
-            cultistRigidbody.linearVelocityY = Mathf.Clamp(cultistRigidbody.linearVelocityY, -cultistInfo.speed, cultistInfo.speed);
+        float targetDistance = targetDirection.magnitude - cultistInfo.standRange;
 
+        if (targetDistance > 0)
+        {
+            MoveToPosition(targetPos, targetDirection.normalized * targetDistance);
+        }
+    }
+
+    private void MoveToPosition(Vector2 targetPos, Vector2 targetDirection)
+    {
+        if (Mathf.Abs(cultistRigidbody.position.x - targetPos.x) > 1)
+        {
+            cultistRigidbody.linearVelocityX += acceleration * targetDirection.normalized.x;
+            cultistRigidbody.linearVelocityX = Mathf.Clamp(cultistRigidbody.linearVelocityX, -cultistInfo.speed, cultistInfo.speed);
         }
         else
         {
-            cultistRigidbody.linearVelocity *= 0.92f;
+            cultistRigidbody.linearVelocityX *= 0.92f;
+        }
+
+        if (Mathf.Abs(cultistRigidbody.position.y - targetPos.y) > 1)
+        {
+            cultistRigidbody.linearVelocityY += acceleration * targetDirection.normalized.y;
+            cultistRigidbody.linearVelocityY = Mathf.Clamp(cultistRigidbody.linearVelocityY, -cultistInfo.speed * 0.4f, cultistInfo.speed * 0.4f);
+        }
+        else
+        {
+            cultistRigidbody.linearVelocityY *= 0.92f;
+        }
+
+        if (targetDirection.magnitude > cultistInfo.aggroRange)
+        {
+            AimSprites((Vector2)transform.position - targetDirection);
+            sprayComponent.AimAttack(nozzle.position, aimAngle);
+
+            Vector2 pushDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.left;
+            cultistRigidbody.linearVelocity += pushDirection * 2;
+        }
+    }
+
+    private void ProximityDamage()
+    {
+        Vector2 playerPosition = gameObject.MyLevelManager().Player.Position;
+        float playerDistance = Vector2.Distance(playerPosition, transform.position);
+
+        // Checking if the fire should damage the player
+        if (playerDistance < heatRadius)
+        {
+            gameObject.MyLevelManager().Player.Health.FireDamage(2f * Mathf.Pow(0.5f, playerDistance));
         }
     }
 
@@ -263,6 +306,7 @@ public class CultistBossController : MonoBehaviour
         stunParticles.Play();
         stunTimer = stunDuration;
         cultistAnimator.SetTrigger("IsDead");
+        flameRing.transform.localScale = Vector2.one * 0.4f;
         disableOnStun.SetActive(false);
     }
 
