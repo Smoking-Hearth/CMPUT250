@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 0}
-  <Texture>k__BackingField: {fileID: 2800000, guid: 1f9bd4ed717dd8244b405aa9bac69206, type: 3}
+  <Texture>k__BackingField: {fileID: 2800000, guid: 5e0773274f2a0344eb62451184d72d00, type: 3}
   <IsTiled>k__BackingField: 1
   <VerticalOffset>k__BackingField: 0
   <PixelScale>k__BackingField: 1
@@ -747,59 +747,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a66ce97b0a747239b87b457a0d3473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &304055148
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 304055150}
-  - component: {fileID: 304055149}
-  m_Layer: 0
-  m_Name: Trees
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &304055149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 304055148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adcabf62c7ab3a4b4b7b352d11a85e4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  <Texture>k__BackingField: {fileID: 2800000, guid: 2b968ab4043c71257b10749b46ab6dc3, type: 3}
-  <IsTiled>k__BackingField: 1
-  <VerticalOffset>k__BackingField: 0
-  <PixelScale>k__BackingField: 1
-  <Rows>k__BackingField: 1
-  <Columns>k__BackingField: 1
-  <Frames>k__BackingField: 1
-  <FramesPerSecond>k__BackingField: 10
---- !u!4 &304055150
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 304055148}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 30}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2095483701}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &322892286
 GameObject:
   m_ObjectHideFlags: 0
@@ -3332,6 +3279,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020718916}
   m_CullTransparentMesh: 1
+--- !u!1 &1023299753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1023299755}
+  - component: {fileID: 1023299754}
+  m_Layer: 0
+  m_Name: CityForeground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1023299754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023299753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adcabf62c7ab3a4b4b7b352d11a85e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 0}
+  <Texture>k__BackingField: {fileID: 2800000, guid: 70835af2e2d2e4dea99636b45000b411, type: 3}
+  <IsTiled>k__BackingField: 1
+  <VerticalOffset>k__BackingField: -0.05
+  <PixelScale>k__BackingField: 0.8
+  <Rows>k__BackingField: 6
+  <Columns>k__BackingField: 2
+  <Frames>k__BackingField: 12
+  <FramesPerSecond>k__BackingField: 6
+--- !u!4 &1023299755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023299753}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -87.78999, y: 0.100000024, z: 20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2095483701}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1035188802
 GameObject:
   m_ObjectHideFlags: 0
@@ -4994,7 +4994,7 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     lines:
-    - Finally. Fresh air.
+    - Finally, some fresh..... air.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -5549,7 +5549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 0}
-  <Texture>k__BackingField: {fileID: 2800000, guid: 7629ccaba8a8b8a46a803a6b1f0e7ee8, type: 3}
+  <Texture>k__BackingField: {fileID: 2800000, guid: 7d9e25999918b814a868c091f80257b4, type: 3}
   <IsTiled>k__BackingField: 1
   <VerticalOffset>k__BackingField: 0
   <PixelScale>k__BackingField: 1
@@ -5610,7 +5610,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.9433962, g: 0.42365932, b: 0.21804914, a: 0}
+  m_BackGroundColor: {r: 0.7169812, g: 0.28662792, b: 0.11836952, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5994,8 +5994,8 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 0.82612973, b: 0.6650944, a: 1}
-  m_Intensity: 0.45
+  m_Color: {r: 1, g: 0.6476758, b: 0.3443396, a: 1}
+  m_Intensity: 0.3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 0000000011c0d1e50788851051463b6cb7ed1464051aac3d2364d073
@@ -6164,7 +6164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layers:
-  - {fileID: 304055149}
+  - {fileID: 1023299754}
   - {fileID: 1886260967}
   - {fileID: 84076003}
   relativeTo: {fileID: 2095483699}
@@ -6182,7 +6182,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 304055150}
+  - {fileID: 1023299755}
   - {fileID: 1886260968}
   - {fileID: 84076004}
   m_Father: {fileID: 0}
