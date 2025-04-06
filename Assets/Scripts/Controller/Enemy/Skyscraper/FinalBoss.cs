@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class FinalBoss : MonoBehaviour
 {
@@ -14,11 +15,13 @@ public class FinalBoss : MonoBehaviour
     {
         public StaircaseSection rightStaircase;
         public ConnectorFloor connector;
+        public StaircaseSection leftStaircase;
 
-        public BossFloor(StaircaseSection right, ConnectorFloor connect)
+        public BossFloor(StaircaseSection right, ConnectorFloor connect, StaircaseSection left)
         {
             rightStaircase = right;
             connector = connect;
+            leftStaircase = left;
         }
     }
 
@@ -38,8 +41,18 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] private GameObject[] spawnObjects;
     [SerializeField] private BossFloor groundFloor;
     [SerializeField] private BossFloor topFloor;
-    [SerializeField] private StaircaseSection[] staircasePrefabs;
+
+    [Header("Stairs")]
+    [SerializeField] private StaircaseSection[] rightStaircasePrefabs;
+    [SerializeField] private StaircaseSection[] leftStaircasePrefabs;
+    [SerializeField] private StaircaseSection rightUnclimbable;
+    [SerializeField] private StaircaseSection leftUnclimbable;
+
+    [Header("Connectors")]
     [SerializeField] private ConnectorFloor[] connectorPrefabs;
+    [SerializeField] private ConnectorFloor activateBossConnector;
+    [SerializeField] private List<int> fullPassageFloor = new List<int>();    //Floors that will need to have a full connecter through them
+    [SerializeField] private int activateBossFloor;
 
     [SerializeField] private UnityEvent completeEvent;
 
@@ -60,26 +73,58 @@ public class FinalBoss : MonoBehaviour
         //Create first floor
         StaircaseSection rightInitial = Instantiate(groundFloor.rightStaircase, transform.position + new Vector3(0, baseAltitude), Quaternion.identity, transform);
         ConnectorFloor connectInitial = Instantiate(groundFloor.connector, transform.position + new Vector3(0, baseAltitude), Quaternion.identity, transform);
-        
+        StaircaseSection leftInitial = Instantiate(groundFloor.leftStaircase, transform.position + new Vector3(-60, baseAltitude), Quaternion.identity, transform);
+
         //Create top floor
         StaircaseSection rightEnd = Instantiate(topFloor.rightStaircase, transform.position + new Vector3(0, baseAltitude + (floorCount - 1) * floorHeight), Quaternion.identity, transform);
         ConnectorFloor connectEnd = Instantiate(topFloor.connector, transform.position + new Vector3(0, baseAltitude + (floorCount - 1) * floorHeight), Quaternion.identity, transform);
+        StaircaseSection leftEnd = Instantiate(topFloor.leftStaircase, transform.position + new Vector3(-60, baseAltitude + (floorCount - 1) * floorHeight), Quaternion.identity, transform);
 
-        floors[0] = new BossFloor(rightInitial, connectInitial);
-        floors[floorCount - 1] = new BossFloor(rightEnd, connectEnd);
+        floors[0] = new BossFloor(rightInitial, connectInitial, leftInitial);
+        floors[floorCount - 1] = new BossFloor(rightEnd, connectEnd, leftEnd);
+
+        bool rightSide = true;
         for (int i = 1; i < floorCount - 1; i++)
         {
-            int rightIndex = Random.Range(0, staircasePrefabs.Length);
+            int rightIndex = Random.Range(0, rightStaircasePrefabs.Length);
+            int lefIndex = Random.Range(0, leftStaircasePrefabs.Length);
             ConnectorFloor.Connections connections = ConnectorFloor.Connections.RIGHT;
+            ConnectorFloor.Connections exclude = new ConnectorFloor.Connections();
+
+            StaircaseSection right = rightStaircasePrefabs[rightIndex];
+            StaircaseSection left = leftStaircasePrefabs[lefIndex];
+
 
             //Checking if the previous floor connects to this one
             if ((floors[i - 1].connector.floorConnections & ConnectorFloor.Connections.UP) > 0)
             {
                 connections |= ConnectorFloor.Connections.DOWN;
             }
-            StaircaseSection right = Instantiate(staircasePrefabs[rightIndex], transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
-            ConnectorFloor connector = Instantiate(sorter.GetFittingConnector(connections), transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
-            floors[i] = new BossFloor(right, connector);
+
+            
+            if (fullPassageFloor.Contains(i + 1))
+            {
+                exclude |= ConnectorFloor.Connections.UP;
+            }
+            else if (fullPassageFloor.Contains(i))
+            {
+                connections |= ConnectorFloor.Connections.LEFT | ConnectorFloor.Connections.RIGHT;
+                exclude |= ConnectorFloor.Connections.DOWN;
+                if (rightSide)
+                {
+                    right = rightUnclimbable;
+                }
+                else
+                {
+                    left = leftUnclimbable;
+                }
+                rightSide = !rightSide;
+            }
+
+            right = Instantiate(right, transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
+            left = Instantiate(left, transform.position + new Vector3(-60, baseAltitude + i * floorHeight), Quaternion.identity, transform);
+            ConnectorFloor connector = Instantiate(sorter.GetFittingConnector(connections, exclude), transform.position + new Vector3(0, baseAltitude + i * floorHeight), Quaternion.identity, transform);
+            floors[i] = new BossFloor(right, connector, left);
         }
         buildingHeight = floorHeight * floors.Length;
     }

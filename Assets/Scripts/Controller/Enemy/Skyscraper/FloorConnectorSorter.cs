@@ -18,7 +18,7 @@ public class FloorConnectorSorter : MonoBehaviour
         }
     }
 
-    public ConnectorFloor GetFittingConnector(ConnectorFloor.Connections required)
+    public ConnectorFloor GetFittingConnector(ConnectorFloor.Connections required, ConnectorFloor.Connections exclude)
     {
         List<ConnectorFloor.Connections> validKeys = new List<ConnectorFloor.Connections>();
         foreach (ConnectorFloor.Connections key in connectors.Keys)
@@ -26,6 +26,11 @@ public class FloorConnectorSorter : MonoBehaviour
             if ((required & ~key) == 0)
             {
                 if ((key & ConnectorFloor.Connections.DOWN) > 0 && (required & ConnectorFloor.Connections.DOWN) == 0)
+                {
+                    continue;
+                }
+
+                if ((key & exclude) > 0)
                 {
                     continue;
                 }

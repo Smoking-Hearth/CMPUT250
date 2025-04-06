@@ -200,6 +200,38 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!1 &552295806417247039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5153099348233620714}
+  m_Layer: 6
+  m_Name: Flip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5153099348233620714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552295806417247039}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2449914646692494827}
+  m_Father: {fileID: 9082269039772764131}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &909614015855714637
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +586,7 @@ MonoBehaviour:
     m_TrimEdge: 0.01
     m_FlipX: 0
     m_FlipY: 0
-    m_InitialTrim: 0.01
+    m_InitialTrim: 0
   m_CastingOption: 1
   m_PreviousTrimEdge: 0.01
   m_PreviousEdgeProcessing: 1
@@ -685,7 +717,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 622218303807006619}
-  m_Father: {fileID: 9082269039772764131}
+  m_Father: {fileID: 5153099348233620714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1323,7 +1355,7 @@ GameObject:
   - component: {fileID: 2466860787030460951}
   - component: {fileID: 2125614613325450071}
   m_Layer: 0
-  m_Name: FinalBossFloor
+  m_Name: FinalBossFloorL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1339,7 +1371,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3897828681766082859}
@@ -1412,7 +1444,7 @@ Transform:
   m_Children:
   - {fileID: 7867273934631481551}
   - {fileID: 8322077576879385527}
-  - {fileID: 2449914646692494827}
+  - {fileID: 5153099348233620714}
   - {fileID: 2092473344443451725}
   m_Father: {fileID: 2466860787030460951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

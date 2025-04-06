@@ -12,7 +12,6 @@ public class StaircaseSection : MonoBehaviour
     [SerializeField] private Vector2 dronePosition;
     [SerializeField] private DroneDropItem dronePrefab;
 
-
     // Update is called once per frame
     void FixedUpdate()
     {

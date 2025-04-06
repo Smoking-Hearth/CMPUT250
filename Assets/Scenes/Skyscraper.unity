@@ -675,7 +675,7 @@ Transform:
   m_GameObject: {fileID: 208252090}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.4309, y: -14.5, z: 0}
+  m_LocalPosition: {x: -48.8832, y: -14.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -730,7 +730,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 130.86172, y: 20}
+  m_Size: {x: 167.76636, y: 20}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2157,7 +2157,7 @@ Transform:
   m_GameObject: {fileID: 711565351}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -49, y: -3.75, z: 0}
+  m_LocalPosition: {x: -65.7999, y: -3.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2213,7 +2213,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 100, y: 1.6}
+  m_Size: {x: 133.59973, y: 1.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2786,6 +2786,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 838478602}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: floorCount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: leftUnclimbable
+      value: 
+      objectReference: {fileID: 2125614613325450071, guid: 56e76f06948dfbc4b9858d43a3889016, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: rightUnclimbable
+      value: 
+      objectReference: {fileID: 7603397318319429042, guid: 0f467a10e347f404290f2df73d4bc777, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
       propertyPath: topFloor.connector
       value: 
       objectReference: {fileID: 347357919889333152, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
@@ -2794,12 +2806,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 347357919889333152, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: topFloor.leftStaircase
+      value: 
+      objectReference: {fileID: 2125614613325450071, guid: 5a4193902125bb64bb9d299ac8921d22, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
       propertyPath: topFloor.rightStaircase
       value: 
       objectReference: {fileID: 8458995015516381762, guid: 9fd4b36de512e774488d767223e44233, type: 3}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: groundFloor.leftStaircase
+      value: 
+      objectReference: {fileID: 2125614613325450071, guid: 5a4193902125bb64bb9d299ac8921d22, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
       propertyPath: connectorPrefabs.Array.size
-      value: 5
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: fullPassageFloor.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: staircasePrefabs.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
       propertyPath: 'connectorPrefabs.Array.data[0]'
@@ -2821,6 +2849,50 @@ PrefabInstance:
       propertyPath: 'connectorPrefabs.Array.data[4]'
       value: 
       objectReference: {fileID: 347357919889333152, guid: 0a58d513d3630ea449dcb5733b7b89b0, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: 'connectorPrefabs.Array.data[5]'
+      value: 
+      objectReference: {fileID: 347357919889333152, guid: df77a513f128211468d501edf15abf80, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: 'fullPassageFloor.Array.data[0]'
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: 'staircasePrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2125614613325450071, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: 'staircasePrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 4768785471667669902, guid: b21ca77803dad6f4997361256bb59e60, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: 'staircasePrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 7603397318319429042, guid: 4e25761ea9cf0d44e960c1131ca3cc73, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: leftStaircasePrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: rightStaircasePrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: 'leftStaircasePrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2125614613325450071, guid: 5a4193902125bb64bb9d299ac8921d22, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: 'rightStaircasePrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2125614613325450071, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: 'rightStaircasePrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7603397318319429042, guid: 4e25761ea9cf0d44e960c1131ca3cc73, type: 3}
+    - target: {fileID: 9131329964508070574, guid: b55aaa3501acb0947a33f838881ef098, type: 3}
+      propertyPath: 'rightStaircasePrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 4768785471667669902, guid: b21ca77803dad6f4997361256bb59e60, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3721,11 +3793,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2082584330535335701, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.365231
+      value: -41.44
       objectReference: {fileID: 0}
     - target: {fileID: 2082584330535335701, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.683394
+      value: 19.7
       objectReference: {fileID: 0}
     - target: {fileID: 2082584330535335701, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3759,6 +3831,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 606540974}
     - target: {fileID: 8347204883692994273, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: m_Name
       value: Cultist
@@ -3947,7 +4023,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -26.653019, y: -2.3000002}
+  m_Offset: {x: -48.87095, y: -2.3000002}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3957,7 +4033,7 @@ BoxCollider2D:
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 123.30604, y: 5}
+  m_Size: {x: 167.74193, y: 5}
   m_EdgeRadius: 0
 --- !u!212 &1173221216
 SpriteRenderer:
