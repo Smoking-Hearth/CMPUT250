@@ -4,7 +4,7 @@ public class CultistBossController : MonoBehaviour
 {
     private enum CultistAttackState
     {
-        Choosing, Walking, SweepSpray, BurstSpray, Shooting, Spawning
+        Preparing, Walking, SweepSpray, BurstSpray, Shooting, Spawning
     }    
     private enum CultistMoveState
     {
@@ -18,13 +18,15 @@ public class CultistBossController : MonoBehaviour
     [SerializeField] private EnemyHealth healthComponent;
     [SerializeField] private float stunDuration;
     [SerializeField] private ParticleSystem stunParticles;
+    [SerializeField] private ParticleSystem respawnParticles;
     [SerializeField] private GameObject disableOnStun;
     [SerializeField] private ParticleSystem flameRing;
     [SerializeField] private DialogueHolder[] stunDialogue;
     private float stunTimer;
 
     [Header("Movement")]
-    [SerializeField] private CultistAttackState currentState;
+    [SerializeField] private CultistAttackState currentAttackState;
+    private CultistAttackState nextAttackState;
     [SerializeField] private CultistMoveState moveState;
     [SerializeField] private Transform flipObject;
     [SerializeField] private Rigidbody2D cultistRigidbody;
@@ -125,6 +127,7 @@ public class CultistBossController : MonoBehaviour
 
             if (stunTimer <= 0)
             {
+                respawnParticles.Play();
                 healthComponent.ResetHealth();
                 cultistAnimator.SetTrigger("Respawn");
                 flameRing.transform.localScale = Vector2.one;
@@ -184,13 +187,26 @@ public class CultistBossController : MonoBehaviour
         Move();
     }
 
-    private void ReturnToChoosing()
+    private void ChooseNextAttack()
     {
         decideTimer = decideDuration * (1 - building.Completion + 0.2f);
-        currentState = CultistAttackState.Choosing;
+        currentAttackState = CultistAttackState.Preparing;
+        int randomState = Random.Range(0, 3);
+        switch (randomState)
+        {
+            case 0:
+                nextAttackState = CultistAttackState.SweepSpray;
+                break;
+            case 1:
+                nextAttackState = CultistAttackState.BurstSpray;
+                break;
+            case 2:
+                nextAttackState = CultistAttackState.Spawning;
+                break;
+        }
     }
 
-    private void ChoosingState()
+    private void PreparingAttackState()
     {
         if (Vector2.Distance(gameObject.MyLevelManager().Player.Position, cultistRigidbody.position) > cultistInfo.attackRange)
         {
@@ -204,14 +220,13 @@ public class CultistBossController : MonoBehaviour
         }
 
         int randomState = Random.Range(0, 3);
-        switch (randomState)
+        switch (nextAttackState)
         {
-            case 0:
+            case CultistAttackState.SweepSpray:
                 sweepTimer = sweepStateDuration;
                 commitPosition = gameObject.MyLevelManager().Player.Position;
-                currentState = CultistAttackState.SweepSpray;
                 break;            
-            case 1:
+            case CultistAttackState.BurstSpray:
                 burstTimer = burstStateDuration;
                 if (moveState == CultistMoveState.Middle)
                 {
@@ -222,18 +237,18 @@ public class CultistBossController : MonoBehaviour
                     commitPosition = gameObject.MyLevelManager().Player.Position;
                 }
                 nextShotTimer = 0;
-                currentState = CultistAttackState.BurstSpray;
                 break;
-            case 2:
+            case CultistAttackState.Spawning:
                 if (moveState == CultistMoveState.Middle && building.CurrentFloor.connector.Spawned)
                 {
-                    currentState = CultistAttackState.Choosing;
+                    nextAttackState = CultistAttackState.Preparing;
                     break;
                 }
                 spawnTimer = spawnDuration;
-                currentState = CultistAttackState.Spawning;
                 break;
         }
+
+        currentAttackState = nextAttackState;
     }
     private void RightSide()
     {
@@ -246,10 +261,10 @@ public class CultistBossController : MonoBehaviour
             return;
         }
 
-        switch (currentState)
+        switch (currentAttackState)
         {
-            case CultistAttackState.Choosing:
-                ChoosingState();
+            case CultistAttackState.Preparing:
+                PreparingAttackState();
                 FollowPlayerVertical(building.transform.position.x + midRange.y + 23);
                 break;
             case CultistAttackState.SweepSpray:
@@ -273,16 +288,16 @@ public class CultistBossController : MonoBehaviour
                 }
                 break;
             case CultistAttackState.Spawning:
-                ReturnToChoosing();
+                ChooseNextAttack();
                 break;
         }
     }
     private void Middle()
     {
-        switch (currentState)
+        switch (currentAttackState)
         {
-            case CultistAttackState.Choosing:
-                ChoosingState();
+            case CultistAttackState.Preparing:
+                PreparingAttackState();
                 FollowPlayerHorizontal(building.CurrentFloorLevel + 2);
                 break;
             case CultistAttackState.SweepSpray:
@@ -322,10 +337,10 @@ public class CultistBossController : MonoBehaviour
             return;
         }
 
-        switch (currentState)
+        switch (currentAttackState)
         {
-            case CultistAttackState.Choosing:
-                ChoosingState();
+            case CultistAttackState.Preparing:
+                PreparingAttackState();
                 FollowPlayerVertical(building.transform.position.x + midRange.x - 23);
                 break;
             case CultistAttackState.SweepSpray:
@@ -349,7 +364,7 @@ public class CultistBossController : MonoBehaviour
                 }
                 break;
             case CultistAttackState.Spawning:
-                ReturnToChoosing();
+                ChooseNextAttack();
                 break;
         }
     }
@@ -358,7 +373,7 @@ public class CultistBossController : MonoBehaviour
         targetMovement = Vector2.zero;
         if (sweepTimer <= 0)
         {
-            ReturnToChoosing();
+            ChooseNextAttack();
             return;
         }
         sweepTimer -= Time.fixedDeltaTime;
@@ -380,7 +395,7 @@ public class CultistBossController : MonoBehaviour
     {
         if (burstTimer <= 0)
         {
-            ReturnToChoosing();
+            ChooseNextAttack();
             return;
         }
         targetMovement = Vector2.zero;
@@ -422,7 +437,7 @@ public class CultistBossController : MonoBehaviour
 
             if (spawnTimer <= 0)
             {
-                ReturnToChoosing();
+                ChooseNextAttack();
             }
         }
     }
