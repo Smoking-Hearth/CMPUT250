@@ -36547,14 +36547,40 @@ MonoBehaviour:
     maxAngle: 175
     offsetAngle: 2
   nozzle: {fileID: 2701002615786386027}
-  decideDuration: 5
-  sweepStateDuration: 1
-  sweepArc: 25
-  burstStateDuration: 0
-  burstDuration: 0
-  bursts: 0
+  decideDuration: 4
   sprayComponent: {fileID: 5417180985490529651}
-  spawnDuration: 5
+  sweepStateDuration: 1
+  sweepArc: 20
+  projectilePrefab: {fileID: 2095809531407197485, guid: 3d5c06d0c72b87b40b0c29b5ce303e51, type: 3}
+  projectileSpeed: 10
+  burstStateDuration: 2
+  burstArc: 150
+  rateOverTime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.4
+      inSlope: -0.7699999
+      outSlope: -0.7699999
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.045454547
+    - serializedVersion: 3
+      time: 1
+      value: 0.05
+      inSlope: -0.10780018
+      outSlope: -0.10780018
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.113636374
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  cacheCapacity: 25
+  spawnDuration: 3
   building: {fileID: 0}
   cultistAnimator: {fileID: 7232863385536466245}
 --- !u!114 &3496495119214777167

@@ -69,7 +69,6 @@ public class FinalBoss : MonoBehaviour
 
     [Header("Connectors")]
     [SerializeField] private ConnectorFloor[] connectorPrefabs;
-    [SerializeField] private ConnectorFloor activateBossConnector;
     [SerializeField] private List<int> fullPassageFloor = new List<int>();    //Floors that will need to have a full connecter through them
     [SerializeField] private BossFloor[] bossFloor;
     [SerializeField] private int bossStartLevel;
