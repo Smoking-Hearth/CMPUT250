@@ -83,6 +83,16 @@ public class EnemyHealth : Health, IExtinguishable
         }
     }
 
+    public void Heal(float amount)
+    {
+        Current += amount;
+        if (enemyHealthBar != null)
+        {
+            enemyHealthBar.ActivateBar();
+            enemyHealthBar.UpdateHealthBar(1, 1);
+        }
+    }
+
     private void HurtBlink(float time)
     {
         for (int i = 0; i < blinkRenderers.Length; i++)

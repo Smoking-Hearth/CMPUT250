@@ -6,7 +6,6 @@ public class HelicopterDescend : MonoBehaviour
     [SerializeField] private Transform endPoint;
     [SerializeField] private float duration;
     private float descendTimer;
-    private bool descend;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
@@ -16,17 +15,12 @@ public class HelicopterDescend : MonoBehaviour
 
     public void Descend()
     {
-        descend = true;
+        descendTimer = duration;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!descend)
-        {
-            return;
-        }
-
         if (descendTimer > 0)
         {
             descendTimer -= Time.fixedDeltaTime;

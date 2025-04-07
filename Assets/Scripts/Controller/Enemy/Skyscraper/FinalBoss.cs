@@ -48,11 +48,11 @@ public class FinalBoss : MonoBehaviour
         }
     }
 
-    public bool Completed
+    public float Completion
     {
         get
         {
-            return highestClimbedFloor >= floorCount;
+            return (float)highestClimbedFloor / floorCount;
         }
     }
 
