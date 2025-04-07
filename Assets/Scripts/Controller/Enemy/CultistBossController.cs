@@ -8,10 +8,11 @@ public class CultistBossController : MonoBehaviour
     }    
     private enum CultistMoveState
     {
-        Left, Middle, Right
+        Left, Middle, Right, Top
     }
 
     [SerializeField] private float heatRadius;
+    private bool activated;
 
     [Header("Stun")]
     [SerializeField] private EnemyHealth healthComponent;
@@ -19,6 +20,7 @@ public class CultistBossController : MonoBehaviour
     [SerializeField] private ParticleSystem stunParticles;
     [SerializeField] private GameObject disableOnStun;
     [SerializeField] private ParticleSystem flameRing;
+    [SerializeField] private DialogueHolder[] stunDialogue;
     private float stunTimer;
 
     [Header("Movement")]
@@ -62,15 +64,29 @@ public class CultistBossController : MonoBehaviour
 
     private void OnEnable()
     {
+        building = FindAnyObjectByType<FinalBoss>();
     }
     private void OnDisable()
     {
         
     }
 
-    void FixedUpdate()
+    public void Activate()
     {
         cultistAnimator.SetBool("IsGrounded", true);
+        activated = true;
+        transform.parent = null;
+        healthComponent.enabled = true;
+    }
+
+    void FixedUpdate()
+    {
+        if (!activated)
+        {
+            healthComponent.enabled = false;
+            return;
+        }
+
 
         if (gameObject.MyLevelManager().levelState != LevelState.Playing)
         {
@@ -95,21 +111,28 @@ public class CultistBossController : MonoBehaviour
 
         ProximityDamage();
 
-        Vector2 playerPos = gameObject.MyLevelManager().Player.Position;
-
-        if (playerPos.x < building.transform.position.x + midRange.y && playerPos.x > building.transform.position.x + midRange.x)
+        if (building.Completed)
         {
-            moveState = CultistMoveState.Middle;
+            moveState = CultistMoveState.Top;
         }
         else
         {
-            if (playerPos.x <= building.transform.position.x + midRange.x)
+            Vector2 playerPos = gameObject.MyLevelManager().Player.Position;
+
+            if (playerPos.x < building.transform.position.x + midRange.y && playerPos.x > building.transform.position.x + midRange.x)
             {
-                moveState = CultistMoveState.Left;
+                moveState = CultistMoveState.Middle;
             }
-            else if (playerPos.x >= building.transform.position.x + midRange.y)
+            else
             {
-                moveState = CultistMoveState.Right;
+                if (playerPos.x <= building.transform.position.x + midRange.x)
+                {
+                    moveState = CultistMoveState.Left;
+                }
+                else if (playerPos.x >= building.transform.position.x + midRange.y)
+                {
+                    moveState = CultistMoveState.Right;
+                }
             }
         }
 
@@ -128,6 +151,8 @@ public class CultistBossController : MonoBehaviour
                 break;
             case CultistMoveState.Left:
                 LeftSide();
+                break;
+            case CultistMoveState.Top:
                 break;
         }
     }
@@ -343,7 +368,7 @@ public class CultistBossController : MonoBehaviour
 
         if (targetDirection.magnitude > cultistInfo.aggroRange)
         {
-            AimSprites((Vector2)transform.position - targetDirection);
+            AimSprites((Vector2)transform.position - targetDirection + Vector2.down * 0.2f);
             sprayComponent.AimAttack(nozzle.position, aimAngle);
 
             Vector2 pushDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.left;
@@ -365,6 +390,12 @@ public class CultistBossController : MonoBehaviour
 
     private void Stun()
     {
+        if (stunDialogue.Length > 0)
+        {
+            int random = Random.Range(0, stunDialogue.Length);
+            stunDialogue[random].PlayDialogue();
+        }
+
         stunParticles.Play();
         stunTimer = stunDuration;
         cultistAnimator.SetTrigger("IsDead");

@@ -150,8 +150,8 @@ MonoBehaviour:
     leftStaircase: {fileID: 2125614613325450071, guid: 5a4193902125bb64bb9d299ac8921d22, type: 3}
   topFloor:
     rightStaircase: {fileID: 8458995015516381762, guid: 9fd4b36de512e774488d767223e44233, type: 3}
-    connector: {fileID: 347357919889333152, guid: aa6455a23545c4c4aaf77565f236f6f7, type: 3}
-    leftStaircase: {fileID: 2125614613325450071, guid: 5a4193902125bb64bb9d299ac8921d22, type: 3}
+    connector: {fileID: 347357919889333152, guid: bc1f36067eaceea41a21654e366bba15, type: 3}
+    leftStaircase: {fileID: 8458995015516381762, guid: 2f228bfb48d0d00489dfd2673c0537c0, type: 3}
   rightStaircasePrefabs:
   - {fileID: 2125614613325450071, guid: c05e70779c4a0f149901d2a0d9e1f270, type: 3}
   - {fileID: 7603397318319429042, guid: 4e25761ea9cf0d44e960c1131ca3cc73, type: 3}
@@ -171,9 +171,17 @@ MonoBehaviour:
   - {fileID: 347357919889333152, guid: ba9d05249694f0946a2c8f850f4c64a1, type: 3}
   - {fileID: 347357919889333152, guid: 0a58d513d3630ea449dcb5733b7b89b0, type: 3}
   - {fileID: 347357919889333152, guid: df77a513f128211468d501edf15abf80, type: 3}
+  - {fileID: 347357919889333152, guid: b15c6a17749feb94fba1ecebb13a19ec, type: 3}
   activateBossConnector: {fileID: 0}
-  fullPassageFloor: 05000000
-  activateBossFloor: 0
+  fullPassageFloor: 03000000080000000e000000100000001400000019000000
+  bossFloor:
+  - rightStaircase: {fileID: 7603397318319429042, guid: 0f467a10e347f404290f2df73d4bc777, type: 3}
+    connector: {fileID: 347357919889333152, guid: 96bc59d58a1841148a72b71deb84366a, type: 3}
+    leftStaircase: {fileID: 2125614613325450071, guid: 56e76f06948dfbc4b9858d43a3889016, type: 3}
+  - rightStaircase: {fileID: 7603397318319429042, guid: d6d18a3cd17071b4091b655b84f82c6e, type: 3}
+    connector: {fileID: 4672531221645384234, guid: a493c8e757dfd844090ab28daaf49162, type: 3}
+    leftStaircase: {fileID: 7603397318319429042, guid: 53422ec2f3d0a2b4e8423aca7a55a45e, type: 3}
+  bossStartLevel: 5
   completeEvent:
     m_PersistentCalls:
       m_Calls: []
