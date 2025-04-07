@@ -74,12 +74,6 @@ public class Menu : MonoBehaviour
         credits.onClick.RemoveListener(OnCreditsClick);
     }
 
-    public void ResetLevel()
-    {
-        SceneIndex sceneIdx = containers[expandedLevel].levelIndex;
-        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.Unload((int)sceneIdx));
-    }
-
     void OnPlayClick()
     {
         if (!HasSelected) return;
@@ -92,6 +86,9 @@ public class Menu : MonoBehaviour
     {
         if (!HasSelected) return;
         containers[expandedLevel].BackToMenu();
+        // At this point it makes sense to just unload
+        SceneIndex current = containers[expandedLevel].levelIndex;
+        GameManager.Instance.StartCoroutine(GameManager.SceneSystem.Unload((int)current));
         expandedLevel = -1;
     }
 
