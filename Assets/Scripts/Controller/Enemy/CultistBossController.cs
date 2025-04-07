@@ -374,7 +374,7 @@ public class CultistBossController : MonoBehaviour
         sprayComponent.AimAttack(nozzle.position, aimAngle + addAngle);
 
         Vector2 pushDirection = Quaternion.Euler(0, 0, aimAngle + addAngle) * Vector2.left;
-        addedVelocity += pushDirection * 0.5f;
+        addedVelocity += pushDirection * 0.3f;
     }
     private void BurstSprayState()
     {
@@ -503,7 +503,7 @@ public class CultistBossController : MonoBehaviour
             sprayComponent.AimAttack(nozzle.position, aimAngle);
 
             Vector2 pushDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.left;
-            addedVelocity += pushDirection * 0.5f;
+            addedVelocity += pushDirection * 0.3f;
             sprayMoving = true;
         }
     }

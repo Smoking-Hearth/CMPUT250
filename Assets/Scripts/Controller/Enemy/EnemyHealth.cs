@@ -89,7 +89,7 @@ public class EnemyHealth : Health, IExtinguishable
         if (enemyHealthBar != null)
         {
             enemyHealthBar.ActivateBar();
-            enemyHealthBar.UpdateHealthBar(1, 1);
+            enemyHealthBar.UpdateHealthBar(Current, Max);
         }
     }
 
