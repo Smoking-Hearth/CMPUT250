@@ -180,7 +180,7 @@ public class DialogSystem : MonoBehaviour
     {
         set
         {
-            if (value == null || value == Color.black.WithAlpha(0f))
+            if (value == null || value == Color.clear)
             {
                 background.color = defaultColor;
                 thumbnailBackground.color = defaultColor;
