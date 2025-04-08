@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class GameDialog : IEnumerator<DialogSystem.Command> {
     public DialogSegment[] segments;
@@ -179,7 +180,7 @@ public class DialogSystem : MonoBehaviour
     {
         set
         {
-            if (value == null)
+            if (value == null || value == Color.black.WithAlpha(0f))
             {
                 background.color = defaultColor;
                 thumbnailBackground.color = defaultColor;
