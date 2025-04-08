@@ -38,6 +38,7 @@ public class FinalBoss : MonoBehaviour
     }
 
     [SerializeField] private ParticleSystem rainParticles;
+    [SerializeField] private DialogueHolder windowFireDialogue;
 
     public BossFloor CurrentFloor
     {
@@ -51,7 +52,11 @@ public class FinalBoss : MonoBehaviour
     {
         get
         {
-            return (float)highestClimbedFloor / floorCount;
+            if (highestClimbedFloor == floorCount - 1)
+            {
+                return 1;
+            }
+            return (float)highestClimbedFloor / (floorCount - 1);
         }
     }
 
@@ -89,7 +94,12 @@ public class FinalBoss : MonoBehaviour
     private void FixedUpdate()
     {
         CheckCurrentFloor();
-        Arms();
+        if (currentFloor == 1 && !CurrentFloor.rightStaircase.GlassBroken)
+        {
+            windowFireDialogue.PlayDialogue();
+            CurrentFloor.rightStaircase.ActivateArm();
+        }
+
         if (gameObject.MyLevelManager().levelState == LevelState.Playing)
         {
             highestClimbedFloor = currentFloor;
@@ -206,13 +216,5 @@ public class FinalBoss : MonoBehaviour
     {
         float playerY = gameObject.MyLevelManager().Player.Position.y - baseAltitude;
         currentFloor = Mathf.Clamp(Mathf.CeilToInt(playerY / buildingHeight * floorCount), 0, floorCount - 1);
-    }
-
-    private void Arms()
-    {
-        if (!CurrentFloor.rightStaircase.GlassBroken)
-        {
-            CurrentFloor.rightStaircase.ActivateArm();
-        }
     }
 }

@@ -5,6 +5,8 @@ public class StaircaseSection : MonoBehaviour
     [SerializeField] private SpriteRenderer glassRenderer;
     [SerializeField] private Sprite glassBrokenSprite;
     [SerializeField] private Collider2D glassCollider;
+    [SerializeField] private ParticleSystem glassBreakParticles;
+    [SerializeField] private AudioSource glassBreakSound;
     [SerializeField] private FinalBossArm arm;
     private bool glassBroken;
 
@@ -43,6 +45,8 @@ public class StaircaseSection : MonoBehaviour
                 glassBroken = true;
                 glassRenderer.sprite = glassBrokenSprite;
                 glassCollider.enabled = false;
+                glassBreakParticles.Play();
+                glassBreakSound.Play();
             }
         }
         return true;

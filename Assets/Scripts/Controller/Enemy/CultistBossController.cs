@@ -438,7 +438,7 @@ public class CultistBossController : MonoBehaviour
 
         float addAngle = Mathf.Lerp(-burstArc * 0.5f, burstArc * 0.5f, burstTimer / burstStateDuration);
 
-        if (commitPosition.x > cultistRigidbody.position.x)
+        if (commitPosition.x < cultistRigidbody.position.x)
         {
             addAngle *= -1;
         }
