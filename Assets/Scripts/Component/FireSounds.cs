@@ -8,9 +8,11 @@ public class FireSounds : MonoBehaviour
     [SerializeField] protected float ambientVolume;
     [SerializeField] protected AudioClip hitClip;
     [SerializeField] protected AudioClip extinguishClip;
+    static public int ambientSounds;
     static protected float globalHitTimer;
     protected float hitTimer;
     static protected bool playedExtinguish;
+    public bool playingAmbient;
 
     private void OnEnable()
     {
@@ -63,6 +65,8 @@ public class FireSounds : MonoBehaviour
         {
             return;
         }
+        playingAmbient = false;
+        ambientSounds--;
         LMotion.Create(ambientAudio.volume, 0, fadeDuration)
             .WithEase(Ease.InCubic)
             .Bind(ambientAudio, (x, audio) => audio.volume = x);
@@ -73,6 +77,8 @@ public class FireSounds : MonoBehaviour
         {
             return;
         }
+        playingAmbient = true;
+        ambientSounds++;
         LMotion.Create(ambientAudio.volume, ambientVolume, fadeDuration)
             .WithEase(Ease.InCubic)
             .Bind(ambientAudio, (x, audio) => audio.volume = x);

@@ -45,6 +45,24 @@ public class Fire : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (sounds.playingAmbient)
+        {
+            if ((gameObject.MyLevelManager().Player.Position - (Vector2)transform.position).magnitude > Combustible.SIMULATION_DISTANCE)
+            {
+                sounds.FadeAmbientSounds(0.5f);
+            }
+        }
+        else if (FireSounds.ambientSounds < 10)
+        {
+            if ((gameObject.MyLevelManager().Player.Position - (Vector2)transform.position).magnitude <= Combustible.SIMULATION_DISTANCE)
+            {
+                sounds.EnableAmbientSounds(0.5f);
+            }
+        }
+    }
+
     public void SetLifetime(float particleLifetime)
     {
         ParticleSystem.MainModule main = particles.main;
