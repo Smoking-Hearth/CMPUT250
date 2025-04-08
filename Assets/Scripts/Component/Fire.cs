@@ -47,6 +47,10 @@ public class Fire : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (sounds == null)
+        {
+            return;
+        }
         if (sounds.playingAmbient)
         {
             if ((gameObject.MyLevelManager().Player.Position - (Vector2)transform.position).magnitude > Combustible.SIMULATION_DISTANCE)
