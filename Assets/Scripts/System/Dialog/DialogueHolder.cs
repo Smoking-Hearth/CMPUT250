@@ -11,6 +11,12 @@ public struct DialogSegment
     public TMP_FontAsset font; 
     public Sprite image;
 
+    [Header("Background")]
+    public Sprite background;
+    public Color backgroundMultiplier;
+    public bool isTiled;
+
+
     [TextArea(0, 5)]
     public string[] lines;
 
