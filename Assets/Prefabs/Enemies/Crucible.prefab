@@ -861,6 +861,11 @@ MonoBehaviour:
   deccelerationRate: 0
   stopWhenAttacking: 1
   moveY: 0
+  wander: 0
+  maxYtarget: 0
+  wallLayers:
+    serializedVersion: 2
+    m_Bits: 0
   projectilePrefab: {fileID: 2095809531407197485, guid: 66504dc41a531b7488aacf455a46050e, type: 3}
   cacheCapacity: 6
   startThrowPosition: {x: 0, y: 1}

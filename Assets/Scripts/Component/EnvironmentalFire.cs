@@ -14,6 +14,13 @@ public class EnvironmentalFire : Fire, IExtinguishable, ITemperatureSource
     [SerializeField] private UnityEvent ExtinguishEvent;
 
     [SerializeField] private float fireDamageRadius;
+    public float FireRadius
+    {
+        set
+        {
+            fireDamageRadius = value;
+        }
+    }
 
     public float Temperature
     {
@@ -58,7 +65,7 @@ public class EnvironmentalFire : Fire, IExtinguishable, ITemperatureSource
         }
         // Checking if the fire should damage the player
         float distance = Vector2.Distance(gameObject.MyLevelManager().Player.Position, (Vector2)transform.position);
-        if (distance < fireDamageRadius * 0.8f)
+        if (distance < fireDamageRadius)
         {
             gameObject.MyLevelManager().Player.Health.FireDamage(2f * Mathf.Pow(0.5f, distance));
         }

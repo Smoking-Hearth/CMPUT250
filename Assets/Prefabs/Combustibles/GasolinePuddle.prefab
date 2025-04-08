@@ -114,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -125,6 +125,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
+      propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1175759659908881428}
@@ -133,11 +137,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6848599972791285162}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
+      propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 555482995155856744}
+    - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
+      propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
@@ -149,12 +161,20 @@ PrefabInstance:
       value: DisableCombustible
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
+      propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.Renderer, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Combustible, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
+      propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UnityEngine.Behaviour, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -166,6 +186,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
       propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 223029947509094490, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
+      propertyPath: FullyBurntEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5095367796518042714, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
@@ -221,6 +245,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
+--- !u!58 &555482995155856744 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6604028828018548888, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}
+  m_PrefabInstance: {fileID: 6634719166260891120}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &623881648824808462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6105536255316113918, guid: 8ba549068d93a4243ae20559ab2166f0, type: 3}

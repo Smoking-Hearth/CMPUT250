@@ -26,7 +26,7 @@ public class CultistBossController : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private CultistAttackState currentAttackState;
-    private CultistAttackState nextAttackState;
+    [SerializeField] private CultistAttackState nextAttackState;
     [SerializeField] private CultistMoveState moveState;
     [SerializeField] private Transform flipObject;
     [SerializeField] private Rigidbody2D cultistRigidbody;
@@ -45,7 +45,7 @@ public class CultistBossController : MonoBehaviour
     private float aimAngle;
     private Vector2 commitPosition;
     [SerializeField] private float decideDuration;
-    private float decideTimer;
+    private float prepareTimer;
 
     [Header("Spray")]
     [SerializeField] private CultistFlameSpecial sprayComponent;
@@ -189,7 +189,7 @@ public class CultistBossController : MonoBehaviour
 
     private void ChooseNextAttack()
     {
-        decideTimer = decideDuration * (1 - building.Completion + 0.2f);
+        prepareTimer = decideDuration * (1 - building.Completion + 0.2f);
         currentAttackState = CultistAttackState.Preparing;
         int randomState = Random.Range(0, 3);
         switch (randomState)
@@ -213,13 +213,12 @@ public class CultistBossController : MonoBehaviour
             return;
         }
 
-        if (decideTimer > 0)
+        if (prepareTimer > 0)
         {
-            decideTimer -= Time.fixedDeltaTime;
+            prepareTimer -= Time.fixedDeltaTime;
             return;
         }
 
-        int randomState = Random.Range(0, 3);
         switch (nextAttackState)
         {
             case CultistAttackState.SweepSpray:
@@ -241,8 +240,8 @@ public class CultistBossController : MonoBehaviour
             case CultistAttackState.Spawning:
                 if (moveState == CultistMoveState.Middle && building.CurrentFloor.connector.Spawned)
                 {
-                    nextAttackState = CultistAttackState.Preparing;
-                    break;
+                    ChooseNextAttack();
+                    return;
                 }
                 spawnTimer = spawnDuration;
                 break;
@@ -254,7 +253,7 @@ public class CultistBossController : MonoBehaviour
     {
         if (!building.CurrentFloor.rightStaircase.GlassBroken)
         {
-            Vector2 targetPos = new Vector2(building.transform.position.x + midRange.x + 23, building.CurrentFloorLevel);
+            Vector2 targetPos = new Vector2(building.transform.position.x + midRange.x + 18, building.CurrentFloorLevel);
             AimSprites(gameObject.MyLevelManager().Player.Position);
             MoveToPosition(targetPos);
             building.CurrentFloor.rightStaircase.ActivateArm();
@@ -265,7 +264,7 @@ public class CultistBossController : MonoBehaviour
         {
             case CultistAttackState.Preparing:
                 PreparingAttackState();
-                FollowPlayerVertical(building.transform.position.x + midRange.y + 23);
+                FollowPlayerVertical(building.transform.position.x + midRange.y + 18);
                 break;
             case CultistAttackState.SweepSpray:
                 if (!sprayMoving)
@@ -274,7 +273,7 @@ public class CultistBossController : MonoBehaviour
                 }
                 else
                 {
-                    FollowPlayerVertical(building.transform.position.x + midRange.y + 23);
+                    FollowPlayerVertical(building.transform.position.x + midRange.y + 18);
                 }
                 break;
             case CultistAttackState.BurstSpray:
@@ -284,7 +283,7 @@ public class CultistBossController : MonoBehaviour
                 }
                 else
                 {
-                    FollowPlayerVertical(building.transform.position.x + midRange.y + 23);
+                    FollowPlayerVertical(building.transform.position.x + midRange.y + 18);
                 }
                 break;
             case CultistAttackState.Spawning:
@@ -330,7 +329,7 @@ public class CultistBossController : MonoBehaviour
     {
         if (!building.CurrentFloor.leftStaircase.GlassBroken)
         {
-            Vector2 targetPos = new Vector2(building.transform.position.x + midRange.x - 23, building.CurrentFloorLevel);
+            Vector2 targetPos = new Vector2(building.transform.position.x + midRange.x - 18, building.CurrentFloorLevel);
             AimSprites(gameObject.MyLevelManager().Player.Position);
             MoveToPosition(targetPos);
             building.CurrentFloor.leftStaircase.ActivateArm();
@@ -341,7 +340,7 @@ public class CultistBossController : MonoBehaviour
         {
             case CultistAttackState.Preparing:
                 PreparingAttackState();
-                FollowPlayerVertical(building.transform.position.x + midRange.x - 23);
+                FollowPlayerVertical(building.transform.position.x + midRange.x - 18);
                 break;
             case CultistAttackState.SweepSpray:
                 if (!sprayMoving)
@@ -350,7 +349,7 @@ public class CultistBossController : MonoBehaviour
                 }
                 else
                 {
-                    FollowPlayerVertical(building.transform.position.x + midRange.x - 23);
+                    FollowPlayerVertical(building.transform.position.x + midRange.x - 18);
                 }
                 break;
             case CultistAttackState.BurstSpray:
@@ -360,7 +359,7 @@ public class CultistBossController : MonoBehaviour
                 }
                 else
                 {
-                    FollowPlayerVertical(building.transform.position.x + midRange.x - 23);
+                    FollowPlayerVertical(building.transform.position.x + midRange.x - 18);
                 }
                 break;
             case CultistAttackState.Spawning:
@@ -368,6 +367,42 @@ public class CultistBossController : MonoBehaviour
                 break;
         }
     }
+
+    private void Top()
+    {
+        switch (currentAttackState)
+        {
+            case CultistAttackState.Preparing:
+                PreparingAttackState();
+                FollowPlayerHorizontal(building.CurrentFloorLevel + 2);
+                break;
+            case CultistAttackState.SweepSpray:
+                if (!sprayMoving)
+                {
+                    SweepSprayState();
+                }
+                else
+                {
+                    FollowPlayerHorizontal(building.CurrentFloorLevel + 2);
+                }
+                break;
+            case CultistAttackState.BurstSpray:
+                if (!sprayMoving)
+                {
+                    BurstSprayState();
+                }
+                else
+                {
+                    FollowPlayerHorizontal(building.CurrentFloorLevel + 2);
+                }
+                break;
+            case CultistAttackState.Spawning:
+                MoveToPosition(new Vector2(building.transform.position.x + (midRange.x + midRange.y) / 2, building.CurrentFloorLevel + 1.5f));
+                SpawnState();
+                break;
+        }
+    }
+
     private void SweepSprayState()
     {
         targetMovement = Vector2.zero;
@@ -403,7 +438,7 @@ public class CultistBossController : MonoBehaviour
 
         float addAngle = Mathf.Lerp(-burstArc * 0.5f, burstArc * 0.5f, burstTimer / burstStateDuration);
 
-        if (commitPosition.x > cultistRigidbody.position.x)
+        if (commitPosition.x < cultistRigidbody.position.x)
         {
             addAngle *= -1;
         }
@@ -444,7 +479,7 @@ public class CultistBossController : MonoBehaviour
 
     private void FollowPlayerVertical(float xPosition)
     {
-        Vector2 targetPos = new Vector2(xPosition, gameObject.MyLevelManager().Player.Position.y + 1.5f);
+        Vector2 targetPos = new Vector2(xPosition, gameObject.MyLevelManager().Player.Position.y + 0.5f);
         AimSprites(gameObject.MyLevelManager().Player.Position);
 
         MoveToPosition(targetPos);

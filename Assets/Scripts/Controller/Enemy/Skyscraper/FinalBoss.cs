@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections.Generic;
 
@@ -20,10 +21,6 @@ public class FinalBoss : MonoBehaviour
         }
     }
 
-    [Min(1)]
-    [SerializeField] private float standByDuration = 1;
-    private float standbyTimer;
-
     [SerializeField] private float baseAltitude;
     [SerializeField] private float floorHeight;
     private float buildingHeight;
@@ -40,6 +37,9 @@ public class FinalBoss : MonoBehaviour
         }
     }
 
+    [SerializeField] private ParticleSystem rainParticles;
+    [SerializeField] private DialogueHolder windowFireDialogue;
+
     public BossFloor CurrentFloor
     {
         get
@@ -52,7 +52,11 @@ public class FinalBoss : MonoBehaviour
     {
         get
         {
-            return (float)highestClimbedFloor / floorCount;
+            if (highestClimbedFloor == floorCount - 1)
+            {
+                return 1;
+            }
+            return (float)highestClimbedFloor / (floorCount - 1);
         }
     }
 
@@ -73,6 +77,7 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] private BossFloor[] bossFloor;
     [SerializeField] private int bossStartLevel;
 
+    [SerializeField] private Slider completionSlider;
     [SerializeField] private UnityEvent completeEvent;
     private bool rightSide = true;
 
@@ -81,9 +86,20 @@ public class FinalBoss : MonoBehaviour
         Generate();
     }
 
+    public void ShowCompletionSlider(bool set)
+    {
+        completionSlider.gameObject.SetActive(set);
+    }
+
     private void FixedUpdate()
     {
         CheckCurrentFloor();
+        if (currentFloor == 1 && !CurrentFloor.rightStaircase.GlassBroken)
+        {
+            windowFireDialogue.PlayDialogue();
+            CurrentFloor.rightStaircase.ActivateArm();
+        }
+
         if (gameObject.MyLevelManager().levelState == LevelState.Playing)
         {
             highestClimbedFloor = currentFloor;
@@ -93,6 +109,12 @@ public class FinalBoss : MonoBehaviour
             floors[currentFloor].connector.OpenDoors();
             floors[currentFloor].rightStaircase.OpenDoor();
             floors[currentFloor].leftStaircase.OpenDoor();
+        }
+        completionSlider.value = (float)currentFloor / floorCount;
+
+        if (Completion >= 1 && !rainParticles.isPlaying)
+        {
+            rainParticles.Play();
         }
     }
 
@@ -193,6 +215,6 @@ public class FinalBoss : MonoBehaviour
     private void CheckCurrentFloor()
     {
         float playerY = gameObject.MyLevelManager().Player.Position.y - baseAltitude;
-        currentFloor = Mathf.Clamp(Mathf.CeilToInt(playerY / buildingHeight * floorCount), 0, floorCount);
+        currentFloor = Mathf.Clamp(Mathf.CeilToInt(playerY / buildingHeight * floorCount), 0, floorCount - 1);
     }
 }

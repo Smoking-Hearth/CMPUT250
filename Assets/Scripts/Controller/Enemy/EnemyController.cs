@@ -94,7 +94,14 @@ public class EnemyController : MonoBehaviour
         LevelManager lm = gameObject.MyLevelManager();
         distance = Vector2.Distance(transform.position, lm.Player.Position);
 
-        if (lm.levelState != LevelState.Playing && currentState != EnemyState.stDefeated)
+        if (currentState == EnemyState.stDefeated)
+        {
+            if (enemyAnimator != null)
+            {
+                enemyAnimator.SetBool("IsMoving", false);
+            }
+        }
+        else if (lm.levelState != LevelState.Playing)
         {
             currentState = EnemyState.stWaiting;
             if (attackVisual != null)
@@ -173,6 +180,10 @@ public class EnemyController : MonoBehaviour
             currentState = EnemyState.stTargeting;
         }
 
+        if (enemyAnimator != null)
+        {
+            enemyAnimator.SetBool("IsMoving", false);
+        }
     }
 
     protected virtual void Target()

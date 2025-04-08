@@ -16,7 +16,10 @@ public class EnemyHealthBar : MonoBehaviour
     }    
     public void DeactivateBar()
     {
-        overlay.SetActive(false);
+        if (overlay != null)
+        {
+            overlay.SetActive(false);
+        }
     }
     public void UpdateHealthBar(float currentHealth, float maxHealth){
 
