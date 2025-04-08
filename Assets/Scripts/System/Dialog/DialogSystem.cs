@@ -161,6 +161,8 @@ public class DialogSystem : MonoBehaviour
     {
         set 
         {
+            if(background == null || thumbnailBackground == null || titleBackground == null) return;
+
             if (value == null)
             {
                 background.sprite = defaultBackground;
@@ -180,6 +182,8 @@ public class DialogSystem : MonoBehaviour
     {
         set
         {
+            if(background == null || thumbnailBackground == null || titleBackground == null) return;
+
             if (value == null || value == Color.clear)
             {
                 background.color = defaultColor;
@@ -199,6 +203,8 @@ public class DialogSystem : MonoBehaviour
     {
         set
         {
+            if(background == null || thumbnailBackground == null || titleBackground == null) return;
+
             if (value)
             {
                 background.type = Image.Type.Tiled;
@@ -237,8 +243,11 @@ public class DialogSystem : MonoBehaviour
             SetImage();
         }
 
-        defaultBackground = background.sprite;
-        defaultColor = background.color;
+        if (background != null)
+        {
+            defaultBackground = background.sprite;
+            defaultColor = background.color;
+        }
 
         PlayerController.Controls.Dialogue.Continue.performed += OnContinue;
         if (continueText != null)
