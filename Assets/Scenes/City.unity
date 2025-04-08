@@ -53087,6 +53087,22 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5753278636325038909, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753278636325038909, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753278636325038909, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753278636325038909, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5981888490660826353, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -59302,17 +59318,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1290447861 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1634542000452862205, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
-  m_PrefabInstance: {fileID: 1056280323}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21a66ce97b0a747239b87b457a0d3473, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1291618333
 GameObject:
   m_ObjectHideFlags: 0
@@ -85822,7 +85827,7 @@ MonoBehaviour:
   LevelCamera: {fileID: 1864497588}
   gameOverScreen: {fileID: 1056280325}
   deathOverlay: {fileID: 327277004}
-  <settingsScreen>k__BackingField: {fileID: 1290447861}
+  <settingsScreen>k__BackingField: {fileID: 0}
   setPlayer: {fileID: 1112208342}
   setSoul: {fileID: 5702242455934602568}
   defaultEnabledRootObjects: []
