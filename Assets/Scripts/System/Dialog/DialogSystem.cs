@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class GameDialog : IEnumerator<DialogSystem.Command> {
     public DialogSegment[] segments;
@@ -24,7 +25,7 @@ public class GameDialog : IEnumerator<DialogSystem.Command> {
                 {
                     DialogSegment s = segments[segmentIndex];
                     return new DialogSystem.Command(lines[lineIndex], s.title, s.autoContinue,
-                        s.scrollSound, s.startSound, s.DoEvent, s.font, s.image);
+                        s.scrollSound, s.startSound, s.DoEvent, s.font, s.image, s.background, s.backgroundMultiplier, s.isTiled);
                 }
             }
             return new DialogSystem.Command(null); 
@@ -72,6 +73,9 @@ public class DialogSystem : MonoBehaviour
         public AudioClip startSound;
         public TMP_FontAsset font;
         public Sprite image;
+        public Sprite background;
+        public Color backgroundMultiplier;
+        public bool isTiled;
         public string content;
         public string title;
         public bool autoContinue;
@@ -85,7 +89,10 @@ public class DialogSystem : MonoBehaviour
             AudioClip startSound = null, 
             UnityEvent doEvent = null, 
             TMP_FontAsset font = null,
-            Sprite image = null
+            Sprite image = null,
+            Sprite background = null,
+            Color? backgroundMultiplier = null,
+            bool isTiled = false
         )
         {
             this.scrollSound = scrollSound;
@@ -96,6 +103,16 @@ public class DialogSystem : MonoBehaviour
             this.DoEvent = doEvent; 
             this.font = font;
             this.image = image;
+            this.background = background;
+            if (backgroundMultiplier != null)
+            {
+                this.backgroundMultiplier = (Color)backgroundMultiplier;
+            }
+            else
+            {
+                this.backgroundMultiplier = Color.white;
+            }
+            this.isTiled = isTiled; 
         }
     }
 
@@ -120,6 +137,14 @@ public class DialogSystem : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private float autoContinueDelaySeconds;
     [SerializeField] private Image image;
+
+    [SerializeField] private Image background;
+    [SerializeField] private Image thumbnailBackground;
+    [SerializeField] private Image titleBackground;
+    private Sprite defaultBackground;
+    private Color defaultColor;
+    
+
     [SerializeField] private RectTransform imageBackdrop;
 
     private float nextCharTimer;
@@ -130,6 +155,64 @@ public class DialogSystem : MonoBehaviour
     [SerializeField] private TMP_FontAsset defaultDialogFont;
 
     private LevelState prevLevelState;
+
+
+    private Sprite Background 
+    {
+        set 
+        {
+            if (value == null)
+            {
+                background.sprite = defaultBackground;
+                thumbnailBackground.sprite = defaultBackground;
+                titleBackground.sprite = defaultBackground;
+            }
+            else 
+            {
+                background.sprite = value;
+                thumbnailBackground.sprite = value;
+                titleBackground.sprite = value;
+            }
+        }
+    }
+
+    private Color BackgroundMultiplier
+    {
+        set
+        {
+            if (value == null || value == Color.clear)
+            {
+                background.color = defaultColor;
+                thumbnailBackground.color = defaultColor;
+                titleBackground.color = defaultColor;
+            }
+            else
+            {
+                background.color = value;
+                thumbnailBackground.color = value;
+                titleBackground.color = value;
+            }
+        }
+    }
+
+    private bool BackgroundTiled
+    {
+        set
+        {
+            if (value)
+            {
+                background.type = Image.Type.Tiled;
+                thumbnailBackground.type = Image.Type.Tiled;
+                titleBackground.type = Image.Type.Tiled;
+            }
+            else
+            {
+                background.type = Image.Type.Sliced;
+                thumbnailBackground.type = Image.Type.Sliced;
+                titleBackground.type = Image.Type.Sliced;
+            }
+        }
+    }
 
     private void SetImage(Sprite sprite = null)
     {
@@ -153,6 +236,9 @@ public class DialogSystem : MonoBehaviour
         {
             SetImage();
         }
+
+        defaultBackground = background.sprite;
+        defaultColor = background.color;
 
         PlayerController.Controls.Dialogue.Continue.performed += OnContinue;
         if (continueText != null)
@@ -307,6 +393,9 @@ public class DialogSystem : MonoBehaviour
         {
             contentText.font = defaultDialogFont;
         }
+        Background = cmd.background;
+        BackgroundMultiplier = cmd.backgroundMultiplier;
+        BackgroundTiled = cmd.isTiled;
         SetImage(cmd.image);
     }
 
