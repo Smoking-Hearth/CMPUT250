@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CultistBossController : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class CultistBossController : MonoBehaviour
     }    
     private enum CultistMoveState
     {
-        Left, Middle, Right, Top
+        Left, Middle, Right, Top, Defeated
     }
 
     [SerializeField] private float heatRadius;
@@ -30,6 +31,8 @@ public class CultistBossController : MonoBehaviour
     [SerializeField] private CultistMoveState moveState;
     [SerializeField] private Transform flipObject;
     [SerializeField] private Rigidbody2D cultistRigidbody;
+    [SerializeField] private Collider2D ringCollider;
+    [SerializeField] private Collider2D cultistCollider;
     [SerializeField] private EnemySO cultistInfo;
     [SerializeField] private float acceleration;
     [SerializeField] private Vector2 midRange;
@@ -77,6 +80,12 @@ public class CultistBossController : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator cultistAnimator;
 
+    private bool walking;
+    [SerializeField] private float groundCheckRadius;
+    [SerializeField] private Vector2 groundCheckOffset;
+    [SerializeField] private LayerMask groundLayers;
+    [SerializeField] private UnityEvent winEvent;
+
     private void OnEnable()
     {
         building = FindAnyObjectByType<FinalBoss>();
@@ -101,6 +110,12 @@ public class CultistBossController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (moveState == CultistMoveState.Defeated)
+        {
+            cultistRigidbody.simulated = false;
+            AimSprites(gameObject.MyLevelManager().Player.Position - cultistRigidbody.position);
+            return;
+        }
         if (!activated)
         {
             cultistRigidbody.simulated = false;
@@ -164,7 +179,7 @@ public class CultistBossController : MonoBehaviour
             }
         }
 
-        if (healthComponent.HealthZero)
+        if (healthComponent.HealthZero && moveState != CultistMoveState.Defeated)
         {
             Stun();
         }
@@ -181,6 +196,10 @@ public class CultistBossController : MonoBehaviour
                 LeftSide();
                 break;
             case CultistMoveState.Top:
+                Top();
+                break;            
+            case CultistMoveState.Defeated:
+                DefeatState();
                 break;
         }
 
@@ -374,33 +393,40 @@ public class CultistBossController : MonoBehaviour
         {
             case CultistAttackState.Preparing:
                 PreparingAttackState();
-                FollowPlayerHorizontal(building.CurrentFloorLevel + 2);
+                FollowPlayerHorizontal(building.CurrentFloorLevel + 8.5f);
                 break;
             case CultistAttackState.SweepSpray:
                 if (!sprayMoving)
                 {
+                    cultistAnimator.SetBool("IsWalking", false);
                     SweepSprayState();
                 }
                 else
                 {
-                    FollowPlayerHorizontal(building.CurrentFloorLevel + 2);
+                    FollowPlayerHorizontal(building.CurrentFloorLevel + 8.5f);
                 }
                 break;
             case CultistAttackState.BurstSpray:
                 if (!sprayMoving)
                 {
+                    cultistAnimator.SetBool("IsWalking", false);
                     BurstSprayState();
                 }
                 else
                 {
-                    FollowPlayerHorizontal(building.CurrentFloorLevel + 2);
+                    FollowPlayerHorizontal(building.CurrentFloorLevel + 8.5f);
                 }
                 break;
             case CultistAttackState.Spawning:
-                MoveToPosition(new Vector2(building.transform.position.x + (midRange.x + midRange.y) / 2, building.CurrentFloorLevel + 1.5f));
+                FollowPlayerHorizontal(building.CurrentFloorLevel + 8.5f);
                 SpawnState();
                 break;
         }
+    }
+
+    private void DefeatState()
+    {
+
     }
 
     private void SweepSprayState()
@@ -466,12 +492,21 @@ public class CultistBossController : MonoBehaviour
         {
             building.CurrentFloor.connector.InitiateSpawn();
         }
+        else
+        {
+            spawnTimer = 0;
+            ChooseNextAttack();
+        }
         if (spawnTimer > 0)
         {
             spawnTimer -= Time.fixedDeltaTime;
 
             if (spawnTimer <= 0)
             {
+                if (moveState == CultistMoveState.Top)
+                {
+                    building.CurrentFloor.connector.Spawned = false;
+                }
                 ChooseNextAttack();
             }
         }
@@ -534,7 +569,14 @@ public class CultistBossController : MonoBehaviour
         }
         else
         {
-            targetMovement.x *= 0.92f;
+            if (!walking)
+            {
+                targetMovement.x *= 0.92f;
+            }
+            else
+            {
+                targetMovement.x *= 0.8f;
+            }
         }
 
         if (Mathf.Abs(cultistRigidbody.position.y - targetPos.y) > 1)
@@ -553,13 +595,41 @@ public class CultistBossController : MonoBehaviour
             sprayComponent.AimAttack(nozzle.position, aimAngle);
 
             Vector2 pushDirection = Quaternion.Euler(0, 0, aimAngle) * Vector2.left;
-            addedVelocity += pushDirection * 0.3f;
+
+            if (!walking)
+            {
+                addedVelocity += pushDirection * 0.3f;
+            }
+            else
+            {
+                pushDirection.y *= 20;
+                addedVelocity += pushDirection * 0.3f;
+            }
             sprayMoving = true;
         }
     }
 
     private void Move()
     {
+        if (walking)
+        {
+            cultistAnimator.SetFloat("MoveSpeed", Mathf.Clamp(targetMovement.x, -1, 1));
+            cultistAnimator.SetBool("IsWalking", true);
+            if (Physics2D.OverlapCircle(groundCheckOffset, groundCheckRadius, groundLayers))
+            {
+                addedVelocity.y = 0;
+            }
+            else
+            {
+                addedVelocity.y -= 18 * Time.fixedDeltaTime;
+            }
+            targetMovement.y = 0;
+
+            if (targetMovement.x == 0)
+            {
+                cultistAnimator.SetBool("IsWalking", false);
+            }
+        }
         cultistRigidbody.linearVelocity = targetMovement + addedVelocity;
 
         if (addedVelocity.magnitude > 0.2f)
@@ -586,6 +656,37 @@ public class CultistBossController : MonoBehaviour
 
     private void Stun()
     {
+        if (!walking)
+        {
+            stunTimer = stunDuration;
+            cultistAnimator.SetTrigger("IsDead");
+        }
+        if (moveState == CultistMoveState.Top)
+        {
+            if (!walking)
+            {
+                healthComponent.Max *= 4;
+                flameRing.gameObject.SetActive(false);
+                cultistRigidbody.gravityScale = 1;
+                ringCollider.enabled = false;
+                cultistCollider.enabled = true;
+                walking = true;
+            }
+            else
+            {
+                moveState = CultistMoveState.Defeated;
+                building.Win();
+                winEvent.Invoke();
+                HelicopterDescend.Descend();
+                stunParticles.Play();
+                disableOnStun.SetActive(false);
+                return;
+            }
+        }
+        else
+        {
+            cultistRigidbody.simulated = false;
+        }
         if (stunDialogue.Length > 0)
         {
             int random = Random.Range(0, stunDialogue.Length);
@@ -593,11 +694,8 @@ public class CultistBossController : MonoBehaviour
         }
 
         stunParticles.Play();
-        stunTimer = stunDuration;
-        cultistAnimator.SetTrigger("IsDead");
         flameRing.transform.localScale = Vector2.one * 0.4f;
         disableOnStun.SetActive(false);
-        cultistRigidbody.simulated = false;
     }
 
     public void AimSprites(Vector2 targetPosition)

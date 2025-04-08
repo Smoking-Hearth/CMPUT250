@@ -29,7 +29,7 @@ public class ConnectorFloor : MonoBehaviour
     [SerializeField] private float spawnDelay;
     private float spawnTimer;
 
-    public bool Spawned { get; private set; }
+    public bool Spawned { get; set; }
 
     private void FixedUpdate()
     {

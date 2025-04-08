@@ -260,6 +260,9 @@ MonoBehaviour:
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
     lines:
     - Gah!
     autoContinue: 1
@@ -5414,6 +5417,9 @@ MonoBehaviour:
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
     lines:
     - Why you...
     autoContinue: 1
@@ -15999,6 +16005,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   autoContinueDelaySeconds: 1
   image: {fileID: 0}
+  background: {fileID: 0}
+  thumbnailBackground: {fileID: 0}
+  titleBackground: {fileID: 0}
   imageBackdrop: {fileID: 0}
   defaultDialogFont: {fileID: 0}
 --- !u!1 &5367703430260976846
@@ -36291,6 +36300,9 @@ MonoBehaviour:
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
     image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
     lines:
     - Ugh!
     autoContinue: 1
@@ -36348,7 +36360,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8347204883692994273}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -36371,7 +36383,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -36530,6 +36542,8 @@ MonoBehaviour:
   moveState: 0
   flipObject: {fileID: 3675077333151279148}
   cultistRigidbody: {fileID: 7705770258420024749}
+  ringCollider: {fileID: 1901839925305538807}
+  cultistCollider: {fileID: 7931862390493643716}
   cultistInfo: {fileID: 11400000, guid: cfc9fe2ec98d1fc409a163b7dc146bbe, type: 2}
   acceleration: 0.4
   midRange: {x: -53, y: -7}
@@ -36585,6 +36599,11 @@ MonoBehaviour:
   spawnDuration: 3
   building: {fileID: 0}
   cultistAnimator: {fileID: 7232863385536466245}
+  groundCheckRadius: 0.22
+  groundCheckOffset: {x: 0, y: -0.54}
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &3496495119214777167
 MonoBehaviour:
   m_ObjectHideFlags: 0

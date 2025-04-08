@@ -78,12 +78,17 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] private int bossStartLevel;
 
     [SerializeField] private Slider completionSlider;
-    [SerializeField] private UnityEvent completeEvent;
+    [SerializeField] private UnityEvent winEvent;
     private bool rightSide = true;
 
     void Start()
     {
         Generate();
+    }
+
+    public void Win()
+    {
+        winEvent.Invoke();
     }
 
     public void ShowCompletionSlider(bool set)

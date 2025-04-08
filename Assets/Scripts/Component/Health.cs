@@ -15,6 +15,7 @@ public class Health : MonoBehaviour, IStat
     public virtual float Max 
     {
         get { return max; }
+        set { max = value; }
     }
 
     [SerializeField] protected float current;

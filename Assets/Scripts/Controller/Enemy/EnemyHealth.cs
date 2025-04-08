@@ -17,6 +17,10 @@ public class EnemyHealth : Health, IExtinguishable
         {
             return enemyInfo.maxHealth;
         }
+        set
+        {
+            max = value;
+        }
     }
 
     [SerializeField] private EnemySO enemyInfo;
