@@ -10,6 +10,11 @@ public class AnchorConnector : MonoBehaviour
 
     private void OnEnable()
     {
+
+        if (anchorPoint == null)
+        {
+            anchorPoint = transform.parent;
+        }
         anchorPoint.TryGetComponent(out anchorFire);
 
         if (myRigidbody == null)

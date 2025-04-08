@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections.Generic;
 
@@ -19,10 +20,6 @@ public class FinalBoss : MonoBehaviour
             leftStaircase = left;
         }
     }
-
-    [Min(1)]
-    [SerializeField] private float standByDuration = 1;
-    private float standbyTimer;
 
     [SerializeField] private float baseAltitude;
     [SerializeField] private float floorHeight;
@@ -73,12 +70,18 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] private BossFloor[] bossFloor;
     [SerializeField] private int bossStartLevel;
 
+    [SerializeField] private Slider completionSlider;
     [SerializeField] private UnityEvent completeEvent;
     private bool rightSide = true;
 
     void Start()
     {
         Generate();
+    }
+
+    public void ShowCompletionSlider(bool set)
+    {
+        completionSlider.gameObject.SetActive(set);
     }
 
     private void FixedUpdate()
@@ -94,6 +97,7 @@ public class FinalBoss : MonoBehaviour
             floors[currentFloor].rightStaircase.OpenDoor();
             floors[currentFloor].leftStaircase.OpenDoor();
         }
+        completionSlider.value = (float)currentFloor / floorCount;
     }
 
     public void Generate()
