@@ -11,15 +11,12 @@ public class EnemyHealth : Health, IExtinguishable
     [SerializeField] private Vector2 hurtParticlesOffset;
     [SerializeField] private EnemyHealthBar enemyHealthBar;
     public UnityEvent DefeatEvent;
+    public bool invulnerable;
     public override float Max
     {
         get
         {
             return enemyInfo.maxHealth;
-        }
-        set
-        {
-            max = value;
         }
     }
 
@@ -107,6 +104,10 @@ public class EnemyHealth : Health, IExtinguishable
 
     public virtual void Extinguish(CombustibleKind extinguishClass, float quantity_L)
     {
+        if (invulnerable)
+        {
+            return;
+        }
         if (HealthZero)
         {
             return;

@@ -35,6 +35,9 @@ public class CultistBossController : MonoBehaviour
     [SerializeField] private GameObject disableOnStun;
     [SerializeField] private ParticleSystem flameRing;
     [SerializeField] private DialogueHolder[] stunDialogue;
+    [SerializeField] private DialogueHolder firstStunDialogue;
+    [SerializeField] private DialogueHolder unshieldDialogue;
+    private bool firstStunned;
     private float stunTimer;
 
     [Header("Movement")]
@@ -165,6 +168,10 @@ public class CultistBossController : MonoBehaviour
                 if (moveState != CultistMoveState.Top)
                 {
                     healthFill.color = defaultColor;
+                }
+                else
+                {
+                    healthComponent.invulnerable = false;
                 }
 
                 stunText.text = "";
@@ -698,9 +705,10 @@ public class CultistBossController : MonoBehaviour
         {
             if (!walking)
             {
+                unshieldDialogue.PlayDialogue();
+                healthComponent.invulnerable = true;
                 healthBorder.sprite = unshieldedSprite;
                 healthFill.color = unshieldedColor;
-                healthComponent.Max *= 4;
                 flameRing.gameObject.SetActive(false);
                 cultistRigidbody.gravityScale = 1;
                 ringCollider.enabled = false;
@@ -722,11 +730,16 @@ public class CultistBossController : MonoBehaviour
         {
             healthFill.color = stunnedColor;
             cultistRigidbody.simulated = false;
-        }
-        if (stunDialogue.Length > 0)
-        {
-            int random = Random.Range(0, stunDialogue.Length);
-            stunDialogue[random].PlayDialogue();
+            if (!firstStunned)
+            {
+                firstStunned = true;
+                firstStunDialogue.PlayDialogue();
+            }
+            else if (stunDialogue.Length > 0)
+            {
+                int random = Random.Range(0, stunDialogue.Length);
+                stunDialogue[random].PlayDialogue();
+            }
         }
 
         stunText.text = "STUNNED!";
