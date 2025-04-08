@@ -148,7 +148,11 @@ public class CultistBossController : MonoBehaviour
 
         if (stunTimer > 0)
         {
-            cultistRigidbody.linearVelocity = Vector2.zero;
+            if (!walking)
+            {
+                cultistRigidbody.linearVelocity = Vector2.zero;
+            }
+
             stunTimer -= Time.fixedDeltaTime;
             healthComponent.Heal(healthComponent.Max / stunDuration * Time.fixedDeltaTime);
 
@@ -408,6 +412,12 @@ public class CultistBossController : MonoBehaviour
 
     private void Top()
     {
+        if (cultistRigidbody.position.x > midRange.y || cultistRigidbody.position.x < midRange.x)
+        {
+            MoveToPosition(new Vector2(building.transform.position.x + (midRange.x + midRange.y) / 2, building.CurrentFloorLevel + 8.5f));
+            return;
+        }
+
         switch (currentAttackState)
         {
             case CultistAttackState.Preparing:
@@ -682,26 +692,29 @@ public class CultistBossController : MonoBehaviour
         }
         if (moveState == CultistMoveState.Top)
         {
-            if (!walking)
+            if (cultistRigidbody.position.x < midRange.y && cultistRigidbody.position.x > midRange.x)
             {
-                healthBorder.sprite = unshieldedSprite;
-                healthFill.color = unshieldedColor;
-                healthComponent.Max *= 4;
-                flameRing.gameObject.SetActive(false);
-                cultistRigidbody.gravityScale = 1;
-                ringCollider.enabled = false;
-                cultistCollider.enabled = true;
-                walking = true;
-            }
-            else
-            {
-                moveState = CultistMoveState.Defeated;
-                building.Win();
-                winEvent.Invoke();
-                HelicopterDescend.Descend();
-                stunParticles.Play();
-                disableOnStun.SetActive(false);
-                return;
+                if (!walking)
+                {
+                    healthBorder.sprite = unshieldedSprite;
+                    healthFill.color = unshieldedColor;
+                    healthComponent.Max *= 4;
+                    flameRing.gameObject.SetActive(false);
+                    cultistRigidbody.gravityScale = 1;
+                    ringCollider.enabled = false;
+                    cultistCollider.enabled = true;
+                    walking = true;
+                }
+                else
+                {
+                    moveState = CultistMoveState.Defeated;
+                    building.Win();
+                    winEvent.Invoke();
+                    HelicopterDescend.Descend();
+                    stunParticles.Play();
+                    disableOnStun.SetActive(false);
+                    return;
+                }
             }
         }
         else
@@ -715,7 +728,7 @@ public class CultistBossController : MonoBehaviour
             stunDialogue[random].PlayDialogue();
         }
 
-        stunText.text = "STUNNED";
+        stunText.text = "STUNNED!";
         portrait.sprite = stunnedPortrait;
         stunParticles.Play();
         flameRing.transform.localScale = Vector2.one * 0.4f;
