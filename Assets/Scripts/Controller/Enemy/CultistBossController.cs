@@ -253,7 +253,7 @@ public class CultistBossController : MonoBehaviour
     {
         if (!building.CurrentFloor.rightStaircase.GlassBroken)
         {
-            Vector2 targetPos = new Vector2(building.transform.position.x + midRange.x + 23, building.CurrentFloorLevel);
+            Vector2 targetPos = new Vector2(building.transform.position.x + midRange.x + 18, building.CurrentFloorLevel);
             AimSprites(gameObject.MyLevelManager().Player.Position);
             MoveToPosition(targetPos);
             building.CurrentFloor.rightStaircase.ActivateArm();
@@ -264,7 +264,7 @@ public class CultistBossController : MonoBehaviour
         {
             case CultistAttackState.Preparing:
                 PreparingAttackState();
-                FollowPlayerVertical(building.transform.position.x + midRange.y + 23);
+                FollowPlayerVertical(building.transform.position.x + midRange.y + 18);
                 break;
             case CultistAttackState.SweepSpray:
                 if (!sprayMoving)
@@ -349,7 +349,7 @@ public class CultistBossController : MonoBehaviour
                 }
                 else
                 {
-                    FollowPlayerVertical(building.transform.position.x + midRange.x - 23);
+                    FollowPlayerVertical(building.transform.position.x + midRange.x - 18);
                 }
                 break;
             case CultistAttackState.BurstSpray:
@@ -359,7 +359,7 @@ public class CultistBossController : MonoBehaviour
                 }
                 else
                 {
-                    FollowPlayerVertical(building.transform.position.x + midRange.x - 23);
+                    FollowPlayerVertical(building.transform.position.x + midRange.x - 18);
                 }
                 break;
             case CultistAttackState.Spawning:
@@ -367,6 +367,42 @@ public class CultistBossController : MonoBehaviour
                 break;
         }
     }
+
+    private void Top()
+    {
+        switch (currentAttackState)
+        {
+            case CultistAttackState.Preparing:
+                PreparingAttackState();
+                FollowPlayerHorizontal(building.CurrentFloorLevel + 2);
+                break;
+            case CultistAttackState.SweepSpray:
+                if (!sprayMoving)
+                {
+                    SweepSprayState();
+                }
+                else
+                {
+                    FollowPlayerHorizontal(building.CurrentFloorLevel + 2);
+                }
+                break;
+            case CultistAttackState.BurstSpray:
+                if (!sprayMoving)
+                {
+                    BurstSprayState();
+                }
+                else
+                {
+                    FollowPlayerHorizontal(building.CurrentFloorLevel + 2);
+                }
+                break;
+            case CultistAttackState.Spawning:
+                MoveToPosition(new Vector2(building.transform.position.x + (midRange.x + midRange.y) / 2, building.CurrentFloorLevel + 1.5f));
+                SpawnState();
+                break;
+        }
+    }
+
     private void SweepSprayState()
     {
         targetMovement = Vector2.zero;

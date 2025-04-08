@@ -37,6 +37,8 @@ public class FinalBoss : MonoBehaviour
         }
     }
 
+    [SerializeField] private ParticleSystem rainParticles;
+
     public BossFloor CurrentFloor
     {
         get
@@ -87,6 +89,7 @@ public class FinalBoss : MonoBehaviour
     private void FixedUpdate()
     {
         CheckCurrentFloor();
+        Arms();
         if (gameObject.MyLevelManager().levelState == LevelState.Playing)
         {
             highestClimbedFloor = currentFloor;
@@ -98,6 +101,11 @@ public class FinalBoss : MonoBehaviour
             floors[currentFloor].leftStaircase.OpenDoor();
         }
         completionSlider.value = (float)currentFloor / floorCount;
+
+        if (Completion >= 1 && !rainParticles.isPlaying)
+        {
+            rainParticles.Play();
+        }
     }
 
     public void Generate()
@@ -197,6 +205,14 @@ public class FinalBoss : MonoBehaviour
     private void CheckCurrentFloor()
     {
         float playerY = gameObject.MyLevelManager().Player.Position.y - baseAltitude;
-        currentFloor = Mathf.Clamp(Mathf.CeilToInt(playerY / buildingHeight * floorCount), 0, floorCount);
+        currentFloor = Mathf.Clamp(Mathf.CeilToInt(playerY / buildingHeight * floorCount), 0, floorCount - 1);
+    }
+
+    private void Arms()
+    {
+        if (!CurrentFloor.rightStaircase.GlassBroken)
+        {
+            CurrentFloor.rightStaircase.ActivateArm();
+        }
     }
 }
