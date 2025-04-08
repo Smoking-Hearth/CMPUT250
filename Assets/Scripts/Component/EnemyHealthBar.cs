@@ -12,7 +12,11 @@ public class EnemyHealthBar : MonoBehaviour
     public void ActivateBar()
     {
         overlay.SetActive(true);
-        title.text = enemyName;
+
+        if (enemyName != "")
+        {
+            title.text = enemyName;
+        }
     }    
     public void DeactivateBar()
     {

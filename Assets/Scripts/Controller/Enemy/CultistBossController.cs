@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class CultistBossController : MonoBehaviour
@@ -17,6 +19,16 @@ public class CultistBossController : MonoBehaviour
 
     [Header("Stun")]
     [SerializeField] private EnemyHealth healthComponent;
+    [SerializeField] private TMP_Text stunText;
+    [SerializeField] private Image portrait;
+    [SerializeField] private Sprite normalPortrait;
+    [SerializeField] private Sprite stunnedPortrait;
+    [SerializeField] private Image healthFill;
+    [SerializeField] private Image healthBorder;
+    [SerializeField] private Color stunnedColor;
+    [SerializeField] private Color defaultColor;
+    [SerializeField] private Color unshieldedColor;
+    [SerializeField] private Sprite unshieldedSprite;
     [SerializeField] private float stunDuration;
     [SerializeField] private ParticleSystem stunParticles;
     [SerializeField] private ParticleSystem respawnParticles;
@@ -142,6 +154,13 @@ public class CultistBossController : MonoBehaviour
 
             if (stunTimer <= 0)
             {
+                if (moveState != CultistMoveState.Top)
+                {
+                    healthFill.color = defaultColor;
+                }
+
+                stunText.text = "";
+                portrait.sprite = normalPortrait;
                 respawnParticles.Play();
                 healthComponent.ResetHealth();
                 cultistAnimator.SetTrigger("Respawn");
@@ -665,6 +684,8 @@ public class CultistBossController : MonoBehaviour
         {
             if (!walking)
             {
+                healthBorder.sprite = unshieldedSprite;
+                healthFill.color = unshieldedColor;
                 healthComponent.Max *= 4;
                 flameRing.gameObject.SetActive(false);
                 cultistRigidbody.gravityScale = 1;
@@ -685,6 +706,7 @@ public class CultistBossController : MonoBehaviour
         }
         else
         {
+            healthFill.color = stunnedColor;
             cultistRigidbody.simulated = false;
         }
         if (stunDialogue.Length > 0)
@@ -693,6 +715,8 @@ public class CultistBossController : MonoBehaviour
             stunDialogue[random].PlayDialogue();
         }
 
+        stunText.text = "STUNNED";
+        portrait.sprite = stunnedPortrait;
         stunParticles.Play();
         flameRing.transform.localScale = Vector2.one * 0.4f;
         disableOnStun.SetActive(false);

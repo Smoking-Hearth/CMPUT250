@@ -36528,7 +36528,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heatRadius: 2
   healthComponent: {fileID: 3496495119214777167}
-  stunDuration: 5
+  portrait: {fileID: 0}
+  normalPortrait: {fileID: 0}
+  stunnedPortrait: {fileID: 0}
+  healthFill: {fileID: 0}
+  healthBorder: {fileID: 0}
+  stunnedColor: {r: 0, g: 0, b: 0, a: 0}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  unshieldedColor: {r: 0, g: 0, b: 0, a: 0}
+  unshieldedSprite: {fileID: 0}
+  stunDuration: 8
   stunParticles: {fileID: 8143578937838793435}
   respawnParticles: {fileID: 1221096214471687439}
   disableOnStun: {fileID: 346148279586995656}
@@ -36604,6 +36613,9 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 64
+  winEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3496495119214777167
 MonoBehaviour:
   m_ObjectHideFlags: 0
