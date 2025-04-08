@@ -77,12 +77,17 @@ public class CheckpointSystem: MonoBehaviour
         {
             if (Vector2.Distance(checkpoints[i].position, playerPos) <= triggerDist)
             {
-                current = i;
+                ObtainCheckpoint(i);
             }
         }
         if (old != current)
         {
             SaveState();
         }
+    }
+
+    public void ObtainCheckpoint(int index)
+    {
+        current = index;
     }
 }
