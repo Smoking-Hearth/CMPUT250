@@ -227,9 +227,7 @@ MonoBehaviour:
     backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
     isTiled: 0
     lines:
-    - "I\u2019m surprised you made it through that."
-    - "I\u2019ll leave you alone for now, but mark my words,"
-    - We will reignite.
+    - AGH!!!
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -243,7 +241,52 @@ MonoBehaviour:
     backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
     isTiled: 0
     lines:
-    - "Finally\u2026 silence."
+    - Hold on! Let me help you!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
+    lines:
+    - No!
+    - Don't touch me!
+    - I'd rather die than be saved by an imbecile like you!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
+    lines:
+    - But I-
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
+    lines:
+    - ...
+    - Dang it.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -2386,7 +2429,7 @@ GameObject:
   - component: {fileID: 702591165}
   - component: {fileID: 702591166}
   m_Layer: 0
-  m_Name: PostBossAppear
+  m_Name: FightStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2430,24 +2473,10 @@ MonoBehaviour:
     backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
     isTiled: 0
     lines:
-    - "\u2026We reserve one of our loudest heralds."
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Fire Chief
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "Hey, kid, this is the chief! We see you, but we\u2019re also staring at a
-      massive Infernal!"
-    - "I hate to say this but unless you can take care of that thing, we can\u2019t
-      safely pick you up."
+    - "And so we\u2019re here\u2026"
+    - 'When are you going to realize that their gift is as immortal as they are!?
+
+'
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -2461,9 +2490,80 @@ MonoBehaviour:
     backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
     isTiled: 0
     lines:
-    - "Tell me, little Icarus, now that you\u2019re so close to the sun, will you
-      accept their gifts?"
-    - Or will you reject them and let yourself crash into the sea?
+    - How unfortunate, because unless you possess a power of equal measure,
+    - 'I will continue to reignite over and over and over again!
+
+'
+    - And there is nothing you can do to stop me!
+    - 'AHAHAHAHAHA!!!
+
+'
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
+    lines:
+    - AHAHA-
+    - Huh?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
+    lines:
+    - ...
+    - ......
+    - "No matter\u2026"
+    - This must be a test! One more test to prove that I am worthy!
+    - I will prevail and leave them no choice but to bless me!
+    - Why hast thou forsaken me!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
+    lines:
+    - "Looks like your high and mighty gods aren\u2019t so mighty after all."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
+    lines:
+    - HA HA HA!!!
+    - HA HA HA!!!
+    - HA HA HA!!!
+    - HA HA HA!!!
+    - HA HA HA!!!
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -2477,13 +2577,15 @@ MonoBehaviour:
     backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
     isTiled: 0
     lines:
-    - Sorry, but my mind is already made.
-    - I will live.
+    - Your final test is to defeat a rookie firefighter who just learned about the
+      existence of the Infernals today?
+    - Wow.
+    - You really have your work cut out for you.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Prophet
+  - title: Cultist
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2492,8 +2594,42 @@ MonoBehaviour:
     backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
     isTiled: 0
     lines:
-    - HA HA HA!!!
-    - So be it.
+    - You know what pisses me off the most about you?
+    - "It\u2019s the fact that you move through life as if you\u2019re normal, as
+      if you\u2019re just like everyone else!"
+    - 'But the fact of the matter is that you too are touched by them. '
+    - "Not the Mother or Father, no, but something else\u2026"
+    - And that makes you very dangerous to us Prophets.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
+    lines:
+    - 'Whatever dude. '
+    - "Let\u2019s just get this over with."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
+    lines:
+    - Fine.
+    - Let us finish this.
     - "Just remember\u2026"
     - "In the ashes\u2026"
     - WE. ARE. REBORN!!!
@@ -2854,7 +2990,7 @@ MonoBehaviour:
     isTiled: 0
     lines:
     - "Oh, I know that look\u2026"
-    - "You got in touch with a pinecone, didn\u2019t you?"
+    - "You got in touch with a Pinecone, didn\u2019t you?"
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -2976,7 +3112,7 @@ MonoBehaviour:
     backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
     isTiled: 0
     lines:
-    - "Woah, don\u2019t tell me I\u2019ve got a pinecone with me, ha ha."
+    - "Woah, don\u2019t tell me I\u2019ve got a Pinecone with me, ha ha."
     - Well, if you have to know.
     - Whether we deserve to exist,
     - 'Whether we should all just light ourselves on fire, '
@@ -3106,7 +3242,7 @@ GameObject:
   - component: {fileID: 830132602}
   - component: {fileID: 830132603}
   m_Layer: 0
-  m_Name: TopOfTower
+  m_Name: FirstMeeting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3147,11 +3283,10 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: 0}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.05882353, g: 0.05882353, b: 0.33333334, a: 0}
     isTiled: 0
     lines:
-    - "Finally\u2026"
-    - "Man\u2026 the city really is lost\u2026"
+    - "You\u2026"
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -3162,10 +3297,10 @@ MonoBehaviour:
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     image: {fileID: 0}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.32941177, g: 0.05882353, b: 0.05882353, a: 0}
     isTiled: 0
     lines:
-    - Do you see now?
+    - Do you understand now?
     - Their children are unstoppable.
     autoContinue: 0
     DoEvent:
@@ -3191,7 +3326,7 @@ MonoBehaviour:
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     image: {fileID: 0}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.3301887, g: 0.05882353, b: 0.05882353, a: 0}
     isTiled: 0
     lines:
     - Faith!?
@@ -3199,10 +3334,7 @@ MonoBehaviour:
     - You think that our group prays to something that may or may not exist!?
     - No.
     - "We have undeniable proof of our \u201Cgods\u201D."
-    - The proof lights up every shadow.
-    - Follows where you roam.
-    - Cleanses the blight.
-    - Melts the flesh right from your bones.
+    - The proof has stood against you at every step of your journey.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -3297,6 +3429,56 @@ MonoBehaviour:
     - For the Christians, it is the angels.
     - For all of mankind, we have the Infernals,
     - "And for you\u2026"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
+    lines:
+    - "\u2026I will be your personal herald!"
+    - ' Witness me! Father Sol has blessed me with his radiance!'
+    - "Tell me, little Icarus, now that you\u2019re standing in front of the power
+      of the sun,"
+    - Will you accept their gifts like I have and ascend into the glorious House
+      of the World?
+    - Or will you reject them and let yourself plummet towards the Sea of Darkness?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
+    lines:
+    - ' Sorry, but my mind is already made.'
+    - I will live.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: 0}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    isTiled: 0
+    lines:
+    - "So be it. I\u2019ll just have to force you to where they reside."
+    - Give Father Sol my regards.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -11087,7 +11269,7 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: '"Pain in my butt"'
+  - title: '"I thought we were done"'
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
