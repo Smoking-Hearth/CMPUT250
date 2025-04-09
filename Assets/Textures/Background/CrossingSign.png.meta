@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 90f79a6a0b186c745942f2e19374c064
+guid: 4530dd883e2848743840c586a23eecba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7966536389354789926
-    second: Balcony_0
-  - first:
-      213: 6862496155846208488
-    second: Balcony_1
+      213: 7543335823874450282
+    second: CrossingSign_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 32
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -116,89 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Balcony_0
+      name: CrossingSign_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 19
-        width: 40
-        height: 44
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 62c17b933a2de8e60800000000000000
-      internalID: 7966536389354789926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Balcony_1
-      rect:
-        serializedVersion: 2
-        x: 45
-        y: 19
-        width: 39
-        height: 44
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8eb62b905eb7c3f50800000000000000
-      internalID: 6862496155846208488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Balcony_2
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 7
         y: 0
-        width: 62
-        height: 18
+        width: 18
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 6, y: 0, z: 6, w: 0}
+      border: {x: 0, y: 6, z: 0, w: 23}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: fb44e766c69b35540b6cb2d60a097c4f
-      internalID: -94733657
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Balcony_3
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 2
-        width: 60
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 6, y: 0, z: 6, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38642c25e8a92ff40bc942737cc49447
-      internalID: 723775526
+      spriteID: a63e38b27ff4fa860800000000000000
+      internalID: 7543335823874450282
       vertices: []
       indices: 
       edges: []
@@ -207,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6cc8db92db29f8d4eaf70e6b98405bbc
+    spriteID: 37474825920946d489d3b86aa8840572
     internalID: 0
     vertices: []
     indices: 
@@ -217,10 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Balcony_0: 7966536389354789926
-      Balcony_1: 6862496155846208488
-      Balcony_2: -94733657
-      Balcony_3: 723775526
+      CrossingSign_0: 7543335823874450282
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

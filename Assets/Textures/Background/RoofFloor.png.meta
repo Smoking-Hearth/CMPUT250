@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 90f79a6a0b186c745942f2e19374c064
+guid: b4fb23ef6a9d4e04fa00420d5d909783
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7966536389354789926
-    second: Balcony_0
+      213: -1529104656589251861
+    second: RoofFloor_0
   - first:
-      213: 6862496155846208488
-    second: Balcony_1
+      213: -7944831696277855655
+    second: RoofFloor_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,89 +116,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Balcony_0
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 19
-        width: 40
-        height: 44
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 62c17b933a2de8e60800000000000000
-      internalID: 7966536389354789926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Balcony_1
-      rect:
-        serializedVersion: 2
-        x: 45
-        y: 19
-        width: 39
-        height: 44
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8eb62b905eb7c3f50800000000000000
-      internalID: 6862496155846208488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Balcony_2
+      name: RoofFloor_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 62
-        height: 18
+        y: 4
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 6, y: 0, z: 6, w: 0}
+      border: {x: 0, y: 4, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: fb44e766c69b35540b6cb2d60a097c4f
-      internalID: -94733657
+      spriteID: bea1a979a6787cae0800000000000000
+      internalID: -1529104656589251861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Balcony_3
+      name: RoofFloor_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 2
-        width: 60
-        height: 4
+        x: 37
+        y: 7
+        width: 32
+        height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 6, y: 0, z: 6, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 38642c25e8a92ff40bc942737cc49447
-      internalID: 723775526
+      spriteID: 952281f6aa94eb190800000000000000
+      internalID: -7944831696277855655
       vertices: []
       indices: 
       edges: []
@@ -207,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6cc8db92db29f8d4eaf70e6b98405bbc
+    spriteID: d772b6f03fc07f94485b1345b93b3dcb
     internalID: 0
     vertices: []
     indices: 
@@ -217,10 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Balcony_0: 7966536389354789926
-      Balcony_1: 6862496155846208488
-      Balcony_2: -94733657
-      Balcony_3: 723775526
+      RoofFloor_0: -1529104656589251861
+      RoofFloor_1: -7944831696277855655
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
