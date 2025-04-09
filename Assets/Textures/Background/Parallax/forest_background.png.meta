@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 882f28d5c3eb2324d97349f175443ef2
+guid: da8a4780f00995845849cd45eaf502ea
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5854704723471297246
-    second: helicopter_sprite_0
-  - first:
-      213: 5141404487856097710
-    second: helicopter_sprite_1
-  - first:
-      213: 8700398568100643459
-    second: helicopter_sprite_2
-  - first:
-      213: 6212639871189357638
-    second: helicopter_sprite_3
-  - first:
-      213: -8412233910068811209
-    second: helicopter_sprite_4
+      213: 5053286547175880473
+    second: forest_background_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -63,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -125,89 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: helicopter_sprite_0
+      name: forest_background_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 74
-        width: 252
-        height: 69
+        y: 0
+        width: 600
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: edaee4b2de6104150800000000000000
-      internalID: 5854704723471297246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: helicopter_sprite_1
-      rect:
-        serializedVersion: 2
-        x: 257
-        y: 75
-        width: 252
-        height: 69
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ea903413420f95740800000000000000
-      internalID: 5141404487856097710
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: helicopter_sprite_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 3
-        width: 252
-        height: 69
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6449baffb0bb73650800000000000000
-      internalID: 6212639871189357638
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: helicopter_sprite_4
-      rect:
-        serializedVersion: 2
-        x: 257
-        y: 2
-        width: 252
-        height: 69
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 73a6ad624ddb14b80800000000000000
-      internalID: -8412233910068811209
+      spriteID: 917bda85751e02640800000000000000
+      internalID: 5053286547175880473
       vertices: []
       indices: 
       edges: []
@@ -216,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7e3be39a57721564f8bb0a6d3139de61
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -226,11 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      helicopter_sprite_0: 5854704723471297246
-      helicopter_sprite_1: 5141404487856097710
-      helicopter_sprite_2: 8700398568100643459
-      helicopter_sprite_3: 6212639871189357638
-      helicopter_sprite_4: -8412233910068811209
+      forest_background_0: 5053286547175880473
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

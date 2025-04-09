@@ -4,10 +4,11 @@ public class HelicopterDescend : MonoBehaviour
 {
     private Vector2 startPosition;
     [SerializeField] private Transform attachPoint;
-    [SerializeField] private Transform endPoint;
-    [SerializeField] private float duration;
-    private static float descendTimer;
+    [SerializeField] private Rigidbody2D helicopterRigidbody;
+    [SerializeField] private Transform descendPoint;
+    [SerializeField] private Transform leavePoint;
     private bool boarded;
+    private static bool descend;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
@@ -17,31 +18,47 @@ public class HelicopterDescend : MonoBehaviour
 
     public static void Descend()
     {
-        descendTimer = 10;
+        descend = true;
     }
 
     public void Enter()
     {
-        gameObject.MyLevelManager().Player.Movement.SetAttached(transform);
-        gameObject.MyLevelManager().Player.Movement.transform.position = attachPoint.position;
+        gameObject.MyLevelManager().Player.Movement.SetAttached(helicopterRigidbody);
+        gameObject.MyLevelManager().Player.Movement.PlacePlayer(attachPoint.position);
         boarded = true;
-        descendTimer = 10;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (descendTimer > 0)
+        if (!descend)
         {
-            descendTimer -= Time.fixedDeltaTime;
+            return;
+        }
+        if (boarded)
+        {
+            Vector2 direction = (Vector2)leavePoint.position - helicopterRigidbody.position;
 
-            if (boarded)
+            if (direction.magnitude > 0.5f)
             {
-                transform.position = Vector2.Lerp(startPosition, endPoint.position, descendTimer / duration);
+                helicopterRigidbody.linearVelocity = direction * Time.fixedDeltaTime;
             }
             else
             {
-                transform.position = Vector2.Lerp(endPoint.position, startPosition, descendTimer / duration);
+                helicopterRigidbody.linearVelocity *= 0.98f;
+            }
+        }
+        else
+        {
+            Vector2 direction = (Vector2)descendPoint.position - helicopterRigidbody.position;
+
+            if (direction.magnitude > 0.5f)
+            {
+                helicopterRigidbody.linearVelocity = direction * Time.fixedDeltaTime;
+            }
+            else
+            {
+                helicopterRigidbody.linearVelocity *= 0.98f;
             }
         }
     }
