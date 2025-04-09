@@ -1,5 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Splines.Interpolators;
+using LitMotion;
 
 public enum DamageType
 {
@@ -29,6 +33,8 @@ public class PlayerHealth : Health
     private float coolTimer;
     private float playerTemperature;
 
+    [SerializeField] private BraindamageEffect braindamageEffect;
+
     public delegate void OnDeath();
     public static event OnDeath onDeath;
 
@@ -53,6 +59,7 @@ public class PlayerHealth : Health
         healthBar.Max = Max;
         healthBar.Min = Min;
         healthBar.Current = Current;
+        braindamageEffect.Awake();
     }
 
     private void OnEnable()
@@ -90,6 +97,8 @@ public class PlayerHealth : Health
             zapTimer -= Time.fixedDeltaTime;
             zapEffect.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, zapTimer / zapDurationSeconds * 1.2f);
         }
+
+        braindamageEffect?.FixedUpdate();
 
         if (playerTemperature > 0)
         {
@@ -182,6 +191,7 @@ public class PlayerHealth : Health
         if (attackDistance < hurtRadius + attackInfo.radius)
         {
             Current -= attackInfo.damage;
+            braindamageEffect?.Hurt(attackInfo.damage);
             invulnerableTimer = invulnerableDuration;
 
             //Play hurt sound depending on damage type
@@ -189,7 +199,7 @@ public class PlayerHealth : Health
 
             //Player knockback
             float closeness = Mathf.Clamp01(1 - attackDistance / (attackInfo.radius + hurtRadius));
-            Vector2 knockback = new Vector2(closeness * directionFromSource.normalized.x * attackInfo.knockbackPower.x, attackInfo.knockbackPower.y);
+            Vector2 knockback = new(closeness * directionFromSource.normalized.x * attackInfo.knockbackPower.x, attackInfo.knockbackPower.y);
             gameObject.MyLevelManager().Player.Movement.PushPlayer(knockback);
 
             switch (attackInfo.damageType)
@@ -206,5 +216,65 @@ public class PlayerHealth : Health
                     break;
             }
         }
+    }
+}
+
+[System.Serializable]
+class BraindamageEffect 
+{
+    [SerializeField] private Volume volume;
+    [SerializeField] private float decayAmount;
+    [SerializeField] private float maxEffectAtDamage;
+    
+    private FilmGrain filmGrain;
+    private LensDistortion lensDistortion;
+    private ColorAdjustments colorAdjustments;
+    private DepthOfField depthOfField;
+    private ChromaticAberration chromaticAberration;
+
+    private float accumulatedDamage = 0f;
+
+    public void Awake()
+    {
+        if (volume == null) return;
+        volume.profile.TryGet(out filmGrain);
+        volume.profile.TryGet(out lensDistortion);
+        volume.profile.TryGet(out colorAdjustments);
+        if (volume.profile.TryGet(out depthOfField))
+        {
+            depthOfField.mode = new DepthOfFieldModeParameter(DepthOfFieldMode.Gaussian);
+        }
+        volume.profile.TryGet(out chromaticAberration);
+    }
+
+    public void Hurt(float damage)
+    {
+        accumulatedDamage += damage;
+    }
+
+    public void FixedUpdate()
+    {
+        if (accumulatedDamage <= 1e-6)
+        {
+            accumulatedDamage = 0f;
+            volume.enabled = false;
+            return;
+        }
+
+        volume.enabled = true;
+
+        float x = Mathf.Clamp01(accumulatedDamage / maxEffectAtDamage);
+
+        filmGrain.intensity.value = EaseUtility.InOutSine(x);
+
+        lensDistortion.intensity.value = EaseUtility.InOutSine(x) * 0.34f;
+
+        colorAdjustments.postExposure.value = EaseUtility.InOutSine(x) * 1.3f;
+        colorAdjustments.contrast.value = EaseUtility.InOutSine(x) * 40f;
+        colorAdjustments.saturation.value = EaseUtility.InOutSine(x) * 40f;
+
+        chromaticAberration.intensity.value = EaseUtility.InOutSine(x);
+
+        accumulatedDamage -= decayAmount * Time.fixedDeltaTime;
     }
 }
