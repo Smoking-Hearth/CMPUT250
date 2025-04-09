@@ -4272,7 +4272,19 @@ MonoBehaviour:
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1903030325203730117}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Activated
+            m_BoolArgument: 0
+          m_CallState: 2
   - title: Me
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
@@ -4302,7 +4314,31 @@ MonoBehaviour:
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 4863606502406178702}
+          m_TargetAssemblyTypeName: CultistBossController, Assembly-CSharp
+          m_MethodName: Activate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2660735927030491082}
+          m_TargetAssemblyTypeName: Fire, Assembly-CSharp
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &2214939225904716339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4646,6 +4682,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5809417443693588684, guid: 880be250c649fbd42ae0a185f9b15c42, type: 3}
   m_PrefabInstance: {fileID: 6703612384736917051}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2660735927030491082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8783381328363164145, guid: 880be250c649fbd42ae0a185f9b15c42, type: 3}
+  m_PrefabInstance: {fileID: 6703612384736917051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 457b0cc37c9a1e8469cebe37554f51d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6875452725579930191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5313,6 +5360,11 @@ MonoBehaviour:
   title: {fileID: 738837174202113321}
   enemyName: 
   slider: {fileID: 2310953108341125341}
+--- !u!95 &1903030325203730117 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7232863385536466245, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
+  m_PrefabInstance: {fileID: 9081685747295384448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3645853278466915277 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5516924041181677645, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
@@ -5322,6 +5374,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4863606502406178702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
+  m_PrefabInstance: {fileID: 9081685747295384448}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999688684115184993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488f09a0501dfed4bbb89c36590854ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &7128761120518472853 stripped
