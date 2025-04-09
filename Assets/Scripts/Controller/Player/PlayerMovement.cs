@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isJumping;
 
-    private Rigidbody2D attached;
+    private Transform attached;
 
     private List<Ground> disabledPlatforms = new List<Ground>();
 
@@ -286,11 +286,6 @@ public class PlayerMovement : MonoBehaviour
 
         CreateRunDust(player);
 
-        if (attached != null)
-        {
-            playerRigidbody.linearVelocity += attached.linearVelocity;
-        }
-
         // Sliding around
         if (addedVelocity.x != 0)
         {   
@@ -320,9 +315,11 @@ public class PlayerMovement : MonoBehaviour
         transform.position = placePosition;
     }
 
-    public void SetAttached(Rigidbody2D attach)
+    public void SetAttached(Transform attach)
     {
+        freeze = true;
         attached = attach;
+        transform.parent = attach;
     }
 
     public void StartPush()
