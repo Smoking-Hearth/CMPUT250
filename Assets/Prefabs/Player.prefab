@@ -1498,6 +1498,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   autoContinueDelaySeconds: 1
   image: {fileID: 0}
+  background: {fileID: 0}
+  thumbnailBackground: {fileID: 0}
+  titleBackground: {fileID: 0}
   imageBackdrop: {fileID: 0}
   defaultDialogFont: {fileID: 0}
 --- !u!1 &5442382142759424120
@@ -12513,6 +12516,10 @@ MonoBehaviour:
   maxTemperature: 100
   coolDelaySeconds: 3
   coolRate: 50
+  braindamageEffect:
+    volume: {fileID: 0}
+    decayAmount: 3.74
+    maxEffectAtDamage: 12
 --- !u!82 &7902055416642925764
 AudioSource:
   m_ObjectHideFlags: 0
