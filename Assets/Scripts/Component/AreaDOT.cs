@@ -53,7 +53,7 @@ public class AreaDOT : MonoBehaviour
             }
             else
             {
-                targets[i].GetComponent<IExtinguishable>().Extinguish(damageClass, damage);
+                targets[i].GetComponent<IExtinguishable>().Extinguish(damageClass, damage * PlayerShoot.DamageMultiplier);
             }
         }
         damageCounter++;
