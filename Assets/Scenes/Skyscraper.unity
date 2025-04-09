@@ -222,9 +222,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - AGH!!!
@@ -236,9 +236,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - Hold on! Let me help you!
@@ -247,12 +247,12 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - title: Cultist
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - No!
@@ -263,12 +263,12 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - title: Me
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - But we can help you!
@@ -279,12 +279,12 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - title: Me
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - ...
@@ -295,11 +295,11 @@ MonoBehaviour:
         m_Calls: []
   - title: Fire Chief
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
-    startSound: {fileID: 0}
+    startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
     isTiled: 0
     lines:
     - "Heads up, kid. We\u2019re coming in."
@@ -2498,7 +2498,7 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
     backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
     isTiled: 0
@@ -2511,23 +2511,18 @@ MonoBehaviour:
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
-  - title: Prophet
-    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
-    - How unfortunate, because unless you possess a power of equal measure,
-    - 'I will continue to reignite over and over and over again!
-
-'
-    - And there is nothing you can do to stop me!
-    - 'AHAHAHAHAHA!!!
-
-'
+    - I told you then and I say it now.
+    - "I\u2019ve chosen to make it out of this alive and no amount of your delusional
+      rants will ever convince me."
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -2536,9 +2531,28 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - How unfortunate, because unless you possess a power of equal measure,
+    - 'I will continue to reignite over and over and over again!
+
+'
+    - And there is nothing you can do to stop me!
+    - AHAHAHAHAHA!!!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - AHAHA-
@@ -2551,28 +2565,28 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
-    - ...
-    - ......
-    - "No matter\u2026"
-    - This must be a test! One more test to prove that I am worthy!
-    - I will prevail and leave them no choice but to bless me!
+    - How is this possible!?
+    - 'Their gifts! '
+    - "They\u2019re supposed to be unstoppable!"
+    - So how!?
+    - Father! Mother!
     - Why hast thou forsaken me!
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
   - title: Me
-    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - "Looks like your high and mighty gods aren\u2019t so mighty after all."
@@ -2584,16 +2598,16 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
-    - HA HA HA!!!
-    - HA HA HA!!!
-    - HA HA HA!!!
-    - HA HA HA!!!
-    - HA HA HA!!!
+    - ...
+    - ......
+    - "No matter\u2026"
+    - This must be a test! One more test to prove that I am worthy!
+    - I will prevail and leave them no choice but to bless me!
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -2602,9 +2616,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - Your final test is to defeat a rookie firefighter who just learned about the
@@ -2619,9 +2633,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - You know what pisses me off the most about you?
@@ -2638,9 +2652,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - 'Whatever dude. '
@@ -2653,9 +2667,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - Fine.
@@ -2985,9 +2999,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
     isTiled: 0
     lines:
     - "Look at that, kid, you made it. You\u2019re in for a promotion or two if I
@@ -3000,9 +3014,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - "Yeah\u2026"
@@ -3014,9 +3028,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
     isTiled: 0
     lines:
     - "Oh, I know that look\u2026"
@@ -3029,9 +3043,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - ...
@@ -3043,9 +3057,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
     isTiled: 0
     lines:
     - "Heh, don\u2019t give me that look. I\u2019m not gonna fire or arrest you."
@@ -3057,9 +3071,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - You make it sound like that happens everyday.
@@ -3071,9 +3085,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
     isTiled: 0
     lines:
     - What? Pinecones breaching our communication lines?
@@ -3089,9 +3103,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - And you just let them?
@@ -3103,9 +3117,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
     isTiled: 0
     lines:
     - Of course.
@@ -3120,9 +3134,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - Hey, chief?
@@ -3137,9 +3151,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
     isTiled: 0
     lines:
     - "Woah, don\u2019t tell me I\u2019ve got a Pinecone with me, ha ha."
@@ -3156,9 +3170,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - What?
@@ -3171,9 +3185,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
     isTiled: 0
     lines:
     - Why am I the fire chief?
@@ -3191,9 +3205,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - I believe that all life should live.
@@ -3208,12 +3222,12 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
     isTiled: 0
     lines:
-    - You sound like the pinecones.
+    - You sound like the Pinecones.
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -3222,9 +3236,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - But I believe that our existence, our continued existence, is worth it.
@@ -3236,9 +3250,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
     isTiled: 0
     lines:
     - Quite the hero we have here.
@@ -3250,9 +3264,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - What can I say?
@@ -3311,9 +3325,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0.05882353, g: 0.05882353, b: 0.33333334, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - "You\u2026"
@@ -3325,9 +3339,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0.32941177, g: 0.05882353, b: 0.05882353, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - Do you understand now?
@@ -3340,9 +3354,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - You know, I have to say, "Pinecone", your conviction to your faith is commendable.
@@ -3354,9 +3368,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0.3301887, g: 0.05882353, b: 0.05882353, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - Faith!?
@@ -3372,10 +3386,10 @@ MonoBehaviour:
   - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - "You\u2019re talking about the Infernals, aren\u2019t you?"
@@ -3387,9 +3401,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - Indeed.
@@ -3403,9 +3417,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - "And who are these \u201Cgods\u201D you keep rattling off about?"
@@ -3417,9 +3431,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - The close and the far.
@@ -3434,9 +3448,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - "And the Infernals are their children\u2026"
@@ -3448,9 +3462,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - Yes!
@@ -3467,9 +3481,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - "\u2026I will be your personal herald!"
@@ -3487,9 +3501,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - ' Sorry, but my mind is already made.'
@@ -3502,12 +3516,12 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
-    - "So be it. I\u2019ll just have to force you to where they reside."
+    - "So be it. I\u2019ll just have to force you to ascend."
     - Give Father Sol my regards.
     autoContinue: 0
     DoEvent:
@@ -11221,7 +11235,7 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - Finally, some fresh..... air.
@@ -11231,9 +11245,9 @@ MonoBehaviour:
         m_Calls: []
   - title: '"I thought we were done"'
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
-    startSound: {fileID: 0}
+    startSound: {fileID: 8300000, guid: 58d65cf23684feb44acaa77188cb442f, type: 3}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: 3184136827510664941, guid: c1d98e208367bc9498188a1b182b2a6a, type: 3}
     background: {fileID: 0}
     backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
@@ -11249,7 +11263,7 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - "You never stay quiet, do you\u2026"
@@ -11261,10 +11275,10 @@ MonoBehaviour:
   - title: Cultist
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 8300000, guid: 58d65cf23684feb44acaa77188cb442f, type: 3}
-    font: {fileID: 11400000, guid: ab18045c41b3a4b788e3f4407d24b8d2, type: 2}
-    image: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: 3184136827510664941, guid: c1d98e208367bc9498188a1b182b2a6a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0.2627451, g: 0.16078432, b: 0.105882354, a: 0.9490196}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - 'Of course not. '
@@ -11281,7 +11295,7 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - "You\u2019re so annoying\u2026"
@@ -11293,9 +11307,9 @@ MonoBehaviour:
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 8300000, guid: 58d65cf23684feb44acaa77188cb442f, type: 3}
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
+    image: {fileID: 3184136827510664941, guid: c1d98e208367bc9498188a1b182b2a6a, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0.2627451, g: 0.16078432, b: 0.105882354, a: 0.9490196}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
     isTiled: 0
     lines:
     - Regardless of how you feel about me,
@@ -12342,7 +12356,7 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: 0}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
     isTiled: 0
     lines:
     - Woah! What was that?!
