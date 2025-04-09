@@ -317,7 +317,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetAttached(Transform attach)
     {
-        freeze = true;
+        if (attach != null)
+        {
+            freeze = true;
+        }
         attached = attach;
         transform.parent = attach;
     }
