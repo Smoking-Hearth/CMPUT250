@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public static class LevelManagerExtension
 {
@@ -69,7 +70,9 @@ public class LevelManager : MonoBehaviour
     [field: SerializeField] public Camera LevelCamera; 
 
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private TMP_Text gameOverText;
     [SerializeField] private GameObject deathOverlay;
+    [SerializeField] private string[] gameOverMessages;
     [field: SerializeField] public SettingsScreen settingsScreen { get; private set; }
 
 
@@ -270,6 +273,8 @@ public class LevelManager : MonoBehaviour
     {
         if (!gameOverScreen.activeSelf)
         {
+            int randomMessage = UnityEngine.Random.Range(0, gameOverMessages.Length);
+            gameOverText.text = gameOverMessages[randomMessage];
             gameOverScreen.SetActive(true);
         }
         levelState = LevelState.Defeat;

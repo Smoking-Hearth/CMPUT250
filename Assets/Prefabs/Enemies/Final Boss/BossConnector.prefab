@@ -36,6 +36,294 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 10}
   m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &161005692957155034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5143088659210777249}
+  - component: {fileID: 489068787934489461}
+  m_Layer: 0
+  m_Name: FirstMeeting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5143088659210777249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161005692957155034}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 445.2053, y: 270.9453, z: -3.2141695}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3208183198727202534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &489068787934489461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161005692957155034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.055402268, g: 0.089845136, b: 0.14150941, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "You\u2026"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14150941, g: 0.068919085, b: 0.04472231, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - Do you understand now?
+    - Their children are unstoppable.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.05490196, g: 0.09019608, b: 0.14117648, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - You know, I have to say, "Pinecone", your conviction to your faith is commendable.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - Faith!?
+    - You think that I have faith!?
+    - You think that our group prays to something that may or may not exist!?
+    - No.
+    - "We have undeniable proof of our \u201Cgods\u201D."
+    - The proof has stood against you at every step of your journey.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.05490196, g: 0.09019608, b: 0.14117648, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "You\u2019re talking about the Infernals, aren\u2019t you?"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - Indeed.
+    - "To deny the existence of our \u201Cgods\u201D is to deny the very existence
+      of the natural world."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.05490196, g: 0.09019608, b: 0.14117648, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "And who are these \u201Cgods\u201D you keep rattling off about?"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - The close and the far.
+    - The creator and the watcher.
+    - The caring Earth and the raging Sun.
+    - Mother Nature and Father Sol.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.05490196, g: 0.09019608, b: 0.14117648, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "And the Infernals are their children\u2026"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - Yes!
+    - Throughout all of history, humanity has needed messengers from higher beings.
+    - For the Greeks, it was Hermes.
+    - For the Christians, it is the angels.
+    - For all of mankind, we have the Infernals,
+    - "And for you\u2026"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "\u2026I will be your personal herald!"
+    - ' Witness me! Father Sol has blessed me with his radiance!'
+    - "Tell me, little Icarus, now that you\u2019re standing in front of the power
+      of the sun,"
+    - Will you accept their gifts like I have and ascend into the glorious House
+      of the World?
+    - Or will you reject them and let yourself plummet towards the Sea of Darkness?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1903030325203730117}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Activated
+            m_BoolArgument: 0
+          m_CallState: 2
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.05490196, g: 0.09019608, b: 0.14117648, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - ' Sorry, but my mind is already made.'
+    - I will live.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "So be it. I\u2019ll just have to force you to ascend."
+    - Give Father Sol my regards.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4863606502406178702}
+          m_TargetAssemblyTypeName: CultistBossController, Assembly-CSharp
+          m_MethodName: Activate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2660735927030491082}
+          m_TargetAssemblyTypeName: Fire, Assembly-CSharp
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &421148425076203906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,6 +1674,187 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3721876192473631922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 290545922578752460}
+  - component: {fileID: 3425198127570934931}
+  m_Layer: 0
+  m_Name: UnshieldDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &290545922578752460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3721876192473631922}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 445.2053, y: 270.9453, z: -3.2141695}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3208183198727202534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3425198127570934931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3721876192473631922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - AHAHA-
+    - Huh?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - How is this possible!?
+    - 'Their gifts! '
+    - "They\u2019re supposed to be unstoppable!"
+    - So how!?
+    - Father! Mother!
+    - Why hast thou forsaken me!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.05490196, g: 0.09019608, b: 0.14117648, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "Looks like your high and mighty gods aren\u2019t so mighty after all."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - ...
+    - ......
+    - "No matter\u2026"
+    - This must be a test! One more test to prove that I am worthy!
+    - I will prevail and leave them no choice but to bless me!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.05490196, g: 0.09019608, b: 0.14117648, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - Your final test is to defeat a rookie firefighter who just learned about the
+      existence of the Infernals today?
+    - Wow.
+    - You really have your work cut out for you.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - You know what pisses me off the most about you?
+    - "It\u2019s the fact that you move through life as if you\u2019re normal, as
+      if you\u2019re just like everyone else!"
+    - 'But the fact of the matter is that you too are touched by them. '
+    - "Not the Mother or Father, no, but something else\u2026"
+    - And that makes you very dangerous to us Prophets.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.05490196, g: 0.09019608, b: 0.14117648, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - 'Whatever dude. '
+    - "Let\u2019s just get this over with."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - Fine.
+    - Let us finish this.
+    - "Just remember\u2026"
+    - "In the ashes\u2026"
+    - WE. ARE. REBORN!!!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &4042319721903527708
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,7 +2575,7 @@ MonoBehaviour:
     font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     image: {fileID: 0}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
     isTiled: 0
     lines:
     - You think a little water can stop me?
@@ -2120,7 +2589,7 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.05490196, g: 0.09019608, b: 0.14117648, a: 0.9019608}
     isTiled: 0
     lines:
     - Ack, his shield is regenerating!?
@@ -2135,7 +2604,7 @@ MonoBehaviour:
     font: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
     image: {fileID: 0}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
     isTiled: 0
     lines:
     - "Why do you run? Why do you climb upward when the true means of ascension is
@@ -2150,7 +2619,7 @@ MonoBehaviour:
     font: {fileID: 0}
     image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
     background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    backgroundMultiplier: {r: 0.05490196, g: 0.09019608, b: 0.14117648, a: 0.9019608}
     isTiled: 0
     lines:
     - "Zip it, Pinecone. I\u2019m trying to survive here!\r"
@@ -3332,9 +3801,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1240056276774957196}
+  - {fileID: 5143088659210777249}
   - {fileID: 4893668417751409483}
-  - {fileID: 7707321360533733353}
+  - {fileID: 290545922578752460}
   m_Father: {fileID: 2466860787030460951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6856932559476538506
@@ -3751,113 +4220,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!1 &8061240931027780938
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7707321360533733353}
-  - component: {fileID: 3283492570845803957}
-  m_Layer: 7
-  m_Name: UnshieldDialogue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7707321360533733353
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8061240931027780938}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30, y: 2.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3208183198727202534}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3283492570845803957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8061240931027780938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogSystem: {fileID: 0}
-  segments:
-  - title: Cultist
-    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - AHAHA- Huh?
-    - "How is this possible!?\r\nTheir gifts! They\u2019re supposed to be unstoppable!
-      So how!? Father! Mother! Why hast thou forsaken me!\n"
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "Looks like your high and mighty gods aren\u2019t so mighty after all."
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Cultist
-    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "\u2026... No matter\u2026 The absence of their mark changes nothing! I will
-      prevail and leave them no choice but to bless me!"
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "Your final test is to defeat a rookie firefighter who just learned about the
-      existence of the Infernals today? Wow. You really have your work cut out for
-      you.\r"
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1 &8416303390790897880
 GameObject:
   m_ObjectHideFlags: 0
@@ -4051,294 +4413,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &9160595811357419921
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1240056276774957196}
-  - component: {fileID: 7942371873525479956}
-  m_Layer: 0
-  m_Name: FirstMeeting
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1240056276774957196
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9160595811357419921}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 445.2053, y: 270.9453, z: -3.2141695}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3208183198727202534}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7942371873525479956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9160595811357419921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogSystem: {fileID: 0}
-  segments:
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0.05882353, g: 0.05882353, b: 0.33333334, a: 0}
-    isTiled: 0
-    lines:
-    - "You\u2026"
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Cultist
-    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0.32941177, g: 0.05882353, b: 0.05882353, a: 0}
-    isTiled: 0
-    lines:
-    - Do you understand now?
-    - Their children are unstoppable.
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - You know, I have to say, "Pinecone", your conviction to your faith is commendable.
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Cultist
-    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0.3301887, g: 0.05882353, b: 0.05882353, a: 0}
-    isTiled: 0
-    lines:
-    - Faith!?
-    - You think that I have faith!?
-    - You think that our group prays to something that may or may not exist!?
-    - No.
-    - "We have undeniable proof of our \u201Cgods\u201D."
-    - The proof has stood against you at every step of your journey.
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "You\u2019re talking about the Infernals, aren\u2019t you?"
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Cultist
-    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - Indeed.
-    - "To deny the existence of our \u201Cgods\u201D is to deny the very existence
-      of the natural world."
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "And who are these \u201Cgods\u201D you keep rattling off about?"
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Cultist
-    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - The close and the far.
-    - The creator and the watcher.
-    - The caring Earth and the raging Sun.
-    - Mother Nature and Father Sol.
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "And the Infernals are their children\u2026"
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Cultist
-    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - Yes!
-    - Throughout all of history, humanity has needed messengers from higher beings.
-    - For the Greeks, it was Hermes.
-    - For the Christians, it is the angels.
-    - For all of mankind, we have the Infernals,
-    - "And for you\u2026"
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Cultist
-    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "\u2026I will be your personal herald!"
-    - ' Witness me! Father Sol has blessed me with his radiance!'
-    - "Tell me, little Icarus, now that you\u2019re standing in front of the power
-      of the sun,"
-    - Will you accept their gifts like I have and ascend into the glorious House
-      of the World?
-    - Or will you reject them and let yourself plummet towards the Sea of Darkness?
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1903030325203730117}
-          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-          m_MethodName: SetTrigger
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Activated
-            m_BoolArgument: 0
-          m_CallState: 2
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - ' Sorry, but my mind is already made.'
-    - I will live.
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Cultist
-    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "So be it. I\u2019ll just have to force you to where they reside."
-    - Give Father Sol my regards.
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4863606502406178702}
-          m_TargetAssemblyTypeName: CultistBossController, Assembly-CSharp
-          m_MethodName: Activate
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 2660735927030491082}
-          m_TargetAssemblyTypeName: Fire, Assembly-CSharp
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1001 &2214939225904716339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4826,7 +4900,7 @@ PrefabInstance:
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7942371873525479956}
+      objectReference: {fileID: 489068787934489461}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -5294,7 +5368,7 @@ PrefabInstance:
     - target: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: unshieldDialogue
       value: 
-      objectReference: {fileID: 3283492570845803957}
+      objectReference: {fileID: 3425198127570934931}
     - target: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: unshieldedSprite
       value: 

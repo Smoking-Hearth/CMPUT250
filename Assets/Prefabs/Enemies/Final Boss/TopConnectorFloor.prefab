@@ -524,7 +524,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4498764913374801304}
+  - {fileID: 2580659845281815654}
+  - {fileID: 7909603913888389958}
   m_Father: {fileID: 2466860787030460951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2415837636885955831
@@ -829,6 +830,104 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2466860787030460951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4799140512672691777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2580659845281815654}
+  - component: {fileID: 6445021825541950693}
+  m_Layer: 0
+  m_Name: FightStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2580659845281815654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799140512672691777}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 445.2053, y: 270.9453, z: -3.2141695}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2183849854924132401}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6445021825541950693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799140512672691777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Prophet
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "And so we\u2019re here\u2026"
+    - 'When are you going to realize that their gift is as immortal as they are!?
+
+'
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - I told you then and I say it now.
+    - "I\u2019ve chosen to make it out of this alive and no amount of your delusional
+      rants will ever convince me."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - How unfortunate, because unless you possess a power of equal measure,
+    - 'I will continue to reignite over and over and over again!
+
+'
+    - And there is nothing you can do to stop me!
+    - AHAHAHAHAHA!!!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &4904705656887531475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,332 +1514,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &6042195181357783314
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4498764913374801304}
-  - component: {fileID: 8065461597107397297}
-  m_Layer: 0
-  m_Name: End
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4498764913374801304
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6042195181357783314}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 445.2053, y: 270.9453, z: -3.2141695}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2183849854924132401}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8065461597107397297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6042195181357783314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogSystem: {fileID: 0}
-  segments:
-  - title: Fire Chief
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "Look at that, kid, you made it. You\u2019re in for a promotion or two if I
-      do say so myself, heh heh."
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "Yeah\u2026"
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Fire Chief
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "Oh, I know that look\u2026"
-    - "You got in touch with a Pinecone, didn\u2019t you?"
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - ...
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Fire Chief
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "Heh, don\u2019t give me that look. I\u2019m not gonna fire or arrest you."
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - You make it sound like that happens everyday.
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Fire Chief
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - What? Pinecones breaching our communication lines?
-    - Yeah, despite what that stupid company, Mycelium Inc. says, it actually does
-      happen all the time.
-    - The amount of those idiots who manage to get into my personal line is actually
-      hilarious.
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - And you just let them?
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Fire Chief
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - Of course.
-    - In these trying times, staying connected to others is very important, even
-      if they disagree with you.
-    - Plus, debate and yelling at people is my guilty pleasure.
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - Hey, chief?
-    - What do you think about all of this?
-    - Do you think that humanity is a lost cause?
-    - Should we just let ourselves burn to ashes?
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Fire Chief
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - "Woah, don\u2019t tell me I\u2019ve got a Pinecone with me, ha ha."
-    - Well, if you have to know.
-    - Whether we deserve to exist,
-    - 'Whether we should all just light ourselves on fire, '
-    - Or fight for a brighter future,
-    - "That\u2019s none of my business."
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - What?
-    - Then why-
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Fire Chief
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - Why am I the fire chief?
-    - "Well, that\u2019s because I believe that no matter what, "
-    - No matter what somebody believes, people should have the right to live.
-    - If you want to die, you do you, but if you believe everyone should die?
-    - "If you\u2019re looking to bring everyone down with you?"
-    - "Well, that\u2019s where I draw the line."
-    - What about you?
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - I believe that all life should live.
-    - If somebody wants to live, they should.
-    - "If somebody wants to die well\u2026"
-    - "I\u2019ll drag them kicking and screaming back to life."
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Fire Chief
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - You sound like the pinecones.
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - But I believe that our existence, our continued existence, is worth it.
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Fire Chief
-    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - Quite the hero we have here.
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Me
-    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
-    startSound: {fileID: 0}
-    font: {fileID: 0}
-    image: {fileID: 0}
-    background: {fileID: 0}
-    backgroundMultiplier: {r: 0, g: 0, b: 0, a: 0}
-    isTiled: 0
-    lines:
-    - What can I say?
-    - My thirst to save people is
-    autoContinue: 0
-    DoEvent:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1 &6375471393340300722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,6 +1650,332 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &6629411379940492906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7909603913888389958}
+  - component: {fileID: 1058402800970567255}
+  m_Layer: 0
+  m_Name: End
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7909603913888389958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629411379940492906}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 445.2053, y: 270.9453, z: -3.2141695}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2183849854924132401}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1058402800970567255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629411379940492906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "Look at that, kid, you made it. You\u2019re in for a promotion or two if I
+      do say so myself, heh heh."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "Yeah\u2026"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "Oh, I know that look\u2026"
+    - "You got in touch with a Pinecone, didn\u2019t you?"
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - ...
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "Heh, don\u2019t give me that look. I\u2019m not gonna fire or arrest you."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - You make it sound like that happens everyday.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - What? Pinecones breaching our communication lines?
+    - Yeah, despite what that stupid company, Mycelium Inc. says, it actually does
+      happen all the time.
+    - The amount of those idiots who manage to get into my personal line is actually
+      hilarious.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - And you just let them?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - Of course.
+    - In these trying times, staying connected to others is very important, even
+      if they disagree with you.
+    - Plus, debate and yelling at people is my guilty pleasure.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - Hey, chief?
+    - What do you think about all of this?
+    - Do you think that humanity is a lost cause?
+    - Should we just let ourselves burn to ashes?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "Woah, don\u2019t tell me I\u2019ve got a Pinecone with me, ha ha."
+    - Well, if you have to know.
+    - Whether we deserve to exist,
+    - 'Whether we should all just light ourselves on fire, '
+    - Or fight for a brighter future,
+    - "That\u2019s none of my business."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - What?
+    - Then why-
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - Why am I the fire chief?
+    - "Well, that\u2019s because I believe that no matter what, "
+    - No matter what somebody believes, people should have the right to live.
+    - If you want to die, you do you, but if you believe everyone should die?
+    - "If you\u2019re looking to bring everyone down with you?"
+    - "Well, that\u2019s where I draw the line."
+    - What about you?
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - I believe that all life should live.
+    - If somebody wants to live, they should.
+    - "If somebody wants to die well\u2026"
+    - "I\u2019ll drag them kicking and screaming back to life."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - You sound like the Pinecones.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - But I believe that our existence, our continued existence, is worth it.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - Quite the hero we have here.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - What can I say?
+    - My thirst to save people is
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &6642839489778604312
 GameObject:
   m_ObjectHideFlags: 0
@@ -2627,7 +2726,7 @@ MonoBehaviour:
   startInteractEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8065461597107397297}
+      - m_Target: {fileID: 1058402800970567255}
         m_TargetAssemblyTypeName: DialogueHolder, Assembly-CSharp
         m_MethodName: PlayDialogue
         m_Mode: 1
@@ -3231,11 +3330,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3246,7 +3349,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 986415611747956487}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 6445021825541950693}
+    - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
@@ -3254,15 +3365,31 @@ PrefabInstance:
       value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PlayDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: DialogueHolder, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7733632192175267638, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
@@ -3275,13 +3402,143 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1807076826823566577, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8367629280411064602}
+    - targetCorrespondingSourceObject: {fileID: 1807076826823566577, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7836869030463612703}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
 --- !u!4 &4478425894476178690 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1807076826823566577, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
   m_PrefabInstance: {fileID: 2824485200237511155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4892922939917075158
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4478425894476178690}
+    m_Modifications:
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163516732209342275, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_Name
+      value: ArrowIndicator
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+--- !u!4 &8367629280411064602 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+  m_PrefabInstance: {fileID: 4892922939917075158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6573790764136545491
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4478425894476178690}
+    m_Modifications:
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163516732209342275, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+      propertyPath: m_Name
+      value: ArrowIndicator (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+--- !u!4 &7836869030463612703 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4033234060297968588, guid: 0acf211a0f40f084782569a46fb6d276, type: 3}
+  m_PrefabInstance: {fileID: 6573790764136545491}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8430861516785536739
 PrefabInstance:

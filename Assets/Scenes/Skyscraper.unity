@@ -4433,6 +4433,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1222114888}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1054503362 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6970022271685720925, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+  m_PrefabInstance: {fileID: 182578577}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1083656663 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7314903455698134788, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
@@ -12526,7 +12537,14 @@ MonoBehaviour:
   setCameraStateDelay: 3
   LevelCamera: {fileID: 1894297779}
   gameOverScreen: {fileID: 182578579}
+  gameOverText: {fileID: 1054503362}
   deathOverlay: {fileID: 876449481}
+  gameOverMessages:
+  - In the mist, we are soothed
+  - In the rain, we are cleansed
+  - In the waters, we are forgiven
+  - Float towards hope
+  - Your voyage is not over
   <settingsScreen>k__BackingField: {fileID: 0}
   setPlayer: {fileID: 1532442760}
   setSoul: {fileID: 642324588}
