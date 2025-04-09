@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: b4fb23ef6a9d4e04fa00420d5d909783
+guid: 4530dd883e2848743840c586a23eecba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1529104656589251861
-    second: RoofFloor_0
-  - first:
-      213: -7944831696277855655
-    second: RoofFloor_1
+      213: 7543335823874450282
+    second: CrossingSign_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 32
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -116,45 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RoofFloor_0
+      name: CrossingSign_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 4
-        width: 32
+        x: 7
+        y: 0
+        width: 18
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 4, z: 0, w: 0}
+      border: {x: 0, y: 6, z: 0, w: 23}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bea1a979a6787cae0800000000000000
-      internalID: -1529104656589251861
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RoofFloor_1
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 7
-        width: 32
-        height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 952281f6aa94eb190800000000000000
-      internalID: -7944831696277855655
+      spriteID: a63e38b27ff4fa860800000000000000
+      internalID: 7543335823874450282
       vertices: []
       indices: 
       edges: []
@@ -163,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d772b6f03fc07f94485b1345b93b3dcb
+    spriteID: 37474825920946d489d3b86aa8840572
     internalID: 0
     vertices: []
     indices: 
@@ -173,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      RoofFloor_0: -1529104656589251861
-      RoofFloor_1: -7944831696277855655
+      CrossingSign_0: 7543335823874450282
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
