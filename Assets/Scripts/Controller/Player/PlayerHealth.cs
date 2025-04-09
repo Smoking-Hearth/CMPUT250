@@ -226,9 +226,7 @@ class BraindamageEffect
     [SerializeField] private float maxEffectAtDamage;
     
     private FilmGrain filmGrain;
-    private LensDistortion lensDistortion;
     private ColorAdjustments colorAdjustments;
-    private DepthOfField depthOfField;
     private ChromaticAberration chromaticAberration;
 
     private float accumulatedDamage = 0f;
@@ -237,12 +235,7 @@ class BraindamageEffect
     {
         if (volume == null) return;
         volume.profile.TryGet(out filmGrain);
-        volume.profile.TryGet(out lensDistortion);
         volume.profile.TryGet(out colorAdjustments);
-        if (volume.profile.TryGet(out depthOfField))
-        {
-            depthOfField.mode = new DepthOfFieldModeParameter(DepthOfFieldMode.Gaussian);
-        }
         volume.profile.TryGet(out chromaticAberration);
     }
 
@@ -266,11 +259,9 @@ class BraindamageEffect
 
         filmGrain.intensity.value = EaseUtility.InOutSine(x);
 
-        lensDistortion.intensity.value = EaseUtility.InOutSine(x) * 0.34f;
-
-        colorAdjustments.postExposure.value = EaseUtility.InOutSine(x) * 1.3f;
-        colorAdjustments.contrast.value = EaseUtility.InOutSine(x) * 40f;
-        colorAdjustments.saturation.value = EaseUtility.InOutSine(x) * 40f;
+        colorAdjustments.postExposure.value = EaseUtility.InOutSine(x) * 1.1f;
+        colorAdjustments.contrast.value = EaseUtility.InOutSine(x) * 20f;
+        colorAdjustments.saturation.value = EaseUtility.InOutSine(x) * 20f;
 
         chromaticAberration.intensity.value = EaseUtility.InOutSine(x);
 
