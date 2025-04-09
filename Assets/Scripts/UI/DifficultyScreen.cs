@@ -7,6 +7,7 @@ public class DifficultyScreenScript: MonoBehaviour
     [SerializeField] Button easy;
     [SerializeField] Button normal;
     [SerializeField] Button hard;
+    //[SerializeField] UI currentDif;
 
 
     public void easyDifficulty(){
