@@ -94,7 +94,6 @@ public class FiretruckController : MonoBehaviour
 
     private void Accelerate()
     {
-        player.SetAttached(firetruckRigidbody.transform);
         if (firetruckRigidbody.linearVelocityX < topSpeed * Time.fixedDeltaTime)
         {
             firetruckRigidbody.linearVelocityX += acceleration * Time.fixedDeltaTime;
@@ -104,6 +103,8 @@ public class FiretruckController : MonoBehaviour
             firetruckRigidbody.linearVelocityX = topSpeed * Time.fixedDeltaTime;
             firetruckState = State.Moving;
         }
+
+        player.SetAttached(firetruckRigidbody);
     }
     private void Deccelerate()
     {

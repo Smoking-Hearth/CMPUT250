@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isJumping;
 
-    private Transform attached;
+    private Rigidbody2D attached;
 
     private List<Ground> disabledPlatforms = new List<Ground>();
 
@@ -68,6 +68,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (attached != null)
+        {
+            freeze = false;
+
+            if (gameObject.MyLevelManager().Player.GroundState == GroundState.None)
+            {
+                addedVelocity.x = attached.linearVelocityX / Time.fixedDeltaTime;
+            }
+            else
+            {
+                addedVelocity = attached.linearVelocity / Time.fixedDeltaTime;
+            }
+        }
         if (freeze)
         {
             targetMovement = Vector2.zero;
@@ -87,7 +100,6 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRigidbody.simulated = true;
         }
-
         //Checks if the player is currently on stairs to make sure they don't slide down
         if (Physics2D.Raycast((Vector2)transform.position + groundCheckOffset, Vector2.down, groundCheckRadius + 0.1f, stairsLayer))
         {
@@ -288,8 +300,12 @@ public class PlayerMovement : MonoBehaviour
 
         // Sliding around
         if (addedVelocity.x != 0)
-        {   
-            
+        {
+            if (attached != null)
+            {
+                return;
+            }
+
             if (Mathf.Abs(addedVelocity.x) > 0.1f)
             {
                 if (player.GroundState != GroundState.None)
@@ -315,14 +331,9 @@ public class PlayerMovement : MonoBehaviour
         transform.position = placePosition;
     }
 
-    public void SetAttached(Transform attach)
+    public void SetAttached(Rigidbody2D attach)
     {
-        if (attach != null)
-        {
-            freeze = true;
-        }
         attached = attach;
-        transform.parent = attach;
     }
 
     public void StartPush()
