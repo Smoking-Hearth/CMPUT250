@@ -40,6 +40,7 @@ public class FinalBoss : MonoBehaviour
     }
 
     [SerializeField] private ParticleSystem rainParticles;
+    [SerializeField] private AudioSource rainAudio;
     [SerializeField] private DialogueHolder windowFireDialogue;
 
     public BossFloor CurrentFloor
@@ -145,6 +146,7 @@ public class FinalBoss : MonoBehaviour
         if (Completion >= 1 && !rainParticles.isPlaying)
         {
             rainParticles.Play();
+            rainAudio.Play();
         }
     }
 
