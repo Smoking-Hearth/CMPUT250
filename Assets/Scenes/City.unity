@@ -433,6 +433,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1389512814}
     m_Modifications:
     - target: {fileID: 635744471786573338, guid: 6dffde27c0cc1406699f0900a96bee77, type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 635744471786573338, guid: 6dffde27c0cc1406699f0900a96bee77, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 218063213}
@@ -21217,6 +21221,7 @@ Transform:
   - {fileID: 1099131668}
   - {fileID: 1643467722}
   - {fileID: 446692744}
+  - {fileID: 533828523}
   - {fileID: 1542655350}
   - {fileID: 910344855}
   - {fileID: 2049979426}
@@ -24945,6 +24950,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 51104971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &533828522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 533828523}
+  - component: {fileID: 533828524}
+  m_Layer: 0
+  m_Name: GasAfterExplosion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &533828523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533828522}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409035425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &533828524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533828522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 1207155766}
+  segments:
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - You've GOT to be kidding me...
+    autoContinue: 1
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &536639363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56969,11 +57034,11 @@ PrefabInstance:
       insertIndex: 9
       addedObject: {fileID: 681564351}
     - targetCorrespondingSourceObject: {fileID: 2106859508735444894, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
-      insertIndex: 12
-      addedObject: {fileID: 12195736}
-    - targetCorrespondingSourceObject: {fileID: 2106859508735444894, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
-      insertIndex: 14
+      insertIndex: 10
       addedObject: {fileID: 1592529370}
+    - targetCorrespondingSourceObject: {fileID: 2106859508735444894, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
+      insertIndex: 13
+      addedObject: {fileID: 12195736}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d35f05d1258aa6c0eaacca9314d59fa6, type: 3}
 --- !u!223 &1056280324 stripped
@@ -89364,7 +89429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -89388,7 +89453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -89413,7 +89478,7 @@ PrefabInstance:
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
-      objectReference: {fileID: 2116868691}
+      objectReference: {fileID: 1542655351}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -89456,7 +89521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
-      value: RemoveTracker
+      value: PlayDialogue
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -89480,7 +89545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
-      value: TrackerSystem, Assembly-CSharp
+      value: DialogueHolder, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_IntArgument
@@ -89533,7 +89598,7 @@ PrefabInstance:
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 418459334}
+      objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_StringArgument
       value: GasStationFight
@@ -89556,7 +89621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7733632192175267638, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: m_Size.y
@@ -109210,7 +109275,7 @@ MonoBehaviour:
           m_StringArgument: Game
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1542655351}
+      - m_Target: {fileID: 533828524}
         m_TargetAssemblyTypeName: DialogueHolder, Assembly-CSharp
         m_MethodName: PlayDialogue
         m_Mode: 1

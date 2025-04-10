@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerShoot : MonoBehaviour
 {
     private static float damageMultiplier = 1;
-    public static float DamageMultiplier { get { return damageMultiplier; } set { damageMultiplier = value; } }
+    public static float DamageMultiplier { get { return damageMultiplier * 2 / DifficultyScreenScript.difficulty; } set { damageMultiplier = value; } }
     [SerializeField] private GameObject hydropack;
 
     private WaterTank waterTank;
@@ -96,6 +96,10 @@ public class PlayerShoot : MonoBehaviour
 
     private void OnEnable()
     {
+        if (DifficultyScreenScript.difficulty == 0)
+        {
+            DifficultyScreenScript.difficulty = 2;
+        }
         SpecialAttack.onPickupSpecial += PickUpSpecial;
         SpecialAttack.onClearSpecial += DropSpecial;
         PlayerController.Controls.Hydropack.SwapSpecial.performed += inventory.Swap;

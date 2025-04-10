@@ -4,6 +4,8 @@ using TMPro;
 
 public class DifficultyScreenScript: MonoBehaviour
 {
+    public static int difficulty;
+
     [SerializeField] Button back;
     [SerializeField] Button easy;
     [SerializeField] Button normal;
@@ -12,23 +14,23 @@ public class DifficultyScreenScript: MonoBehaviour
 
 
     public void easyDifficulty(){
-        
-        PlayerShoot.DamageMultiplier = 1.5f;
-        DevLog.Info("Easy: Damage Multiplier set to 1.5f");
+
+        difficulty = 1;
+        DevLog.Info("Easy: Difficulty level set to 1");
         difficultyText.text = "Easy";
 
     }
     public void normalDifficulty(){
-        
-        PlayerShoot.DamageMultiplier = 1f;
-        DevLog.Info("Normal: Damage Multiplier set to 1f");
+
+        difficulty = 2;
+        DevLog.Info("Normal: Difficulty level set to 2");
         difficultyText.text = "Normal";
 
     }
     public void hardDifficulty(){
-        
-        PlayerShoot.DamageMultiplier = 0.65f;
-        DevLog.Info("Hard: Damage Multiplier set to 0.65f");
+
+        difficulty = 3;
+        DevLog.Info("Hard: Difficulty level set to 3");
         difficultyText.text = "Hard";
 
     }
