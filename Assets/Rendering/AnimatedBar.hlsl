@@ -13,13 +13,13 @@ void UpperGradient_float(float level, float barPosition, out float Out) {
     Out = UpperGradient(level, barPosition);
 }
 
-void AnimatedBar_float(float level, float barPosition, float intensity, float noise, out float Out) {
-    const float threshold = 0.2;
-    float upperGradient = UpperGradient(level, barPosition);
-    float backgroundSmoke = upperGradient * (noise * intensity + (1.0 - intensity));
-    // This is the step from filled to unfilled, we offset the edge by noise because...
-    float unstableStep = 1.0 - smoothstep(noise * threshold + barPosition, barPosition, level);
-    Out = step(min(barPosition, threshold), min(backgroundSmoke, unstableStep));
+void AnimatedBar_float(float x, float lo, float hi, float intensity, float gradient, out float Out) {
+    float edgeOffset = clamp(hi - lo, intensity * smoothstep(0.05, 0.20, x), 1.0) * gradient;
+    hi += edgeOffset;
+    lo += edgeOffset;
+    float mask = step(lo, x) * (1.0 - step(hi, x));
+    float bar = smoothstep(lo, hi, x) + (gradient + intensity) * mask;
+    Out = step(0.02, bar);
 }
 
 void FillColor_float(float value, float4 black, float4 white, out float4 Out) {
