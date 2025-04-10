@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.Rendering;
+using UnityEngine.Audio;
 
 public static class LevelManagerExtension
 {
@@ -78,6 +80,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private Rigidbody2D setPlayer;
     [SerializeField] private Rigidbody2D setSoul;
+    [SerializeField] private AudioMixer mixer;
     private Player player;
     private Player soul;
     public Player Player
@@ -191,6 +194,11 @@ public class LevelManager : MonoBehaviour
         gameObject.SetActive(true);
         LevelCamera.gameObject.SetActive(true);
         LevelCamera.enabled = true;
+
+        if (mixer != null)
+        {
+            VolumeSettings.ApplySettings(mixer);
+        }
 
 
         if (EventSystem != null)

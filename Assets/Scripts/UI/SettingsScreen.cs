@@ -18,6 +18,11 @@ public class SettingsScreen : MonoBehaviour
         musicVolume.onValueChanged.AddListener(MusicVolume);
         sfxVolume.onValueChanged.AddListener(SFXVolume);
         ambientVolume.onValueChanged.AddListener(AmbientVolume);
+
+        masterVolume.value = VolumeSettings.MasterVolume;
+        musicVolume.value = VolumeSettings.MusicVolume;
+        sfxVolume.value = VolumeSettings.SFXVolume;
+        ambientVolume.value = VolumeSettings.AmbientVolume;
     }
 
     void OnDisable()
@@ -27,6 +32,7 @@ public class SettingsScreen : MonoBehaviour
         musicVolume.onValueChanged.RemoveListener(MusicVolume);
         sfxVolume.onValueChanged.RemoveListener(SFXVolume);
         ambientVolume.onValueChanged.RemoveListener(AmbientVolume);
+        VolumeSettings.ApplySettings(mixer);
     }
 
     void BackClick()
@@ -34,34 +40,28 @@ public class SettingsScreen : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private static float LinearToDB(float ratio)
-    {
-        ratio = Mathf.Clamp(ratio, 0f, 1f);
-        ratio = 10f * Mathf.Log10(ratio);
-        return Mathf.Clamp(ratio, -80f, 0f);
-    }
 
     public void MasterVolume(float value)
     {
-        float volume = LinearToDB(value);
-        mixer.SetFloat("MasterVolume", volume);
+        VolumeSettings.MasterVolume = value;
+        VolumeSettings.ApplySettings(mixer);
     }
 
     public void MusicVolume(float value)
     {
-        float volume = LinearToDB(value);
-        mixer.SetFloat("MusicVolume", volume);
+        VolumeSettings.MusicVolume = value;
+        VolumeSettings.ApplySettings(mixer);
     }
 
     public void SFXVolume(float value)
     {
-        float volume = LinearToDB(value);
-        mixer.SetFloat("SFXVolume", volume);
+        VolumeSettings.SFXVolume = value;
+        VolumeSettings.ApplySettings(mixer);
     }
 
     public void AmbientVolume(float value)
     {
-        float volume = LinearToDB(value);
-        mixer.SetFloat("SFXVolume", volume);
+        VolumeSettings.AmbientVolume = value;
+        VolumeSettings.ApplySettings(mixer);
     }
 }
