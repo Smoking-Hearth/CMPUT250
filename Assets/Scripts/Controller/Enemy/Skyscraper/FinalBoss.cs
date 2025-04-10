@@ -21,6 +21,8 @@ public class FinalBoss : MonoBehaviour
         }
     }
 
+    [SerializeField] Animator cameraAnimator;
+    [SerializeField] Transform cameraTarget;
     [SerializeField] private float baseAltitude;
     [SerializeField] private float floorHeight;
     private float buildingHeight;
@@ -78,7 +80,6 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] private int bossStartLevel;
 
     [SerializeField] private Slider completionSlider;
-    [SerializeField] private UnityEvent winEvent;
     private bool rightSide = true;
 
     void Start()
@@ -86,14 +87,20 @@ public class FinalBoss : MonoBehaviour
         Generate();
     }
 
-    public void Win()
-    {
-        winEvent.Invoke();
-    }
-
     public void ShowCompletionSlider(bool set)
     {
         completionSlider.gameObject.SetActive(set);
+    }
+
+    public void SetCameraPosition(Vector2 position)
+    {
+        cameraTarget.position = position;
+        cameraAnimator.SetBool("Cultist", true);
+    }
+
+    public void ResetCamera()
+    {
+        cameraAnimator.SetBool("Cultist", false);
     }
 
     private void FixedUpdate()

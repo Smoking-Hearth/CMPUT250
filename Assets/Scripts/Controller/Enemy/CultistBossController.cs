@@ -701,6 +701,18 @@ public class CultistBossController : MonoBehaviour
         }
     }
 
+    public void SetCamera(bool cultistView)
+    {
+        if (cultistView)
+        {
+            building.SetCameraPosition(transform.position);
+        }
+        else
+        {
+            building.ResetCamera();
+        }
+    }
+
     private void Stun()
     {
         if (!walking)
@@ -726,7 +738,6 @@ public class CultistBossController : MonoBehaviour
             {
                 healthComponent.enabled = false;
                 moveState = CultistMoveState.Defeated;
-                building.Win();
                 winEvent.Invoke();
                 defeatDialogue.PlayDialogue();
                 stunParticles.Play();

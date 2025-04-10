@@ -324,6 +324,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 4863606502406178702}
+          m_TargetAssemblyTypeName: CultistBossController, Assembly-CSharp
+          m_MethodName: SetCamera
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &421148425076203906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,7 +1493,19 @@ MonoBehaviour:
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 4863606502406178702}
+          m_TargetAssemblyTypeName: CultistBossController, Assembly-CSharp
+          m_MethodName: SetCamera
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - title: Me
     scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
     startSound: {fileID: 0}
@@ -1523,7 +1547,6 @@ MonoBehaviour:
     lines:
     - But we can help you!
     - Come with me and we'll get you out of this ruined city!
-    - You can turn yourself in and-
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
@@ -1568,7 +1591,19 @@ MonoBehaviour:
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 4863606502406178702}
+          m_TargetAssemblyTypeName: CultistBossController, Assembly-CSharp
+          m_MethodName: SetCamera
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - title: Fire Chief
     scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
     startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
@@ -1907,7 +1942,19 @@ MonoBehaviour:
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 4863606502406178702}
+          m_TargetAssemblyTypeName: CultistBossController, Assembly-CSharp
+          m_MethodName: SetCamera
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - title: Cultist
     scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
     startSound: {fileID: 0}
@@ -2023,11 +2070,36 @@ MonoBehaviour:
     - Let us finish this.
     - "Just remember\u2026"
     - "In the ashes\u2026"
-    - WE. ARE. REBORN!!!
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.14117648, g: 0.07058824, b: 0.043137256, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - WE. ARE. REBORN!!!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4863606502406178702}
+          m_TargetAssemblyTypeName: CultistBossController, Assembly-CSharp
+          m_MethodName: SetCamera
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4042319721903527708
 GameObject:
   m_ObjectHideFlags: 0
@@ -5057,7 +5129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -5065,7 +5137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
@@ -5078,7 +5150,7 @@ PrefabInstance:
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 3645853278466915277}
+      objectReference: {fileID: 4863606502406178702}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -5097,7 +5169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PlayDialogue
+      value: SetCamera
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -5109,7 +5181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: DialogueHolder, Assembly-CSharp
+      value: CultistBossController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -5121,7 +5193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2237065785875382114, guid: 3c95f2d0d98329b419bbb8f7578260e9, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
