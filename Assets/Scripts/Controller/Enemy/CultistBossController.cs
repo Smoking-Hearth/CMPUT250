@@ -37,6 +37,7 @@ public class CultistBossController : MonoBehaviour
     [SerializeField] private DialogueHolder[] stunDialogue;
     [SerializeField] private DialogueHolder firstStunDialogue;
     [SerializeField] private DialogueHolder unshieldDialogue;
+    [SerializeField] private DialogueHolder defeatDialogue;
     private bool firstStunned;
     private float stunTimer;
 
@@ -469,6 +470,12 @@ public class CultistBossController : MonoBehaviour
 
     }
 
+    public void Defeat()
+    {
+        HelicopterDescend.Descend();
+    }
+
+
     private void SweepSprayState()
     {
         targetMovement = Vector2.zero;
@@ -717,10 +724,11 @@ public class CultistBossController : MonoBehaviour
             }
             else
             {
+                healthComponent.enabled = false;
                 moveState = CultistMoveState.Defeated;
                 building.Win();
                 winEvent.Invoke();
-                HelicopterDescend.Descend();
+                defeatDialogue.PlayDialogue();
                 stunParticles.Play();
                 disableOnStun.SetActive(false);
                 return;

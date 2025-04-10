@@ -1422,6 +1422,179 @@ MonoBehaviour:
   landClip: {fileID: 8300000, guid: 4a0451a658bd7f8458d875f96cf5de26, type: 3}
   usesLandClip: 1
   effector: {fileID: 0}
+--- !u!1 &2828526727545932855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9082515911807719424}
+  - component: {fileID: 2184665506720872765}
+  m_Layer: 0
+  m_Name: FightEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9082515911807719424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2828526727545932855}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 445.2053, y: 270.9453, z: -3.2141695}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3208183198727202534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2184665506720872765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2828526727545932855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16de7a2346474316b99ed2927072439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSystem: {fileID: 0}
+  segments:
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - AGH!!!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - Hold on! Let me help you!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Cultist
+    scrollSound: {fileID: 8300000, guid: d10d95c70b4335d49992f697a034a874, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.15686275, g: 0.039215688, b: 0, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - No!
+    - Don't touch me!
+    - I'd rather die than be saved by an imbecile like you!
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - But we can help you!
+    - Come with me and we'll get you out of this ruined city!
+    - You can turn yourself in and-
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - You can turn yourself in and-
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1903030325203730117}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Defeat
+            m_BoolArgument: 0
+          m_CallState: 2
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - ......
+    - Dang it.
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Fire Chief
+    scrollSound: {fileID: 8300000, guid: b8560756d67bcde30af4347558e05b01, type: 3}
+    startSound: {fileID: 8300000, guid: 509788c08cc4ff046922bbc41ffadb72, type: 3}
+    font: {fileID: 0}
+    image: {fileID: -979138190, guid: 77c17aac7d8711e4abe6da4fa558e0e6, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - "Heads up, kid. We\u2019re coming in."
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4863606502406178702}
+          m_TargetAssemblyTypeName: CultistBossController, Assembly-CSharp
+          m_MethodName: Defeat
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3314613411670481026
 GameObject:
   m_ObjectHideFlags: 0
@@ -3804,6 +3977,7 @@ Transform:
   - {fileID: 5143088659210777249}
   - {fileID: 4893668417751409483}
   - {fileID: 290545922578752460}
+  - {fileID: 9082515911807719424}
   m_Father: {fileID: 2466860787030460951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6856932559476538506
@@ -5253,6 +5427,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1584590078473666343, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2082584330535335701, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30
@@ -5342,6 +5520,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
+      propertyPath: defeatDialogue
+      value: 
+      objectReference: {fileID: 2184665506720872765}
+    - target: {fileID: 4429186099595162638, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: normalPortrait
       value: 
       objectReference: {fileID: -3613975407152092349, guid: 2d586e184a45e7f49874bf6ff8c2418a, type: 3}
@@ -5393,11 +5575,31 @@ PrefabInstance:
       propertyPath: unshieldedColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4467802010540620360, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608313586746009478, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5295217620448390165, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 3375764136391925881}
     - target: {fileID: 5704230173790639433, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6083848585488174947, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356554353356888434, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304376227047522930, guid: f9305a2e364dd71439b4d66bce2f3343, type: 3}
       propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
