@@ -2180,11 +2180,36 @@ MonoBehaviour:
     isTiled: 0
     lines:
     - What can I say?
-    - My thirst to save people is
     autoContinue: 0
     DoEvent:
       m_PersistentCalls:
         m_Calls: []
+  - title: Me
+    scrollSound: {fileID: 8300000, guid: 6a379f5ddbc5109faa1c5e866697929f, type: 3}
+    startSound: {fileID: 0}
+    font: {fileID: 0}
+    image: {fileID: -2921909968076475712, guid: 95ce70f161026ed47b371af2e9af0844, type: 3}
+    background: {fileID: 0}
+    backgroundMultiplier: {r: 0, g: 0.078431375, b: 0.19607843, a: 0.9019608}
+    isTiled: 0
+    lines:
+    - My thirst to save people is
+    autoContinue: 0
+    DoEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1087809848491216898}
+          m_TargetAssemblyTypeName: HelicopterDescend, Assembly-CSharp
+          m_MethodName: Win
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6642839489778604312
 GameObject:
   m_ObjectHideFlags: 0
