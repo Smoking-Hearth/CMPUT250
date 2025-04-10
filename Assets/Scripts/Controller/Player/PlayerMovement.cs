@@ -72,14 +72,7 @@ public class PlayerMovement : MonoBehaviour
         {
             freeze = false;
 
-            if (gameObject.MyLevelManager().Player.GroundState == GroundState.None)
-            {
-                addedVelocity.x = attached.linearVelocityX / Time.fixedDeltaTime;
-            }
-            else
-            {
-                addedVelocity = attached.linearVelocity / Time.fixedDeltaTime;
-            }
+            addedVelocity = attached.linearVelocity * 1.1f / Time.fixedDeltaTime;
         }
         if (freeze)
         {

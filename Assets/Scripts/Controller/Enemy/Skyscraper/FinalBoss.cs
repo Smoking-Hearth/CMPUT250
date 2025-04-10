@@ -82,9 +82,27 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] private Slider completionSlider;
     private bool rightSide = true;
 
+    [SerializeField] private FadeScreen winScreen;
+    public delegate void OnWin();
+    public static OnWin onWin;
+
+    private void OnEnable()
+    {
+        onWin += Win;
+    }
+
+    private void OnDisable()
+    {
+        onWin -= Win;
+    }
     void Start()
     {
         Generate();
+    }
+
+    public void Win()
+    {
+        winScreen.FadeIn(3);
     }
 
     public void ShowCompletionSlider(bool set)

@@ -6,7 +6,8 @@ public class HelicopterDescend : MonoBehaviour
     [SerializeField] private Transform attachPoint;
     [SerializeField] private Rigidbody2D helicopterRigidbody;
     [SerializeField] private Transform descendPoint;
-    [SerializeField] private Transform leavePoint;
+    [SerializeField] private Vector2 leaveDirection;
+    [SerializeField] private float speed;
     private bool boarded;
     private static bool descend;
 
@@ -28,6 +29,14 @@ public class HelicopterDescend : MonoBehaviour
         boarded = true;
     }
 
+    public void Win()
+    {
+        if (FinalBoss.onWin != null)
+        {
+            FinalBoss.onWin();
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -37,16 +46,7 @@ public class HelicopterDescend : MonoBehaviour
         }
         if (boarded)
         {
-            Vector2 direction = (Vector2)leavePoint.position - helicopterRigidbody.position;
-
-            if (direction.magnitude > 0.5f)
-            {
-                helicopterRigidbody.linearVelocity = direction * Time.fixedDeltaTime;
-            }
-            else
-            {
-                helicopterRigidbody.linearVelocity *= 0.98f;
-            }
+            helicopterRigidbody.linearVelocity = leaveDirection * speed * Time.fixedDeltaTime;
         }
         else
         {
@@ -54,7 +54,7 @@ public class HelicopterDescend : MonoBehaviour
 
             if (direction.magnitude > 0.5f)
             {
-                helicopterRigidbody.linearVelocity = direction * Time.fixedDeltaTime;
+                helicopterRigidbody.linearVelocity = direction * speed * Time.fixedDeltaTime;
             }
             else
             {

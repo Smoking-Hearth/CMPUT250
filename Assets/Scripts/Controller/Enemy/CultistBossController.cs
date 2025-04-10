@@ -705,7 +705,7 @@ public class CultistBossController : MonoBehaviour
     {
         if (cultistView)
         {
-            building.SetCameraPosition(transform.position);
+            building.SetCameraPosition(transform.position + Vector3.down);
         }
         else
         {
