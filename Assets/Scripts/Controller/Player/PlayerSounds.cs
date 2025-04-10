@@ -8,6 +8,7 @@ public class PlayerSounds : MonoBehaviour
     [SerializeField] private AudioClip fireHurtClip;
     [SerializeField] private AudioClip electricityHurtClip;
     [SerializeField] private AudioClip jumpClip;
+    [SerializeField] private AudioClip deathTune;
 
     public Ground currentGround;
 
@@ -57,5 +58,10 @@ public class PlayerSounds : MonoBehaviour
     {
         audioSource.pitch = 1;
         audioSource.PlayOneShot(jumpClip);
+    }
+
+    public void PlayDeathTune()
+    {
+        audioSource.PlayOneShot(deathTune);
     }
 }

@@ -65,6 +65,9 @@ public class StaircaseSection : MonoBehaviour
 
     public void OpenDoor()
     {
-        door.Open();
+        if (door != null)
+        {
+            door.Open();
+        }
     }
 }

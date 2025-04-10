@@ -11018,6 +11018,10 @@ PrefabInstance:
       propertyPath: braindamageEffect.volume
       value: 
       objectReference: {fileID: 1655020166}
+    - target: {fileID: 7902055416642925764, guid: f741decc3d7558047b68438584f5b6d2, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -2794945546005230788, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
     - target: {fileID: 7931799822780493391, guid: f741decc3d7558047b68438584f5b6d2, type: 3}
       propertyPath: shootEnabled
       value: 1
@@ -12784,10 +12788,10 @@ MonoBehaviour:
   audioSource: {fileID: 1007903290}
   blendAudioSource: {fileID: 1645178405}
   levelThemes:
-  - fullClip: {fileID: 8300000, guid: 4a76ac9b21db4974f8a4d55db5df0f86, type: 3}
-    loopClip: {fileID: 8300000, guid: 4a76ac9b21db4974f8a4d55db5df0f86, type: 3}
-  - fullClip: {fileID: 8300000, guid: ddd26f98b49964e4ca7fc49754808738, type: 3}
-    loopClip: {fileID: 8300000, guid: 33d596841d2705e44aea743e0984e84c, type: 3}
+  - fullClip: {fileID: 8300000, guid: bbee2f3329d124c6eb44d81751df1f05, type: 3}
+    loopClip: {fileID: 8300000, guid: bbee2f3329d124c6eb44d81751df1f05, type: 3}
+  - fullClip: {fileID: 8300000, guid: 970a89fd97770410ba1b1dcc04f54fa3, type: 3}
+    loopClip: {fileID: 8300000, guid: b812a27f6bd1e47c88e217e73311b06d, type: 3}
   defaultAudioVolume: 0.7
   specialAudioVolume: 0.9
   specialAmplifyDuration: 0.8

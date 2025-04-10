@@ -192,6 +192,11 @@ MonoBehaviour:
   deccelerationRate: 0.97
   stopWhenAttacking: 0
   moveY: 1
+  wander: 0
+  maxYtarget: 0
+  wallLayers:
+    serializedVersion: 2
+    m_Bits: 0
   targetHeight: 3
   projectilePrefab: {fileID: 2095809531407197485, guid: b7cd7c3d480773e46b7ba78b65057323, type: 3}
   inaccuracy: 1
@@ -223,6 +228,7 @@ MonoBehaviour:
   DefeatEvent:
     m_PersistentCalls:
       m_Calls: []
+  invulnerable: 0
   enemyInfo: {fileID: 0}
 --- !u!58 &2471601280667227481
 CircleCollider2D:
@@ -303,7 +309,8 @@ MonoBehaviour:
   ambientAudio: {fileID: 5864229158700149044}
   ambientVolume: 0.6
   hitClip: {fileID: 8300000, guid: 6f692b600274db949b79592f3887c04c, type: 3}
-  extinguishClip: {fileID: 8300000, guid: 38d58901f7394e7489bcf7114f06d9eb, type: 3}
+  extinguishClip: {fileID: 8300000, guid: e242685333f8c4fcc86a45ebf173f52e, type: 3}
+  playingAmbient: 0
 --- !u!114 &-2620083653304119942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,7 +336,7 @@ AudioSource:
   m_GameObject: {fileID: 7248960090352284795}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
+  OutputAudioMixerGroup: {fileID: -2794945546005230788, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -458,7 +465,7 @@ AudioSource:
   m_GameObject: {fileID: 7386204643880539325}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7254215766922870776, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
   m_audioClip: {fileID: 8300000, guid: 640262d63a9a5954f821512762a41ae4, type: 3}
   m_Resource: {fileID: 8300000, guid: 640262d63a9a5954f821512762a41ae4, type: 3}
   m_PlayOnAwake: 1

@@ -10059,7 +10059,8 @@ MonoBehaviour:
   ambientAudio: {fileID: 3138363518960133283}
   ambientVolume: 0.8
   hitClip: {fileID: 8300000, guid: 6f692b600274db949b79592f3887c04c, type: 3}
-  extinguishClip: {fileID: 8300000, guid: 38d58901f7394e7489bcf7114f06d9eb, type: 3}
+  extinguishClip: {fileID: 8300000, guid: 2089542fd7cd742bdb66212f883e7259, type: 3}
+  playingAmbient: 0
   stepClip: {fileID: 8300000, guid: 7461effcbe3666348bbe1cf4d502e8d1, type: 3}
   impactClip: {fileID: 8300000, guid: a8b4381fd484e654ab8603a111fcfff4, type: 3}
 --- !u!1 &1847362593766733774
@@ -30003,6 +30004,11 @@ MonoBehaviour:
   deccelerationRate: 0
   stopWhenAttacking: 1
   moveY: 0
+  wander: 0
+  maxYtarget: 0
+  wallLayers:
+    serializedVersion: 2
+    m_Bits: 0
   projectilePrefab: {fileID: 8963377957426162215, guid: 196279ec9cf52df46b36c8683387e089, type: 3}
   cacheCapacity: 5
   startThrowPosition: {x: 0, y: 1}
@@ -30107,6 +30113,7 @@ MonoBehaviour:
   DefeatEvent:
     m_PersistentCalls:
       m_Calls: []
+  invulnerable: 0
   enemyInfo: {fileID: 0}
 --- !u!114 &3678279514932245093
 MonoBehaviour:

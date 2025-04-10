@@ -281,7 +281,7 @@ MonoBehaviour:
   control: {fileID: 0}
   minValue: 0
   maxValue: 1
-  current: 1
+  leadEdge: 1
   duration: 0.7
   intensityDecreasePoint: 0.3
 --- !u!1 &1294738100865953310
@@ -12150,8 +12150,9 @@ MonoBehaviour:
   audioSource: {fileID: 7902055416642925764}
   mainShootSound: {fileID: 8300000, guid: b46cfa4f094fa7c48909e81342ba2ab8, type: 3}
   fireHurtClip: {fileID: 8300000, guid: 7ce529fa74a7e1549a3c3aab2c9024f8, type: 3}
-  electricityHurtClip: {fileID: 8300000, guid: b25732da70ed4a04fa24f265bfb1c021, type: 3}
+  electricityHurtClip: {fileID: 8300000, guid: 3f7e262370c79427ca81ed1b1f870e76, type: 3}
   jumpClip: {fileID: 8300000, guid: 295a87c0b998b8f459f87e081640d39b, type: 3}
+  deathTune: {fileID: 8300000, guid: df43cab115fae4a808c6aa78e47fe5b4, type: 3}
   currentGround: {fileID: 0}
 --- !u!114 &6729726458146466427
 MonoBehaviour:
@@ -12532,7 +12533,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
   Loop: 0

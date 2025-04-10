@@ -41,7 +41,7 @@ AudioSource:
   m_GameObject: {fileID: 806998032114962773}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7254215766922870776, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
   m_audioClip: {fileID: 8300000, guid: 640262d63a9a5954f821512762a41ae4, type: 3}
   m_Resource: {fileID: 8300000, guid: 640262d63a9a5954f821512762a41ae4, type: 3}
   m_PlayOnAwake: 1
@@ -261,7 +261,8 @@ MonoBehaviour:
   ambientAudio: {fileID: 3138363518960133283}
   ambientVolume: 0.8
   hitClip: {fileID: 8300000, guid: 6f692b600274db949b79592f3887c04c, type: 3}
-  extinguishClip: {fileID: 8300000, guid: 38d58901f7394e7489bcf7114f06d9eb, type: 3}
+  extinguishClip: {fileID: 8300000, guid: 2089542fd7cd742bdb66212f883e7259, type: 3}
+  playingAmbient: 0
   stepClip: {fileID: 8300000, guid: 7461effcbe3666348bbe1cf4d502e8d1, type: 3}
   impactClip: {fileID: 8300000, guid: a8b4381fd484e654ab8603a111fcfff4, type: 3}
 --- !u!1 &2330220795389742500
@@ -970,6 +971,7 @@ MonoBehaviour:
   DefeatEvent:
     m_PersistentCalls:
       m_Calls: []
+  invulnerable: 0
   enemyInfo: {fileID: 0}
 --- !u!114 &3678279514932245093
 MonoBehaviour:
@@ -996,7 +998,7 @@ AudioSource:
   m_GameObject: {fileID: 5659753226440418793}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
+  OutputAudioMixerGroup: {fileID: -2794945546005230788, guid: 4a6d7e03d4547cf4c93f6f3b0071ef82, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
